@@ -12,7 +12,7 @@
 
 ### 全体のタスク管理
 - GitHub Projectsを用いて行う。カンバン方式
-  - TODO: ProjectsのURLを貼る
+  - [ver 1.0](https://github.com/pj-picbook/picbook/projects/1)
 - 初期資料
   - https://docs.google.com/spreadsheets/d/1l_Nu-918y9GVZ78cG5aG6ptdbY0iy-jf/edit#gid=1807751388
 
