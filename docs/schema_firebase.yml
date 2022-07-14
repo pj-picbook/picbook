@@ -1,0 +1,18 @@
+users: #collection
+  documentId: # userId = auth.uid
+    name: string
+    email: string
+    linkedAccount: string ( Google | Apple )
+    bookshelfs: # subcollection
+      documentId: # auto
+        created: DateTime
+        books: # subcollection
+          documentId: # auto
+            book: string # Book.itemUrl (pending)
+            totalReadCount: integer
+            registeredDateTime: DateTime
+    readHistoryRecords: # subcollection
+      documentId: # auto
+        date: DateTime
+        book: string # Book.itemUrl (pending)
+  
