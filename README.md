@@ -17,7 +17,9 @@
   - https://docs.google.com/spreadsheets/d/1l_Nu-918y9GVZ78cG5aG6ptdbY0iy-jf/edit#gid=1807751388
 
 ### Issueの立て方
-
+New Issue をクリックすると 5 つのテンプレートがあります(salon_app の丸パクリ)  
+それぞれ使い方や例が書いてあるのでそれにならって記載してください。  
+質問なども Issue で立てていただけるとありがたいです
 
 ### ブランチ運用
 
