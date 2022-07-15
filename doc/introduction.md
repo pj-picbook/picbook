@@ -2,7 +2,6 @@
 
 ## gitのレポジトリをクローンする方法
 
-# HTTPS接続の場合
 git clone https://github.com/pj-picbook/picbook
 
 ## FVM（Flutter Version Management）のインストール方法
