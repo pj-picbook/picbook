@@ -1,4 +1,20 @@
+## アプリ概要
 
+### 画面設計(TBD)
+- figma:ユーザーフロー
+  - https://www.figma.com/file/LFlpRBi5CMWRJNMCnElqaY/picbook?node-id=15%3A95
+
+### スキーマ定義
+![](docs/modeling.drawio.png)
+- 図はdart上でのEntityとしての持ち方。
+- 詳細なスキーマについては[docs/schema.yml](docs/schema.yml)を参照。
+
+### フォルダ構成(TBD)
+- TODO
+
+
+
+## プロジェクト進行について
 
 ### 開発環境
 - TODO
@@ -56,19 +72,10 @@ Git Flow に沿って開発を行う(ツールは使わない)
       - 機能追加等の際にインクリメントする
     - patch
       - バグ修正などを行った場合にインクリメントする
+      
 
-### 画面設計(TBD)
-- figma:ユーザーフロー
-  - https://www.figma.com/file/LFlpRBi5CMWRJNMCnElqaY/picbook?node-id=15%3A95
 
-### スキーマ定義
-![](docs/modeling.drawio.png)
-- 図はdart上でのEntityとしての持ち方。
-- 詳細なスキーマについては[docs/schema.yml](docs/schema.yml)を参照。
-
-### フォルダ構成(TBD)
-- TODO
-
+## 事前の準備
 
 ### gitのレポジトリをクローンする方法
 - git clone https://github.com/pj-picbook/picbook
