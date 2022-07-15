@@ -4,7 +4,6 @@ User:
   email: string
   linkedAccount: string ( Google | Apple )
   bookshelfs: Bookshelf[]
-  readHistories: ReadHistory[]
 Book:
   id: string
   title: string
@@ -26,13 +25,15 @@ Book:
 RegisteredBook:
   id: string
   book: Book
-  totalReadCount: integer # そのままDBにもたせると循環参照になりそう
   registeredDateTime: DateTime
+  history: DateTime[]
 Bookshelf:
   id: string
+  name: string
   books: RegisteredBook[]
+  readHistories: ReadHistory[]
   created: DateTime
-ReadHistory:
+BookshelfHistory:
   date: DateTime
   book: RegisteredBook
   
