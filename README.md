@@ -1,11 +1,4 @@
-## 概要
 
-
-## 機能
-
-
-
-## 開発の進め方
 
 ### 開発環境
 - TODO
@@ -75,10 +68,3 @@ Git Flow に沿って開発を行う(ツールは使わない)
 
 ### フォルダ構成(TBD)
 - TODO
-
-
-下記二つを参考にしながらReadme整備
-
-https://github.com/flutteruniv/couple_todo
-
-https://github.com/flutteruniv/salon_app_doc/blob/master/salon_app/README.md
