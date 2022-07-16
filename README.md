@@ -10,9 +10,37 @@
 - 図はdart上でのEntityとしての持ち方。
 - 詳細なスキーマについては[docs/schema.yml](docs/schema.yml)を参照。
 
-### フォルダ構成(TBD)
-- TODO
-
+### フォルダ構成
+```shell: lib/ > tree .
+% tree . -I windows -I web -I ios -I macos -I linux -I android -I build
+.
+├── CHANGELOG.md # バージョンごとの変更点を記載していく
+├── README.md # このドキュメント
+├── analysis_options.yaml # lintの設定
+├── docs # ドキュメント格納フォルダ
+│   ├── modeling.drawio.png 
+│   ├── schema.yml
+│   └── schema_firebase.yml
+├── lib
+│   ├── common # domainでもinfrastructureでもpresentationでもないコードを置くところ
+│   ├── domain 
+│   │   ├── entity # entityモデルを置くところ
+│   │   └── value # valueやenumを置くところ
+│   ├── infrastructure # repositoryを置くところ
+│   ├── main.dart # Flutterのエントリポイント
+│   └── presentation # presentationにViewとViewModel相当のコードを各画面ごとに置く
+│       ├── book_detail
+│       ├── bookshelf
+│       ├── login
+│       ├── mypage
+│       ├── signin
+│       └── splash
+├── picbook.iml
+├── pubspec.lock
+├── pubspec.yaml
+└── test
+    └── widget_test.dart
+```
 
 ## 開発の始め方
 - リポジトリのクローン
