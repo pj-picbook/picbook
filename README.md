@@ -1,3 +1,4 @@
+# picbook
 ## アプリ概要
 
 ### 画面設計(TBD)
@@ -13,11 +14,35 @@
 - TODO
 
 
+## 開発の始め方
+- リポジトリのクローン
+```
+# https
+git clone -b main https://github.com/pj-picbook/picbook.git
 
-## プロジェクト進行について
+# ssh
+git clone -b main git@github.com:pj-picbook/picbook.git
+```
+
+- fvm install
+```
+fvm install
+```
+
+### FVM（Flutter Version Management）のインストール方法
+- Mac https://zenn.dev/riscait/articles/flutter-version-management
+- Windows https://qiita.com/idani/items/0e45d037b4c2a93840a7
 
 ### 開発環境
-- TODO
+```
+% fvm flutter --version
+Flutter 3.0.5 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision f1875d570e (3 days ago) • 2022-07-13 11:24:16 -0700
+Engine • revision e85ea0e79c
+Tools • Dart 2.17.6 • DevTools 2.12.2
+```
+
+## プロジェクト進行について
 
 ### 全体のタスク管理
 - GitHub Projectsを用いて行う。カンバン方式
@@ -75,11 +100,4 @@ Git Flow に沿って開発を行う(ツールは使わない)
       
 
 
-## 事前の準備
 
-### gitのレポジトリをクローンする方法
-- git clone https://github.com/pj-picbook/picbook
-
-### FVM（Flutter Version Management）のインストール方法
-- Mac https://zenn.dev/riscait/articles/flutter-version-management
-- Windows https://qiita.com/idani/items/0e45d037b4c2a93840a7
