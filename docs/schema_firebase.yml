@@ -6,13 +6,16 @@ users: #collection
     bookshelfs: # subcollection
       documentId: # auto
         created: DateTime
+        name: string
         books: # subcollection
           documentId: # auto
             book: string # Book.itemUrl (pending)
-            totalReadCount: integer
             registeredDateTime: DateTime
-    readHistoryRecords: # subcollection
-      documentId: # auto
-        date: DateTime
-        book: string # Book.itemUrl (pending)
+            history: # subcollection
+              documentId: # auto
+                date: DateTime
+        readHistory: # subcollection
+          documentId: # auto
+            date: DateTime
+            book: string # Book.itemUrl (pending)
   
