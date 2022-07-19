@@ -28,13 +28,14 @@
 │   │   └── value # valueやenumを置くところ
 │   ├── infrastructure # repositoryを置くところ
 │   ├── main.dart # Flutterのエントリポイント
-│   └── presentation # presentationにViewとViewModel相当のコードを各画面ごとに置く
-│       ├── book_detail
-│       ├── bookshelf
-│       ├── login
-│       ├── mypage
-│       ├── signin
-│       └── splash
+│   ├── presentation # presentationにViewとViewModel相当のコードを各画面ごとに置く
+│   │   ├── book_detail
+│   │   ├── bookshelf
+│   │   ├── login
+│   │   ├── mypage
+│   │   ├── signin
+│   │   └── splash
+│   └── state # Stateを置くところ
 ├── picbook.iml
 ├── pubspec.lock
 ├── pubspec.yaml
