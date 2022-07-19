@@ -58,6 +58,11 @@ git clone -b main git@github.com:pj-picbook/picbook.git
 fvm install
 ```
 
+- freezedでクラスを定義したあとのコード生成コマンド
+```
+fvm flutter pub run build_runner build --delete-conflicting-outputs
+```
+
 ### FVM（Flutter Version Management）のインストール方法
 - Mac https://zenn.dev/riscait/articles/flutter-version-management
 - Windows https://qiita.com/idani/items/0e45d037b4c2a93840a7
