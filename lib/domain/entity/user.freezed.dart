@@ -20,10 +20,15 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'email')
   String get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'linkedAccount')
   String get linkedAccount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bookshelfs')
   List<String> get bookshelfs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,11 +41,11 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      String name,
-      String email,
-      String linkedAccount,
-      List<String> bookshelfs});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'name') String name,
+      @JsonKey(name: 'email') String email,
+      @JsonKey(name: 'linkedAccount') String linkedAccount,
+      @JsonKey(name: 'bookshelfs') List<String> bookshelfs});
 }
 
 /// @nodoc
@@ -90,11 +95,11 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$_UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      String name,
-      String email,
-      String linkedAccount,
-      List<String> bookshelfs});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'name') String name,
+      @JsonKey(name: 'email') String email,
+      @JsonKey(name: 'linkedAccount') String linkedAccount,
+      @JsonKey(name: 'bookshelfs') List<String> bookshelfs});
 }
 
 /// @nodoc
@@ -141,36 +146,53 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_User extends _User {
+class _$_User extends _User with DiagnosticableTreeMixin {
   _$_User(
-      {required this.id,
-      required this.name,
-      required this.email,
-      required this.linkedAccount,
-      required final List<String> bookshelfs})
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'name') required this.name,
+      @JsonKey(name: 'email') required this.email,
+      @JsonKey(name: 'linkedAccount') required this.linkedAccount,
+      @JsonKey(name: 'bookshelfs') required final List<String> bookshelfs})
       : _bookshelfs = bookshelfs,
         super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
+  @JsonKey(name: 'id')
   final String id;
   @override
+  @JsonKey(name: 'name')
   final String name;
   @override
+  @JsonKey(name: 'email')
   final String email;
   @override
+  @JsonKey(name: 'linkedAccount')
   final String linkedAccount;
   final List<String> _bookshelfs;
   @override
+  @JsonKey(name: 'bookshelfs')
   List<String> get bookshelfs {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_bookshelfs);
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'User(id: $id, name: $name, email: $email, linkedAccount: $linkedAccount, bookshelfs: $bookshelfs)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'User'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('linkedAccount', linkedAccount))
+      ..add(DiagnosticsProperty('bookshelfs', bookshelfs));
   }
 
   @override
@@ -212,24 +234,34 @@ class _$_User extends _User {
 
 abstract class _User extends User {
   factory _User(
-      {required final String id,
-      required final String name,
-      required final String email,
-      required final String linkedAccount,
-      required final List<String> bookshelfs}) = _$_User;
+      {@JsonKey(name: 'id')
+          required final String id,
+      @JsonKey(name: 'name')
+          required final String name,
+      @JsonKey(name: 'email')
+          required final String email,
+      @JsonKey(name: 'linkedAccount')
+          required final String linkedAccount,
+      @JsonKey(name: 'bookshelfs')
+          required final List<String> bookshelfs}) = _$_User;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   String get id;
   @override
+  @JsonKey(name: 'name')
   String get name;
   @override
+  @JsonKey(name: 'email')
   String get email;
   @override
+  @JsonKey(name: 'linkedAccount')
   String get linkedAccount;
   @override
+  @JsonKey(name: 'bookshelfs')
   List<String> get bookshelfs;
   @override
   @JsonKey(ignore: true)
