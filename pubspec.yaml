@@ -38,6 +38,10 @@ dependencies:
   flutter_hooks: ^0.18.5+1
   freezed_annotation: ^2.1.0
   state_notifier: ^0.7.2+1
+  firebase_core: ^1.19.2
+  firebase_auth: ^3.4.2
+  cloud_firestore: ^3.3.0
+
 
 dev_dependencies:
   flutter_test:
