@@ -39,7 +39,6 @@ class MyHomePage extends StatelessWidget {
                         context,
                         MaterialPageRoute<MyPage>(
                           builder: (BuildContext context) => const MyPage(),
-                          // fullscreenDialog: false,
                         ),
                       )
                     },
