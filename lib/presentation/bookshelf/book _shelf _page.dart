@@ -26,11 +26,16 @@ class BookShelfPage extends StatelessWidget {
   /// [color] 色
   /// return 高さ*幅サイズのカラー設定済みContainer
   static Widget makeDummyItem(double height, double width, Color color) {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      height: height,
-      width: width,
-      color: color,
+    return InkWell(
+      onTap: (){
+        // TODO タップ時の作品詳細画面遷移
+      },
+      child: Container(
+        margin: const EdgeInsets.all(8),
+        height: height,
+        width: width,
+        color: color,
+      ),
     );
   }
 
