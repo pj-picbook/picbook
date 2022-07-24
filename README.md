@@ -132,6 +132,19 @@ Git Flow に沿って開発を行う(ツールは使わない)
     - patch
       - バグ修正などを行った場合にインクリメントする
       
+## 開発Tips
+- lintエラーの確認
+```
+fvm flutter analyze
+```
 
+- lintエラーの自動修正(手動で修正することを推奨)
+```
+# dry run
+fvm dart fix --dry-run
+
+# apply
+fvm dart fix --apply
+```
 
 
