@@ -47,6 +47,7 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        // ignore: avoid_print
         onPressed: () => print('hey!'),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
