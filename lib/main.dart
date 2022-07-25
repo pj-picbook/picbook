@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:picbook/presentation/first_page/first_page.dart';
 import 'package:picbook/presentation/mypage/mypage.dart';
 
 void main() {
@@ -42,7 +43,17 @@ class MyHomePage extends StatelessWidget {
                         ),
                       )
                     },
-                child: const Text('MyPage'))
+                child: const Text('MyPage')),
+            ElevatedButton(
+                onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<MyPage>(
+                          builder: (BuildContext context) => const FirstPage(),
+                        ),
+                      )
+                    },
+                child: const Text('FirstPage'))
           ],
         ),
       ),
