@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class FirstPage extends StatelessWidget {
@@ -109,9 +110,41 @@ class FirstPage extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.all(20),
-            child: Text(
-              "登録/ログインをすることで、利用規約とプライバシーポリシーに同意したものとみなされます。",
-              style: TextStyle(fontWeight: FontWeight.w600),
+            child: RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+                children: [
+                  TextSpan(
+                    text: "登録/ログインをすることで、",
+                  ),
+                  TextSpan(
+                    text: "利用規約",
+                    recognizer: TapGestureRecognizer()..onTap = () {},
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  TextSpan(
+                    text: "と",
+                  ),
+                  TextSpan(
+                    text: "プライバシーポリシー",
+                    recognizer: TapGestureRecognizer()..onTap = () {},
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w600,
+                        decoration: TextDecoration.underline),
+                  ),
+                  TextSpan(
+                    text: "に同意したものとみなされます。",
+                  ),
+                ],
+              ),
             ),
           ),
         ],
