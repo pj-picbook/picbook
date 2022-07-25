@@ -22,7 +22,8 @@ class FirstPage extends StatelessWidget {
               ),
             ),
             decoration: BoxDecoration(
-                border: Border.all(color: Colors.red), color: Colors.white12),
+              color: Colors.black12,
+            ),
           ),
           SizedBox(height: 10),
           Text(
