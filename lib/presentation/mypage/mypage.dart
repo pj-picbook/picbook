@@ -28,16 +28,17 @@ class MyPage extends StatelessWidget {
               width: 48,
             ),
             Row(
-              children: <Widget>[Text('なまえ'), Text(dummyUser.name)],
+              children: <Widget>[const Text('なまえ'), Text(dummyUser.name)],
             ),
             Row(
               children: <Widget>[
-                Text('よんだえほん'),
+                const Text('よんだえほん'),
                 Text('${dummyUser.bookshelfs.length}さつ')
               ],
             ),
             ElevatedButton(
                 onPressed: () {
+                  // ignore: avoid_print
                   print('pushed!');
                 },
                 child: const Text('ログアウトする'))
