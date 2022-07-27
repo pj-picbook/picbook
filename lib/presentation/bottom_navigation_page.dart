@@ -7,7 +7,7 @@ final _navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
 };
 
 class BottomNavigationPage extends StatefulWidget {
-  BottomNavigationPage({Key? key}) : super(key: key);
+  const BottomNavigationPage({Key? key}) : super(key: key);
 
   @override
   State<BottomNavigationPage> createState() => _BottomNavigationPageState();
