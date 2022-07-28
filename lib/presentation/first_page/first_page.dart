@@ -1,9 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:picbook/presentation/agreement_page/agreement_page.dart';
 
-class FirstPage extends StatelessWidget {
+class FirstPage extends StatefulWidget {
   const FirstPage({Key? key}) : super(key: key);
 
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +93,16 @@ class FirstPage extends StatelessWidget {
                   ),
                   TextSpan(
                     text: "利用規約",
-                    recognizer: TapGestureRecognizer()..onTap = () {},
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AgreementPage(
+                                      title: "利用規約",
+                                      url: "https://docs.flutter.dev/",
+                                    )));
+                      },
                     style: const TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.w600,
@@ -99,7 +114,16 @@ class FirstPage extends StatelessWidget {
                   ),
                   TextSpan(
                     text: "プライバシーポリシー",
-                    recognizer: TapGestureRecognizer()..onTap = () {},
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AgreementPage(
+                                    title: "プライバシーポリシー",
+                                    url:
+                                        "https://github.com/pj-picbook/picbook")));
+                      },
                     style: const TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.w600,
