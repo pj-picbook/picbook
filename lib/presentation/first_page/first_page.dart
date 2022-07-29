@@ -100,7 +100,8 @@ class _FirstPageState extends State<FirstPage> {
                             MaterialPageRoute(
                                 builder: (context) => AgreementPage(
                                       title: "利用規約",
-                                      url: "https://docs.flutter.dev/",
+                                      url:
+                                          "https://pj-picbook.github.io/picdoc/docs/terms.html",
                                     )));
                       },
                     style: const TextStyle(
@@ -122,7 +123,7 @@ class _FirstPageState extends State<FirstPage> {
                                 builder: (context) => AgreementPage(
                                     title: "プライバシーポリシー",
                                     url:
-                                        "https://github.com/pj-picbook/picbook")));
+                                        "https://pj-picbook.github.io/picdoc/docs/privacypolicy.html")));
                       },
                     style: const TextStyle(
                         color: Colors.blue,
