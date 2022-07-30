@@ -12,7 +12,7 @@ enum TabItem {
   mypage(
     title: 'マイページ',
     icon: Icons.person,
-    page: MyPage(), // TODO:マイページのクラス名に書き換える。
+    page: MyPage(),
   );
 
   const TabItem({
