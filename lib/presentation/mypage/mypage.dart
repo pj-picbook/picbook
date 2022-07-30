@@ -10,13 +10,22 @@ class MyPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // MyPageNotifierProviderからstateを取得
+    // 値はこちらから読み取る
     final state = ref.watch(myPageNotifierProvider);
+
+    // MyPageNotifierProviderからnotifierを取得
+    // メソッドはこちらから使う
     final notifier = ref.watch(myPageNotifierProvider.notifier);
+
+    // 初期化処理
     useEffect(() {
+      // useEffect内で非同期処理を行うため、別関数を定義
       Future<void> fetchUser() async {
         await notifier.fetch(id: 'umLDBXIjYX4EoGqtEwcI');
       }
 
+      // 定義した関数を呼び出し
       fetchUser();
       return null;
     }, []);
