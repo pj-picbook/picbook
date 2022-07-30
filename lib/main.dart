@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:picbook/presentation/first_page/first_page.dart';
-import 'package:picbook/presentation/mypage/mypage.dart';
 import 'package:picbook/presentation/bottom_navigation_page.dart';
 
 void main() {
