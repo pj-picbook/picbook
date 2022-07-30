@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class AgreementPage extends StatefulWidget {
+  const AgreementPage({Key? key, required this.title, required this.url})
+      : super(key: key);
   final String title;
   final String url;
-  AgreementPage({required this.title, required this.url});
 
   @override
   State<AgreementPage> createState() => _AgreementPageState();

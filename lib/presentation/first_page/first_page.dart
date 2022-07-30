@@ -98,7 +98,7 @@ class _FirstPageState extends State<FirstPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AgreementPage(
+                                builder: (context) => const AgreementPage(
                                       title: "利用規約",
                                       url:
                                           "https://pj-picbook.github.io/picdoc/docs/terms.html",
@@ -120,7 +120,7 @@ class _FirstPageState extends State<FirstPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AgreementPage(
+                                builder: (context) => const AgreementPage(
                                     title: "プライバシーポリシー",
                                     url:
                                         "https://pj-picbook.github.io/picdoc/docs/privacypolicy.html")));
