@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:picbook/common/dummy_data.dart';
+import 'package:picbook/presentation/first_page/first_page.dart';
 
 class MyPage extends StatelessWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -41,7 +42,17 @@ class MyPage extends StatelessWidget {
                   // ignore: avoid_print
                   print('pushed!');
                 },
-                child: const Text('ログアウトする'))
+                child: const Text('ログアウトする')),
+            ElevatedButton(
+                onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<MyPage>(
+                          builder: (BuildContext context) => const FirstPage(),
+                        ),
+                      )
+                    },
+                child: const Text('FirstPage'))
           ],
         ),
       ),
