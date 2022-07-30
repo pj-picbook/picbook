@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:picbook/common/dummy_data.dart';
+import 'package:picbook/presentation/first_page/first_page.dart';
 
 class MyPage extends StatelessWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -28,19 +29,30 @@ class MyPage extends StatelessWidget {
               width: 48,
             ),
             Row(
-              children: <Widget>[Text('なまえ'), Text(dummyUser.name)],
+              children: <Widget>[const Text('なまえ'), Text(dummyUser.name)],
             ),
             Row(
               children: <Widget>[
-                Text('よんだえほん'),
+                const Text('よんだえほん'),
                 Text('${dummyUser.bookshelfs.length}さつ')
               ],
             ),
             ElevatedButton(
                 onPressed: () {
+                  // ignore: avoid_print
                   print('pushed!');
                 },
-                child: const Text('ログアウトする'))
+                child: const Text('ログアウトする')),
+            ElevatedButton(
+                onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<MyPage>(
+                          builder: (BuildContext context) => const FirstPage(),
+                        ),
+                      )
+                    },
+                child: const Text('FirstPage'))
           ],
         ),
       ),
