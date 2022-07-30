@@ -2,14 +2,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:picbook/presentation/agreement_page/agreement_page.dart';
 
-class FirstPage extends StatefulWidget {
+class FirstPage extends StatelessWidget {
   const FirstPage({Key? key}) : super(key: key);
 
-  @override
-  State<FirstPage> createState() => _FirstPageState();
-}
-
-class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

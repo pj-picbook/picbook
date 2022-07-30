@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class AgreementPage extends StatefulWidget {
+class AgreementPage extends StatelessWidget {
   final String title;
   final String url;
   AgreementPage({required this.title, required this.url});
 
   @override
-  State<AgreementPage> createState() => _AgreementPageState();
-}
-
-class _AgreementPageState extends State<AgreementPage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(title),
         ),
         body: WebView(
-          initialUrl: widget.url,
+          initialUrl: url,
         ));
   }
 }
