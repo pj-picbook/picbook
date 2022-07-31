@@ -147,4 +147,17 @@ fvm dart fix --dry-run
 fvm dart fix --apply
 ```
 
+- テスト実行
+```
+fvm flutter test
+```
 
+- カバレッジ計測
+```
+# macの場合)
+brew install lcov
+
+fvm flutter test --coverage
+genhtml coverage/lcov.info -o coverage/html
+open coverage/html/index.html
+```
