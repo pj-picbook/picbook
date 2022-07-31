@@ -1,13 +1,16 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mockito/annotations.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
 
-import 'user_repository_mock.dart';
+import 'container.mocks.dart';
 
-// UserRepository
+@GenerateMocks([UserRepository])
+final mockUserRepository = MockUserRepository();
+
 ProviderContainer overrideUserRepository() {
   return ProviderContainer(overrides: [
     userRepository.overrideWithProvider(
-      Provider((ref) => UserRepositoryMock()),
+      Provider((ref) => mockUserRepository),
     )
   ]);
 }
