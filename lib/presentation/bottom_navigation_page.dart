@@ -51,6 +51,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _currentTab.index,
+          backgroundColor: HexColor('DBCCC4'),
           items: TabItem.values
               .map(
                 (tabItem) => BottomNavigationBarItem(
@@ -78,4 +79,16 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
       });
     }
   }
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll('#', '');
+    if (hexColor.length == 6) {
+      hexColor = 'FF$hexColor';
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }

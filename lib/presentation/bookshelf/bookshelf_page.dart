@@ -8,7 +8,7 @@ class BookshelfPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("絵本の棚")),
+      appBar: AppBar(title: const Text("ehonapp")),
       body: const Text("絵本の棚"),
     );
   }
