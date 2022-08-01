@@ -58,7 +58,7 @@ git clone -b main git@github.com:pj-picbook/picbook.git
 fvm install
 ```
 
-- freezedでクラスを定義したあとのコード生成コマンド
+- freezedでクラスを定義orMockを新しく追加した後のコード生成コマンド
 ```
 fvm flutter pub run build_runner build --delete-conflicting-outputs
 ```

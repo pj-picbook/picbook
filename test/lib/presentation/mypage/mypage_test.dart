@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,14 +20,18 @@ void main() {
   });
 
   group('mypage', () {
-    testWidgets('description', (tester) async {
+    testWidgets('初期描画時にdummyUserの情報が画面に描画されること', (tester) async {
       when(repository.findById(id: 'umLDBXIjYX4EoGqtEwcI'))
           .thenAnswer((_) => Future.value(dummyUser));
+
+      // Image.networkがUIにある場合はこれで包む
       await mockNetworkImagesFor(
         () async {
           await tester.pumpWidget(
             ProviderScope(
-              overrides: [userRepository.overrideWithValue(mockUserRepository)],
+              // userRepositoryをmockでoverrideする
+              overrides: [userRepository.overrideWithValue(repository)],
+              // この辺は描画に必要なものを適当に作成
               child: MaterialApp(
                 title: 'MyPage Widget Test',
                 theme: ThemeData(
@@ -42,10 +44,11 @@ void main() {
         },
       );
 
-      sleep(const Duration(seconds: 3));
+      // 描画が終わるまで待機する
+      await tester.pumpAndSettle();
 
       expect(find.text('なまえ'), findsOneWidget);
-      expect(find.text('やまさん'), findsOneWidget);
+      expect(find.text(dummyUser.name), findsOneWidget);
     });
   });
 }
