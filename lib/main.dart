@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:picbook/presentation/bottom_navigation_page.dart';
-import 'package:picbook/presentation/signup/signup_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SignUpPage(),
+      home: const BottomNavigationPage(),
     );
   }
 }

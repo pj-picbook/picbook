@@ -1,4 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import '../agreement_page/agreement_page.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -143,6 +146,44 @@ class SignUpPage extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
+                ),
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              RichText(
+                text: TextSpan(
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  children: [
+                    const TextSpan(
+                      text: "「登録する」ボタンを押すことで、",
+                    ),
+                    TextSpan(
+                      text: "利用規約",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AgreementPage(
+                                        title: "利用規約",
+                                        url:
+                                            "https://pj-picbook.github.io/picdoc/docs/terms.html",
+                                      )));
+                        },
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w600,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    const TextSpan(
+                      text: "に同意したものとみなします。",
+                    ),
+                  ],
                 ),
               ),
             ],
