@@ -4,6 +4,13 @@
 ### 画面設計(TBD)
 - figma:ユーザーフロー
   - https://www.figma.com/file/LFlpRBi5CMWRJNMCnElqaY/picbook?node-id=15%3A95
+  
+### アーキテクチャ
+`MVVM + Repository`パターンを採用する。
+![](docs/architecture.drawio.png)
+- ステートを持つPageは`HookConsumerWidget`もしくは`ConsumerWidget`を継承して作成する。
+- ViewModelは`StateNotifier<T>`を継承して作成する。(命名はXXXNotifier)
+- Repositoryはわかりやすく分離し、できれば外部のパッケージはDIしてRepository自体のテストも行う。
 
 ### スキーマ定義
 ![](docs/modeling.drawio.png)
