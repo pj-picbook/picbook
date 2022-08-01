@@ -20,9 +20,9 @@ void main() {
   group('fetch', () {
     test('存在するユーザーIDを渡した際に、正しくユーザー情報を取得できること', () async {
       // ユーザー情報をmockにセット
-      // repository.set(dummyUser);
       when(repository.findById(id: 'test'))
           .thenAnswer((_) => Future.value(dummyUser));
+
       // containerからnotifierを呼び出し
       final notifier = container.read(myPageNotifierProvider.notifier);
 

@@ -32,6 +32,7 @@ dev_dependencies:
   json_serializable: ^6.3.1
   flutter_lints: ^2.0.0
   mockito: ^5.0.0
+  network_image_mock: ^2.1.1
 
 dependency_overrides:
   code_builder: ^4.2.0
