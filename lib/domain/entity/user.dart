@@ -22,4 +22,7 @@ class User with _$User {
       }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  factory User.initial() =>
+      User(id: '', name: '', email: '', linkedAccount: '', bookshelfs: []);
 }

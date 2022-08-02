@@ -4,6 +4,13 @@
 ### 画面設計(TBD)
 - figma:ユーザーフロー
   - https://www.figma.com/file/LFlpRBi5CMWRJNMCnElqaY/picbook?node-id=15%3A95
+  
+### アーキテクチャ
+`MVVM + Repository`パターンを採用する。
+![](docs/architecture.drawio.png)
+- ステートを持つPageは`HookConsumerWidget`もしくは`ConsumerWidget`を継承して作成する。
+- ViewModelは`StateNotifier<T>`を継承して作成する。(命名はXXXNotifier)
+- Repositoryはわかりやすく分離し、できれば外部のパッケージはDIしてRepository自体のテストも行う。
 
 ### スキーマ定義
 ![](docs/modeling.drawio.png)
@@ -58,7 +65,7 @@ git clone -b main git@github.com:pj-picbook/picbook.git
 fvm install
 ```
 
-- freezedでクラスを定義したあとのコード生成コマンド
+- freezedでクラスを定義orMockを新しく追加した後のコード生成コマンド
 ```
 fvm flutter pub run build_runner build --delete-conflicting-outputs
 ```
@@ -147,4 +154,17 @@ fvm dart fix --dry-run
 fvm dart fix --apply
 ```
 
+- テスト実行
+```
+fvm flutter test
+```
 
+- カバレッジ計測
+```
+# macの場合)
+brew install lcov
+
+fvm flutter test --coverage
+genhtml coverage/lcov.info -o coverage/html
+open coverage/html/index.html
+```

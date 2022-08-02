@@ -19,3 +19,9 @@ jobs:
         run: flutter analyze
       - name: Test
         run: flutter test
+      # - name: Test & Coverage
+      #   run: flutter test --no-test-assets --coverage --coverage-path=~/coverage/lcov.info
+      # - uses: codecov/codecov-action@v1
+      #   with:
+      #     token: ${{secrets.CODECOV_TOKEN}}
+      #     file: ~/coverage/lcov.info

@@ -54,3 +54,6 @@ ios/Runner/**/GoogleService-Info.plist
 
 #fvm related
 .fvm/flutter_sdk
+
+# test related
+coverage/
