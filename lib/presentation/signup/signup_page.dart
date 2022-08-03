@@ -12,7 +12,7 @@ class SignUpPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "会員登録",
-          style: TextStyle(fontSize: 17.0),
+          style: TextStyle(fontSize: 17.0, color: Colors.white),
         ),
         backgroundColor: Colors.blue[900],
       ),
