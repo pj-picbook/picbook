@@ -1,10 +1,41 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../agreement_page/agreement_page.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  DateTime? _dateTime;
+  TextEditingController _textEditingController = TextEditingController();
+
+  /// datePickerの表示構成
+  Widget _bottomPicker(Widget picker) {
+    return Container(
+      height: 216,
+      padding: const EdgeInsets.only(top: 6.0),
+      color: CupertinoColors.white,
+      child: DefaultTextStyle(
+        style: const TextStyle(
+          color: CupertinoColors.black,
+          fontSize: 22.0,
+        ),
+        child: GestureDetector(
+          onTap: () {},
+          child: SafeArea(
+            top: false,
+            child: picker,
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +89,22 @@ class SignUpPage extends StatelessWidget {
                   style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
                 ),
               ),
+              // Container(
+              //   height: 50,
+              //   width: 300,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white70,
+              //     border: Border.all(color: Colors.red, width: 0.5),
+              //   ),
+              //   child: TextFormField(
+              //     textAlign: TextAlign.center,
+              //     decoration: const InputDecoration(
+              //       border: InputBorder.none,
+              //       hintText: "xxxx / xxx / xx",
+              //       hintStyle: TextStyle(fontSize: 13.0),
+              //     ),
+              //   ),
+              // ),
               Container(
                 height: 50,
                 width: 300,
@@ -66,6 +113,72 @@ class SignUpPage extends StatelessWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  onTap: () {
+                    // _selectDate(context);
+                    showCupertinoModalPopup(
+                        context: context,
+                        builder: (context) {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                  color: Color(0xffffffff),
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Color(0xff999999),
+                                      width: 0.0,
+                                    ),
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    CupertinoButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0,
+                                        vertical: 5.0,
+                                      ),
+                                      child: const Text(
+                                        'キャンセル',
+                                        style: TextStyle(color: Colors.blue),
+                                      ),
+                                    ),
+                                    CupertinoButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0,
+                                        vertical: 5.0,
+                                      ),
+                                      child: const Text(
+                                        '追加',
+                                        style: TextStyle(color: Colors.blue),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              _bottomPicker(
+                                CupertinoDatePicker(
+                                  /// datePickerを日付のみの表示にする
+                                  mode: CupertinoDatePickerMode.date,
+                                  initialDateTime: _dateTime,
+                                  onDateTimeChanged: (DateTime newDateTime) {
+                                    setState(() => _dateTime = newDateTime);
+                                  },
+                                ),
+                              ),
+                            ],
+                          );
+                        });
+                  },
+                  controller: _textEditingController,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
