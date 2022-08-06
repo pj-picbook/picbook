@@ -18,6 +18,6 @@ class SearchBookPageNotifier extends StateNotifier<SearchBookState> {
   final RakutenBookRepository _rakutenBookRepository;
 
   Future<void> fetch({required String keyWord}) async {
-    state = await _rakutenBookRepository.findByKeyWord(keyWord: keyWord);
+    state = await _rakutenBookRepository.search(keyWord: keyWord);
   }
 }
