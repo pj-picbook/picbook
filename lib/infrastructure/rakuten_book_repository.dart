@@ -1,7 +1,7 @@
 import 'dart:convert' as convert;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../state/searched_book.dart';
+import '../../state/search_book_state.dart';
 import '../domain/entity/book.dart';
 import '../common/client/http_client.dart';
 
@@ -9,17 +9,16 @@ final rakutenBookRepository = Provider((ref) => RakutenBookRepository());
 
 /// RakutenBooksから取得できる本の情報を操作するリポジトリ
 class RakutenBookRepository {
-  Future<SearchedBook> findByKeyWord({required String keyWord}) async {
+  Future<SearchBookState> findByKeyWord({required String keyWord}) async {
     final httpClient = HttpClient(uri: _createUri(searchText: keyWord));
     final client = await httpClient.connect(type: RequestType.get);
-    final searchedBook = SearchedBook(books: []);
 
     if (client.isParameterError || client.response == null) {
-      return searchedBook;
+      return SearchBookState(books: []);
     }
 
     if (client.response!.statusCode != 200) {
-      return searchedBook;
+      return SearchBookState(books: []);
     }
 
     final bookItems =
@@ -44,8 +43,7 @@ class RakutenBookRepository {
         );
       },
     );
-    searchedBook.books = books;
-    return searchedBook;
+    return SearchBookState(books: books);
   }
 
   Uri _createUri({required String searchText}) {
