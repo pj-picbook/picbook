@@ -2,18 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../agreement_page/agreement_page.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
-
-  @override
-  State<SignUpPage> createState() => _SignUpPageState();
-}
-
-class _SignUpPageState extends State<SignUpPage> {
-  DateTime? _dateTime;
-  TextEditingController _textEditingController = TextEditingController();
+class SignUpPage extends HookConsumerWidget {
+  late final DateTime? _dateTime;
 
   // datePickerの表示構成
   Widget _bottomPicker(Widget picker) {
@@ -38,7 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       localizationsDelegates: const [
         GlobalWidgetsLocalizations.delegate,
@@ -180,16 +173,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                   CupertinoDatePicker(
                                     mode: CupertinoDatePickerMode.date,
                                     initialDateTime: _dateTime,
-                                    onDateTimeChanged: (DateTime newDateTime) {
-                                      setState(() => _dateTime = newDateTime);
-                                    },
+                                    onDateTimeChanged:
+                                        (DateTime newDateTime) {},
                                   ),
                                 ),
                               ],
                             );
                           });
                     },
-                    controller: _textEditingController,
+                    //controller: _textEditingController,
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
