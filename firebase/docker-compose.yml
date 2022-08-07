@@ -1,0 +1,7 @@
+version: "3"
+services:
+  firebase-cli-container:
+    build: ./firebase-cli
+    container_name: firecli-container
+    volumes:
+      - ../firebase:/workdir
