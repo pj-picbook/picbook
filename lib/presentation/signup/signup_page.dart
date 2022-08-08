@@ -327,3 +327,20 @@ class SignUpPage extends HookConsumerWidget {
     );
   }
 }
+
+@immutable
+class SignUpPageState {
+  const SignUpPageState({this.name = "", this.email = "", this.password = ""});
+
+  final String name;
+  final String email;
+  final String password;
+
+  SignUpPageState copyWith({String? name, String? email, String? password}) {
+    return SignUpPageState(
+      name: name ?? this.name,
+      email: email ?? this.email,
+      password: password ?? this.password,
+    );
+  }
+}
