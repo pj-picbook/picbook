@@ -5,32 +5,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/presentation/signup/signup_page_notifier.dart';
+import 'package:picbook/presentation/widget/bottom_picker.dart';
 import '../agreement_page/agreement_page.dart';
 
 class SignUpPage extends HookConsumerWidget {
   late final DateTime? _dateTime;
-
-  // datePickerの表示構成
-  Widget _bottomPicker(Widget picker) {
-    return Container(
-      height: 216,
-      padding: const EdgeInsets.only(top: 6.0),
-      color: CupertinoColors.white,
-      child: DefaultTextStyle(
-        style: const TextStyle(
-          color: CupertinoColors.black,
-          fontSize: 22.0,
-        ),
-        child: GestureDetector(
-          onTap: () {},
-          child: SafeArea(
-            top: false,
-            child: picker,
-          ),
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -182,7 +161,7 @@ class SignUpPage extends HookConsumerWidget {
                                     ],
                                   ),
                                 ),
-                                _bottomPicker(
+                                bottomPicker(
                                   CupertinoDatePicker(
                                     mode: CupertinoDatePickerMode.date,
                                     initialDateTime: _dateTime,
