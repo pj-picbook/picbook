@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:picbook/presentation/bookshelf/bookshelf_page.dart';
+import 'package:picbook/presentation/bookshelf/book_shelf_page.dart';
 import 'package:picbook/presentation/mypage/mypage.dart';
 
 enum TabItem {
   bookshelf(
     title: '絵本の棚',
     icon: Icons.menu_book,
-    page: BookshelfPage(), // TODO:絵本の棚のクラス名に書き換える。
+    page: BookShelfPage(), // TODO:絵本の棚のクラス名に書き換える。
   ),
 
   mypage(
