@@ -24,6 +24,8 @@ dependencies:
   webview_flutter: ^3.0.4
   analyzer: ^4.3.1
 
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -33,9 +35,13 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   mockito: ^5.0.0
   network_image_mock: ^2.1.1
+  flutter_native_splash: ^2.2.7
 
 dependency_overrides:
   code_builder: ^4.2.0
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - lib/assets/images/splash.png
