@@ -2,7 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/domain/entity/user.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
 
-final signUpPageNotifierProvider =
+final signUpPageProvider =
     StateNotifierProvider<SignUpPageNotifier, User>((ref) {
   return SignUpPageNotifier(
     userRepository: ref.read(userRepository),
