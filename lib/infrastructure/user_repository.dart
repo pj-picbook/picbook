@@ -15,9 +15,9 @@ class UserRepository {
     return User.fromJson(_jsonFromSnapshot(doc));
   }
 
-  // void create({required User user}) {
-  //   //
-  // }
+  void create({required User user}) {
+    //
+  }
 
   void update({required User user}) {
     //
