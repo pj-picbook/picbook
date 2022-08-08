@@ -1,28 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:picbook/presentation/signup/signup_page_notifier.dart';
+import 'package:picbook/presentation/signup/signup_page_view_model.dart';
 import 'package:picbook/presentation/widget/bottom_picker.dart';
 import '../agreement_page/agreement_page.dart';
 
-class SignUpPage extends HookConsumerWidget {
-  late final DateTime? _dateTime;
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // SignUpPageNotifierProviderからstateを取得
-    // 値はこちらから読み取る
-    final state = ref.watch(signUpPageProvider);
+  _SignUpPageState createState() => _SignUpPageState();
+}
 
-    // SignUpPageNotifierProviderからnotifierを取得
-    // メソッドはこちらから使う
-    final notifier = ref.watch(signUpPageProvider.notifier);
-    final nameController = useTextEditingController();
-    final emailController = useTextEditingController();
-    final passwordController = useTextEditingController();
+class _SignUpPageState extends State<SignUpPage> {
+  late String _name;
+  late String _email;
+  late String _password;
+  late DateTime? _dateTime;
+
+  @override
+  Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     return MaterialApp(
       localizationsDelegates: const [
         GlobalWidgetsLocalizations.delegate,
@@ -42,6 +41,7 @@ class SignUpPage extends HookConsumerWidget {
           backgroundColor: Colors.blue[900],
         ),
         body: Form(
+          key: _formKey,
           child: Container(
             color: Colors.grey[300],
             padding: const EdgeInsets.only(left: 40.0, right: 40.0),
@@ -66,7 +66,7 @@ class SignUpPage extends HookConsumerWidget {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextFormField(
-                    controller: nameController,
+                    //controller: nameController,
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -201,7 +201,7 @@ class SignUpPage extends HookConsumerWidget {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextFormField(
-                    controller: emailController,
+                    //controller: emailController,
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -229,7 +229,7 @@ class SignUpPage extends HookConsumerWidget {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextFormField(
-                    controller: passwordController,
+                    //controller: passwordController,
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
