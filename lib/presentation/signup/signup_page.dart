@@ -2,26 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/presentation/signup/signup_page_view_model.dart';
 import 'package:picbook/presentation/widget/bottom_picker.dart';
 import '../agreement_page/agreement_page.dart';
 
-class SignUpPage extends StatefulWidget {
+class SignUpPage extends ConsumerWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
-  @override
-  _SignUpPageState createState() => _SignUpPageState();
-}
-
-class _SignUpPageState extends State<SignUpPage> {
-  late String _name;
-  late String _email;
-  late String _password;
-  late DateTime? _dateTime;
+  final String _name = "";
+  final String _email = "";
+  final String _password = "";
+  //final DateTime? _dateTime = DateTime(2022, 01, 01);
+  //final TextEditingController _textEditingController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final _formKey = GlobalKey<FormState>();
+    final state = ref.watch(SignUpPageProvier);
     return MaterialApp(
       localizationsDelegates: const [
         GlobalWidgetsLocalizations.delegate,
@@ -66,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextFormField(
-                    //controller: nameController,
+                    onChanged: (String name) {},
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -164,7 +162,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 bottomPicker(
                                   CupertinoDatePicker(
                                     mode: CupertinoDatePickerMode.date,
-                                    initialDateTime: _dateTime,
+                                    //initialDateTime: _dateTime,
                                     onDateTimeChanged:
                                         (DateTime newDateTime) {},
                                   ),
@@ -201,7 +199,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextFormField(
-                    //controller: emailController,
+                    onChanged: (String email) {
+                      // setState(() {
+                      //   _email = email;
+                      // });
+                    },
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -229,7 +231,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextFormField(
-                    //controller: passwordController,
+                    onChanged: (String password) {},
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -248,8 +250,12 @@ class _SignUpPageState extends State<SignUpPage> {
                     color: Colors.white70,
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
-                  child: const TextButton(
-                    onPressed: null,
+                  child: TextButton(
+                    onPressed: () {
+                      // var result = ref
+                      //     .read(SignUpPageProvier.notifier)
+                      //     .signUp(email, password);
+                    },
                     child: Text(
                       "登録する",
                       style: TextStyle(
