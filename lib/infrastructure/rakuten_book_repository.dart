@@ -26,22 +26,20 @@ class RakutenBookRepository {
     // TODO:バリデーション
     final List<Book> books = [];
 
-    bookItems.items.forEach(
-      (element) {
-        books.add(
-          Book(
-            title: element.book.title,
-            author: element.book.author,
-            booksGenreId: element.book.booksGenreId,
-            isbn: element.book.isbn,
-            itemUrl: element.book.itemUrl,
-            largeImageUrl: element.book.largeImageUrl,
-            mediumImageUrl: element.book.mediumImageUrl,
-            smallImageUrl: element.book.smallImageUrl,
-          ),
-        );
-      },
-    );
+    for (final item in bookItems.items) {
+      books.add(
+        Book(
+          title: item.book.title,
+          author: item.book.author,
+          booksGenreId: item.book.booksGenreId,
+          isbn: item.book.isbn,
+          itemUrl: item.book.itemUrl,
+          largeImageUrl: item.book.largeImageUrl,
+          mediumImageUrl: item.book.mediumImageUrl,
+          smallImageUrl: item.book.smallImageUrl,
+        ),
+      );
+    }
     return SearchBookState(books: books);
   }
 
