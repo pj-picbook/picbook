@@ -3,23 +3,24 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/presentation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/signup/signup_page_view_model.dart';
 import 'package:picbook/presentation/widget/bottom_picker.dart';
 import '../agreement_page/agreement_page.dart';
+import 'package:picbook/state/user_input_state.dart';
 
-class SignUpPage extends ConsumerWidget {
-  const SignUpPage({Key? key}) : super(key: key);
-
-  final String _name = "";
-  final String _email = "";
-  final String _password = "";
+class SignUpPage extends HookConsumerWidget {
+  String _name = "";
+  String _email = "";
+  String _password = "";
   //final DateTime? _dateTime = DateTime(2022, 01, 01);
   //final TextEditingController _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final _formKey = GlobalKey<FormState>();
-    final state = ref.watch(SignUpPageProvier);
+    final state = ref.watch(inputProvider);
+    final notifier = ref.watch(inputProvider.notifier);
     return MaterialApp(
       localizationsDelegates: const [
         GlobalWidgetsLocalizations.delegate,
@@ -64,7 +65,9 @@ class SignUpPage extends ConsumerWidget {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextFormField(
-                    onChanged: (String name) {},
+                    onChanged: (String name) {
+                      _name = name;
+                    },
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -200,6 +203,7 @@ class SignUpPage extends ConsumerWidget {
                   ),
                   child: TextFormField(
                     onChanged: (String email) {
+                      _email = email;
                       // setState(() {
                       //   _email = email;
                       // });
@@ -252,9 +256,17 @@ class SignUpPage extends ConsumerWidget {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      // var result = ref
-                      //     .read(SignUpPageProvier.notifier)
-                      //     .signUp(email, password);
+                      var result = ref
+                          .read(inputProvider.notifier)
+                          .signUp(_email, _password);
+                      if (result != null) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BottomNavigationPage()));
+                      } else {
+                        print("登録失敗");
+                      }
                     },
                     child: Text(
                       "登録する",

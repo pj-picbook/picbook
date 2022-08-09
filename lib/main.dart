@@ -4,9 +4,12 @@ import 'package:picbook/presentation/bottom_navigation_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/presentation/first_page/first_page.dart';
 
+import 'infrastructure/locator.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  setUpLocator();
 
   runApp(
     const ProviderScope(
