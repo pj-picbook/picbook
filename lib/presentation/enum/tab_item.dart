@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:picbook/presentation/bookshelf/book_shelf_page.dart';
 import 'package:picbook/presentation/mypage/mypage.dart';
+import '../../presentation/searchbook/searchbook_page.dart';
 
 enum TabItem {
   bookshelf(
@@ -13,6 +14,12 @@ enum TabItem {
     title: 'マイページ',
     icon: Icons.person,
     page: MyPage(),
+  ),
+
+  searchBook(
+    title: '検索画面',
+    icon: Icons.search,
+    page: SearchBookPage(),
   );
 
   const TabItem({
