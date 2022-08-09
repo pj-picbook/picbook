@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../state/search_book_state.dart';
 import '../domain/entity/book.dart';
 import '../infrastructure/provider/http_client.dart';
+import '/domain/entity/rakuten/items.dart';
 
 final rakutenBookRepository = Provider((ref) => RakutenBookRepository());
 
@@ -21,24 +22,22 @@ class RakutenBookRepository {
       return SearchBookState(books: []);
     }
 
-    final bookItems =
-        convert.jsonDecode(client.response!.body) as Map<String, dynamic>;
-
+    final bookItems = Items.fromJson(convert.jsonDecode(client.response!.body));
     // TODO:バリデーション
     final List<Book> books = [];
 
-    bookItems['Items'].forEach(
+    bookItems.items.forEach(
       (element) {
         books.add(
           Book(
-            title: element['Item']['title'],
-            author: element['Item']['author'],
-            booksGenreId: element['Item']['booksGenreId'],
-            isbn: element['Item']['isbn'],
-            itemUrl: element['Item']['itemUrl'],
-            largeImageUrl: element['Item']['largeImageUrl'],
-            mediumImageUrl: element['Item']['mediumImageUrl'],
-            smallImageUrl: element['Item']['smallImageUrl'],
+            title: element.book.title,
+            author: element.book.author,
+            booksGenreId: element.book.booksGenreId,
+            isbn: element.book.isbn,
+            itemUrl: element.book.itemUrl,
+            largeImageUrl: element.book.largeImageUrl,
+            mediumImageUrl: element.book.mediumImageUrl,
+            smallImageUrl: element.book.smallImageUrl,
           ),
         );
       },

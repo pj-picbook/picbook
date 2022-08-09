@@ -75,7 +75,7 @@ class _BookBox extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.only(left: 10, right: 5),
                 child: ImageNetwork(
-                  image: book.smallImageUrl,
+                  image: book.smallImageUrl ?? '',
                   height: 60,
                   width: 50,
                   fitAndroidIos: BoxFit.contain,
@@ -94,7 +94,7 @@ class _BookBox extends StatelessWidget {
                   Container(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      book.title,
+                      book.title ?? '',
                       style: const TextStyle(
                         color: Color.fromARGB(255, 0, 0, 0),
                         fontSize: 16,
@@ -104,7 +104,7 @@ class _BookBox extends StatelessWidget {
                   Container(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      book.author,
+                      book.author ?? '',
                       style: const TextStyle(
                         color: Color.fromARGB(255, 184, 180, 180),
                         fontSize: 16,

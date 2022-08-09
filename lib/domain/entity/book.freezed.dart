@@ -14,38 +14,70 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Book _$BookFromJson(Map<String, dynamic> json) {
+  return _Book.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Book {
   @JsonKey(name: 'title')
-  String get title => throw _privateConstructorUsedError;
-  String get isbn => throw _privateConstructorUsedError;
-  String get titleKana => throw _privateConstructorUsedError;
-  String get subTitle => throw _privateConstructorUsedError;
-  String get subTitleKana => throw _privateConstructorUsedError;
-  String get seriesName => throw _privateConstructorUsedError;
-  String get seriesNameKana => throw _privateConstructorUsedError;
-  String get contents => throw _privateConstructorUsedError;
-  String get contentsKana => throw _privateConstructorUsedError;
-  String get author => throw _privateConstructorUsedError;
-  String get authorKana => throw _privateConstructorUsedError;
-  String get publisherName => throw _privateConstructorUsedError;
-  String get size => throw _privateConstructorUsedError;
-  String get itemCaption => throw _privateConstructorUsedError;
-  String get salesDate => throw _privateConstructorUsedError;
-  String get itemPrice => throw _privateConstructorUsedError;
-  String get itemUrl => throw _privateConstructorUsedError;
-  String get affiliateUrl => throw _privateConstructorUsedError;
-  String get smallImageUrl => throw _privateConstructorUsedError;
-  String get mediumImageUrl => throw _privateConstructorUsedError;
-  String get largeImageUrl => throw _privateConstructorUsedError;
-  String get chirayomiUrl => throw _privateConstructorUsedError;
-  String get availability => throw _privateConstructorUsedError;
-  String get postageFlag => throw _privateConstructorUsedError;
-  String get limitedFlag => throw _privateConstructorUsedError;
-  String get reviewCount => throw _privateConstructorUsedError;
-  String get reviewAverage => throw _privateConstructorUsedError;
-  String get booksGenreId => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'isbn')
+  String? get isbn => throw _privateConstructorUsedError;
+  @JsonKey(name: 'titleKana')
+  String? get titleKana => throw _privateConstructorUsedError;
+  @JsonKey(name: 'subTitle')
+  String? get subTitle => throw _privateConstructorUsedError;
+  @JsonKey(name: 'subTitleKana')
+  String? get subTitleKana => throw _privateConstructorUsedError;
+  @JsonKey(name: 'seriesName')
+  String? get seriesName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'seriesNameKana')
+  String? get seriesNameKana => throw _privateConstructorUsedError;
+  @JsonKey(name: 'contents')
+  String? get contents => throw _privateConstructorUsedError;
+  @JsonKey(name: 'contentsKana')
+  String? get contentsKana => throw _privateConstructorUsedError;
+  @JsonKey(name: 'author')
+  String? get author => throw _privateConstructorUsedError;
+  @JsonKey(name: 'authorKana')
+  String? get authorKana => throw _privateConstructorUsedError;
+  @JsonKey(name: 'publisherName')
+  String? get publisherName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'size')
+  String? get size => throw _privateConstructorUsedError;
+  @JsonKey(name: 'itemCaption')
+  String? get itemCaption => throw _privateConstructorUsedError;
+  @JsonKey(name: 'salesDate')
+  String? get salesDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'itemPrice')
+  int? get itemPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'itemUrl')
+  String? get itemUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'affiliateUrl')
+  String? get affiliateUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'smallImageUrl')
+  String? get smallImageUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'mediumImageUrl')
+  String? get mediumImageUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'largeImageUrl')
+  String? get largeImageUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'chirayomiUrl')
+  String? get chirayomiUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'availability')
+  String? get availability => throw _privateConstructorUsedError;
+  @JsonKey(name: 'postageFlag')
+  int? get postageFlag => throw _privateConstructorUsedError;
+  @JsonKey(name: 'limitedFlag')
+  int? get limitedFlag => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reviewCount')
+  int? get reviewCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reviewAverage')
+  String? get reviewAverage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'booksGenreId')
+  String? get booksGenreId => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BookCopyWith<Book> get copyWith => throw _privateConstructorUsedError;
 }
@@ -55,34 +87,34 @@ abstract class $BookCopyWith<$Res> {
   factory $BookCopyWith(Book value, $Res Function(Book) then) =
       _$BookCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'title') String title,
-      String isbn,
-      String titleKana,
-      String subTitle,
-      String subTitleKana,
-      String seriesName,
-      String seriesNameKana,
-      String contents,
-      String contentsKana,
-      String author,
-      String authorKana,
-      String publisherName,
-      String size,
-      String itemCaption,
-      String salesDate,
-      String itemPrice,
-      String itemUrl,
-      String affiliateUrl,
-      String smallImageUrl,
-      String mediumImageUrl,
-      String largeImageUrl,
-      String chirayomiUrl,
-      String availability,
-      String postageFlag,
-      String limitedFlag,
-      String reviewCount,
-      String reviewAverage,
-      String booksGenreId});
+      {@JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'isbn') String? isbn,
+      @JsonKey(name: 'titleKana') String? titleKana,
+      @JsonKey(name: 'subTitle') String? subTitle,
+      @JsonKey(name: 'subTitleKana') String? subTitleKana,
+      @JsonKey(name: 'seriesName') String? seriesName,
+      @JsonKey(name: 'seriesNameKana') String? seriesNameKana,
+      @JsonKey(name: 'contents') String? contents,
+      @JsonKey(name: 'contentsKana') String? contentsKana,
+      @JsonKey(name: 'author') String? author,
+      @JsonKey(name: 'authorKana') String? authorKana,
+      @JsonKey(name: 'publisherName') String? publisherName,
+      @JsonKey(name: 'size') String? size,
+      @JsonKey(name: 'itemCaption') String? itemCaption,
+      @JsonKey(name: 'salesDate') String? salesDate,
+      @JsonKey(name: 'itemPrice') int? itemPrice,
+      @JsonKey(name: 'itemUrl') String? itemUrl,
+      @JsonKey(name: 'affiliateUrl') String? affiliateUrl,
+      @JsonKey(name: 'smallImageUrl') String? smallImageUrl,
+      @JsonKey(name: 'mediumImageUrl') String? mediumImageUrl,
+      @JsonKey(name: 'largeImageUrl') String? largeImageUrl,
+      @JsonKey(name: 'chirayomiUrl') String? chirayomiUrl,
+      @JsonKey(name: 'availability') String? availability,
+      @JsonKey(name: 'postageFlag') int? postageFlag,
+      @JsonKey(name: 'limitedFlag') int? limitedFlag,
+      @JsonKey(name: 'reviewCount') int? reviewCount,
+      @JsonKey(name: 'reviewAverage') String? reviewAverage,
+      @JsonKey(name: 'booksGenreId') String? booksGenreId});
 }
 
 /// @nodoc
@@ -128,115 +160,115 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isbn: isbn == freezed
           ? _value.isbn
           : isbn // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       titleKana: titleKana == freezed
           ? _value.titleKana
           : titleKana // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       subTitle: subTitle == freezed
           ? _value.subTitle
           : subTitle // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       subTitleKana: subTitleKana == freezed
           ? _value.subTitleKana
           : subTitleKana // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       seriesName: seriesName == freezed
           ? _value.seriesName
           : seriesName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       seriesNameKana: seriesNameKana == freezed
           ? _value.seriesNameKana
           : seriesNameKana // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       contents: contents == freezed
           ? _value.contents
           : contents // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       contentsKana: contentsKana == freezed
           ? _value.contentsKana
           : contentsKana // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       authorKana: authorKana == freezed
           ? _value.authorKana
           : authorKana // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       publisherName: publisherName == freezed
           ? _value.publisherName
           : publisherName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       size: size == freezed
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       itemCaption: itemCaption == freezed
           ? _value.itemCaption
           : itemCaption // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       salesDate: salesDate == freezed
           ? _value.salesDate
           : salesDate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       itemPrice: itemPrice == freezed
           ? _value.itemPrice
           : itemPrice // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       itemUrl: itemUrl == freezed
           ? _value.itemUrl
           : itemUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       affiliateUrl: affiliateUrl == freezed
           ? _value.affiliateUrl
           : affiliateUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       smallImageUrl: smallImageUrl == freezed
           ? _value.smallImageUrl
           : smallImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       mediumImageUrl: mediumImageUrl == freezed
           ? _value.mediumImageUrl
           : mediumImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       largeImageUrl: largeImageUrl == freezed
           ? _value.largeImageUrl
           : largeImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       chirayomiUrl: chirayomiUrl == freezed
           ? _value.chirayomiUrl
           : chirayomiUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       availability: availability == freezed
           ? _value.availability
           : availability // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       postageFlag: postageFlag == freezed
           ? _value.postageFlag
           : postageFlag // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       limitedFlag: limitedFlag == freezed
           ? _value.limitedFlag
           : limitedFlag // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       reviewCount: reviewCount == freezed
           ? _value.reviewCount
           : reviewCount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       reviewAverage: reviewAverage == freezed
           ? _value.reviewAverage
           : reviewAverage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       booksGenreId: booksGenreId == freezed
           ? _value.booksGenreId
           : booksGenreId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -247,34 +279,34 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       __$$_BookCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'title') String title,
-      String isbn,
-      String titleKana,
-      String subTitle,
-      String subTitleKana,
-      String seriesName,
-      String seriesNameKana,
-      String contents,
-      String contentsKana,
-      String author,
-      String authorKana,
-      String publisherName,
-      String size,
-      String itemCaption,
-      String salesDate,
-      String itemPrice,
-      String itemUrl,
-      String affiliateUrl,
-      String smallImageUrl,
-      String mediumImageUrl,
-      String largeImageUrl,
-      String chirayomiUrl,
-      String availability,
-      String postageFlag,
-      String limitedFlag,
-      String reviewCount,
-      String reviewAverage,
-      String booksGenreId});
+      {@JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'isbn') String? isbn,
+      @JsonKey(name: 'titleKana') String? titleKana,
+      @JsonKey(name: 'subTitle') String? subTitle,
+      @JsonKey(name: 'subTitleKana') String? subTitleKana,
+      @JsonKey(name: 'seriesName') String? seriesName,
+      @JsonKey(name: 'seriesNameKana') String? seriesNameKana,
+      @JsonKey(name: 'contents') String? contents,
+      @JsonKey(name: 'contentsKana') String? contentsKana,
+      @JsonKey(name: 'author') String? author,
+      @JsonKey(name: 'authorKana') String? authorKana,
+      @JsonKey(name: 'publisherName') String? publisherName,
+      @JsonKey(name: 'size') String? size,
+      @JsonKey(name: 'itemCaption') String? itemCaption,
+      @JsonKey(name: 'salesDate') String? salesDate,
+      @JsonKey(name: 'itemPrice') int? itemPrice,
+      @JsonKey(name: 'itemUrl') String? itemUrl,
+      @JsonKey(name: 'affiliateUrl') String? affiliateUrl,
+      @JsonKey(name: 'smallImageUrl') String? smallImageUrl,
+      @JsonKey(name: 'mediumImageUrl') String? mediumImageUrl,
+      @JsonKey(name: 'largeImageUrl') String? largeImageUrl,
+      @JsonKey(name: 'chirayomiUrl') String? chirayomiUrl,
+      @JsonKey(name: 'availability') String? availability,
+      @JsonKey(name: 'postageFlag') int? postageFlag,
+      @JsonKey(name: 'limitedFlag') int? limitedFlag,
+      @JsonKey(name: 'reviewCount') int? reviewCount,
+      @JsonKey(name: 'reviewAverage') String? reviewAverage,
+      @JsonKey(name: 'booksGenreId') String? booksGenreId});
 }
 
 /// @nodoc
@@ -321,236 +353,239 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isbn: isbn == freezed
           ? _value.isbn
           : isbn // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       titleKana: titleKana == freezed
           ? _value.titleKana
           : titleKana // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       subTitle: subTitle == freezed
           ? _value.subTitle
           : subTitle // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       subTitleKana: subTitleKana == freezed
           ? _value.subTitleKana
           : subTitleKana // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       seriesName: seriesName == freezed
           ? _value.seriesName
           : seriesName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       seriesNameKana: seriesNameKana == freezed
           ? _value.seriesNameKana
           : seriesNameKana // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       contents: contents == freezed
           ? _value.contents
           : contents // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       contentsKana: contentsKana == freezed
           ? _value.contentsKana
           : contentsKana // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       authorKana: authorKana == freezed
           ? _value.authorKana
           : authorKana // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       publisherName: publisherName == freezed
           ? _value.publisherName
           : publisherName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       size: size == freezed
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       itemCaption: itemCaption == freezed
           ? _value.itemCaption
           : itemCaption // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       salesDate: salesDate == freezed
           ? _value.salesDate
           : salesDate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       itemPrice: itemPrice == freezed
           ? _value.itemPrice
           : itemPrice // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       itemUrl: itemUrl == freezed
           ? _value.itemUrl
           : itemUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       affiliateUrl: affiliateUrl == freezed
           ? _value.affiliateUrl
           : affiliateUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       smallImageUrl: smallImageUrl == freezed
           ? _value.smallImageUrl
           : smallImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       mediumImageUrl: mediumImageUrl == freezed
           ? _value.mediumImageUrl
           : mediumImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       largeImageUrl: largeImageUrl == freezed
           ? _value.largeImageUrl
           : largeImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       chirayomiUrl: chirayomiUrl == freezed
           ? _value.chirayomiUrl
           : chirayomiUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       availability: availability == freezed
           ? _value.availability
           : availability // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       postageFlag: postageFlag == freezed
           ? _value.postageFlag
           : postageFlag // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       limitedFlag: limitedFlag == freezed
           ? _value.limitedFlag
           : limitedFlag // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       reviewCount: reviewCount == freezed
           ? _value.reviewCount
           : reviewCount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       reviewAverage: reviewAverage == freezed
           ? _value.reviewAverage
           : reviewAverage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       booksGenreId: booksGenreId == freezed
           ? _value.booksGenreId
           : booksGenreId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Book extends _Book with DiagnosticableTreeMixin {
   _$_Book(
-      {@JsonKey(name: 'title') required this.title,
-      required this.isbn,
-      this.titleKana = '',
-      this.subTitle = '',
-      this.subTitleKana = '',
-      this.seriesName = '',
-      this.seriesNameKana = '',
-      this.contents = '',
-      this.contentsKana = '',
-      this.author = '',
-      this.authorKana = '',
-      this.publisherName = '',
-      this.size = '',
-      this.itemCaption = '',
-      this.salesDate = '',
-      this.itemPrice = '',
-      this.itemUrl = '',
-      this.affiliateUrl = '',
-      this.smallImageUrl = '',
-      this.mediumImageUrl = '',
-      this.largeImageUrl = '',
-      this.chirayomiUrl = '',
-      this.availability = '',
-      this.postageFlag = '',
-      this.limitedFlag = '',
-      this.reviewCount = '',
-      this.reviewAverage = '',
-      this.booksGenreId = ''})
+      {@JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'isbn') this.isbn,
+      @JsonKey(name: 'titleKana') this.titleKana,
+      @JsonKey(name: 'subTitle') this.subTitle,
+      @JsonKey(name: 'subTitleKana') this.subTitleKana,
+      @JsonKey(name: 'seriesName') this.seriesName,
+      @JsonKey(name: 'seriesNameKana') this.seriesNameKana,
+      @JsonKey(name: 'contents') this.contents,
+      @JsonKey(name: 'contentsKana') this.contentsKana,
+      @JsonKey(name: 'author') this.author,
+      @JsonKey(name: 'authorKana') this.authorKana,
+      @JsonKey(name: 'publisherName') this.publisherName,
+      @JsonKey(name: 'size') this.size,
+      @JsonKey(name: 'itemCaption') this.itemCaption,
+      @JsonKey(name: 'salesDate') this.salesDate,
+      @JsonKey(name: 'itemPrice') this.itemPrice,
+      @JsonKey(name: 'itemUrl') this.itemUrl,
+      @JsonKey(name: 'affiliateUrl') this.affiliateUrl,
+      @JsonKey(name: 'smallImageUrl') this.smallImageUrl,
+      @JsonKey(name: 'mediumImageUrl') this.mediumImageUrl,
+      @JsonKey(name: 'largeImageUrl') this.largeImageUrl,
+      @JsonKey(name: 'chirayomiUrl') this.chirayomiUrl,
+      @JsonKey(name: 'availability') this.availability,
+      @JsonKey(name: 'postageFlag') this.postageFlag,
+      @JsonKey(name: 'limitedFlag') this.limitedFlag,
+      @JsonKey(name: 'reviewCount') this.reviewCount,
+      @JsonKey(name: 'reviewAverage') this.reviewAverage,
+      @JsonKey(name: 'booksGenreId') this.booksGenreId})
       : super._();
+
+  factory _$_Book.fromJson(Map<String, dynamic> json) => _$$_BookFromJson(json);
 
   @override
   @JsonKey(name: 'title')
-  final String title;
+  final String? title;
   @override
-  final String isbn;
+  @JsonKey(name: 'isbn')
+  final String? isbn;
   @override
-  @JsonKey()
-  final String titleKana;
+  @JsonKey(name: 'titleKana')
+  final String? titleKana;
   @override
-  @JsonKey()
-  final String subTitle;
+  @JsonKey(name: 'subTitle')
+  final String? subTitle;
   @override
-  @JsonKey()
-  final String subTitleKana;
+  @JsonKey(name: 'subTitleKana')
+  final String? subTitleKana;
   @override
-  @JsonKey()
-  final String seriesName;
+  @JsonKey(name: 'seriesName')
+  final String? seriesName;
   @override
-  @JsonKey()
-  final String seriesNameKana;
+  @JsonKey(name: 'seriesNameKana')
+  final String? seriesNameKana;
   @override
-  @JsonKey()
-  final String contents;
+  @JsonKey(name: 'contents')
+  final String? contents;
   @override
-  @JsonKey()
-  final String contentsKana;
+  @JsonKey(name: 'contentsKana')
+  final String? contentsKana;
   @override
-  @JsonKey()
-  final String author;
+  @JsonKey(name: 'author')
+  final String? author;
   @override
-  @JsonKey()
-  final String authorKana;
+  @JsonKey(name: 'authorKana')
+  final String? authorKana;
   @override
-  @JsonKey()
-  final String publisherName;
+  @JsonKey(name: 'publisherName')
+  final String? publisherName;
   @override
-  @JsonKey()
-  final String size;
+  @JsonKey(name: 'size')
+  final String? size;
   @override
-  @JsonKey()
-  final String itemCaption;
+  @JsonKey(name: 'itemCaption')
+  final String? itemCaption;
   @override
-  @JsonKey()
-  final String salesDate;
+  @JsonKey(name: 'salesDate')
+  final String? salesDate;
   @override
-  @JsonKey()
-  final String itemPrice;
+  @JsonKey(name: 'itemPrice')
+  final int? itemPrice;
   @override
-  @JsonKey()
-  final String itemUrl;
+  @JsonKey(name: 'itemUrl')
+  final String? itemUrl;
   @override
-  @JsonKey()
-  final String affiliateUrl;
+  @JsonKey(name: 'affiliateUrl')
+  final String? affiliateUrl;
   @override
-  @JsonKey()
-  final String smallImageUrl;
+  @JsonKey(name: 'smallImageUrl')
+  final String? smallImageUrl;
   @override
-  @JsonKey()
-  final String mediumImageUrl;
+  @JsonKey(name: 'mediumImageUrl')
+  final String? mediumImageUrl;
   @override
-  @JsonKey()
-  final String largeImageUrl;
+  @JsonKey(name: 'largeImageUrl')
+  final String? largeImageUrl;
   @override
-  @JsonKey()
-  final String chirayomiUrl;
+  @JsonKey(name: 'chirayomiUrl')
+  final String? chirayomiUrl;
   @override
-  @JsonKey()
-  final String availability;
+  @JsonKey(name: 'availability')
+  final String? availability;
   @override
-  @JsonKey()
-  final String postageFlag;
+  @JsonKey(name: 'postageFlag')
+  final int? postageFlag;
   @override
-  @JsonKey()
-  final String limitedFlag;
+  @JsonKey(name: 'limitedFlag')
+  final int? limitedFlag;
   @override
-  @JsonKey()
-  final String reviewCount;
+  @JsonKey(name: 'reviewCount')
+  final int? reviewCount;
   @override
-  @JsonKey()
-  final String reviewAverage;
+  @JsonKey(name: 'reviewAverage')
+  final String? reviewAverage;
   @override
-  @JsonKey()
-  final String booksGenreId;
+  @JsonKey(name: 'booksGenreId')
+  final String? booksGenreId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -645,6 +680,7 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
                 .equals(other.booksGenreId, booksGenreId));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -682,97 +718,133 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
   @override
   _$$_BookCopyWith<_$_Book> get copyWith =>
       __$$_BookCopyWithImpl<_$_Book>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BookToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Book extends Book {
   factory _Book(
-      {@JsonKey(name: 'title') required final String title,
-      required final String isbn,
-      final String titleKana,
-      final String subTitle,
-      final String subTitleKana,
-      final String seriesName,
-      final String seriesNameKana,
-      final String contents,
-      final String contentsKana,
-      final String author,
-      final String authorKana,
-      final String publisherName,
-      final String size,
-      final String itemCaption,
-      final String salesDate,
-      final String itemPrice,
-      final String itemUrl,
-      final String affiliateUrl,
-      final String smallImageUrl,
-      final String mediumImageUrl,
-      final String largeImageUrl,
-      final String chirayomiUrl,
-      final String availability,
-      final String postageFlag,
-      final String limitedFlag,
-      final String reviewCount,
-      final String reviewAverage,
-      final String booksGenreId}) = _$_Book;
+      {@JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'isbn') final String? isbn,
+      @JsonKey(name: 'titleKana') final String? titleKana,
+      @JsonKey(name: 'subTitle') final String? subTitle,
+      @JsonKey(name: 'subTitleKana') final String? subTitleKana,
+      @JsonKey(name: 'seriesName') final String? seriesName,
+      @JsonKey(name: 'seriesNameKana') final String? seriesNameKana,
+      @JsonKey(name: 'contents') final String? contents,
+      @JsonKey(name: 'contentsKana') final String? contentsKana,
+      @JsonKey(name: 'author') final String? author,
+      @JsonKey(name: 'authorKana') final String? authorKana,
+      @JsonKey(name: 'publisherName') final String? publisherName,
+      @JsonKey(name: 'size') final String? size,
+      @JsonKey(name: 'itemCaption') final String? itemCaption,
+      @JsonKey(name: 'salesDate') final String? salesDate,
+      @JsonKey(name: 'itemPrice') final int? itemPrice,
+      @JsonKey(name: 'itemUrl') final String? itemUrl,
+      @JsonKey(name: 'affiliateUrl') final String? affiliateUrl,
+      @JsonKey(name: 'smallImageUrl') final String? smallImageUrl,
+      @JsonKey(name: 'mediumImageUrl') final String? mediumImageUrl,
+      @JsonKey(name: 'largeImageUrl') final String? largeImageUrl,
+      @JsonKey(name: 'chirayomiUrl') final String? chirayomiUrl,
+      @JsonKey(name: 'availability') final String? availability,
+      @JsonKey(name: 'postageFlag') final int? postageFlag,
+      @JsonKey(name: 'limitedFlag') final int? limitedFlag,
+      @JsonKey(name: 'reviewCount') final int? reviewCount,
+      @JsonKey(name: 'reviewAverage') final String? reviewAverage,
+      @JsonKey(name: 'booksGenreId') final String? booksGenreId}) = _$_Book;
   _Book._() : super._();
+
+  factory _Book.fromJson(Map<String, dynamic> json) = _$_Book.fromJson;
 
   @override
   @JsonKey(name: 'title')
-  String get title;
+  String? get title;
   @override
-  String get isbn;
+  @JsonKey(name: 'isbn')
+  String? get isbn;
   @override
-  String get titleKana;
+  @JsonKey(name: 'titleKana')
+  String? get titleKana;
   @override
-  String get subTitle;
+  @JsonKey(name: 'subTitle')
+  String? get subTitle;
   @override
-  String get subTitleKana;
+  @JsonKey(name: 'subTitleKana')
+  String? get subTitleKana;
   @override
-  String get seriesName;
+  @JsonKey(name: 'seriesName')
+  String? get seriesName;
   @override
-  String get seriesNameKana;
+  @JsonKey(name: 'seriesNameKana')
+  String? get seriesNameKana;
   @override
-  String get contents;
+  @JsonKey(name: 'contents')
+  String? get contents;
   @override
-  String get contentsKana;
+  @JsonKey(name: 'contentsKana')
+  String? get contentsKana;
   @override
-  String get author;
+  @JsonKey(name: 'author')
+  String? get author;
   @override
-  String get authorKana;
+  @JsonKey(name: 'authorKana')
+  String? get authorKana;
   @override
-  String get publisherName;
+  @JsonKey(name: 'publisherName')
+  String? get publisherName;
   @override
-  String get size;
+  @JsonKey(name: 'size')
+  String? get size;
   @override
-  String get itemCaption;
+  @JsonKey(name: 'itemCaption')
+  String? get itemCaption;
   @override
-  String get salesDate;
+  @JsonKey(name: 'salesDate')
+  String? get salesDate;
   @override
-  String get itemPrice;
+  @JsonKey(name: 'itemPrice')
+  int? get itemPrice;
   @override
-  String get itemUrl;
+  @JsonKey(name: 'itemUrl')
+  String? get itemUrl;
   @override
-  String get affiliateUrl;
+  @JsonKey(name: 'affiliateUrl')
+  String? get affiliateUrl;
   @override
-  String get smallImageUrl;
+  @JsonKey(name: 'smallImageUrl')
+  String? get smallImageUrl;
   @override
-  String get mediumImageUrl;
+  @JsonKey(name: 'mediumImageUrl')
+  String? get mediumImageUrl;
   @override
-  String get largeImageUrl;
+  @JsonKey(name: 'largeImageUrl')
+  String? get largeImageUrl;
   @override
-  String get chirayomiUrl;
+  @JsonKey(name: 'chirayomiUrl')
+  String? get chirayomiUrl;
   @override
-  String get availability;
+  @JsonKey(name: 'availability')
+  String? get availability;
   @override
-  String get postageFlag;
+  @JsonKey(name: 'postageFlag')
+  int? get postageFlag;
   @override
-  String get limitedFlag;
+  @JsonKey(name: 'limitedFlag')
+  int? get limitedFlag;
   @override
-  String get reviewCount;
+  @JsonKey(name: 'reviewCount')
+  int? get reviewCount;
   @override
-  String get reviewAverage;
+  @JsonKey(name: 'reviewAverage')
+  String? get reviewAverage;
   @override
-  String get booksGenreId;
+  @JsonKey(name: 'booksGenreId')
+  String? get booksGenreId;
   @override
   @JsonKey(ignore: true)
   _$$_BookCopyWith<_$_Book> get copyWith => throw _privateConstructorUsedError;
