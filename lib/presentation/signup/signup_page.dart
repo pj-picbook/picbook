@@ -312,31 +312,3 @@ class SignUpPage extends ConsumerWidget {
     );
   }
 }
-
-@immutable
-class UserInputState {
-  const UserInputState({required this.userInfo});
-  final Object userInfo;
-
-  UserInputState copyWith({Object? userInfo}) {
-    return UserInputState(userInfo: userInfo ?? this.userInfo);
-  }
-}
-
-//
-// @immutable
-// class SignUpPageState {
-//   const SignUpPageState({this.name = "", this.email = "", this.password = ""});
-//
-//   final String name;
-//   final String email;
-//   final String password;
-//
-//   SignUpPageState copyWith({String? name, String? email, String? password}) {
-//     return SignUpPageState(
-//       name: name ?? this.name,
-//       email: email ?? this.email,
-//       password: password ?? this.password,
-//     );
-//   }
-// }
