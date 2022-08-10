@@ -35,6 +35,12 @@ _$_Book _$$_BookFromJson(Map<String, dynamic> json) => _$_Book(
       reviewCount: json['reviewCount'] as int?,
       reviewAverage: json['reviewAverage'] as String?,
       booksGenreId: json['booksGenreId'] as String?,
+      registeredDateTime: json['registeredDateTime'] == null
+          ? null
+          : DateTime.parse(json['registeredDateTime'] as String),
+      history: (json['history'] as List<dynamic>?)
+          ?.map((e) => DateTime.parse(e as String))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_BookToJson(_$_Book instance) => <String, dynamic>{
@@ -66,4 +72,6 @@ Map<String, dynamic> _$$_BookToJson(_$_Book instance) => <String, dynamic>{
       'reviewCount': instance.reviewCount,
       'reviewAverage': instance.reviewAverage,
       'booksGenreId': instance.booksGenreId,
+      'registeredDateTime': instance.registeredDateTime?.toIso8601String(),
+      'history': instance.history?.map((e) => e.toIso8601String()).toList(),
     };

@@ -76,6 +76,8 @@ mixin _$Book {
   String? get reviewAverage => throw _privateConstructorUsedError;
   @JsonKey(name: 'booksGenreId')
   String? get booksGenreId => throw _privateConstructorUsedError;
+  DateTime? get registeredDateTime => throw _privateConstructorUsedError;
+  List<DateTime>? get history => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -114,7 +116,9 @@ abstract class $BookCopyWith<$Res> {
       @JsonKey(name: 'limitedFlag') int? limitedFlag,
       @JsonKey(name: 'reviewCount') int? reviewCount,
       @JsonKey(name: 'reviewAverage') String? reviewAverage,
-      @JsonKey(name: 'booksGenreId') String? booksGenreId});
+      @JsonKey(name: 'booksGenreId') String? booksGenreId,
+      DateTime? registeredDateTime,
+      List<DateTime>? history});
 }
 
 /// @nodoc
@@ -155,6 +159,8 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
     Object? reviewCount = freezed,
     Object? reviewAverage = freezed,
     Object? booksGenreId = freezed,
+    Object? registeredDateTime = freezed,
+    Object? history = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
@@ -269,6 +275,14 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
           ? _value.booksGenreId
           : booksGenreId // ignore: cast_nullable_to_non_nullable
               as String?,
+      registeredDateTime: registeredDateTime == freezed
+          ? _value.registeredDateTime
+          : registeredDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      history: history == freezed
+          ? _value.history
+          : history // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>?,
     ));
   }
 }
@@ -306,7 +320,9 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       @JsonKey(name: 'limitedFlag') int? limitedFlag,
       @JsonKey(name: 'reviewCount') int? reviewCount,
       @JsonKey(name: 'reviewAverage') String? reviewAverage,
-      @JsonKey(name: 'booksGenreId') String? booksGenreId});
+      @JsonKey(name: 'booksGenreId') String? booksGenreId,
+      DateTime? registeredDateTime,
+      List<DateTime>? history});
 }
 
 /// @nodoc
@@ -348,6 +364,8 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
     Object? reviewCount = freezed,
     Object? reviewAverage = freezed,
     Object? booksGenreId = freezed,
+    Object? registeredDateTime = freezed,
+    Object? history = freezed,
   }) {
     return _then(_$_Book(
       title: title == freezed
@@ -462,6 +480,14 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
           ? _value.booksGenreId
           : booksGenreId // ignore: cast_nullable_to_non_nullable
               as String?,
+      registeredDateTime: registeredDateTime == freezed
+          ? _value.registeredDateTime
+          : registeredDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      history: history == freezed
+          ? _value._history
+          : history // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>?,
     ));
   }
 }
@@ -497,8 +523,11 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
       @JsonKey(name: 'limitedFlag') this.limitedFlag,
       @JsonKey(name: 'reviewCount') this.reviewCount,
       @JsonKey(name: 'reviewAverage') this.reviewAverage,
-      @JsonKey(name: 'booksGenreId') this.booksGenreId})
-      : super._();
+      @JsonKey(name: 'booksGenreId') this.booksGenreId,
+      this.registeredDateTime,
+      final List<DateTime>? history})
+      : _history = history,
+        super._();
 
   factory _$_Book.fromJson(Map<String, dynamic> json) => _$$_BookFromJson(json);
 
@@ -586,10 +615,20 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
   @override
   @JsonKey(name: 'booksGenreId')
   final String? booksGenreId;
+  @override
+  final DateTime? registeredDateTime;
+  final List<DateTime>? _history;
+  @override
+  List<DateTime>? get history {
+    final value = _history;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Book(title: $title, isbn: $isbn, titleKana: $titleKana, subTitle: $subTitle, subTitleKana: $subTitleKana, seriesName: $seriesName, seriesNameKana: $seriesNameKana, contents: $contents, contentsKana: $contentsKana, author: $author, authorKana: $authorKana, publisherName: $publisherName, size: $size, itemCaption: $itemCaption, salesDate: $salesDate, itemPrice: $itemPrice, itemUrl: $itemUrl, affiliateUrl: $affiliateUrl, smallImageUrl: $smallImageUrl, mediumImageUrl: $mediumImageUrl, largeImageUrl: $largeImageUrl, chirayomiUrl: $chirayomiUrl, availability: $availability, postageFlag: $postageFlag, limitedFlag: $limitedFlag, reviewCount: $reviewCount, reviewAverage: $reviewAverage, booksGenreId: $booksGenreId)';
+    return 'Book(title: $title, isbn: $isbn, titleKana: $titleKana, subTitle: $subTitle, subTitleKana: $subTitleKana, seriesName: $seriesName, seriesNameKana: $seriesNameKana, contents: $contents, contentsKana: $contentsKana, author: $author, authorKana: $authorKana, publisherName: $publisherName, size: $size, itemCaption: $itemCaption, salesDate: $salesDate, itemPrice: $itemPrice, itemUrl: $itemUrl, affiliateUrl: $affiliateUrl, smallImageUrl: $smallImageUrl, mediumImageUrl: $mediumImageUrl, largeImageUrl: $largeImageUrl, chirayomiUrl: $chirayomiUrl, availability: $availability, postageFlag: $postageFlag, limitedFlag: $limitedFlag, reviewCount: $reviewCount, reviewAverage: $reviewAverage, booksGenreId: $booksGenreId, registeredDateTime: $registeredDateTime, history: $history)';
   }
 
   @override
@@ -624,7 +663,9 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('limitedFlag', limitedFlag))
       ..add(DiagnosticsProperty('reviewCount', reviewCount))
       ..add(DiagnosticsProperty('reviewAverage', reviewAverage))
-      ..add(DiagnosticsProperty('booksGenreId', booksGenreId));
+      ..add(DiagnosticsProperty('booksGenreId', booksGenreId))
+      ..add(DiagnosticsProperty('registeredDateTime', registeredDateTime))
+      ..add(DiagnosticsProperty('history', history));
   }
 
   @override
@@ -677,7 +718,10 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
             const DeepCollectionEquality()
                 .equals(other.reviewAverage, reviewAverage) &&
             const DeepCollectionEquality()
-                .equals(other.booksGenreId, booksGenreId));
+                .equals(other.booksGenreId, booksGenreId) &&
+            const DeepCollectionEquality()
+                .equals(other.registeredDateTime, registeredDateTime) &&
+            const DeepCollectionEquality().equals(other._history, _history));
   }
 
   @JsonKey(ignore: true)
@@ -711,7 +755,9 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
         const DeepCollectionEquality().hash(limitedFlag),
         const DeepCollectionEquality().hash(reviewCount),
         const DeepCollectionEquality().hash(reviewAverage),
-        const DeepCollectionEquality().hash(booksGenreId)
+        const DeepCollectionEquality().hash(booksGenreId),
+        const DeepCollectionEquality().hash(registeredDateTime),
+        const DeepCollectionEquality().hash(_history)
       ]);
 
   @JsonKey(ignore: true)
@@ -756,7 +802,9 @@ abstract class _Book extends Book {
       @JsonKey(name: 'limitedFlag') final int? limitedFlag,
       @JsonKey(name: 'reviewCount') final int? reviewCount,
       @JsonKey(name: 'reviewAverage') final String? reviewAverage,
-      @JsonKey(name: 'booksGenreId') final String? booksGenreId}) = _$_Book;
+      @JsonKey(name: 'booksGenreId') final String? booksGenreId,
+      final DateTime? registeredDateTime,
+      final List<DateTime>? history}) = _$_Book;
   _Book._() : super._();
 
   factory _Book.fromJson(Map<String, dynamic> json) = _$_Book.fromJson;
@@ -845,6 +893,10 @@ abstract class _Book extends Book {
   @override
   @JsonKey(name: 'booksGenreId')
   String? get booksGenreId;
+  @override
+  DateTime? get registeredDateTime;
+  @override
+  List<DateTime>? get history;
   @override
   @JsonKey(ignore: true)
   _$$_BookCopyWith<_$_Book> get copyWith => throw _privateConstructorUsedError;

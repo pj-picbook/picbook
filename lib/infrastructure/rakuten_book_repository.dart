@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../state/search_book_state.dart';
 import '../domain/entity/book.dart';
+import '../domain/entity/rakuten/items.dart';
 import '../infrastructure/provider/http_client.dart';
-import '/domain/entity/rakuten/items.dart';
 
 final rakutenBookRepository = Provider((ref) => RakutenBookRepository());
 
