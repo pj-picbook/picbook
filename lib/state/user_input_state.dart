@@ -12,9 +12,9 @@ final inputProvider = StateNotifierProvider((ref) {
 @immutable
 class UserInputState {
   const UserInputState({required this.userInfo});
-  final Object userInfo;
+  final String userInfo;
 
-  UserInputState copyWith({Object? userInfo}) {
+  UserInputState copyWith({String? userInfo}) {
     return UserInputState(userInfo: userInfo ?? this.userInfo);
   }
 }

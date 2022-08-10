@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/presentation/bottom_navigation_page.dart';
@@ -10,17 +11,13 @@ import '../agreement_page/agreement_page.dart';
 import 'package:picbook/state/user_input_state.dart';
 
 class SignUpPage extends HookConsumerWidget {
-  String _name = "";
-  String _email = "";
-  String _password = "";
-  //final DateTime? _dateTime = DateTime(2022, 01, 01);
-  //final TextEditingController _textEditingController = TextEditingController();
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final _formKey = GlobalKey<FormState>();
     final state = ref.watch(inputProvider);
     final notifier = ref.watch(inputProvider.notifier);
+    final emailController = useTextEditingController(text: "");
+    final passwordController = useTextEditingController(text: "");
     return MaterialApp(
       localizationsDelegates: const [
         GlobalWidgetsLocalizations.delegate,
@@ -65,9 +62,6 @@ class SignUpPage extends HookConsumerWidget {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextFormField(
-                    onChanged: (String name) {
-                      _name = name;
-                    },
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -87,22 +81,6 @@ class SignUpPage extends HookConsumerWidget {
                         TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
                   ),
                 ),
-                // Container(
-                //   height: 50,
-                //   width: 300,
-                //   decoration: BoxDecoration(
-                //     color: Colors.white70,
-                //     border: Border.all(color: Colors.red, width: 0.5),
-                //   ),
-                //   child: TextFormField(
-                //     textAlign: TextAlign.center,
-                //     decoration: const InputDecoration(
-                //       border: InputBorder.none,
-                //       hintText: "xxxx / xxx / xx",
-                //       hintStyle: TextStyle(fontSize: 13.0),
-                //     ),
-                //   ),
-                // ),
                 Container(
                   height: 50,
                   width: 300,
@@ -174,7 +152,6 @@ class SignUpPage extends HookConsumerWidget {
                             );
                           });
                     },
-                    //controller: _textEditingController,
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -202,12 +179,8 @@ class SignUpPage extends HookConsumerWidget {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextFormField(
-                    onChanged: (String email) {
-                      _email = email;
-                      // setState(() {
-                      //   _email = email;
-                      // });
-                    },
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -235,7 +208,7 @@ class SignUpPage extends HookConsumerWidget {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextFormField(
-                    onChanged: (String password) {},
+                    controller: passwordController,
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -255,20 +228,38 @@ class SignUpPage extends HookConsumerWidget {
                     border: Border.all(color: Colors.red, width: 0.5),
                   ),
                   child: TextButton(
-                    onPressed: () {
-                      var result = ref
-                          .read(inputProvider.notifier)
-                          .signUp(_email, _password);
-                      if (result != null) {
-                        Navigator.push(
-                            context,
+                    onPressed: () async {
+                      try {
+                        if (emailController.text.isEmpty) {
+                          throw "メールアドレスを入力してください";
+                        }
+                        if (passwordController.text.isEmpty) {
+                          throw "パスワードを入力してください";
+                        }
+                        await ref.read(inputProvider.notifier).signUp(
+                            emailController.text, passwordController.text);
+                        Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                                builder: (context) => BottomNavigationPage()));
-                      } else {
-                        print("登録失敗");
+                                builder: (context) =>
+                                    const BottomNavigationPage()),
+                            (route) => false);
+                      } catch (e) {
+                        print(e);
                       }
+
+                      // var result = ref.read(inputProvider.notifier).signUp(
+                      //     emailController.text, passwordController.text);
+                      // if (result == true) {
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) =>
+                      //               const BottomNavigationPage()));
+                      // } else {
+                      //   print("登録失敗");
+                      // }
                     },
-                    child: Text(
+                    child: const Text(
                       "登録する",
                       style: TextStyle(
                         color: Colors.red,
