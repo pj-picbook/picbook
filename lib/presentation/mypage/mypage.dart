@@ -83,18 +83,18 @@ class MyPage extends HookConsumerWidget {
                       semanticLabel: 'Text to announce in accessibility modes',
                     ),
                   ),
-                  SizedBox(width: 110, child: const Text('よんだえほん')),
+                  const SizedBox(width: 110, child: Text('よんだえほん')),
                   SizedBox(
                     width: 30,
                     child: Text(
                       '${dummyUser.bookshelfs.length}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
                   ),
-                  Text('さつ'),
+                  const Text('さつ'),
                 ],
               ),
             ),
