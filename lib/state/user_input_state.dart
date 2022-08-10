@@ -24,19 +24,15 @@ class InputNotifier extends StateNotifier {
 
   final AuthRepository _repository = getIt<AuthRepository>();
 
-  Future<bool> signIn(String email, String password) async {
-    var result = await _repository.signIn(email, password);
-    if (result != User) {
-      return false;
+  Future<void> logIn(String email, String password) async {
+    try {
+      await _repository.logIn(email, password);
+    } catch (e) {
+      throw e.toString();
     }
-    return true;
   }
 
-  Future<bool> signUp(String email, String password) async {
-    var result = await _repository.signUp(email, password);
-    if (result != User) {
-      return false;
-    }
-    return true;
+  Future<void> signUp(String email, String password) async {
+    await _repository.signUp(email, password);
   }
 }

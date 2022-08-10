@@ -1,13 +1,22 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/presentation/bottom_navigation_page.dart';
+import 'package:picbook/state/user_input_state.dart';
 
 import '../agreement_page/agreement_page.dart';
 
-class LogInPage extends StatelessWidget {
+class LogInPage extends HookConsumerWidget {
   const LogInPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _formKey = GlobalKey<FormState>();
+    final state = ref.watch(inputProvider);
+    final notifier = ref.read(inputProvider.notifier);
+    final emailController = useTextEditingController(text: "");
+    final passwordController = useTextEditingController(text: "");
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -17,6 +26,7 @@ class LogInPage extends StatelessWidget {
         backgroundColor: Colors.blue[900],
       ),
       body: Form(
+        key: _formKey,
         child: Container(
           color: Colors.grey[300],
           padding: const EdgeInsets.only(left: 40.0, right: 40.0),
@@ -38,6 +48,8 @@ class LogInPage extends StatelessWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -64,6 +76,7 @@ class LogInPage extends StatelessWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  controller: passwordController,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -82,9 +95,27 @@ class LogInPage extends StatelessWidget {
                   color: Colors.white70,
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
-                child: const TextButton(
-                  onPressed: null,
-                  child: Text(
+                child: TextButton(
+                  onPressed: () async {
+                    try {
+                      if (emailController.text.isEmpty) {
+                        throw "メールアドレスを入力してください";
+                      }
+                      if (passwordController.text.isEmpty) {
+                        throw "パスワードを入力してください";
+                      }
+                      await notifier.logIn(
+                          emailController.text, passwordController.text);
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const BottomNavigationPage()),
+                          (route) => false);
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
+                  child: const Text(
                     "ログインする",
                     style: TextStyle(
                       color: Colors.red,
