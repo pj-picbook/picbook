@@ -1,6 +1,5 @@
 User:
   id: string # firebase authentication uid = users collection documentId
-  name: string
   email: string
   linkedAccount: string ( Google | Apple )
 Book:
