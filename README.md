@@ -168,3 +168,51 @@ fvm flutter test --coverage
 genhtml coverage/lcov.info -o coverage/html
 open coverage/html/index.html
 ```
+
+## Firebase 関連
+
+### デプロイ方法
+
+1. docker-composeがあるディレクトリに移動
+```
+cd firebase
+```
+
+2. Dockerの起動
+```
+docker-compose up
+docker-compose run -p 4000:4000 -p 5000:5000 -p 5001:5001 -p 8080:8080 -p 9005:9005 firebase-cli-container /bin/bash
+```
+
+3. firebaseにログイン
+```
+firebase login
+```
+
+4. デプロイ
+```
+firebase deploy
+```
+
+※ [--only ~~]で一部のみデプロイ可能。
+
+```
+例）firebase deploy --only functions
+```
+
+### Firebase のデプロイ先プロジェクトについて
+- プロジェクトの確認
+```
+firebase projects:list
+```
+
+| Project Display Name | Project ID |
+| --- | --- |
+| pj-picbook-pro | pj-picbook  |
+| pj-picbook-dev | pj-picbook-pro |
+※ dev環境の ProjectID は pj-picbook-pro です
+
+- プロジェクトの変更
+```
+firebase use <Project ID>
+```

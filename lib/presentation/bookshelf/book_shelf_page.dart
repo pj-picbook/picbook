@@ -1,33 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+class Book {
+  double height;
+  double width;
+  Color color;
+
+  Book(this.height, this.width, this.color);
+}
+
+List<Book> dummyList = [
+  Book(200, 100, Colors.red),
+  Book(300, 200, Colors.blue),
+  Book(400, 150, Colors.orange),
+  Book(200, 100, Colors.green),
+  Book(300, 150, Colors.purpleAccent),
+  Book(100, 100, Colors.lightGreenAccent),
+  Book(300, 200, Colors.yellow),
+  Book(200, 100, Colors.teal),
+  Book(400, 150, Colors.indigoAccent),
+  Book(300, 150, Colors.redAccent)
+];
+
 /// 本棚画面クラス
 class BookShelfPage extends StatelessWidget {
-  BookShelfPage({Key? key}) : super(key: key);
-
-  // TODO ダミーリスト
-  // 将来的にはここはFirebaseから取得した情報で置き換わる
-  final dummyList = [
-    makeDummyItem(200, 100, Colors.red),
-    makeDummyItem(300, 200, Colors.blue),
-    makeDummyItem(400, 150, Colors.orange),
-    makeDummyItem(200, 100, Colors.green),
-    makeDummyItem(300, 150, Colors.purpleAccent),
-    makeDummyItem(100, 100, Colors.lightGreenAccent),
-    makeDummyItem(300, 200, Colors.yellow),
-    makeDummyItem(200, 100, Colors.teal),
-    makeDummyItem(400, 150, Colors.indigoAccent),
-    makeDummyItem(300, 150, Colors.redAccent)
-  ];
+  const BookShelfPage({Key? key}) : super(key: key);
 
   /// ダミー用Widget作成用メソッド
   /// [height] 高さ
   /// [width] 横幅
   /// [color] 色
   /// return 高さ*幅サイズのカラー設定済みContainer
-  static Widget makeDummyItem(double height, double width, Color color) {
+  Widget makeDummyItem(double height, double width, Color color) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         // TODO タップ時の作品詳細画面遷移
       },
       child: Container(
@@ -50,8 +56,9 @@ class BookShelfPage extends StatelessWidget {
         child: StaggeredGrid.count(
           crossAxisCount: 2,
           children: List.generate(
-            dummyList.length,// TODO ここで利用するリストはFirebaseから取得した情報群
-            (index) => dummyList[index],
+            dummyList.length, // TODO ここで利用するリストはFirebaseから取得した情報群
+            (index) => makeDummyItem(dummyList[index].height,
+                dummyList[index].height, dummyList[index].color),
           ),
         ),
       ),

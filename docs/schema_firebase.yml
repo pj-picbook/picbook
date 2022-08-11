@@ -6,16 +6,51 @@ users: #collection
     bookshelfs: # subcollection
       documentId: # auto
         created: DateTime
-        name: string
+        owner: string
+        ownerBirthdate: timestamp
         books: # subcollection
           documentId: # auto
-            book: string # Book.itemUrl (pending)
-            registeredDateTime: DateTime
-            history: # subcollection
-              documentId: # auto
-                date: DateTime
-        readHistory: # subcollection
+            book: # map
+              id: string
+              title: string
+              titleKana: string
+              subTitle: string
+              subTitleKana: string
+              author: string
+              authorKana: string
+              itemCaption: string
+              isbn: string
+              itemPrice: string
+              itemUrl: string
+              largeImageUrl: string
+              mediumImageUrl: string
+              publisherName: string
+              salesDate: string
+              size: string
+              smallImageUrl: string
+              registeredDateTime: timestamp
+              history: timestamp[]
+        bookshelfHistory: # subcollection
           documentId: # auto
-            date: DateTime
-            book: string # Book.itemUrl (pending)
+            date: timestamp
+            book: # map
+              id: string
+              title: string
+              titleKana: string
+              subTitle: string
+              subTitleKana: string
+              author: string
+              authorKana: string
+              itemCaption: string
+              isbn: string
+              itemPrice: string
+              itemUrl: string
+              largeImageUrl: string
+              mediumImageUrl: string
+              publisherName: string
+              salesDate: string
+              size: string
+              smallImageUrl: string
+              registeredDateTime: timestamp
+              history: timestamp[]
   

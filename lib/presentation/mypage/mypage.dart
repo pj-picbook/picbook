@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:picbook/common/dummy_data.dart';
 import 'package:picbook/presentation/first_page/first_page.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
 
@@ -51,13 +50,14 @@ class MyPage extends HookConsumerWidget {
               width: 48,
             ),
             Row(
-              children: <Widget>[const Text('なまえ'), Text(state.name)],
+              children: <Widget>[
+                const Text('なまえ'),
+                // 表示するものがないのでとりあえずemailを表示しておく
+                Text(state.email)
+              ],
             ),
             Row(
-              children: <Widget>[
-                const Text('よんだえほん'),
-                Text('${dummyUser.bookshelfs.length}さつ')
-              ],
+              children: const <Widget>[Text('よんだえほん'), Text('２さつ')],
             ),
             ElevatedButton(
                 onPressed: () => {
