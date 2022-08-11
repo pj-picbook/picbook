@@ -49,8 +49,8 @@ void main() {
 
       expect(find.text('なまえ'), findsOneWidget);
 
-      // 表示するものがないのでとりあえずemailを表示しておく
-      expect(find.text(dummyUser.email), findsOneWidget);
+      // 表示するものがないのでとりあえずidを表示しておく
+      expect(find.text(dummyUser.id), findsOneWidget);
     });
   });
 }
