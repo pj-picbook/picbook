@@ -12,7 +12,7 @@ class MyPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // MyPageNotifierProviderからstateを取得
     // 値はこちらから読み取る
-    final state = ref.watch(myPageNotifierProvider);
+    // final state = ref.watch(myPageNotifierProvider);  使用なしでエラーが出るため、一旦コメントアウト
 
     // MyPageNotifierProviderからnotifierを取得
     // メソッドはこちらから使う
@@ -55,9 +55,9 @@ class MyPage extends HookConsumerWidget {
             //   children: <Widget>[const Text('なまえ'), Text(state.name)],
             // ),
             Column(
-              children: <Widget>[
+              children: const <Widget>[
                 Text('やまだたろう', //dummy_dataの変更により表示されなくなった。本棚のデータに入れ替え
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     )),
@@ -76,8 +76,8 @@ class MyPage extends HookConsumerWidget {
             SizedBox(
               height: 75,
               child: Row(
-                children: <Widget>[
-                  const SizedBox(
+                children: const <Widget>[
+                  SizedBox(
                     width: 50,
                     child: Icon(
                       Icons.auto_stories,
@@ -86,19 +86,19 @@ class MyPage extends HookConsumerWidget {
                       semanticLabel: 'Text to announce in accessibility modes',
                     ),
                   ),
-                  const SizedBox(width: 110, child: Text('よんだえほん')),
+                  SizedBox(width: 110, child: Text('よんだえほん')),
                   SizedBox(
                     width: 30,
                     child: Text(
                       '12',
                       // '${dummyUser.bookshelfs.length}',　　//新しいスキーマ定義に沿って入れ替えよう
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
                   ),
-                  const Text('さつ'),
+                  Text('さつ'),
                 ],
               ),
             ),
