@@ -48,7 +48,9 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('なまえ'), findsOneWidget);
-      expect(find.text(dummyUser.name), findsOneWidget);
+
+      // 表示するものがないのでとりあえずemailを表示しておく
+      expect(find.text(dummyUser.email), findsOneWidget);
     });
   });
 }

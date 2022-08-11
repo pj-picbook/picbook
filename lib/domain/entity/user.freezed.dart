@@ -22,14 +22,10 @@ User _$UserFromJson(Map<String, dynamic> json) {
 mixin _$User {
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'email')
   String get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'linkedAccount')
   String get linkedAccount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'bookshelfs')
-  List<String> get bookshelfs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,10 +38,8 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'name') String name,
       @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'linkedAccount') String linkedAccount,
-      @JsonKey(name: 'bookshelfs') List<String> bookshelfs});
+      @JsonKey(name: 'linkedAccount') String linkedAccount});
 }
 
 /// @nodoc
@@ -59,19 +53,13 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
     Object? email = freezed,
     Object? linkedAccount = freezed,
-    Object? bookshelfs = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String,
       email: email == freezed
           ? _value.email
@@ -81,10 +69,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.linkedAccount
           : linkedAccount // ignore: cast_nullable_to_non_nullable
               as String,
-      bookshelfs: bookshelfs == freezed
-          ? _value.bookshelfs
-          : bookshelfs // ignore: cast_nullable_to_non_nullable
-              as List<String>,
     ));
   }
 }
@@ -96,10 +80,8 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'name') String name,
       @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'linkedAccount') String linkedAccount,
-      @JsonKey(name: 'bookshelfs') List<String> bookshelfs});
+      @JsonKey(name: 'linkedAccount') String linkedAccount});
 }
 
 /// @nodoc
@@ -114,19 +96,13 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
     Object? email = freezed,
     Object? linkedAccount = freezed,
-    Object? bookshelfs = freezed,
   }) {
     return _then(_$_User(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String,
       email: email == freezed
           ? _value.email
@@ -136,10 +112,6 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.linkedAccount
           : linkedAccount // ignore: cast_nullable_to_non_nullable
               as String,
-      bookshelfs: bookshelfs == freezed
-          ? _value._bookshelfs
-          : bookshelfs // ignore: cast_nullable_to_non_nullable
-              as List<String>,
     ));
   }
 }
@@ -149,12 +121,9 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 class _$_User extends _User with DiagnosticableTreeMixin {
   _$_User(
       {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'name') required this.name,
       @JsonKey(name: 'email') required this.email,
-      @JsonKey(name: 'linkedAccount') required this.linkedAccount,
-      @JsonKey(name: 'bookshelfs') required final List<String> bookshelfs})
-      : _bookshelfs = bookshelfs,
-        super._();
+      @JsonKey(name: 'linkedAccount') required this.linkedAccount})
+      : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -162,25 +131,15 @@ class _$_User extends _User with DiagnosticableTreeMixin {
   @JsonKey(name: 'id')
   final String id;
   @override
-  @JsonKey(name: 'name')
-  final String name;
-  @override
   @JsonKey(name: 'email')
   final String email;
   @override
   @JsonKey(name: 'linkedAccount')
   final String linkedAccount;
-  final List<String> _bookshelfs;
-  @override
-  @JsonKey(name: 'bookshelfs')
-  List<String> get bookshelfs {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_bookshelfs);
-  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, name: $name, email: $email, linkedAccount: $linkedAccount, bookshelfs: $bookshelfs)';
+    return 'User(id: $id, email: $email, linkedAccount: $linkedAccount)';
   }
 
   @override
@@ -189,10 +148,8 @@ class _$_User extends _User with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'User'))
       ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('linkedAccount', linkedAccount))
-      ..add(DiagnosticsProperty('bookshelfs', bookshelfs));
+      ..add(DiagnosticsProperty('linkedAccount', linkedAccount));
   }
 
   @override
@@ -201,12 +158,9 @@ class _$_User extends _User with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is _$_User &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
-                .equals(other.linkedAccount, linkedAccount) &&
-            const DeepCollectionEquality()
-                .equals(other._bookshelfs, _bookshelfs));
+                .equals(other.linkedAccount, linkedAccount));
   }
 
   @JsonKey(ignore: true)
@@ -214,10 +168,8 @@ class _$_User extends _User with DiagnosticableTreeMixin {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(linkedAccount),
-      const DeepCollectionEquality().hash(_bookshelfs));
+      const DeepCollectionEquality().hash(linkedAccount));
 
   @JsonKey(ignore: true)
   @override
@@ -236,14 +188,10 @@ abstract class _User extends User {
   factory _User(
       {@JsonKey(name: 'id')
           required final String id,
-      @JsonKey(name: 'name')
-          required final String name,
       @JsonKey(name: 'email')
           required final String email,
       @JsonKey(name: 'linkedAccount')
-          required final String linkedAccount,
-      @JsonKey(name: 'bookshelfs')
-          required final List<String> bookshelfs}) = _$_User;
+          required final String linkedAccount}) = _$_User;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -252,17 +200,11 @@ abstract class _User extends User {
   @JsonKey(name: 'id')
   String get id;
   @override
-  @JsonKey(name: 'name')
-  String get name;
-  @override
   @JsonKey(name: 'email')
   String get email;
   @override
   @JsonKey(name: 'linkedAccount')
   String get linkedAccount;
-  @override
-  @JsonKey(name: 'bookshelfs')
-  List<String> get bookshelfs;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

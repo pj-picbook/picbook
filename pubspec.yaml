@@ -27,6 +27,7 @@ dependencies:
   skeleton_text: ^3.0.0
   image_network: ^2.5.1
   hexcolor: ^2.0.7
+  mobile_scanner: ^2.0.0
 
 
 
