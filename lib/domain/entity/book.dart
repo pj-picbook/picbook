@@ -31,13 +31,8 @@ class Book with _$Book {
     @JsonKey(name: 'smallImageUrl') String? smallImageUrl,
     @JsonKey(name: 'mediumImageUrl') String? mediumImageUrl,
     @JsonKey(name: 'largeImageUrl') String? largeImageUrl,
-    @JsonKey(name: 'chirayomiUrl') String? chirayomiUrl,
-    @JsonKey(name: 'availability') String? availability,
-    @JsonKey(name: 'postageFlag') int? postageFlag,
-    @JsonKey(name: 'limitedFlag') int? limitedFlag,
-    @JsonKey(name: 'reviewCount') int? reviewCount,
-    @JsonKey(name: 'reviewAverage') String? reviewAverage,
-    @JsonKey(name: 'booksGenreId') String? booksGenreId,
+    DateTime? registeredDateTime,
+    List<DateTime>? history,
   }) = _Book;
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);

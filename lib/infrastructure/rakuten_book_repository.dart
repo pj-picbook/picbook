@@ -3,14 +3,22 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../state/search_book_state.dart';
 import '../domain/entity/book.dart';
+import '../domain/entity/rakuten/items.dart';
 import '../infrastructure/provider/http_client.dart';
-import '/domain/entity/rakuten/items.dart';
 
 final rakutenBookRepository = Provider((ref) => RakutenBookRepository());
 
+enum SearchType {
+  keyword,
+  isbn,
+}
+
 /// RakutenBooksから取得できる本の情報を操作するリポジトリ
 class RakutenBookRepository {
-  Future<SearchBookState> search({required String keyWord}) async {
+  Future<SearchBookState> search({
+    required SearchType searchType,
+    required String keyWord,
+  }) async {
     final httpClient = HttpClient(uri: _createUri(searchText: keyWord));
     final client = await httpClient.connect(type: RequestType.get);
 
@@ -31,7 +39,6 @@ class RakutenBookRepository {
         Book(
           title: item.book.title,
           author: item.book.author,
-          booksGenreId: item.book.booksGenreId,
           isbn: item.book.isbn,
           itemUrl: item.book.itemUrl,
           largeImageUrl: item.book.largeImageUrl,
