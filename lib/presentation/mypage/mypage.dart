@@ -64,10 +64,11 @@ class MyPage extends HookConsumerWidget {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Text('なまえ'),
-                // 表示するものがないのでとりあえずemailを表示しておく
-                Text(state.email)
+                const Text('id:'),
+                // 表示するものがないのでとりあえずidを表示しておく
+                Text(state.id)
               ],
             ),
             const SizedBox(
