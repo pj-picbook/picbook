@@ -30,5 +30,7 @@ class SignUpNotifier extends StateNotifier<LoginFormState> {
       throw "パスワードを入力してください";
     }
     await _authRepository.signUp(email: state.email, password: state.password);
+
+    // signUpが成功したら各コレクションを生成する
   }
 }

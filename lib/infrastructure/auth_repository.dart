@@ -20,6 +20,8 @@ class AuthRepository implements BaseAuthRepository {
 
   AuthRepository({required Logger logger}) : _logger = logger;
 
+  // TODO: uid取得する処理を書く
+
   @override
   Future<void> logIn({required String email, required String password}) async {
     try {

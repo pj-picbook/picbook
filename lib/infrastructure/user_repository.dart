@@ -16,7 +16,7 @@ class UserRepository {
   }
 
   void create({required User user}) {
-    //
+    // TODO: usersコレクションを作成する処理書く
   }
 
   void update({required User user}) {
