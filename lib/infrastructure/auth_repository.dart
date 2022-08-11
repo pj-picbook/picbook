@@ -1,8 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AuthRepository {
+final authRepositoryProvider =
+    Provider<AuthRepository>((ref) => AuthRepository(ref.read));
+
+abstract class BaseAuthRepository {
+  Future logIn(String email, String password);
+  Future signUp(String email, String password);
+}
+
+class AuthRepository implements BaseAuthRepository {
+  final Reader _read;
+  AuthRepository(this._read);
   final firebaseAuthService = FirebaseAuth.instance;
 
+  @override
   Future logIn(String email, String password) async {
     try {
       await firebaseAuthService.signInWithEmailAndPassword(
@@ -12,6 +24,7 @@ class AuthRepository {
     }
   }
 
+  @override
   Future signUp(String email, String password) async {
     try {
       UserCredential userCredential = await firebaseAuthService
@@ -23,14 +36,4 @@ class AuthRepository {
       print("Authentication ${e.toString()}");
     }
   }
-
-  // Future logIn(String email, String password) async {
-  //   var result = await _authService.logIn(email, password);
-  //   return result;
-  // }
-
-  // Future signUp(String email, String password) async {
-  //   var result = await _authService.signUp(email, password);
-  //   return result;
-  // }
 }

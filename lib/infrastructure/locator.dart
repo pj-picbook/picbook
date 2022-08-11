@@ -4,5 +4,5 @@ import 'auth_repository.dart';
 GetIt getIt = GetIt.instance;
 
 void setUpLocator() {
-  getIt.registerLazySingleton(() => AuthRepository());
+  //getIt.registerLazySingleton(() => AuthRepository());
 }
