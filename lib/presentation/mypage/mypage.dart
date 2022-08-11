@@ -12,7 +12,7 @@ class MyPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // MyPageNotifierProviderからstateを取得
     // 値はこちらから読み取る
-    // final state = ref.watch(myPageNotifierProvider);  使用なしでエラーが出るため、一旦コメントアウト
+    final state = ref.watch(myPageNotifierProvider);
 
     // MyPageNotifierProviderからnotifierを取得
     // メソッドはこちらから使う
@@ -61,6 +61,13 @@ class MyPage extends HookConsumerWidget {
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     )),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                const Text('なまえ'),
+                // 表示するものがないのでとりあえずemailを表示しておく
+                Text(state.email)
               ],
             ),
             const SizedBox(
