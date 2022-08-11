@@ -8,7 +8,7 @@ class AuthService {
       await firebaseAuthService.signInWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      print("Authentication ${e.toString()}");
+      throw ("Authentication ${e.toString()}");
     }
   }
 
