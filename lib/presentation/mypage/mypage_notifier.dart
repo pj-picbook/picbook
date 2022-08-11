@@ -22,10 +22,8 @@ class MyPageNotifier extends StateNotifier<User> {
     final user = await _userRepository.findById(id: id);
     state = state.copyWith(
       id: user.id,
-      name: user.name,
       email: user.email,
       linkedAccount: user.linkedAccount,
-      bookshelfs: user.bookshelfs,
     );
   }
 }

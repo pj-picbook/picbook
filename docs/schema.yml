@@ -1,39 +1,41 @@
 User:
-  id: string
-  name: string
+  id: string # firebase authentication uid = users collection documentId
   email: string
   linkedAccount: string ( Google | Apple )
-  bookshelfs: Bookshelf[]
 Book:
-  id: string
+  id: string # firestore documentId
   title: string
+  isbn: string
   titleKana: string
   subTitle: string
   subTitleKana: string
+  seriesName: string
+  seriesNameKana: string
+  contents: string
+  contentsKana: string
   author: string
   authorKana: string
-  itemCaption: string
-  isbn: string
-  itemPrice: string
-  itemUrl: string
-  largeImageUrl: string
-  mediumImageUrl: string
   publisherName: string
-  salesDate: string
   size: string
+  itemCaption: string 
+  salesDate: string
+  itemPrice: int
+  itemUrl: string
+  affiliateUrl: string
   smallImageUrl: string
-RegisteredBook:
-  id: string
-  book: Book
+  mediumImageUrl: string
+  largeImageUrl: string 
   registeredDateTime: DateTime
   history: DateTime[]
-Bookshelf:
-  id: string
-  name: string
-  books: RegisteredBook[]
-  readHistories: ReadHistory[]
-  created: DateTime
 BookshelfHistory:
   date: DateTime
-  book: RegisteredBook
+  book: Book
+Bookshelf:
+  id: string
+  owner: string
+  ownerBirthday: DateTime
+  books: Book[]
+  readHistories: BookshelfHistory[]
+  created: DateTime
+
   

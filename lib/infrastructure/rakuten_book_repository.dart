@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../state/search_book_state.dart';
 import '../domain/entity/book.dart';
+import '../domain/entity/rakuten/items.dart';
 import '../infrastructure/provider/http_client.dart';
-import '/domain/entity/rakuten/items.dart';
 
 final rakutenBookRepository = Provider((ref) => RakutenBookRepository());
 
@@ -31,7 +31,6 @@ class RakutenBookRepository {
         Book(
           title: item.book.title,
           author: item.book.author,
-          booksGenreId: item.book.booksGenreId,
           isbn: item.book.isbn,
           itemUrl: item.book.itemUrl,
           largeImageUrl: item.book.largeImageUrl,
