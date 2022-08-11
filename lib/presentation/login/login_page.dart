@@ -12,8 +12,7 @@ class LogInPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _formKey = GlobalKey<FormState>();
-    final state = ref.watch(inputProvider);
+    // final state = ref.watch(inputProvider);
     final notifier = ref.read(inputProvider.notifier);
     final emailController = useTextEditingController(text: "");
     final passwordController = useTextEditingController(text: "");
@@ -26,7 +25,6 @@ class LogInPage extends HookConsumerWidget {
         backgroundColor: Colors.blue[900],
       ),
       body: Form(
-        key: _formKey,
         child: Container(
           color: Colors.grey[300],
           padding: const EdgeInsets.only(left: 40.0, right: 40.0),
