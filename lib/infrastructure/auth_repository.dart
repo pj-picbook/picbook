@@ -1,16 +1,36 @@
-import 'package:picbook/infrastructure/locator.dart';
-import 'package:picbook/infrastructure/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepository {
-  final AuthService _authService = getIt<AuthService>();
+  final firebaseAuthService = FirebaseAuth.instance;
 
   Future logIn(String email, String password) async {
-    var result = await _authService.logIn(email, password);
-    return result;
+    try {
+      await firebaseAuthService.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw ("Authentication ${e.toString()}");
+    }
   }
 
   Future signUp(String email, String password) async {
-    var result = await _authService.signUp(email, password);
-    return result;
+    try {
+      UserCredential userCredential = await firebaseAuthService
+          .createUserWithEmailAndPassword(email: email, password: password);
+      if (userCredential.user != null) {
+        return userCredential.user;
+      }
+    } on FirebaseAuthException catch (e) {
+      print("Authentication ${e.toString()}");
+    }
   }
+
+  // Future logIn(String email, String password) async {
+  //   var result = await _authService.logIn(email, password);
+  //   return result;
+  // }
+
+  // Future signUp(String email, String password) async {
+  //   var result = await _authService.signUp(email, password);
+  //   return result;
+  // }
 }
