@@ -8,9 +8,17 @@ import '../infrastructure/provider/http_client.dart';
 
 final rakutenBookRepository = Provider((ref) => RakutenBookRepository());
 
+enum SearchType {
+  keyword,
+  isbn,
+}
+
 /// RakutenBooksから取得できる本の情報を操作するリポジトリ
 class RakutenBookRepository {
-  Future<SearchBookState> search({required String keyWord}) async {
+  Future<SearchBookState> search({
+    required SearchType searchType,
+    required String keyWord,
+  }) async {
     final httpClient = HttpClient(uri: _createUri(searchText: keyWord));
     final client = await httpClient.connect(type: RequestType.get);
 
