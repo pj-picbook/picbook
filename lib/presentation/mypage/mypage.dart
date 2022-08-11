@@ -51,6 +51,9 @@ class MyPage extends HookConsumerWidget {
               width: 48,
               height: 20,
             ),
+            // Row(
+            //   children: <Widget>[const Text('なまえ'), Text(state.name)],
+            // ),
             Column(
               children: <Widget>[
                 Text(state.name,
