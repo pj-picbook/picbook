@@ -51,9 +51,6 @@ class MyPage extends HookConsumerWidget {
               width: 48,
               height: 20,
             ),
-            // Row(
-            //   children: <Widget>[const Text('なまえ'), Text(state.name)],
-            // ),
             Column(
               children: const <Widget>[
                 Text('やまだたろう', //dummy_dataの変更により表示されなくなった。本棚のデータに入れ替え
