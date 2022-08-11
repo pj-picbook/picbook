@@ -1,6 +1,5 @@
 users: #collection
   documentId: # userId = auth.uid
-    name: string
     email: string
     linkedAccount: string ( Google | Apple )
     bookshelfs: # subcollection
