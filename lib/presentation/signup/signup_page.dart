@@ -3,19 +3,23 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/presentation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/widget/bottom_picker.dart';
 import '../agreement_page/agreement_page.dart';
-import 'package:picbook/state/user_input_state.dart';
+
+import 'signup_notifier.dart';
 
 class SignUpPage extends HookConsumerWidget {
+  const SignUpPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _formKey = GlobalKey<FormState>();
-    final state = ref.watch(inputProvider);
-    final notifier = ref.watch(inputProvider.notifier);
+    final notifier = ref.watch(signUpNotifierProvider.notifier);
     final emailController = useTextEditingController(text: "");
     final passwordController = useTextEditingController(text: "");
+    final logger = ref.read(loggerProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -25,7 +29,6 @@ class SignUpPage extends HookConsumerWidget {
         backgroundColor: Colors.blue[900],
       ),
       body: Form(
-        key: _formKey,
         child: Container(
           color: Colors.grey[300],
           padding: const EdgeInsets.only(left: 40.0, right: 40.0),
@@ -162,6 +165,7 @@ class SignUpPage extends HookConsumerWidget {
                 ),
                 child: TextFormField(
                   controller: emailController,
+                  onChanged: ((value) => {notifier.setEmail(value)}),
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
@@ -190,6 +194,8 @@ class SignUpPage extends HookConsumerWidget {
                 ),
                 child: TextFormField(
                   controller: passwordController,
+                  onChanged: ((value) => {notifier.setPassword(value)}),
+                  obscureText: true,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -211,34 +217,16 @@ class SignUpPage extends HookConsumerWidget {
                 child: TextButton(
                   onPressed: () async {
                     try {
-                      if (emailController.text.isEmpty) {
-                        throw "メールアドレスを入力してください";
-                      }
-                      if (passwordController.text.isEmpty) {
-                        throw "パスワードを入力してください";
-                      }
-                      await ref.read(inputProvider.notifier).signUp(
-                          emailController.text, passwordController.text);
+                      await notifier.signUp();
+                      // ignore: use_build_context_synchronously
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) =>
                                   const BottomNavigationPage()),
                           (route) => false);
                     } catch (e) {
-                      print(e);
+                      logger.e(e);
                     }
-
-                    // var result = ref.read(inputProvider.notifier).signUp(
-                    //     emailController.text, passwordController.text);
-                    // if (result == true) {
-                    //   Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) =>
-                    //               const BottomNavigationPage()));
-                    // } else {
-                    //   print("登録失敗");
-                    // }
                   },
                   child: const Text(
                     "登録する",
@@ -268,13 +256,15 @@ class SignUpPage extends HookConsumerWidget {
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AgreementPage(
-                                        title: "利用規約",
-                                        url:
-                                            "https://pj-picbook.github.io/picdoc/docs/terms.html",
-                                      )));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AgreementPage(
+                                title: "利用規約",
+                                url:
+                                    "https://pj-picbook.github.io/picdoc/docs/terms.html",
+                              ),
+                            ),
+                          );
                         },
                       style: const TextStyle(
                         color: Colors.blue,

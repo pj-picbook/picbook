@@ -1,39 +1,44 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:logger/logger.dart';
+import 'package:picbook/common/logger_provider.dart';
 
-final authRepositoryProvider =
-    Provider<AuthRepository>((ref) => AuthRepository(ref.read));
+final authRepositoryProvider = Provider<BaseAuthRepository>(
+  (ref) => AuthRepository(
+    logger: ref.read(loggerProvider),
+  ),
+);
 
 abstract class BaseAuthRepository {
-  Future logIn(String email, String password);
-  Future signUp(String email, String password);
+  Future<void> logIn({required String email, required String password});
+  Future<void> signUp({required String email, required String password});
 }
 
 class AuthRepository implements BaseAuthRepository {
-  final Reader _read;
-  AuthRepository(this._read);
-  final firebaseAuthService = FirebaseAuth.instance;
+  final Logger _logger;
+  final auth = FirebaseAuth.instance;
+
+  AuthRepository({required Logger logger}) : _logger = logger;
 
   @override
-  Future logIn(String email, String password) async {
+  Future<void> logIn({required String email, required String password}) async {
     try {
-      await firebaseAuthService.signInWithEmailAndPassword(
-          email: email, password: password);
+      await auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw ("Authentication ${e.toString()}");
     }
   }
 
   @override
-  Future signUp(String email, String password) async {
+  Future<void> signUp({required String email, required String password}) async {
     try {
-      UserCredential userCredential = await firebaseAuthService
-          .createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       if (userCredential.user != null) {
-        return userCredential.user;
+        // return userCredential.user;
       }
     } on FirebaseAuthException catch (e) {
-      print("Authentication ${e.toString()}");
+      _logger.e("Authentication ${e.toString()}");
     }
   }
 }

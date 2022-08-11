@@ -2,8 +2,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/presentation/bottom_navigation_page.dart';
-import 'package:picbook/state/user_input_state.dart';
+import 'package:picbook/presentation/login/login_notifier.dart';
 
 import '../agreement_page/agreement_page.dart';
 
@@ -12,10 +13,10 @@ class LogInPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final state = ref.watch(inputProvider);
-    final notifier = ref.read(inputProvider.notifier);
+    final notifier = ref.read(loginNotifierProvider.notifier);
     final emailController = useTextEditingController(text: "");
     final passwordController = useTextEditingController(text: "");
+    final logger = ref.read(loggerProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -47,6 +48,7 @@ class LogInPage extends HookConsumerWidget {
                 ),
                 child: TextFormField(
                   controller: emailController,
+                  onChanged: ((value) => {notifier.setEmail(value)}),
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
@@ -75,6 +77,8 @@ class LogInPage extends HookConsumerWidget {
                 ),
                 child: TextFormField(
                   controller: passwordController,
+                  onChanged: ((value) => {notifier.setPassword(value)}),
+                  obscureText: true,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -96,21 +100,17 @@ class LogInPage extends HookConsumerWidget {
                 child: TextButton(
                   onPressed: () async {
                     try {
-                      if (emailController.text.isEmpty) {
-                        throw "メールアドレスを入力してください";
-                      }
-                      if (passwordController.text.isEmpty) {
-                        throw "パスワードを入力してください";
-                      }
-                      await notifier.logIn(
-                          emailController.text, passwordController.text);
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const BottomNavigationPage()),
+                      await notifier.logIn();
+                      // このルーティングは後に削除するのでignoreで対応
+                      // ignore: use_build_context_synchronously
+                      await Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute<BottomNavigationPage>(
+                            builder: (context) => const BottomNavigationPage(),
+                          ),
                           (route) => false);
                     } catch (e) {
-                      print(e);
+                      logger.e(e);
                     }
                   },
                   child: const Text(
@@ -141,13 +141,15 @@ class LogInPage extends HookConsumerWidget {
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AgreementPage(
-                                        title: "利用規約",
-                                        url:
-                                            "https://pj-picbook.github.io/picdoc/docs/terms.html",
-                                      )));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AgreementPage(
+                                title: "利用規約",
+                                url:
+                                    "https://pj-picbook.github.io/picdoc/docs/terms.html",
+                              ),
+                            ),
+                          );
                         },
                       style: const TextStyle(
                         color: Colors.blue,
