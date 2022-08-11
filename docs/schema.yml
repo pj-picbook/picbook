@@ -24,14 +24,7 @@ Book:
   affiliateUrl: string
   smallImageUrl: string
   mediumImageUrl: string
-  largeImageUrl: string
-  chirayomiUrl: string
-  availability: string
-  postageFlag: string
-  limitedFlag: string
-  reviewCount: string
-  reviewAverage: string
-  booksGenreId: string
+  largeImageUrl: string 
   registeredDateTime: DateTime
   history: DateTime[]
 BookshelfHistory:

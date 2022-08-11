@@ -31,7 +31,6 @@ class RakutenBookRepository {
         Book(
           title: item.book.title,
           author: item.book.author,
-          booksGenreId: item.book.booksGenreId,
           isbn: item.book.isbn,
           itemUrl: item.book.itemUrl,
           largeImageUrl: item.book.largeImageUrl,
