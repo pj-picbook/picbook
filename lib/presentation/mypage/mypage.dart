@@ -56,7 +56,7 @@ class MyPage extends HookConsumerWidget {
             // ),
             Column(
               children: <Widget>[
-                Text(state.name,
+                Text('やまだたろう', //dummy_dataの変更により表示されなくなった。本棚のデータに入れ替え
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -90,7 +90,8 @@ class MyPage extends HookConsumerWidget {
                   SizedBox(
                     width: 30,
                     child: Text(
-                      '${dummyUser.bookshelfs.length}',
+                      '12',
+                      // '${dummyUser.bookshelfs.length}',　　//新しいスキーマ定義に沿って入れ替えよう
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
