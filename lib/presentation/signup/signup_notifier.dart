@@ -1,17 +1,27 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/domain/entity/user.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
+import 'package:picbook/infrastructure/user_repository.dart';
 import 'package:picbook/state/login_form_state.dart';
 
 final signUpNotifierProvider = StateNotifierProvider(
   (ref) {
-    return SignUpNotifier(authRepository: ref.read(authRepositoryProvider));
+    return SignUpNotifier(
+      authRepository: ref.read(authRepositoryProvider),
+      userRepository: ref.read(userRepository),
+    );
   },
 );
 
 class SignUpNotifier extends StateNotifier<LoginFormState> {
   final BaseAuthRepository _authRepository;
-  SignUpNotifier({required BaseAuthRepository authRepository})
+  final UserRepository _userRepository;
+
+  SignUpNotifier(
+      {required BaseAuthRepository authRepository,
+      required UserRepository userRepository})
       : _authRepository = authRepository,
+        _userRepository = userRepository,
         super(LoginFormState(email: '', password: ''));
 
   void setEmail(String email) {
@@ -30,7 +40,10 @@ class SignUpNotifier extends StateNotifier<LoginFormState> {
       throw "パスワードを入力してください";
     }
     await _authRepository.signUp(email: state.email, password: state.password);
+    final uid = _authRepository.getUid();
 
-    // signUpが成功したら各コレクションを生成する
+    await _userRepository.create(
+      user: User(id: uid!, email: state.email, linkedAccount: 'linkedAccount'),
+    );
   }
 }
