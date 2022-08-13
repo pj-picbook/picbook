@@ -9,9 +9,14 @@ final authRepositoryProvider = Provider<BaseAuthRepository>(
   ),
 );
 
+final authStateProvider =
+    StreamProvider((ref) => ref.watch(authRepositoryProvider).authStateChange);
+
 abstract class BaseAuthRepository {
   Future<void> logIn({required String email, required String password});
   Future<void> signUp({required String email, required String password});
+  String? getUid();
+  Stream<User?> get authStateChange;
 }
 
 class AuthRepository implements BaseAuthRepository {
@@ -20,7 +25,17 @@ class AuthRepository implements BaseAuthRepository {
 
   AuthRepository({required Logger logger}) : _logger = logger;
 
-  // TODO: uid取得する処理を書く
+  @override
+  Stream<User?> get authStateChange => auth.authStateChanges();
+
+  @override
+  String? getUid() {
+    if (auth.currentUser == null) {
+      return null;
+    } else {
+      return auth.currentUser!.uid;
+    }
+  }
 
   @override
   Future<void> logIn({required String email, required String password}) async {

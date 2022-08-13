@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/infrastructure/auth_repository.dart';
+import 'package:picbook/presentation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/first_page/first_page.dart';
 
 Future<void> main() async {
@@ -15,11 +17,12 @@ Future<void> main() async {
   );
 }
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authStateProvider);
     return MaterialApp(
       title: 'picbook',
       theme: ThemeData(
@@ -34,7 +37,13 @@ class App extends StatelessWidget {
           elevation: 0.0,
         ),
       ),
-      home: const FirstPage(),
+      // home: const FirstPage(),
+      home: authState.when(
+        data: (data) =>
+            data != null ? const BottomNavigationPage() : const FirstPage(),
+        error: (e, trace) => const CircularProgressIndicator(),
+        loading: () => const CircularProgressIndicator(),
+      ),
     );
   }
 }
