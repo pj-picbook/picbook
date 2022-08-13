@@ -53,6 +53,7 @@ class SignUpPage extends HookConsumerWidget {
                 ),
                 child: TextFormField(
                   textAlign: TextAlign.center,
+                  onChanged: (value) => notifier.setEmail(value),
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: "ご自身もしくはお子様の名前をご入力ください",

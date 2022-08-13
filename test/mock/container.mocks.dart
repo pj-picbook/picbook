@@ -34,21 +34,27 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
   }
 
   @override
+  void init() => super.noSuchMethod(Invocation.method(#init, []),
+      returnValueForMissingStub: null);
+  @override
   _i4.Future<_i2.User> findById({String? id}) => (super.noSuchMethod(
           Invocation.method(#findById, [], {#id: id}),
           returnValue: _i4.Future<_i2.User>.value(
               _FakeUser_0(this, Invocation.method(#findById, [], {#id: id}))))
       as _i4.Future<_i2.User>);
   @override
-  void create({_i2.User? user}) =>
-      super.noSuchMethod(Invocation.method(#create, [], {#user: user}),
-          returnValueForMissingStub: null);
+  _i4.Future<void> create({_i2.User? user}) => (super.noSuchMethod(
+      Invocation.method(#create, [], {#user: user}),
+      returnValue: _i4.Future<void>.value(),
+      returnValueForMissingStub: _i4.Future<void>.value()) as _i4.Future<void>);
   @override
-  void update({_i2.User? user}) =>
-      super.noSuchMethod(Invocation.method(#update, [], {#user: user}),
-          returnValueForMissingStub: null);
+  _i4.Future<void> update({_i2.User? user}) => (super.noSuchMethod(
+      Invocation.method(#update, [], {#user: user}),
+      returnValue: _i4.Future<void>.value(),
+      returnValueForMissingStub: _i4.Future<void>.value()) as _i4.Future<void>);
   @override
-  void delete({_i2.User? user}) =>
-      super.noSuchMethod(Invocation.method(#delete, [], {#user: user}),
-          returnValueForMissingStub: null);
+  _i4.Future<void> delete({_i2.User? user}) => (super.noSuchMethod(
+      Invocation.method(#delete, [], {#user: user}),
+      returnValue: _i4.Future<void>.value(),
+      returnValueForMissingStub: _i4.Future<void>.value()) as _i4.Future<void>);
 }

@@ -8,14 +8,12 @@ part of 'bookshelf_history.dart';
 
 _$_BookshelfHistory _$$_BookshelfHistoryFromJson(Map<String, dynamic> json) =>
     _$_BookshelfHistory(
-      date: DateTime.parse(json['date'] as String),
+      date: const DateTimeConverter().fromJson(json['date'] as String),
       book: Book.fromJson(json['book'] as Map<String, dynamic>),
-      s: json['s'],
     );
 
 Map<String, dynamic> _$$_BookshelfHistoryToJson(_$_BookshelfHistory instance) =>
     <String, dynamic>{
-      'date': instance.date.toIso8601String(),
+      'date': const DateTimeConverter().toJson(instance.date),
       'book': instance.book,
-      's': instance.s,
     };
