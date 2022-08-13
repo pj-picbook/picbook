@@ -35,10 +35,8 @@ class UserRepository {
   Map<String, dynamic> _jsonFromSnapshot<T extends DocumentSnapshot>(T json) {
     return {
       'id': json.id,
-      'name': json['name'],
       'email': json['email'],
       'linkedAccount': json['linkedAccount'],
-      'bookshelfs': json['bookshelfs'],
     };
   }
 }
