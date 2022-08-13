@@ -1,19 +1,27 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:picbook/domain/entity/user.dart';
+import 'package:picbook/infrastructure/auth_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
 
 final myPageNotifierProvider =
     StateNotifierProvider<MyPageNotifier, User>((ref) {
   return MyPageNotifier(
     userRepository: ref.read(userRepository),
+    authRepository: ref.read(authRepositoryProvider),
   );
 });
 
 ///
 class MyPageNotifier extends StateNotifier<User> {
   final UserRepository _userRepository;
-  MyPageNotifier({required UserRepository userRepository})
+  final BaseAuthRepository _authRepository;
+  final logger = Logger();
+  MyPageNotifier(
+      {required UserRepository userRepository,
+      required BaseAuthRepository authRepository})
       : _userRepository = userRepository,
+        _authRepository = authRepository,
         super(User.initial());
 
   /// 受け取ったidをもとにUserRepositoryのfindByIdを呼び出し
@@ -25,5 +33,13 @@ class MyPageNotifier extends StateNotifier<User> {
       email: user.email,
       linkedAccount: user.linkedAccount,
     );
+  }
+
+  Future<void> logOut() async {
+    try {
+      await _authRepository.logOut();
+    } catch (e) {
+      logger.e(e);
+    }
   }
 }

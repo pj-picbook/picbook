@@ -6,6 +6,8 @@ import 'package:picbook/infrastructure/auth_repository.dart';
 import 'package:picbook/presentation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/first_page/first_page.dart';
 
+import 'common/logger_provider.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -22,6 +24,7 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final logger = ref.read(loggerProvider);
     final authState = ref.watch(authStateProvider);
     return MaterialApp(
       title: 'picbook',
@@ -37,10 +40,16 @@ class App extends ConsumerWidget {
           elevation: 0.0,
         ),
       ),
-      // home: const FirstPage(),
       home: authState.when(
-        data: (data) =>
-            data != null ? const BottomNavigationPage() : const FirstPage(),
+        data: (data) {
+          if (data != null) {
+            logger.i('user login');
+            return const BottomNavigationPage();
+          } else {
+            logger.i('user logout');
+            return const FirstPage();
+          }
+        },
         error: (e, trace) => const CircularProgressIndicator(),
         loading: () => const CircularProgressIndicator(),
       ),

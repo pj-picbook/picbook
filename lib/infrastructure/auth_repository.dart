@@ -17,6 +17,7 @@ abstract class BaseAuthRepository {
   Future<void> signUp({required String email, required String password});
   String? getUid();
   Stream<User?> get authStateChange;
+  Future<void> logOut();
 }
 
 class AuthRepository implements BaseAuthRepository {
@@ -56,6 +57,15 @@ class AuthRepository implements BaseAuthRepository {
       }
     } on FirebaseAuthException catch (e) {
       _logger.e("Authentication ${e.toString()}");
+    }
+  }
+
+  @override
+  Future<void> logOut() async {
+    try {
+      await auth.signOut();
+    } catch (e) {
+      _logger.e(e);
     }
   }
 }

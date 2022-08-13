@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:picbook/presentation/enum/tab_item.dart';
 import 'package:hexcolor/hexcolor.dart';
+
+import 'tab_item.dart';
 
 final _navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
   TabItem.bookshelf: GlobalKey<NavigatorState>(),
