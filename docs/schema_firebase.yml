@@ -1,9 +1,11 @@
 users: #collection
   documentId: # userId = auth.uid
+    id: string # document Id
     email: string
     linkedAccount: string ( Google | Apple )
     bookshelfs: # subcollection
       documentId: # auto
+        id: string # document Id
         created: DateTime
         owner: string
         ownerBirthdate: timestamp
