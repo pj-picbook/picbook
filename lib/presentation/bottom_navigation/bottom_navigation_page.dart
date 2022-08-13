@@ -1,45 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/presentation/bottom_navigation/bottom_navigation_notifier.dart';
 
 import 'tab_item.dart';
 
-final _navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
-  TabItem.bookshelf: GlobalKey<NavigatorState>(),
-  TabItem.mypage: GlobalKey<NavigatorState>(),
-};
-
-class BottomNavigationPage extends StatefulWidget {
+class BottomNavigationPage extends HookConsumerWidget {
   const BottomNavigationPage({Key? key}) : super(key: key);
 
   @override
-  State<BottomNavigationPage> createState() => _BottomNavigationPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.read(bottomNavigationNotifierProvider);
+    final notifier = ref.read(bottomNavigationNotifierProvider.notifier);
 
-class _BottomNavigationPageState extends State<BottomNavigationPage> {
-  TabItem _currentTab = TabItem.bookshelf;
-
-  @override
-  Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        final isFirstRouteInCurrentTab =
-            !await _navigatorKeys[_currentTab]!.currentState!.maybePop();
-        if (isFirstRouteInCurrentTab) {
-          if (_currentTab != TabItem.bookshelf) {
-            onSelect(TabItem.bookshelf);
-            return false;
-          }
-        }
-        return isFirstRouteInCurrentTab;
-      },
+      onWillPop: () async => await notifier.onWillPop(),
       child: Scaffold(
         body: Stack(
           children: TabItem.values
               .map(
                 (tabItem) => Offstage(
-                  offstage: _currentTab != tabItem,
+                  offstage: state.item != tabItem,
                   child: Navigator(
-                    key: _navigatorKeys[tabItem],
+                    key: notifier.navigatorKeys[tabItem],
                     onGenerateRoute: (settings) {
                       return MaterialPageRoute<Widget>(
                         builder: (context) => tabItem.page,
@@ -52,7 +35,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          currentIndex: _currentTab.index,
+          currentIndex: state.item.index,
           backgroundColor: HexColor('DBCCC4'),
           items: TabItem.values
               .map(
@@ -63,22 +46,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
               )
               .toList(),
           onTap: (index) {
-            onSelect(TabItem.values[index]);
+            notifier.onSelect(TabItem.values[index]);
           },
         ),
       ),
     );
-  }
-
-  void onSelect(TabItem selectedTab) {
-    if (_currentTab == selectedTab) {
-      _navigatorKeys[selectedTab]
-          ?.currentState
-          ?.popUntil((route) => route.isFirst);
-    } else {
-      setState(() {
-        _currentTab = selectedTab;
-      });
-    }
   }
 }

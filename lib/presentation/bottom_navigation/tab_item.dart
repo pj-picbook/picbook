@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:picbook/presentation/bookshelf/book_shelf_page.dart';
 import 'package:picbook/presentation/mypage/mypage.dart';
 import '../../presentation/searchbook/searchbook_page.dart';
+
+part 'tab_item.freezed.dart';
 
 enum TabItem {
   bookshelf(
     title: '絵本の棚',
     icon: Icons.menu_book,
-    page: BookShelfPage(), // TODO:絵本の棚のクラス名に書き換える。
+    page: BookShelfPage(),
   ),
 
   mypage(
@@ -36,4 +39,13 @@ enum TabItem {
 
   /// 画面
   final Widget page;
+}
+
+@freezed
+class TabState with _$TabState {
+  const TabState._();
+
+  factory TabState({
+    required TabItem item,
+  }) = _TabState;
 }
