@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/domain/entity/bookshelf.dart';
 
-final bookshelfRepository = Provider((ref) => BookshelfRepository()..init());
+final bookshelfRepositoryProvider =
+    Provider((ref) => BookshelfRepository()..init());
 
 class BookshelfRepository {
   final _db = FirebaseFirestore.instance;

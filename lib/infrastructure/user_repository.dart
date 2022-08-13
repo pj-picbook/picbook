@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/domain/entity/user.dart';
 
-final userRepository = Provider((ref) => UserRepository()..init());
+final userRepositoryProvider = Provider((ref) => UserRepository()..init());
 
 /// usersコレクションを操作するrepository
 class UserRepository {

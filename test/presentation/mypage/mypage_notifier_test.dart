@@ -14,7 +14,7 @@ void main() {
 
   setUp(() {
     container = overrideUserRepository();
-    repository = container.read(userRepository) as MockUserRepository;
+    repository = container.read(userRepositoryProvider) as MockUserRepository;
   });
 
   group('fetch', () {
@@ -27,7 +27,7 @@ void main() {
       final notifier = container.read(myPageNotifierProvider.notifier);
 
       // テスト対象のメソッド実行
-      await notifier.fetch(id: 'test');
+      await notifier.fetch();
       final state = container.read(myPageNotifierProvider);
 
       expect(state, dummyUser);

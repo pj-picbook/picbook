@@ -8,9 +8,9 @@ import 'package:picbook/presentation/mypage/mypage_state.dart';
 final myPageNotifierProvider =
     StateNotifierProvider<MyPageNotifier, MyPageState>((ref) {
   return MyPageNotifier(
-    userRepository: ref.read(userRepository),
+    userRepository: ref.read(userRepositoryProvider),
     authRepository: ref.read(authRepositoryProvider),
-    bookshelfRepository: ref.read(bookshelfRepository),
+    bookshelfRepository: ref.read(bookshelfRepositoryProvider),
   );
 });
 

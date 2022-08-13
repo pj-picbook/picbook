@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     container = overrideUserRepository();
-    repository = container.read(userRepository) as MockUserRepository;
+    repository = container.read(userRepositoryProvider) as MockUserRepository;
   });
 
   group('mypage', () {
@@ -30,7 +30,7 @@ void main() {
           await tester.pumpWidget(
             ProviderScope(
               // userRepositoryをmockでoverrideする
-              overrides: [userRepository.overrideWithValue(repository)],
+              overrides: [userRepositoryProvider.overrideWithValue(repository)],
               // この辺は描画に必要なものを適当に作成
               child: MaterialApp(
                 title: 'MyPage Widget Test',

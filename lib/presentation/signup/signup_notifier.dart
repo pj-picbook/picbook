@@ -10,8 +10,8 @@ final signUpNotifierProvider = StateNotifierProvider(
   (ref) {
     return SignUpNotifier(
         authRepository: ref.read(authRepositoryProvider),
-        userRepository: ref.read(userRepository),
-        bookshelfRepository: ref.read(bookshelfRepository));
+        userRepository: ref.read(userRepositoryProvider),
+        bookshelfRepository: ref.read(bookshelfRepositoryProvider));
   },
 );
 

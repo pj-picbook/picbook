@@ -3,11 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i7;
 
+import 'package:firebase_auth/firebase_auth.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:picbook/domain/entity/bookshelf.dart' as _i4;
 import 'package:picbook/domain/entity/user.dart' as _i2;
-import 'package:picbook/infrastructure/user_repository.dart' as _i3;
+import 'package:picbook/infrastructure/auth_repository.dart' as _i8;
+import 'package:picbook/infrastructure/bookshelf_repository.dart' as _i9;
+import 'package:picbook/infrastructure/rakuten_book_repository.dart' as _i10;
+import 'package:picbook/infrastructure/user_repository.dart' as _i6;
+import 'package:picbook/state/search_book_state.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,10 +31,26 @@ class _FakeUser_0 extends _i1.SmartFake implements _i2.User {
       : super(parent, parentInvocation);
 }
 
+class _FakeFirebaseAuth_1 extends _i1.SmartFake implements _i3.FirebaseAuth {
+  _FakeFirebaseAuth_1(Object parent, Invocation parentInvocation)
+      : super(parent, parentInvocation);
+}
+
+class _FakeBookshelf_2 extends _i1.SmartFake implements _i4.Bookshelf {
+  _FakeBookshelf_2(Object parent, Invocation parentInvocation)
+      : super(parent, parentInvocation);
+}
+
+class _FakeSearchBookState_3 extends _i1.SmartFake
+    implements _i5.SearchBookState {
+  _FakeSearchBookState_3(Object parent, Invocation parentInvocation)
+      : super(parent, parentInvocation);
+}
+
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
+class MockUserRepository extends _i1.Mock implements _i6.UserRepository {
   MockUserRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -37,24 +59,116 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
-  _i4.Future<_i2.User> findById({String? id}) => (super.noSuchMethod(
+  _i7.Future<_i2.User> findById({String? id}) => (super.noSuchMethod(
           Invocation.method(#findById, [], {#id: id}),
-          returnValue: _i4.Future<_i2.User>.value(
+          returnValue: _i7.Future<_i2.User>.value(
               _FakeUser_0(this, Invocation.method(#findById, [], {#id: id}))))
-      as _i4.Future<_i2.User>);
+      as _i7.Future<_i2.User>);
   @override
-  _i4.Future<void> create({_i2.User? user}) => (super.noSuchMethod(
+  _i7.Future<void> create({_i2.User? user}) => (super.noSuchMethod(
       Invocation.method(#create, [], {#user: user}),
-      returnValue: _i4.Future<void>.value(),
-      returnValueForMissingStub: _i4.Future<void>.value()) as _i4.Future<void>);
+      returnValue: _i7.Future<void>.value(),
+      returnValueForMissingStub: _i7.Future<void>.value()) as _i7.Future<void>);
   @override
-  _i4.Future<void> update({_i2.User? user}) => (super.noSuchMethod(
+  _i7.Future<void> update({_i2.User? user}) => (super.noSuchMethod(
       Invocation.method(#update, [], {#user: user}),
-      returnValue: _i4.Future<void>.value(),
-      returnValueForMissingStub: _i4.Future<void>.value()) as _i4.Future<void>);
+      returnValue: _i7.Future<void>.value(),
+      returnValueForMissingStub: _i7.Future<void>.value()) as _i7.Future<void>);
   @override
-  _i4.Future<void> delete({_i2.User? user}) => (super.noSuchMethod(
+  _i7.Future<void> delete({_i2.User? user}) => (super.noSuchMethod(
       Invocation.method(#delete, [], {#user: user}),
-      returnValue: _i4.Future<void>.value(),
-      returnValueForMissingStub: _i4.Future<void>.value()) as _i4.Future<void>);
+      returnValue: _i7.Future<void>.value(),
+      returnValueForMissingStub: _i7.Future<void>.value()) as _i7.Future<void>);
+}
+
+/// A class which mocks [AuthRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAuthRepository extends _i1.Mock implements _i8.AuthRepository {
+  MockAuthRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.FirebaseAuth get auth => (super.noSuchMethod(Invocation.getter(#auth),
+          returnValue: _FakeFirebaseAuth_1(this, Invocation.getter(#auth)))
+      as _i3.FirebaseAuth);
+  @override
+  _i7.Stream<_i3.User?> get authStateChange =>
+      (super.noSuchMethod(Invocation.getter(#authStateChange),
+          returnValue: _i7.Stream<_i3.User?>.empty()) as _i7.Stream<_i3.User?>);
+  @override
+  _i7.Future<void> logIn({String? email, String? password}) =>
+      (super.noSuchMethod(
+          Invocation.method(#logIn, [], {#email: email, #password: password}),
+          returnValue: _i7.Future<void>.value(),
+          returnValueForMissingStub:
+              _i7.Future<void>.value()) as _i7.Future<void>);
+  @override
+  _i7.Future<void> signUp({String? email, String? password}) => (super
+      .noSuchMethod(
+          Invocation.method(#signUp, [], {#email: email, #password: password}),
+          returnValue: _i7.Future<void>.value(),
+          returnValueForMissingStub: _i7.Future<void>.value()) as _i7
+      .Future<void>);
+  @override
+  _i7.Future<void> logOut() => (super.noSuchMethod(
+      Invocation.method(#logOut, []),
+      returnValue: _i7.Future<void>.value(),
+      returnValueForMissingStub: _i7.Future<void>.value()) as _i7.Future<void>);
+}
+
+/// A class which mocks [BookshelfRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockBookshelfRepository extends _i1.Mock
+    implements _i9.BookshelfRepository {
+  MockBookshelfRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void init() => super.noSuchMethod(Invocation.method(#init, []),
+      returnValueForMissingStub: null);
+  @override
+  _i7.Future<_i4.Bookshelf> findById({String? uid, String? id}) => (super
+          .noSuchMethod(Invocation.method(#findById, [], {#uid: uid, #id: id}),
+              returnValue: _i7.Future<_i4.Bookshelf>.value(_FakeBookshelf_2(
+                  this,
+                  Invocation.method(#findById, [], {#uid: uid, #id: id}))))
+      as _i7.Future<_i4.Bookshelf>);
+  @override
+  _i7.Future<List<_i4.Bookshelf>> fetchAll({String? uid}) =>
+      (super.noSuchMethod(Invocation.method(#fetchAll, [], {#uid: uid}),
+              returnValue:
+                  _i7.Future<List<_i4.Bookshelf>>.value(<_i4.Bookshelf>[]))
+          as _i7.Future<List<_i4.Bookshelf>>);
+  @override
+  _i7.Future<void> create({String? uid, _i4.Bookshelf? bookshelf}) =>
+      (super.noSuchMethod(
+          Invocation.method(#create, [], {#uid: uid, #bookshelf: bookshelf}),
+          returnValue: _i7.Future<void>.value(),
+          returnValueForMissingStub:
+              _i7.Future<void>.value()) as _i7.Future<void>);
+}
+
+/// A class which mocks [RakutenBookRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRakutenBookRepository extends _i1.Mock
+    implements _i10.RakutenBookRepository {
+  MockRakutenBookRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<_i5.SearchBookState> search(
+          {_i10.SearchType? searchType, String? keyWord}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #search, [], {#searchType: searchType, #keyWord: keyWord}),
+              returnValue: _i7.Future<_i5.SearchBookState>.value(
+                  _FakeSearchBookState_3(this,
+                      Invocation.method(#search, [], {#searchType: searchType, #keyWord: keyWord}))))
+          as _i7.Future<_i5.SearchBookState>);
 }
