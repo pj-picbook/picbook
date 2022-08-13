@@ -35,7 +35,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                 (tabItem) => Offstage(
                   offstage: _currentTab != tabItem,
                   child: Navigator(
-                    key: navigatorKeys[tabItem],
+                    // key: navigatorKeys[tabItem],
                     onGenerateRoute: (settings) {
                       return MaterialPageRoute<Widget>(
                         builder: (context) => tabItem.page,
@@ -68,9 +68,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
 
   void onSelect(TabItem selectedTab) {
     if (_currentTab == selectedTab) {
-      navigatorKeys[selectedTab]
-          ?.currentState
-          ?.popUntil((route) => route.isFirst);
+      // navigatorKeys[selectedTab]
+      //     ?.currentState
+      //     ?.popUntil((route) => route.isFirst);
     } else {
       setState(() {
         _currentTab = selectedTab;
