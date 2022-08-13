@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import '../../common/global_keys.dart';
 import 'tab_item.dart';
-
-final _navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
-  TabItem.bookshelf: GlobalKey<NavigatorState>(),
-  TabItem.mypage: GlobalKey<NavigatorState>(),
-};
 
 class BottomNavigationPage extends StatefulWidget {
   const BottomNavigationPage({Key? key}) : super(key: key);
@@ -23,7 +19,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     return WillPopScope(
       onWillPop: () async {
         final isFirstRouteInCurrentTab =
-            !await _navigatorKeys[_currentTab]!.currentState!.maybePop();
+            !await navigatorKeys[_currentTab]!.currentState!.maybePop();
         if (isFirstRouteInCurrentTab) {
           if (_currentTab != TabItem.bookshelf) {
             onSelect(TabItem.bookshelf);
@@ -39,7 +35,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                 (tabItem) => Offstage(
                   offstage: _currentTab != tabItem,
                   child: Navigator(
-                    key: _navigatorKeys[tabItem],
+                    key: navigatorKeys[tabItem],
                     onGenerateRoute: (settings) {
                       return MaterialPageRoute<Widget>(
                         builder: (context) => tabItem.page,
@@ -72,7 +68,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
 
   void onSelect(TabItem selectedTab) {
     if (_currentTab == selectedTab) {
-      _navigatorKeys[selectedTab]
+      navigatorKeys[selectedTab]
           ?.currentState
           ?.popUntil((route) => route.isFirst);
     } else {
