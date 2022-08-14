@@ -5,6 +5,7 @@ import 'package:hexcolor/hexcolor.dart';
 final _navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
   TabItem.bookshelf: GlobalKey<NavigatorState>(),
   TabItem.mypage: GlobalKey<NavigatorState>(),
+  TabItem.searchBook: GlobalKey<NavigatorState>(),
 };
 
 class BottomNavigationPage extends StatefulWidget {
