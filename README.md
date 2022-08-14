@@ -80,7 +80,7 @@ fvm flutter pub run build_runner build --delete-conflicting-outputs
   - 配置場所：android/app
 
 - iOS
-  - ファイル名：google-service.plist
+  - ファイル名：GoogleService-Info.plist
   - 配置場所：ios/Runner
 
 
