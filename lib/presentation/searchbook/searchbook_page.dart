@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/infrastructure/rakuten_book_repository.dart';
+import 'package:picbook/presentation/book_detail/book_detail_page.dart';
 import '../../presentation/searchbook/searchbook_page_notifier.dart';
 import '../widget/book_box.dart';
 import '../barcode_scanner_page/barcode_scanner_page.dart';
@@ -56,9 +57,16 @@ class SearchBookPage extends HookConsumerWidget {
                 itemCount: state.books.length,
                 itemBuilder: (context, index) {
                   final item = state.books[index];
-                  return BookBox(
-                    book: item,
-                  );
+                  return InkWell(
+                      child: BookBox(
+                        book: item,
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const BookDetailPage()),
+                        );
+                      });
                 },
               ),
             )

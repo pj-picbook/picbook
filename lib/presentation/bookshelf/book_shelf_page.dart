@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:picbook/presentation/book_detail/book_detail_page.dart';
 
 class Book {
   double height;
@@ -31,10 +32,13 @@ class BookShelfPage extends StatelessWidget {
   /// [width] 横幅
   /// [color] 色
   /// return 高さ*幅サイズのカラー設定済みContainer
-  Widget makeDummyItem(double height, double width, Color color) {
+  Widget makeDummyItem(
+      BuildContext context, double height, double width, Color color) {
     return InkWell(
       onTap: () {
-        // TODO タップ時の作品詳細画面遷移
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const BookDetailPage()),
+        );
       },
       child: Container(
         margin: const EdgeInsets.all(8),
@@ -57,7 +61,7 @@ class BookShelfPage extends StatelessWidget {
           crossAxisCount: 2,
           children: List.generate(
             dummyList.length, // TODO ここで利用するリストはFirebaseから取得した情報群
-            (index) => makeDummyItem(dummyList[index].height,
+            (index) => makeDummyItem(context, dummyList[index].height,
                 dummyList[index].height, dummyList[index].color),
           ),
         ),
