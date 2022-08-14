@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/main.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -193,7 +194,12 @@ class MyPage extends HookConsumerWidget {
             TextButton(
               onPressed: () async {
                 await notifier.logOut();
-                (() => Navigator.pop(context))();
+                (() => Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute<App>(
+                      builder: (context) => const App(),
+                    ),
+                    (route) => false))();
               },
               child: Container(
                 height: 50,

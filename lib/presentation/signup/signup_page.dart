@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/presentation/widget/bottom_picker.dart';
+import '../../main.dart';
 import '../agreement_page/agreement_page.dart';
 
 import 'signup_notifier.dart';
@@ -218,7 +219,12 @@ class SignUpPage extends HookConsumerWidget {
                   onPressed: () async {
                     try {
                       await notifier.signUp();
-                      (() async => Navigator.pop(context));
+                      (() => Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute<App>(
+                            builder: (context) => const App(),
+                          ),
+                          (route) => false))();
                     } catch (e) {
                       logger.e(e);
                     }

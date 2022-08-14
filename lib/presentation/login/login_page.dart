@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/common/logger_provider.dart';
+import 'package:picbook/main.dart';
 import 'package:picbook/presentation/bottom_navigation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/login/login_notifier.dart';
 
@@ -101,14 +102,12 @@ class LogInPage extends HookConsumerWidget {
                   onPressed: () async {
                     try {
                       await notifier.logIn();
-                      // このルーティングは後に削除するのでignoreで対応
-                      // ignore: use_build_context_synchronously
-                      await Navigator.pushAndRemoveUntil(
+                      (() => Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute<BottomNavigationPage>(
-                            builder: (context) => const BottomNavigationPage(),
+                          MaterialPageRoute<App>(
+                            builder: (context) => const App(),
                           ),
-                          (route) => false);
+                          (route) => false))();
                     } catch (e) {
                       logger.e(e);
                     }
