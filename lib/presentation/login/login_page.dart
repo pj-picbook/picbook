@@ -1,13 +1,22 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/common/logger_provider.dart';
+import 'package:picbook/presentation/bottom_navigation_page.dart';
+import 'package:picbook/presentation/login/login_notifier.dart';
 
 import '../agreement_page/agreement_page.dart';
 
-class LogInPage extends StatelessWidget {
+class LogInPage extends HookConsumerWidget {
   const LogInPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.read(loginNotifierProvider.notifier);
+    final emailController = useTextEditingController(text: "");
+    final passwordController = useTextEditingController(text: "");
+    final logger = ref.read(loggerProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -38,6 +47,9 @@ class LogInPage extends StatelessWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  controller: emailController,
+                  onChanged: ((value) => {notifier.setEmail(value)}),
+                  keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -64,6 +76,9 @@ class LogInPage extends StatelessWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  controller: passwordController,
+                  onChanged: ((value) => {notifier.setPassword(value)}),
+                  obscureText: true,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -82,9 +97,23 @@ class LogInPage extends StatelessWidget {
                   color: Colors.white70,
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
-                child: const TextButton(
-                  onPressed: null,
-                  child: Text(
+                child: TextButton(
+                  onPressed: () async {
+                    try {
+                      await notifier.logIn();
+                      // このルーティングは後に削除するのでignoreで対応
+                      // ignore: use_build_context_synchronously
+                      await Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute<BottomNavigationPage>(
+                            builder: (context) => const BottomNavigationPage(),
+                          ),
+                          (route) => false);
+                    } catch (e) {
+                      logger.e(e);
+                    }
+                  },
+                  child: const Text(
                     "ログインする",
                     style: TextStyle(
                       color: Colors.red,
@@ -112,13 +141,15 @@ class LogInPage extends StatelessWidget {
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AgreementPage(
-                                        title: "利用規約",
-                                        url:
-                                            "https://pj-picbook.github.io/picdoc/docs/terms.html",
-                                      )));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AgreementPage(
+                                title: "利用規約",
+                                url:
+                                    "https://pj-picbook.github.io/picdoc/docs/terms.html",
+                              ),
+                            ),
+                          );
                         },
                       style: const TextStyle(
                         color: Colors.blue,
