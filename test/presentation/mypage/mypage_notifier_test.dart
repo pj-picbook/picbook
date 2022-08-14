@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/common/dummy_data.dart';
@@ -60,8 +58,7 @@ void main() {
   });
 
   group('logout', () {
-    test('uidを取得し、userReoisitoryとbookshelfRepositoryから対象の情報を取得してstateを更新する',
-        () async {
+    test('logoutが正常に行われる場合、エラーログが出力されないこと', () async {
       // logoutのみ返却値を定義
       when(authRepository.logOut()).thenAnswer((_) => Future.value(null));
 
