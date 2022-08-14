@@ -10,5 +10,11 @@
 		"editor.suggestSelection": "first",
 		"editor.tabCompletion": "onlySnippets",
 		"editor.wordBasedSuggestions": false
-    }
+    },
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnPaste": true,
+		"editor.formatOnSave": true,
+		"editor.formatOnType": true
+	}
 }
