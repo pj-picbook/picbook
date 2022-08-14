@@ -11,17 +11,25 @@ service cloud.firestore {
       return isAuthenticated() && userId == request.auth.uid;
     }
 
+    // usersコレクションのスキーマ検証
+    function isValidUser(user) {
+    return user.size() == 3
+      && 'id' in user && user.id is string
+      && 'email' in user && user.email is string
+      && 'linkedAccount' in user && user.linkedAccount is string;
+    }
+
     match /users/{userId} {
       // ユーザー情報の取得のルール
       allow get: if isUserAuthenticated(userId);
 
       // ユーザー情報の作成のルール
       allow create: if isUserAuthenticated(userId)
-      // && isValidUser(request.resource.data);
+      && isValidUser(request.resource.data);
 
       // ユーザー情報の更新のルール
       allow update: if isUserAuthenticated(userId)
-      // && isValidUser(request.resource.data);
+      && isValidUser(request.resource.data);
     }
   }
 }

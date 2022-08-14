@@ -1,9 +1,10 @@
 import * as fs from "fs";
 import { v4 } from "uuid";
+import * as _ from "lodash";
 import * as firebase from "@firebase/rules-unit-testing";
-import { serverTimestamp as st, setDoc, updateDoc } from "firebase/firestore";
-const serverTimestamp = () => st();
+import { dummyUser } from "./dummy_data";
 
+// dev環境のプロジェクトID
 const PROJECT_ID = "pj-picbook-pro";
 
 let testEnv: firebase.RulesTestEnvironment;
@@ -63,11 +64,7 @@ describe("users collection", () => {
       const context = testEnv.authenticatedContext(uid);
 
       await firebase.assertSucceeds(
-        context
-          .firestore()
-          .collection("users")
-          .doc(uid)
-          .set({ name: "test_user" })
+        context.firestore().collection("users").doc(uid).set(dummyUser)
       );
     });
 
@@ -77,50 +74,37 @@ describe("users collection", () => {
       const context = testEnv.authenticatedContext(uid);
 
       await firebase.assertFails(
-        context
-          .firestore()
-          .collection("users")
-          .doc(otherUid)
-          .set({ name: "test_user" })
-      );
-    });
-
-    test("nameフィールドがない時にのユーザードキュメントを作成出来ないこと", async () => {
-      const uid = v4();
-      const context = testEnv.authenticatedContext(uid);
-
-      await firebase.assertFails(
-        context
-          .firestore()
-          .collection("users")
-          .doc(uid)
-          .set({ hoge: "test_user" })
+        context.firestore().collection("users").doc(otherUid).set(dummyUser)
       );
     });
 
     test("スキーマが間違っている場合に作成できないこと", async () => {
       const uid = v4();
       const context = testEnv.authenticatedContext(uid);
+      const data = _.cloneDeep(dummyUser) as any;
+      delete data.id;
 
       await firebase.assertFails(
-        context
-          .firestore()
-          .collection("users")
-          .doc(uid)
-          .set({ name: "test_user", hoge: "hoge" })
+        context.firestore().collection("users").doc(uid).set(data)
       );
     });
   });
 
   describe("update", () => {
+    const updatedUser = _.cloneDeepWith(dummyUser, (val) => {
+      if (val === "id") {
+        return "updated_id";
+      }
+    });
+
     test("自分のユーザードキュメントを変更出来ること", async () => {
       const uid = v4();
       const context = testEnv.authenticatedContext(uid);
       const db = context.firestore();
-      await db.collection("users").doc(uid).set({ name: "test_user" });
+      await db.collection("users").doc(uid).set(dummyUser);
 
       await firebase.assertSucceeds(
-        db.collection("users").doc(uid).update({ name: "test_user" })
+        db.collection("users").doc(uid).update(updatedUser)
       );
     });
 
@@ -133,25 +117,14 @@ describe("users collection", () => {
         .firestore()
         .collection("users")
         .doc(otherUid)
-        .set({ name: "test_user" });
+        .set(dummyUser);
 
       await firebase.assertFails(
         context
           .firestore()
           .collection("users")
           .doc(otherUid)
-          .update({ name: "test_user" })
-      );
-    });
-
-    test("nameフィールドがない時にユーザードキュメントを変更出来ないこと", async () => {
-      const uid = v4();
-      const context = testEnv.authenticatedContext(uid);
-      const db = context.firestore();
-      db.collection("users").doc(uid).set({ name: "test_user" });
-
-      await firebase.assertFails(
-        db.collection("users").doc(uid).update({ hoge: "test_user" })
+          .update(updatedUser)
       );
     });
   });
