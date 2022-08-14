@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
+import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
@@ -8,6 +9,7 @@ import 'package:picbook/presentation/mypage/mypage_state.dart';
 final myPageNotifierProvider =
     StateNotifierProvider<MyPageNotifier, MyPageState>((ref) {
   return MyPageNotifier(
+    logger: ref.read(loggerProvider),
     userRepository: ref.read(userRepositoryProvider),
     authRepository: ref.read(authRepositoryProvider),
     bookshelfRepository: ref.read(bookshelfRepositoryProvider),
@@ -22,6 +24,7 @@ class MyPageNotifier extends StateNotifier<MyPageState> {
 
   final logger = Logger();
   MyPageNotifier({
+    required Logger logger,
     required BaseAuthRepository authRepository,
     required UserRepository userRepository,
     required BookshelfRepository bookshelfRepository,
