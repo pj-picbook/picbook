@@ -76,12 +76,12 @@ fvm flutter pub run build_runner build --delete-conflicting-outputs
   - 設置しないとビルドエラーが起こる  
 
 - android
-  - google-services.json
-  - picbook/android/app
+  - ファイル名：google-services.json
+  - 配置場所：android/app
 
 - iOS
-  - google-service.plist
-  - ios/Runner
+  - ファイル名：google-service.plist
+  - 配置場所：ios/Runner
 
 
 ### FVM（Flutter Version Management）のインストール方法
