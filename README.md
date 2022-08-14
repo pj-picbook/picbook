@@ -70,6 +70,20 @@ fvm install
 fvm flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
+### firebaseの設定ファイルをダウンロードしてローカルのプロジェクト内に配置
+  - プロジェクトの設定からSDK設定用のファイルをダウンロードして、git cloneしたローカルプロジェクトのファイルの中に配置する
+  - 理由としては、当該ファイルはpublicなリポジトリで見れないようにしており、gitigonoreしていて、個別対応が必要なため。
+  - 設置しないとビルドエラーが起こる  
+
+- android
+  - google-services.json
+  - picbook\android\app
+
+- iOS
+  - google-service.plist
+  - ios/Runner/Info.plist
+
+
 ### FVM（Flutter Version Management）のインストール方法
 - Mac https://zenn.dev/riscait/articles/flutter-version-management
 - Windows https://qiita.com/idani/items/0e45d037b4c2a93840a7
