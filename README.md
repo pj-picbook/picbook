@@ -77,11 +77,11 @@ fvm flutter pub run build_runner build --delete-conflicting-outputs
 
 - android
   - google-services.json
-  - picbook\android\app
+  - picbook/android/app
 
 - iOS
   - google-service.plist
-  - ios/Runner/Info.plist
+  - ios/Runner
 
 
 ### FVM（Flutter Version Management）のインストール方法
