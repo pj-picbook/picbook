@@ -4,7 +4,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/main.dart';
-import 'package:picbook/presentation/bottom_navigation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/login/login_notifier.dart';
 
 import '../agreement_page/agreement_page.dart';
