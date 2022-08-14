@@ -1,6 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:picbook/presentation/agreement_page/agreement_page.dart';
+import 'package:picbook/presentation/login/login_page.dart';
+
+import '../signup/signup_page.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({Key? key}) : super(key: key);
@@ -32,7 +35,13 @@ class FirstPage extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           TextButton(
-            onPressed: null,
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LogInPage(),
+                  ));
+            },
             child: Container(
               height: 50,
               width: 270,
@@ -57,7 +66,13 @@ class FirstPage extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           TextButton(
-            onPressed: null,
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignUpPage(),
+                  ));
+            },
             child: Container(
               height: 50,
               width: 270,

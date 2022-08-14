@@ -1,18 +1,30 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/common/logger_provider.dart';
+import 'package:picbook/presentation/bottom_navigation_page.dart';
+import 'package:picbook/presentation/widget/bottom_picker.dart';
 import '../agreement_page/agreement_page.dart';
 
-class SignUpPage extends StatelessWidget {
+import 'signup_notifier.dart';
+
+class SignUpPage extends HookConsumerWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(signUpNotifierProvider.notifier);
+    final emailController = useTextEditingController(text: "");
+    final passwordController = useTextEditingController(text: "");
+    final logger = ref.read(loggerProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           "会員登録",
-          style: TextStyle(fontSize: 17.0),
+          style: TextStyle(fontSize: 17.0, color: Colors.white),
         ),
         backgroundColor: Colors.blue[900],
       ),
@@ -66,6 +78,66 @@ class SignUpPage extends StatelessWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  onTap: () {
+                    showCupertinoModalPopup(
+                        context: context,
+                        builder: (context) {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                  color: Color(0xffffffff),
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Color(0xff999999),
+                                      width: 0.0,
+                                    ),
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    CupertinoButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0,
+                                        vertical: 5.0,
+                                      ),
+                                      child: const Text(
+                                        'キャンセル',
+                                        style: TextStyle(color: Colors.blue),
+                                      ),
+                                    ),
+                                    CupertinoButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0,
+                                        vertical: 5.0,
+                                      ),
+                                      child: const Text(
+                                        '追加',
+                                        style: TextStyle(color: Colors.blue),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              bottomPicker(
+                                CupertinoDatePicker(
+                                  mode: CupertinoDatePickerMode.date,
+                                  onDateTimeChanged: (DateTime newDateTime) {},
+                                ),
+                              ),
+                            ],
+                          );
+                        });
+                  },
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -92,6 +164,9 @@ class SignUpPage extends StatelessWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  controller: emailController,
+                  onChanged: ((value) => {notifier.setEmail(value)}),
+                  keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -118,6 +193,9 @@ class SignUpPage extends StatelessWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  controller: passwordController,
+                  onChanged: ((value) => {notifier.setPassword(value)}),
+                  obscureText: true,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -136,9 +214,21 @@ class SignUpPage extends StatelessWidget {
                   color: Colors.white70,
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
-                child: const TextButton(
-                  onPressed: null,
-                  child: Text(
+                child: TextButton(
+                  onPressed: () async {
+                    try {
+                      await notifier.signUp();
+                      // ignore: use_build_context_synchronously
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const BottomNavigationPage()),
+                          (route) => false);
+                    } catch (e) {
+                      logger.e(e);
+                    }
+                  },
+                  child: const Text(
                     "登録する",
                     style: TextStyle(
                       color: Colors.red,
@@ -166,13 +256,15 @@ class SignUpPage extends StatelessWidget {
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AgreementPage(
-                                        title: "利用規約",
-                                        url:
-                                            "https://pj-picbook.github.io/picdoc/docs/terms.html",
-                                      )));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AgreementPage(
+                                title: "利用規約",
+                                url:
+                                    "https://pj-picbook.github.io/picdoc/docs/terms.html",
+                              ),
+                            ),
+                          );
                         },
                       style: const TextStyle(
                         color: Colors.blue,

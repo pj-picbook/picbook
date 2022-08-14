@@ -652,10 +652,29 @@ PODS:
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - Flutter (1.0.0)
+  - flutter_native_splash (0.0.1):
+    - Flutter
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleMLKit/BarcodeScanning (2.6.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitBarcodeScanning (~> 1.7.0)
+  - GoogleMLKit/MLKitCore (2.6.0):
+    - MLKitCommon (~> 5.0.0)
+  - GoogleToolboxForMac/DebugUtils (2.3.2):
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - GoogleToolboxForMac/Defines (2.3.2)
+  - GoogleToolboxForMac/Logger (2.3.2):
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - "GoogleToolboxForMac/NSData+zlib (2.3.2)":
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.2)":
+    - GoogleToolboxForMac/DebugUtils (= 2.3.2)
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.2)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.3.2)"
   - GoogleUtilities/AppDelegateSwizzler (7.7.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -670,6 +689,10 @@ PODS:
     - GoogleUtilities/Reachability
   - "GoogleUtilities/NSData+zlib (7.7.0)"
   - GoogleUtilities/Reachability (7.7.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.7.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilitiesComponents (1.1.0):
     - GoogleUtilities/Logger
   - "gRPC-C++ (1.44.0)":
     - "gRPC-C++/Implementation (= 1.44.0)"
@@ -722,7 +745,7 @@ PODS:
     - gRPC-Core/Interface (= 1.44.0)
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
-  - GTMSessionFetcher/Core (2.0.0)
+  - GTMSessionFetcher/Core (1.7.2)
   - leveldb-library (1.22.1)
   - Libuv-gRPC (0.0.10):
     - Libuv-gRPC/Implementation (= 0.0.10)
@@ -730,12 +753,36 @@ PODS:
   - Libuv-gRPC/Implementation (0.0.10):
     - Libuv-gRPC/Interface (= 0.0.10)
   - Libuv-gRPC/Interface (0.0.10)
+  - MLImage (1.0.0-beta2)
+  - MLKitBarcodeScanning (1.7.0):
+    - MLKitCommon (~> 5.0)
+    - MLKitVision (~> 3.0)
+  - MLKitCommon (5.0.0):
+    - GoogleDataTransport (~> 9.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - GoogleUtilities/UserDefaults (~> 7.0)
+    - GoogleUtilitiesComponents (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+    - Protobuf (~> 3.12)
+  - MLKitVision (3.0.0):
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+    - MLImage (= 1.0.0-beta2)
+    - MLKitCommon (~> 5.0)
+    - Protobuf (~> 3.12)
+  - mobile_scanner (0.0.1):
+    - Flutter
+    - GoogleMLKit/BarcodeScanning (~> 2.6.0)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.1)
+  - Protobuf (3.21.5)
   - webview_flutter_wkwebview (0.0.1):
     - Flutter
 
@@ -744,6 +791,8 @@ DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
+  - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
+  - mobile_scanner (from `.symlinks/plugins/mobile_scanner/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
@@ -757,14 +806,22 @@ SPEC REPOS:
     - FirebaseCoreInternal
     - FirebaseFirestore
     - GoogleDataTransport
+    - GoogleMLKit
+    - GoogleToolboxForMac
     - GoogleUtilities
+    - GoogleUtilitiesComponents
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
     - leveldb-library
     - Libuv-gRPC
+    - MLImage
+    - MLKitBarcodeScanning
+    - MLKitCommon
+    - MLKitVision
     - nanopb
     - PromisesObjC
+    - Protobuf
 
 EXTERNAL SOURCES:
   cloud_firestore:
@@ -775,6 +832,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
+  flutter_native_splash:
+    :path: ".symlinks/plugins/flutter_native_splash/ios"
+  mobile_scanner:
+    :path: ".symlinks/plugins/mobile_scanner/ios"
   webview_flutter_wkwebview:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
@@ -791,17 +852,27 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 635d1c9a612a6502b6377a0c92af83758076ffff
   FirebaseFirestore: 5a72aa925528f67469b16a54a6cfc369467197e4
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
+  GoogleMLKit: 755661c46990a85e42278015f26400286d98ad95
+  GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
+  GoogleUtilitiesComponents: 679b2c881db3b615a2777504623df6122dd20afe
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
-  GTMSessionFetcher: 681175626052e03fdde7952f7e9c7a9785719506
+  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
+  MLImage: a454f9f8ecfd537783a12f9488f5be1a68820829
+  MLKitBarcodeScanning: b8257854f6afc1c8443d61ec6b98c28b35625df6
+  MLKitCommon: 3bc17c6f7d25ce3660f030350b46ae7ec9ebca6e
+  MLKitVision: e87dc3f2e456a6ab32361ebd985e078dd2746143
+  mobile_scanner: 073e39c0c96360297389f4db68e4297a1fa58349
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  Protobuf: 7504b04fffcf6662ad629694db8231f5e744327f
   webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
 PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.11.2
