@@ -1,10 +1,11 @@
 users: #collection
   documentId: # userId = auth.uid
-    name: string
+    id: string # document Id
     email: string
     linkedAccount: string ( Google | Apple )
     bookshelfs: # subcollection
       documentId: # auto
+        id: string # document Id
         created: DateTime
         owner: string
         ownerBirthdate: timestamp
@@ -30,7 +31,7 @@ users: #collection
               smallImageUrl: string
               registeredDateTime: timestamp
               history: timestamp[]
-        bookshelfHistory: # subcollection
+        bookshelfHistories: # subcollection
           documentId: # auto
             date: timestamp
             book: # map

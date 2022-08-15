@@ -48,7 +48,7 @@ class BookshelfPage extends HookConsumerWidget {
               onTap: () {
                 // 作品詳細画面に表示するデータをセットする
                 // TODO:dummyBookを正規のデータと入れ替える
-                bookNotifier.set(dummyBook);
+                bookNotifier.set(dummyBookForBookshelf);
                 Navigator.of(context).push(
                   MaterialPageRoute(
                       builder: (context) => const BookDetailPage()),

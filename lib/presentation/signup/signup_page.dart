@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/common/logger_provider.dart';
-import 'package:picbook/presentation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/widget/bottom_picker.dart';
+import '../../main.dart';
 import '../agreement_page/agreement_page.dart';
 
 import 'signup_notifier.dart';
@@ -53,6 +53,7 @@ class SignUpPage extends HookConsumerWidget {
                 ),
                 child: TextFormField(
                   textAlign: TextAlign.center,
+                  onChanged: (value) => notifier.setName(value),
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: "ご自身もしくはお子様の名前をご入力ください",
@@ -218,12 +219,12 @@ class SignUpPage extends HookConsumerWidget {
                   onPressed: () async {
                     try {
                       await notifier.signUp();
-                      // ignore: use_build_context_synchronously
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const BottomNavigationPage()),
-                          (route) => false);
+                      (() => Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute<App>(
+                            builder: (context) => const App(),
+                          ),
+                          (route) => false))();
                     } catch (e) {
                       logger.e(e);
                     }
