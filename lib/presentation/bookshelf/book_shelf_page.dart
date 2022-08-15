@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/domain/entity/book.dart'; // TODO:削除する。ダミーデータを参照するため使用
 import 'package:picbook/presentation/book_detail/book_detail_page.dart';
+import 'package:picbook/state/book_notifier.dart';
 
 class Book {
   double height;
@@ -24,33 +27,13 @@ List<Book> dummyList = [
 ];
 
 /// 本棚画面クラス
-class BookShelfPage extends StatelessWidget {
+class BookShelfPage extends HookConsumerWidget {
   const BookShelfPage({Key? key}) : super(key: key);
 
-  /// ダミー用Widget作成用メソッド
-  /// [height] 高さ
-  /// [width] 横幅
-  /// [color] 色
-  /// return 高さ*幅サイズのカラー設定済みContainer
-  Widget makeDummyItem(
-      BuildContext context, double height, double width, Color color) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const BookDetailPage()),
-        );
-      },
-      child: Container(
-        margin: const EdgeInsets.all(8),
-        height: height,
-        width: width,
-        color: color,
-      ),
-    );
-  }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bookNotifier = ref.watch(bookNotifierProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -61,8 +44,23 @@ class BookShelfPage extends StatelessWidget {
           crossAxisCount: 2,
           children: List.generate(
             dummyList.length, // TODO ここで利用するリストはFirebaseから取得した情報群
-            (index) => makeDummyItem(context, dummyList[index].height,
-                dummyList[index].height, dummyList[index].color),
+            (index) => InkWell(
+              onTap: () {
+                // 作品詳細画面に表示するデータをセットする
+                // TODO:dummyBookを正規のデータと入れ替える
+                bookNotifier.set(dummyBook);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) => const BookDetailPage()),
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.all(8),
+                height: dummyList[index].height,
+                width: dummyList[index].height,
+                color: dummyList[index].color,
+              ),
+            ),
           ),
         ),
       ),
