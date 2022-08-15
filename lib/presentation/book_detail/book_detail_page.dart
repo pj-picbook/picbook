@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_network/image_network.dart';
-import 'package:picbook/domain/entity/book.dart';
+import 'package:picbook/state/book_notifier.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 
 class BookDetailPage extends HookConsumerWidget {
@@ -9,8 +9,10 @@ class BookDetailPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final bookState = ref.watch(bookNotifierProvider);
+
     return Scaffold(
-      appBar: AppBar(title: Text("${dummyBook.title}")),
+      appBar: AppBar(title: Text("${bookState.title}")),
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
@@ -20,7 +22,7 @@ class BookDetailPage extends HookConsumerWidget {
               children: [
                 const Spacer(),
                 ImageNetwork(
-                  image: "${dummyBook.largeImageUrl}",
+                  image: "${bookState.largeImageUrl}",
                   height: 250,
                   width: 200,
                   fitAndroidIos: BoxFit.contain,
@@ -38,7 +40,7 @@ class BookDetailPage extends HookConsumerWidget {
             padding: const EdgeInsets.all(25),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text("${dummyBook.title}",
+              Text("${bookState.title}",
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -46,12 +48,12 @@ class BookDetailPage extends HookConsumerWidget {
               const SizedBox(
                 height: 5,
               ),
-              Text("作：${dummyBook.author}",
+              Text("作：${bookState.author}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w200,
                     fontSize: 14,
                   )),
-              Text("出版社：${dummyBook.publisherName}",
+              Text("出版社：${bookState.publisherName}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w100,
                     fontSize: 14,
@@ -59,7 +61,7 @@ class BookDetailPage extends HookConsumerWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text("${dummyBook.itemCaption}",
+              Text("${bookState.itemCaption}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
