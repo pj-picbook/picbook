@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:picbook/presentation/first_page/first_page.dart';
+import 'package:picbook/main.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -22,7 +22,7 @@ class MyPage extends HookConsumerWidget {
     useEffect(() {
       // useEffect内で非同期処理を行うため、別関数を定義
       Future<void> fetchUser() async {
-        await notifier.fetch(id: 'umLDBXIjYX4EoGqtEwcI');
+        await notifier.fetch();
       }
 
       // 定義した関数を呼び出し
@@ -52,9 +52,9 @@ class MyPage extends HookConsumerWidget {
               height: 20,
             ),
             Column(
-              children: const <Widget>[
-                Text('やまだたろう', //dummy_dataの変更により表示されなくなった。本棚のデータに入れ替え
-                    style: TextStyle(
+              children: <Widget>[
+                Text(state.currentBookshelf.owner,
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     )),
@@ -65,7 +65,7 @@ class MyPage extends HookConsumerWidget {
               children: <Widget>[
                 const Text('id:'),
                 // 表示するものがないのでとりあえずidを表示しておく
-                Text(state.id)
+                Text(state.user.id)
               ],
             ),
             const SizedBox(
@@ -81,8 +81,8 @@ class MyPage extends HookConsumerWidget {
             SizedBox(
               height: 75,
               child: Row(
-                children: const <Widget>[
-                  SizedBox(
+                children: <Widget>[
+                  const SizedBox(
                     width: 50,
                     child: Icon(
                       Icons.auto_stories,
@@ -91,19 +91,18 @@ class MyPage extends HookConsumerWidget {
                       semanticLabel: 'Text to announce in accessibility modes',
                     ),
                   ),
-                  SizedBox(width: 110, child: Text('よんだえほん')),
+                  const SizedBox(width: 110, child: Text('よんだえほん')),
                   SizedBox(
                     width: 30,
                     child: Text(
-                      '12',
-                      // '${dummyUser.bookshelfs.length}',　　//新しいスキーマ定義に沿って入れ替えよう
-                      style: TextStyle(
+                      '${state.currentBookshelf.books.length}',
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
                   ),
-                  Text('さつ'),
+                  const Text('さつ'),
                 ],
               ),
             ),
@@ -193,13 +192,14 @@ class MyPage extends HookConsumerWidget {
               height: 25,
             ),
             TextButton(
-              onPressed: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<MyPage>(
-                    builder: (BuildContext context) => const FirstPage(),
-                  ),
-                )
+              onPressed: () async {
+                await notifier.logOut();
+                (() => Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute<App>(
+                      builder: (context) => const App(),
+                    ),
+                    (route) => false))();
               },
               child: Container(
                 height: 50,

@@ -5,7 +5,7 @@ import '../../state/search_book_state.dart';
 final rakutenBookPageNotifierProvider =
     StateNotifierProvider<SearchBookPageNotifier, SearchBookState>((ref) {
   return SearchBookPageNotifier(
-    rakutenBookRepository: ref.read(rakutenBookRepository),
+    rakutenBookRepository: ref.read(rakutenBookRepositoryProvider),
   );
 });
 

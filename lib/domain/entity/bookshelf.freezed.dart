@@ -21,15 +21,18 @@ Bookshelf _$BookshelfFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Bookshelf {
   @JsonKey(name: 'id')
-  String get date => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'owner')
-  String get book => throw _privateConstructorUsedError;
+  String get owner => throw _privateConstructorUsedError;
+  @DateTimeConverter()
   @JsonKey(name: 'ownerBirthday')
   DateTime get ownerBirthday => throw _privateConstructorUsedError;
   @JsonKey(name: 'books')
   List<Book> get books => throw _privateConstructorUsedError;
   @JsonKey(name: 'readHistories')
-  BookshelfHistory get readHistories => throw _privateConstructorUsedError;
+  List<BookshelfHistory> get readHistories =>
+      throw _privateConstructorUsedError;
+  @DateTimeConverter()
   @JsonKey(name: 'created')
   DateTime get created => throw _privateConstructorUsedError;
 
@@ -44,14 +47,20 @@ abstract class $BookshelfCopyWith<$Res> {
   factory $BookshelfCopyWith(Bookshelf value, $Res Function(Bookshelf) then) =
       _$BookshelfCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'id') String date,
-      @JsonKey(name: 'owner') String book,
-      @JsonKey(name: 'ownerBirthday') DateTime ownerBirthday,
-      @JsonKey(name: 'books') List<Book> books,
-      @JsonKey(name: 'readHistories') BookshelfHistory readHistories,
-      @JsonKey(name: 'created') DateTime created});
-
-  $BookshelfHistoryCopyWith<$Res> get readHistories;
+      {@JsonKey(name: 'id')
+          String id,
+      @JsonKey(name: 'owner')
+          String owner,
+      @DateTimeConverter()
+      @JsonKey(name: 'ownerBirthday')
+          DateTime ownerBirthday,
+      @JsonKey(name: 'books')
+          List<Book> books,
+      @JsonKey(name: 'readHistories')
+          List<BookshelfHistory> readHistories,
+      @DateTimeConverter()
+      @JsonKey(name: 'created')
+          DateTime created});
 }
 
 /// @nodoc
@@ -64,21 +73,21 @@ class _$BookshelfCopyWithImpl<$Res> implements $BookshelfCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? date = freezed,
-    Object? book = freezed,
+    Object? id = freezed,
+    Object? owner = freezed,
     Object? ownerBirthday = freezed,
     Object? books = freezed,
     Object? readHistories = freezed,
     Object? created = freezed,
   }) {
     return _then(_value.copyWith(
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      book: book == freezed
-          ? _value.book
-          : book // ignore: cast_nullable_to_non_nullable
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
               as String,
       ownerBirthday: ownerBirthday == freezed
           ? _value.ownerBirthday
@@ -91,19 +100,12 @@ class _$BookshelfCopyWithImpl<$Res> implements $BookshelfCopyWith<$Res> {
       readHistories: readHistories == freezed
           ? _value.readHistories
           : readHistories // ignore: cast_nullable_to_non_nullable
-              as BookshelfHistory,
+              as List<BookshelfHistory>,
       created: created == freezed
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
-  }
-
-  @override
-  $BookshelfHistoryCopyWith<$Res> get readHistories {
-    return $BookshelfHistoryCopyWith<$Res>(_value.readHistories, (value) {
-      return _then(_value.copyWith(readHistories: value));
-    });
   }
 }
 
@@ -114,15 +116,20 @@ abstract class _$$_BookshelfCopyWith<$Res> implements $BookshelfCopyWith<$Res> {
       __$$_BookshelfCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'id') String date,
-      @JsonKey(name: 'owner') String book,
-      @JsonKey(name: 'ownerBirthday') DateTime ownerBirthday,
-      @JsonKey(name: 'books') List<Book> books,
-      @JsonKey(name: 'readHistories') BookshelfHistory readHistories,
-      @JsonKey(name: 'created') DateTime created});
-
-  @override
-  $BookshelfHistoryCopyWith<$Res> get readHistories;
+      {@JsonKey(name: 'id')
+          String id,
+      @JsonKey(name: 'owner')
+          String owner,
+      @DateTimeConverter()
+      @JsonKey(name: 'ownerBirthday')
+          DateTime ownerBirthday,
+      @JsonKey(name: 'books')
+          List<Book> books,
+      @JsonKey(name: 'readHistories')
+          List<BookshelfHistory> readHistories,
+      @DateTimeConverter()
+      @JsonKey(name: 'created')
+          DateTime created});
 }
 
 /// @nodoc
@@ -137,21 +144,21 @@ class __$$_BookshelfCopyWithImpl<$Res> extends _$BookshelfCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? date = freezed,
-    Object? book = freezed,
+    Object? id = freezed,
+    Object? owner = freezed,
     Object? ownerBirthday = freezed,
     Object? books = freezed,
     Object? readHistories = freezed,
     Object? created = freezed,
   }) {
     return _then(_$_Bookshelf(
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      book: book == freezed
-          ? _value.book
-          : book // ignore: cast_nullable_to_non_nullable
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
               as String,
       ownerBirthday: ownerBirthday == freezed
           ? _value.ownerBirthday
@@ -162,9 +169,9 @@ class __$$_BookshelfCopyWithImpl<$Res> extends _$BookshelfCopyWithImpl<$Res>
           : books // ignore: cast_nullable_to_non_nullable
               as List<Book>,
       readHistories: readHistories == freezed
-          ? _value.readHistories
+          ? _value._readHistories
           : readHistories // ignore: cast_nullable_to_non_nullable
-              as BookshelfHistory,
+              as List<BookshelfHistory>,
       created: created == freezed
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -177,13 +184,22 @@ class __$$_BookshelfCopyWithImpl<$Res> extends _$BookshelfCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Bookshelf extends _Bookshelf with DiagnosticableTreeMixin {
   _$_Bookshelf(
-      {@JsonKey(name: 'id') required this.date,
-      @JsonKey(name: 'owner') required this.book,
-      @JsonKey(name: 'ownerBirthday') required this.ownerBirthday,
-      @JsonKey(name: 'books') required final List<Book> books,
-      @JsonKey(name: 'readHistories') required this.readHistories,
-      @JsonKey(name: 'created') required this.created})
+      {@JsonKey(name: 'id')
+          this.id = "",
+      @JsonKey(name: 'owner')
+          required this.owner,
+      @DateTimeConverter()
+      @JsonKey(name: 'ownerBirthday')
+          required this.ownerBirthday,
+      @JsonKey(name: 'books')
+          final List<Book> books = const [],
+      @JsonKey(name: 'readHistories')
+          final List<BookshelfHistory> readHistories = const [],
+      @DateTimeConverter()
+      @JsonKey(name: 'created')
+          required this.created})
       : _books = books,
+        _readHistories = readHistories,
         super._();
 
   factory _$_Bookshelf.fromJson(Map<String, dynamic> json) =>
@@ -191,11 +207,12 @@ class _$_Bookshelf extends _Bookshelf with DiagnosticableTreeMixin {
 
   @override
   @JsonKey(name: 'id')
-  final String date;
+  final String id;
   @override
   @JsonKey(name: 'owner')
-  final String book;
+  final String owner;
   @override
+  @DateTimeConverter()
   @JsonKey(name: 'ownerBirthday')
   final DateTime ownerBirthday;
   final List<Book> _books;
@@ -206,16 +223,22 @@ class _$_Bookshelf extends _Bookshelf with DiagnosticableTreeMixin {
     return EqualUnmodifiableListView(_books);
   }
 
+  final List<BookshelfHistory> _readHistories;
   @override
   @JsonKey(name: 'readHistories')
-  final BookshelfHistory readHistories;
+  List<BookshelfHistory> get readHistories {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_readHistories);
+  }
+
   @override
+  @DateTimeConverter()
   @JsonKey(name: 'created')
   final DateTime created;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Bookshelf(date: $date, book: $book, ownerBirthday: $ownerBirthday, books: $books, readHistories: $readHistories, created: $created)';
+    return 'Bookshelf(id: $id, owner: $owner, ownerBirthday: $ownerBirthday, books: $books, readHistories: $readHistories, created: $created)';
   }
 
   @override
@@ -223,8 +246,8 @@ class _$_Bookshelf extends _Bookshelf with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Bookshelf'))
-      ..add(DiagnosticsProperty('date', date))
-      ..add(DiagnosticsProperty('book', book))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('owner', owner))
       ..add(DiagnosticsProperty('ownerBirthday', ownerBirthday))
       ..add(DiagnosticsProperty('books', books))
       ..add(DiagnosticsProperty('readHistories', readHistories))
@@ -236,13 +259,13 @@ class _$_Bookshelf extends _Bookshelf with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Bookshelf &&
-            const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality().equals(other.book, book) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.owner, owner) &&
             const DeepCollectionEquality()
                 .equals(other.ownerBirthday, ownerBirthday) &&
             const DeepCollectionEquality().equals(other._books, _books) &&
             const DeepCollectionEquality()
-                .equals(other.readHistories, readHistories) &&
+                .equals(other._readHistories, _readHistories) &&
             const DeepCollectionEquality().equals(other.created, created));
   }
 
@@ -250,11 +273,11 @@ class _$_Bookshelf extends _Bookshelf with DiagnosticableTreeMixin {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(book),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(owner),
       const DeepCollectionEquality().hash(ownerBirthday),
       const DeepCollectionEquality().hash(_books),
-      const DeepCollectionEquality().hash(readHistories),
+      const DeepCollectionEquality().hash(_readHistories),
       const DeepCollectionEquality().hash(created));
 
   @JsonKey(ignore: true)
@@ -273,15 +296,17 @@ class _$_Bookshelf extends _Bookshelf with DiagnosticableTreeMixin {
 abstract class _Bookshelf extends Bookshelf {
   factory _Bookshelf(
       {@JsonKey(name: 'id')
-          required final String date,
+          final String id,
       @JsonKey(name: 'owner')
-          required final String book,
+          required final String owner,
+      @DateTimeConverter()
       @JsonKey(name: 'ownerBirthday')
           required final DateTime ownerBirthday,
       @JsonKey(name: 'books')
-          required final List<Book> books,
+          final List<Book> books,
       @JsonKey(name: 'readHistories')
-          required final BookshelfHistory readHistories,
+          final List<BookshelfHistory> readHistories,
+      @DateTimeConverter()
       @JsonKey(name: 'created')
           required final DateTime created}) = _$_Bookshelf;
   _Bookshelf._() : super._();
@@ -291,11 +316,12 @@ abstract class _Bookshelf extends Bookshelf {
 
   @override
   @JsonKey(name: 'id')
-  String get date;
+  String get id;
   @override
   @JsonKey(name: 'owner')
-  String get book;
+  String get owner;
   @override
+  @DateTimeConverter()
   @JsonKey(name: 'ownerBirthday')
   DateTime get ownerBirthday;
   @override
@@ -303,8 +329,9 @@ abstract class _Bookshelf extends Bookshelf {
   List<Book> get books;
   @override
   @JsonKey(name: 'readHistories')
-  BookshelfHistory get readHistories;
+  List<BookshelfHistory> get readHistories;
   @override
+  @DateTimeConverter()
   @JsonKey(name: 'created')
   DateTime get created;
   @override

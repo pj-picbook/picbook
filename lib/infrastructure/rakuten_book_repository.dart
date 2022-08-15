@@ -6,7 +6,9 @@ import '../domain/entity/book.dart';
 import '../domain/entity/rakuten/items.dart';
 import '../infrastructure/provider/http_client.dart';
 
-final rakutenBookRepository = Provider((ref) => RakutenBookRepository());
+final rakutenBookRepositoryProvider = Provider(
+  (ref) => RakutenBookRepository(),
+);
 
 enum SearchType {
   keyword,
