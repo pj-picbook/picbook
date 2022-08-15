@@ -35,8 +35,6 @@ jobs:
           path: firebase/node_modules
       - name: Run Jest
         uses: IIIMPACT/firebase-firestore-testing-action@v3.1.1
-        working-directory: ./firebase
-        run: yarn test
   deploy:
     name: Deploy only firestore:rules
     needs: test
