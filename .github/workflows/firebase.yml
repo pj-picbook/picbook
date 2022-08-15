@@ -45,7 +45,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: w9jds/firebase-action@v2.2.2
         with:
           args: deploy --only firestore:rules
         env:
