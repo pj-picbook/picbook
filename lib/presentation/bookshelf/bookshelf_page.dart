@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:picbook/domain/entity/book.dart'; // TODO:削除する。ダミーデータを参照するため使用
+import 'package:picbook/common/dummy_data.dart'; // TODO:削除する。ダミーデータを参照するため使用
 import 'package:picbook/presentation/book_detail/book_detail_page.dart';
 import 'package:picbook/state/book_notifier.dart';
 
