@@ -27,8 +27,8 @@ List<Book> dummyList = [
 ];
 
 /// 本棚画面クラス
-class BookShelfPage extends HookConsumerWidget {
-  const BookShelfPage({Key? key}) : super(key: key);
+class BookshelfPage extends HookConsumerWidget {
+  const BookshelfPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
