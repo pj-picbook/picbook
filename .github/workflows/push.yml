@@ -1,12 +1,12 @@
-name: Build and Deploy
+name: on push workflow
 on:
-  pull_request:
+  push:
     branches:
       - main
       - develop
 
 jobs:
-  test:
+  firebase_test:
     name: Unit Test
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +23,7 @@ jobs:
       - name: Run Jest
         working-directory: ./firebase
         run: yarn test
-  deploy:
+  firebase_deploy:
     name: Deploy only firestore:rules
     needs: test
     runs-on: ubuntu-latest
