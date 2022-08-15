@@ -21,7 +21,8 @@ jobs:
         working-directory: ./firebase
         run: yarn
       - name: Run Jest
-        uses: yarn test
+        working-directory: ./firebase
+        run: yarn test
   deploy:
     name: Deploy only firestore:rules
     needs: test
