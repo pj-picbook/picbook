@@ -14,12 +14,6 @@ enum TabItem {
     title: 'マイページ',
     icon: Icons.person,
     page: MyPage(),
-  ),
-
-  searchBook(
-    title: '検索画面',
-    icon: Icons.search,
-    page: SearchBookPage(),
   );
 
   const TabItem({
