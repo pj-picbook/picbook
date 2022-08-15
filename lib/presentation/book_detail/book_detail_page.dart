@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_network/image_network.dart';
-
-import 'package:picbook/domain/entity/book_dummy.dart'; // TODO:#58のタスク→削除する。
+import 'package:picbook/domain/entity/book.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 
 class BookDetailPage extends HookConsumerWidget {
@@ -11,7 +10,7 @@ class BookDetailPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text(dummyBook.titile)),
+      appBar: AppBar(title: Text("${dummyBook.title}")),
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
@@ -21,7 +20,7 @@ class BookDetailPage extends HookConsumerWidget {
               children: [
                 const Spacer(),
                 ImageNetwork(
-                  image: dummyBook.largeImageUrl,
+                  image: "${dummyBook.largeImageUrl}",
                   height: 250,
                   width: 200,
                   fitAndroidIos: BoxFit.contain,
@@ -39,7 +38,7 @@ class BookDetailPage extends HookConsumerWidget {
             padding: const EdgeInsets.all(25),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(dummyBook.titile,
+              Text("${dummyBook.title}",
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -60,7 +59,7 @@ class BookDetailPage extends HookConsumerWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text(dummyBook.itemCaption,
+              Text("${dummyBook.itemCaption}",
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
