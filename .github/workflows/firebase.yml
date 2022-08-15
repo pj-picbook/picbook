@@ -1,0 +1,52 @@
+name: Build and Deploy
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        working-directory: ./firebase
+        run: yarn
+      - name: Archive Dependencies Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: firebase/node_modules
+          path: firebase/node_modules
+  test:
+    name: Unit Test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: firebase/node_modules
+          path: firebase/node_modules
+      - name: Run Jest
+        uses: IIIMPACT/firebase-firestore-testing-action@v3.1.1
+        working-directory: ./firebase
+        run: yarn test
+  deploy:
+    name: Deploy only firestore:rules
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only firestore:rules
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

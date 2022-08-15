@@ -53,6 +53,7 @@ firebase deploy
 
 ```
 例）firebase deploy --only functions
+firebase deploy --only firestore:rules
 ```
 
 - unit test実施
