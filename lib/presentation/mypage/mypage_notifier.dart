@@ -1,29 +1,56 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:picbook/domain/entity/user.dart';
+import 'package:logger/logger.dart';
+import 'package:picbook/common/logger_provider.dart';
+import 'package:picbook/infrastructure/auth_repository.dart';
+import 'package:picbook/infrastructure/bookshelf_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
+import 'package:picbook/presentation/mypage/mypage_state.dart';
 
 final myPageNotifierProvider =
-    StateNotifierProvider<MyPageNotifier, User>((ref) {
+    StateNotifierProvider<MyPageNotifier, MyPageState>((ref) {
   return MyPageNotifier(
-    userRepository: ref.read(userRepository),
+    logger: ref.read(loggerProvider),
+    userRepository: ref.read(userRepositoryProvider),
+    authRepository: ref.read(authRepositoryProvider),
+    bookshelfRepository: ref.read(bookshelfRepositoryProvider),
   );
 });
 
 ///
-class MyPageNotifier extends StateNotifier<User> {
+class MyPageNotifier extends StateNotifier<MyPageState> {
+  final BaseAuthRepository _authRepository;
   final UserRepository _userRepository;
-  MyPageNotifier({required UserRepository userRepository})
-      : _userRepository = userRepository,
-        super(User.initial());
+  final BookshelfRepository _bookshelfRepository;
+
+  final logger = Logger();
+  MyPageNotifier({
+    required Logger logger,
+    required BaseAuthRepository authRepository,
+    required UserRepository userRepository,
+    required BookshelfRepository bookshelfRepository,
+  })  : _userRepository = userRepository,
+        _authRepository = authRepository,
+        _bookshelfRepository = bookshelfRepository,
+        super(MyPageState.initial());
 
   /// 受け取ったidをもとにUserRepositoryのfindByIdを呼び出し
   /// stateを最新のユーザー情報へ更新する
-  Future<void> fetch({required String id}) async {
-    final user = await _userRepository.findById(id: id);
+  Future<void> fetch() async {
+    final uid = _authRepository.getUid();
+    final user = await _userRepository.findById(id: uid!);
+    final bookshelfs = await _bookshelfRepository.fetchAll(uid: uid);
+    final bookshelf = bookshelfs.first;
     state = state.copyWith(
-      id: user.id,
-      email: user.email,
-      linkedAccount: user.linkedAccount,
+      user: user,
+      currentBookshelf: bookshelf,
     );
+  }
+
+  Future<void> logOut() async {
+    try {
+      await _authRepository.logOut();
+    } catch (e) {
+      logger.e(e);
+    }
   }
 }

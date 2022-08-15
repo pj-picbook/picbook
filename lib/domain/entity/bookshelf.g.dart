@@ -7,23 +7,27 @@ part of 'bookshelf.dart';
 // **************************************************************************
 
 _$_Bookshelf _$$_BookshelfFromJson(Map<String, dynamic> json) => _$_Bookshelf(
-      date: json['id'] as String,
-      book: json['owner'] as String,
-      ownerBirthday: DateTime.parse(json['ownerBirthday'] as String),
-      books: (json['books'] as List<dynamic>)
-          .map((e) => Book.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      readHistories: BookshelfHistory.fromJson(
-          json['readHistories'] as Map<String, dynamic>),
-      created: DateTime.parse(json['created'] as String),
+      id: json['id'] as String? ?? "",
+      owner: json['owner'] as String,
+      ownerBirthday:
+          const DateTimeConverter().fromJson(json['ownerBirthday'] as String),
+      books: (json['books'] as List<dynamic>?)
+              ?.map((e) => Book.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      readHistories: (json['readHistories'] as List<dynamic>?)
+              ?.map((e) => BookshelfHistory.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      created: const DateTimeConverter().fromJson(json['created'] as String),
     );
 
 Map<String, dynamic> _$$_BookshelfToJson(_$_Bookshelf instance) =>
     <String, dynamic>{
-      'id': instance.date,
-      'owner': instance.book,
-      'ownerBirthday': instance.ownerBirthday.toIso8601String(),
+      'id': instance.id,
+      'owner': instance.owner,
+      'ownerBirthday': const DateTimeConverter().toJson(instance.ownerBirthday),
       'books': instance.books,
       'readHistories': instance.readHistories,
-      'created': instance.created.toIso8601String(),
+      'created': const DateTimeConverter().toJson(instance.created),
     };

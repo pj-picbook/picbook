@@ -66,12 +66,13 @@ class FirstPage extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           TextButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SignUpPage(),
-                  ));
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SignUpPage(),
+                ),
+              );
             },
             child: Container(
               height: 50,
