@@ -6,35 +6,22 @@ on:
       - develop
 
 jobs:
-  
-  build:
-    name: Build
+  test:
+    name: Unit Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '15.0.2'
+          java-package: jdk
+          architecture: x64
       - name: Install Dependencies
         working-directory: ./firebase
         run: yarn
-      - name: Archive Dependencies Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: node_modules
-          path: firebase/node_modules
-  test:
-    name: Unit Test
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Download Artifact
-        uses: actions/download-artifact@master
-        with:
-          name: node_modules
-          path: firebase/node_modules
       - name: Run Jest
-        uses: IIIMPACT/firebase-firestore-testing-action@v3.1.1
+        uses: yarn test
   deploy:
     name: Deploy only firestore:rules
     needs: test
