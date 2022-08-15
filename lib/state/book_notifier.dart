@@ -11,10 +11,7 @@ final bookNotifierProvider = StateNotifierProvider<BookNotifier, Book>((ref) {
 
 /// 検索画面、絵本の棚画面で更新。本棚詳細画面で参照
 class BookNotifier extends StateNotifier<Book> {
-  final Book _book;
-  BookNotifier({required Book bookProvider})
-      : this._book = bookProvider,
-        super(Book.initial());
+  BookNotifier({required Book bookProvider}) : super(Book.initial());
 
   void set(Book newBook) {
     state = newBook;
