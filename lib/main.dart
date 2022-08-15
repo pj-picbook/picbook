@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/presentation/bottom_navigation_page.dart';
-import 'package:picbook/presentation/first_page/first_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
