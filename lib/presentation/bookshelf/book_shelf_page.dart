@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:picbook/presentation/searchbook/searchbook_page.dart';
 
 class Book {
   double height;
@@ -65,7 +66,8 @@ class BookShelfPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          // TODO 検索一覧画面に遷移する
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const SearchBookPage()));
         },
       ),
     );
