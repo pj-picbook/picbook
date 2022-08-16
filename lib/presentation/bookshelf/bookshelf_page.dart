@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/common/dummy_data.dart'; // TODO:削除する。ダミーデータを参照するため使用
 import 'package:picbook/presentation/book_detail/book_detail_page.dart';
 import 'package:picbook/state/book_notifier.dart';
+import 'package:picbook/presentation/searchbook/searchbook_page.dart';
 
 class Book {
   double height;
@@ -67,7 +68,8 @@ class BookshelfPage extends HookConsumerWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          // TODO 検索一覧画面に遷移する
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const SearchBookPage()));
         },
       ),
     );
