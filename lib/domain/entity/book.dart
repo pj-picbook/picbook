@@ -36,4 +36,6 @@ class Book with _$Book {
   }) = _Book;
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
+
+  factory Book.initial() => Book();
 }
