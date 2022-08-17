@@ -2,7 +2,7 @@ import * as fs from "fs";
 import { v4 } from "uuid";
 import * as _ from "lodash";
 import * as firebase from "@firebase/rules-unit-testing";
-import { dummyBook, dummyUser } from "./dummy_data";
+import { dummyBookshelf, dummyUser } from "./dummy_data";
 
 // dev環境のプロジェクトID
 const PROJECT_ID = "pj-picbook-pro";
@@ -177,7 +177,7 @@ describe("bookshelfs subcollection", () => {
   });
 
   describe("create", () => {
-    test("自分のユーザードキュメントを作成出来ること", async () => {
+    test("自分のbookshelfsドキュメントを作成出来ること", async () => {
       const uid = v4();
       const context = testEnv.authenticatedContext(uid);
 
@@ -188,11 +188,11 @@ describe("bookshelfs subcollection", () => {
           .doc(uid)
           .collection("bookshelfs")
           .doc()
-          .set(dummyBook)
+          .set(dummyBookshelf)
       );
     });
 
-    test("他人のユーザードキュメントに作成出来ないこと", async () => {
+    test("他人のbookshelfsドキュメントに作成出来ないこと", async () => {
       const uid = v4();
       const otherUid = v4();
       const context = testEnv.authenticatedContext(uid);
@@ -204,38 +204,41 @@ describe("bookshelfs subcollection", () => {
           .doc(otherUid)
           .collection("bookshelfs")
           .doc()
-          .set(dummyBook)
+          .set(dummyBookshelf)
       );
     });
   });
 
   describe("update", () => {
-    const updatedBook = _.cloneDeepWith(dummyBook, (val) => {
-      if (val === "id") {
-        return "updated_id";
-      }
-    });
+    const updatedBookshelf = _.cloneDeep(dummyBookshelf);
+    updatedBookshelf.id = "updated_id";
 
-    test("自分のユーザードキュメントを変更出来ること", async () => {
+    test("自分のbookshelfsドキュメントを変更出来ること", async () => {
       const uid = v4();
+      const documentId = v4();
       const context = testEnv.authenticatedContext(uid);
       const db = context.firestore();
-      await db.collection("users").doc(uid).set(dummyUser);
+      await db
+        .collection("users")
+        .doc(uid)
+        .collection("bookshelfs")
+        .doc(documentId)
+        .set(dummyBookshelf);
 
       await firebase.assertSucceeds(
-        context
-          .firestore()
+        db
           .collection("users")
           .doc(uid)
           .collection("bookshelfs")
-          .doc()
-          .update(updatedBook)
+          .doc(documentId)
+          .update(updatedBookshelf)
       );
     });
 
-    test("他人のユーザードキュメントを変更出来ないこと", async () => {
+    test("他人のboolshelfsドキュメントを変更出来ないこと", async () => {
       const uid = v4();
       const otherUid = v4();
+      const documentId = v4();
       const context = testEnv.authenticatedContext(uid);
       const otherContext = testEnv.authenticatedContext(otherUid);
       await otherContext
@@ -243,8 +246,8 @@ describe("bookshelfs subcollection", () => {
         .collection("users")
         .doc(otherUid)
         .collection("bookshelfs")
-        .doc()
-        .update(dummyBook);
+        .doc(documentId)
+        .set(dummyBookshelf);
 
       await firebase.assertFails(
         context
@@ -252,8 +255,8 @@ describe("bookshelfs subcollection", () => {
           .collection("users")
           .doc(otherUid)
           .collection("bookshelfs")
-          .doc()
-          .update(updatedBook)
+          .doc(documentId)
+          .update(updatedBookshelf)
       );
     });
   });

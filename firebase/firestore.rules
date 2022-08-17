@@ -30,6 +30,11 @@ service cloud.firestore {
       // ユーザー情報の更新のルール
       allow update: if isUserAuthenticated(userId)
       && isValidUser(request.resource.data);
+
+        match /bookshelfs/{id} {
+          // すべて許可
+          allow create, read, update, delete: if isUserAuthenticated(userId);
+      }
     }
   }
 }
