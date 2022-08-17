@@ -1,12 +1,12 @@
-name: on pull request workflow
+name: flutter analyze & test
 on:
   pull_request:
     branches:
       - main
       - develop
 jobs:
-  flutter_test:
-    name: flutter analyze & test
+  test:
+    name: Check the source code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,20 +25,3 @@ jobs:
       #   with:
       #     token: ${{secrets.CODECOV_TOKEN}}
       #     file: ~/coverage/lcov.info
-  firebase_test:
-    name: firebase unit test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '15.0.2'
-          java-package: jdk
-          architecture: x64
-      - name: Install Dependencies
-        working-directory: ./firebase
-        run: yarn
-      - name: Run Jest
-        working-directory: ./firebase
-        run: yarn test

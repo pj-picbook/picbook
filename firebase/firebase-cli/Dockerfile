@@ -1,6 +1,5 @@
 # 現在(2022/08/03)サポートされている最新バージョン
 FROM node:16
-SHELL ["/bin/ash","-ouex","pipefail","-c"]
 # FROM node:16-alpine
 
 # 作業ディレクトリ
@@ -11,9 +10,9 @@ WORKDIR /workdir
 RUN npm install -g firebase-tools
 
 # ポート
-# ENV HOST 0.0.0.0
-# EXPOSE 4000
-# EXPOSE 5000
-# EXPOSE 5001
-# EXPOSE 8080
-# EXPOSE 9005
+ENV HOST 0.0.0.0
+EXPOSE 4000
+EXPOSE 5000
+EXPOSE 5001
+EXPOSE 8080
+EXPOSE 9005
