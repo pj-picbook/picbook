@@ -7,7 +7,7 @@
     "test": "firebase emulators:exec --only firestore 'jest'"
   },
   "author": "",
-  "license": "UNLICENSE",
+  "license": "UNLICENSED",
   "devDependencies": {
     "@firebase/rules-unit-testing": "^2.0.4",
     "@types/jest": "^28.1.6",
