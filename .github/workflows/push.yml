@@ -25,7 +25,7 @@ jobs:
         run: yarn test
   firebase_deploy:
     name: Deploy only firestore:rules
-    needs: test
+    needs: firebase_test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
