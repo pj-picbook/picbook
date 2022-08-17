@@ -31,7 +31,7 @@ service cloud.firestore {
       allow update: if isUserAuthenticated(userId)
       && isValidUser(request.resource.data);
 
-        match /bookshelfs/{id} {
+        match /bookshelfs/{document=**} {
           // すべて許可
           allow create, read, update, delete: if isUserAuthenticated(userId);
       }
