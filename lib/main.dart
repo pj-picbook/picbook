@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -21,6 +22,9 @@ Future<void> main() async {
 
 class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(
+      analytics: analytics); //[analytics]Screenviewトラッキングのための実装
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,6 +32,9 @@ class App extends ConsumerWidget {
     final authState = ref.watch(authStateProvider);
     return MaterialApp(
       title: 'picbook',
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ], //[analytics]SnavigjatorObserversにFirebaseAnalyticsObserverをセット
       theme: ThemeData(
         primarySwatch: Colors.brown,
         scaffoldBackgroundColor: HexColor('F8F5EE'),
