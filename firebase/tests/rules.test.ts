@@ -2,7 +2,7 @@ import * as fs from "fs";
 import { v4 } from "uuid";
 import * as _ from "lodash";
 import * as firebase from "@firebase/rules-unit-testing";
-import { dummyUser } from "./dummy_data";
+import { dummyBookshelf, dummyUser } from "./dummy_data";
 
 // dev環境のプロジェクトID
 const PROJECT_ID = "pj-picbook-pro";
@@ -125,6 +125,138 @@ describe("users collection", () => {
           .collection("users")
           .doc(otherUid)
           .update(updatedUser)
+      );
+    });
+  });
+});
+
+describe("bookshelfs subcollection", () => {
+  describe("get", () => {
+    test("認証が済んでいないユーザがドキュメントを読み込めないこと", async () => {
+      const uid = v4();
+      const context = testEnv.unauthenticatedContext();
+
+      await firebase.assertFails(
+        context
+          .firestore()
+          .collection("users")
+          .doc(uid)
+          .collection("bookshelfs")
+          .get()
+      );
+    });
+
+    test("認証が済んでいるユーザが自分のドキュメントを読み込めること", async () => {
+      const uid = v4();
+      const context = testEnv.authenticatedContext(uid);
+
+      await firebase.assertSucceeds(
+        context
+          .firestore()
+          .collection("users")
+          .doc(uid)
+          .collection("bookshelfs")
+          .get()
+      );
+    });
+
+    test("認証が済んでいるユーザが他人のドキュメントを読み込めないこと", async () => {
+      const uid = v4();
+      const other = v4();
+      const context = testEnv.authenticatedContext(uid);
+
+      await firebase.assertFails(
+        context
+          .firestore()
+          .collection("users")
+          .doc(other)
+          .collection("bookshelfs")
+          .get()
+      );
+    });
+  });
+
+  describe("create", () => {
+    test("自分のbookshelfsドキュメントを作成出来ること", async () => {
+      const uid = v4();
+      const context = testEnv.authenticatedContext(uid);
+
+      await firebase.assertSucceeds(
+        context
+          .firestore()
+          .collection("users")
+          .doc(uid)
+          .collection("bookshelfs")
+          .doc()
+          .set(dummyBookshelf)
+      );
+    });
+
+    test("他人のbookshelfsドキュメントに作成出来ないこと", async () => {
+      const uid = v4();
+      const otherUid = v4();
+      const context = testEnv.authenticatedContext(uid);
+
+      await firebase.assertFails(
+        context
+          .firestore()
+          .collection("users")
+          .doc(otherUid)
+          .collection("bookshelfs")
+          .doc()
+          .set(dummyBookshelf)
+      );
+    });
+  });
+
+  describe("update", () => {
+    const updatedBookshelf = _.cloneDeep(dummyBookshelf);
+    updatedBookshelf.id = "updated_id";
+
+    test("自分のbookshelfsドキュメントを変更出来ること", async () => {
+      const uid = v4();
+      const documentId = v4();
+      const context = testEnv.authenticatedContext(uid);
+      const db = context.firestore();
+      await db
+        .collection("users")
+        .doc(uid)
+        .collection("bookshelfs")
+        .doc(documentId)
+        .set(dummyBookshelf);
+
+      await firebase.assertSucceeds(
+        db
+          .collection("users")
+          .doc(uid)
+          .collection("bookshelfs")
+          .doc(documentId)
+          .update(updatedBookshelf)
+      );
+    });
+
+    test("他人のboolshelfsドキュメントを変更出来ないこと", async () => {
+      const uid = v4();
+      const otherUid = v4();
+      const documentId = v4();
+      const context = testEnv.authenticatedContext(uid);
+      const otherContext = testEnv.authenticatedContext(otherUid);
+      await otherContext
+        .firestore()
+        .collection("users")
+        .doc(otherUid)
+        .collection("bookshelfs")
+        .doc(documentId)
+        .set(dummyBookshelf);
+
+      await firebase.assertFails(
+        context
+          .firestore()
+          .collection("users")
+          .doc(otherUid)
+          .collection("bookshelfs")
+          .doc(documentId)
+          .update(updatedBookshelf)
       );
     });
   });
