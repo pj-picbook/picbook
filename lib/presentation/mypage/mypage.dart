@@ -5,6 +5,7 @@ import 'package:picbook/main.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:age_calculator/age_calculator.dart';
+import 'package:intl/intl.dart';
 
 class MyPage extends HookConsumerWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -172,7 +173,8 @@ class MyPage extends HookConsumerWidget {
                   ),
                   const SizedBox(width: 110, child: Text('とうろくび')),
                   Text(
-                    state.currentBookshelf.created.toString(),
+                    DateFormat('yyyy-MM-dd')
+                        .format(state.currentBookshelf.created),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
