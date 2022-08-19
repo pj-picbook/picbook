@@ -18,6 +18,7 @@ class SignUpPage extends HookConsumerWidget {
     final notifier = ref.watch(signUpNotifierProvider.notifier);
     final emailController = useTextEditingController(text: "");
     final passwordController = useTextEditingController(text: "");
+    final birthdayController = useTextEditingController(text: "xxxx/xxx/xx");
     final logger = ref.read(loggerProvider);
 
     return Scaffold(
@@ -79,6 +80,7 @@ class SignUpPage extends HookConsumerWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  controller: birthdayController,
                   onTap: () {
                     showCupertinoModalPopup(
                         context: context,
@@ -134,6 +136,8 @@ class SignUpPage extends HookConsumerWidget {
                                   mode: CupertinoDatePickerMode.date,
                                   onDateTimeChanged: (DateTime newDateTime) {
                                     notifier.setBirthday(newDateTime);
+                                    birthdayController.text =
+                                        newDateTime.toString();
                                   },
                                 ),
                               ),
