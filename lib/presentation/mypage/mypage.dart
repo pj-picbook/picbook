@@ -123,7 +123,7 @@ class MyPage extends HookConsumerWidget {
                 children: <Widget>[
                   const SizedBox(
                     width: 50,
-                    child: const Icon(
+                    child: Icon(
                       Icons.cake,
                       color: Colors.pink,
                       size: 24.0,
