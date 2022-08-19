@@ -132,7 +132,9 @@ class SignUpPage extends HookConsumerWidget {
                               bottomPicker(
                                 CupertinoDatePicker(
                                   mode: CupertinoDatePickerMode.date,
-                                  onDateTimeChanged: (DateTime newDateTime) {},
+                                  onDateTimeChanged: (DateTime newDateTime) {
+                                    notifier.setBirthday(newDateTime);
+                                  },
                                 ),
                               ),
                             ],
