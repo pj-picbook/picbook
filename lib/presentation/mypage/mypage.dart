@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/main.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:age_calculator/age_calculator.dart';
 
 class MyPage extends HookConsumerWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -119,28 +120,30 @@ class MyPage extends HookConsumerWidget {
             SizedBox(
               height: 75,
               child: Row(
-                children: const <Widget>[
-                  SizedBox(
+                children: <Widget>[
+                  const SizedBox(
                     width: 50,
-                    child: Icon(
+                    child: const Icon(
                       Icons.cake,
                       color: Colors.pink,
                       size: 24.0,
                       semanticLabel: 'Text to announce in accessibility modes',
                     ),
                   ),
-                  SizedBox(width: 110, child: Text('ねんれい')),
+                  const SizedBox(width: 110, child: Text('ねんれい')),
                   SizedBox(
                     width: 30,
                     child: Text(
-                      '5',
-                      style: TextStyle(
+                      AgeCalculator.age(state.currentBookshelf.ownerBirthday)
+                          .years
+                          .toString(),
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
                   ),
-                  Text('さい'),
+                  const Text('さい'),
                 ],
               ),
             ),
