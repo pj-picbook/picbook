@@ -157,8 +157,8 @@ class MyPage extends HookConsumerWidget {
             SizedBox(
               height: 75,
               child: Row(
-                children: const <Widget>[
-                  SizedBox(
+                children: <Widget>[
+                  const SizedBox(
                     width: 50,
                     child: Icon(
                       Icons.calendar_month,
@@ -167,10 +167,10 @@ class MyPage extends HookConsumerWidget {
                       semanticLabel: 'Text to announce in accessibility modes',
                     ),
                   ),
-                  SizedBox(width: 110, child: Text('とうろくび')),
+                  const SizedBox(width: 110, child: Text('とうろくび')),
                   Text(
-                    '1000/00/00',
-                    style: TextStyle(
+                    state.currentBookshelf.created.toString(),
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
