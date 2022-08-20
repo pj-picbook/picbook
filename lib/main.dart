@@ -22,8 +22,8 @@ Future<void> main() async {
 
 class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
-  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  static FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(
+  static final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static final FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(
       analytics: analytics); //[analytics]Screenviewトラッキングのための実装
 
   @override
