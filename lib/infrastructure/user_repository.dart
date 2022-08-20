@@ -1,13 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/domain/entity/user.dart';
+import 'package:picbook/infrastructure/provider/firebase_provider.dart';
 
-final userRepositoryProvider = Provider((ref) => UserRepository()..init());
+final userRepositoryProvider = Provider(
+  (ref) => UserRepository(
+    instance: ref.read(firebaseFirestore),
+  )..init(),
+);
 
 /// usersコレクションを操作するrepository
 class UserRepository {
-  final _db = FirebaseFirestore.instance;
+  final FirebaseFirestore _db;
   late final CollectionReference _usersRef;
+
+  UserRepository({required FirebaseFirestore instance}) : _db = instance;
 
   void init() {
     _usersRef = _db.collection('users');

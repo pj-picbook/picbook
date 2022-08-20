@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
+import 'package:picbook/infrastructure/provider/firebase_provider.dart';
 import 'package:picbook/infrastructure/rakuten_book_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
 
@@ -11,6 +12,8 @@ import 'container.mocks.dart';
 
 @GenerateMocks([
   Logger,
+  FirestoreProvider,
+  FirebaseAuthProvider,
   UserRepository,
   AuthRepository,
   BookshelfRepository,
@@ -22,7 +25,7 @@ final mockAuthRepository = MockAuthRepository();
 final mockBookshelfRepository = MockBookshelfRepository();
 final mockRakutenBookRepository = MockRakutenBookRepository();
 
-ProviderContainer overrideUserRepository() {
+ProviderContainer overrideContainer() {
   return ProviderContainer(overrides: [
     loggerProvider.overrideWithProvider(
       Provider(((ref) => mockLogger)),

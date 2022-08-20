@@ -19,7 +19,7 @@ void main() {
   late MockBookshelfRepository bookshelfRepository;
 
   setUp(() {
-    container = overrideUserRepository();
+    container = overrideContainer();
     mockLogger = container.read(loggerProvider) as MockLogger;
     userRepository =
         container.read(userRepositoryProvider) as MockUserRepository;
