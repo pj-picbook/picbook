@@ -5,7 +5,6 @@ import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/infrastructure/analytics_service.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
-import 'package:picbook/infrastructure/provider/analytics_provider.dart';
 import 'package:picbook/infrastructure/rakuten_book_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
 
