@@ -7,6 +7,9 @@ import 'package:picbook/state/book_notifier.dart';
 import '../../presentation/searchbook/searchbook_page_notifier.dart';
 import '../widget/book_box.dart';
 import '../barcode_scanner_page/barcode_scanner_page.dart';
+import '../../infrastructure/bookshelf_repository.dart';
+import '../../infrastructure/user_repository.dart';
+import '../../infrastructure/auth_repository.dart';
 
 class SearchBookPage extends HookConsumerWidget {
   const SearchBookPage({Key? key}) : super(key: key);
@@ -16,7 +19,11 @@ class SearchBookPage extends HookConsumerWidget {
     final state = ref.watch(rakutenBookPageNotifierProvider);
     final notifier = ref.watch(rakutenBookPageNotifierProvider.notifier);
     final textFieldController = useTextEditingController();
+
     final bookNotifier = ref.watch(bookNotifierProvider.notifier);
+    final authNotifier = ref.watch(authRepositoryProvider);
+    final userNotifier = ref.watch(userRepositoryProvider);
+    final bookshelfNotifier = ref.watch(bookshelfRepositoryProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -61,6 +68,16 @@ class SearchBookPage extends HookConsumerWidget {
                   final item = state.books[index];
                   return InkWell(
                       child: BookBox(
+                        onPressedAddButton: () async {
+                          final bookshelfs = await bookshelfNotifier.fetchAll(
+                              uid: authNotifier.getUid()!);
+                          final bookshelf = bookshelfs[0];
+                          bookshelfNotifier.registerBook(
+                            uid: authNotifier.getUid()!,
+                            bookshelf: bookshelf,
+                            book: item,
+                          );
+                        },
                         book: item,
                       ),
                       onTap: () {

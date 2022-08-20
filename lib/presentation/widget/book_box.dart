@@ -4,8 +4,13 @@ import 'package:image_network/image_network.dart';
 import '../../domain/entity/book.dart';
 
 class BookBox extends StatelessWidget {
-  const BookBox({required this.book, Key? key}) : super(key: key);
+  const BookBox({
+    required this.book,
+    required this.onPressedAddButton,
+    Key? key,
+  }) : super(key: key);
   final Book book;
+  final Future Function() onPressedAddButton;
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +64,17 @@ class BookBox extends StatelessWidget {
                 ],
               ),
             ),
-            const Expanded(
+            Expanded(
               flex: 1,
-              child: Icon(
-                Icons.add_box,
-                color: Colors.black38,
-                size: 30,
+              child: InkWell(
+                onTap: () async {
+                  await onPressedAddButton();
+                },
+                child: const Icon(
+                  Icons.add_box,
+                  color: Colors.black38,
+                  size: 30,
+                ),
               ),
             ),
           ],

@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/domain/entity/bookshelf.dart';
+import '../domain/entity/book.dart';
+import '../state/search_book_state.dart';
 
 final bookshelfRepositoryProvider =
     Provider((ref) => BookshelfRepository()..init());
@@ -47,6 +49,35 @@ class BookshelfRepository {
   //   final docRef = _usersRef.doc(user.id);
   //   await docRef.delete();
   // }
+
+  Future<void> registerBook({
+    required String uid,
+    required Bookshelf bookshelf,
+    required Book book,
+  }) async {
+    final books = [...bookshelf.books];
+    books.add(Book(title: 'Test'));
+    final updateBookshelf = Bookshelf(
+        id: bookshelf.id,
+        owner: bookshelf.owner,
+        ownerBirthday: bookshelf.ownerBirthday,
+        books: books,
+        created: bookshelf.created,
+        readHistories: bookshelf.readHistories);
+
+    await _usersRef
+        .doc(uid)
+        .collection('bookshelfs')
+        .doc(bookshelf.id)
+        .update(updateBookshelf.toJson());
+
+    // こっちは成功するけどリストになってない。
+    // await _usersRef
+    //     .doc(uid)
+    //     .collection('bookshelfs')
+    //     .doc(bookshelf.id)
+    //.update({'books': Book(title: 'test11111').toJson()});
+  }
 
   Map<String, dynamic> _jsonFromSnapshot<T extends DocumentSnapshot>(T json) {
     return {
