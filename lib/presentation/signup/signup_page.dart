@@ -7,6 +7,7 @@ import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/presentation/widget/bottom_picker.dart';
 import '../../main.dart';
 import '../agreement_page/agreement_page.dart';
+import 'package:intl/intl.dart';
 
 import 'signup_notifier.dart';
 
@@ -138,7 +139,9 @@ class SignUpPage extends HookConsumerWidget {
                                   onDateTimeChanged: (DateTime newDateTime) {
                                     notifier.setBirthday(newDateTime);
                                     birthdayController.text =
-                                        newDateTime.toString();
+                                        DateFormat('yyyy-MM-dd')
+                                            .format(newDateTime)
+                                            .toString();
                                   },
                                 ),
                               ),
