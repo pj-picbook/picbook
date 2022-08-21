@@ -19,7 +19,7 @@ class SignUpPage extends HookConsumerWidget {
     final notifier = ref.watch(signUpNotifierProvider.notifier);
     final emailController = useTextEditingController(text: "");
     final passwordController = useTextEditingController(text: "");
-    final birthdayController = useTextEditingController(text: "xxxx/xxx/xx");
+    final birthdayController = useTextEditingController(text: "xxxx/xx/xx");
     final logger = ref.read(loggerProvider);
 
     return Scaffold(
