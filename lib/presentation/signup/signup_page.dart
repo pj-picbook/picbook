@@ -80,6 +80,7 @@ class SignUpPage extends HookConsumerWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  readOnly: true,
                   controller: birthdayController,
                   onTap: () {
                     showCupertinoModalPopup(
