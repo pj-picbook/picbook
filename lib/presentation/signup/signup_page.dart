@@ -34,7 +34,7 @@ class SignUpPage extends HookConsumerWidget {
         child: Container(
           color: Colors.grey[300],
           padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-          child: Column(
+          child: ListView(
             children: [
               const SizedBox(
                 height: 20.0,
