@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../domain/entity/book.dart';
 import '../../infrastructure/rakuten_book_repository.dart';
 import '../../infrastructure/bookshelf_repository.dart';
-import '../../infrastructure/book_repository.dart';
+import '../../infrastructure/books_repository.dart';
 import '../../infrastructure/auth_repository.dart';
 import '../../state/search_book_state.dart';
 
