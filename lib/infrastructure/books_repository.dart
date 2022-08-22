@@ -13,15 +13,6 @@ class BooksRepository {
     _usersRef = _db.collection('users');
   }
 
-  Future<Bookshelf> findById({
-    required String uid,
-    required String bookshelfId,
-  }) async {
-    final bookshelfRef = _usersRef.doc(uid).collection('bookshelfs');
-    final doc = await bookshelfRef.doc(bookshelfId).get();
-    return Bookshelf.fromJson(_jsonFromSnapshot(doc));
-  }
-
   Future<List<Book>> fetchAll({
     required String uid,
     required String bookshelfsId,
