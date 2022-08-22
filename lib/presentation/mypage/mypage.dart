@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/infrastructure/analytics_service.dart';
 import 'package:picbook/main.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -17,6 +18,9 @@ class MyPage extends HookConsumerWidget {
     // MyPageNotifierProviderからnotifierを取得
     // メソッドはこちらから使う
     final notifier = ref.watch(myPageNotifierProvider.notifier);
+
+    // 試しにanalyticsでボタンイベント送信する用
+    final analytics = ref.read(analyticsServiceProvider);
 
     // 初期化処理
     useEffect(() {
@@ -194,6 +198,7 @@ class MyPage extends HookConsumerWidget {
             TextButton(
               onPressed: () async {
                 await notifier.logOut();
+                await analytics.sendButtonEvent(buttonName: 'ログアウト');
                 (() => Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute<App>(

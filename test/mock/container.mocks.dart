@@ -10,10 +10,11 @@ import 'package:logger/logger.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:picbook/domain/entity/bookshelf.dart' as _i4;
 import 'package:picbook/domain/entity/user.dart' as _i2;
-import 'package:picbook/infrastructure/auth_repository.dart' as _i9;
-import 'package:picbook/infrastructure/bookshelf_repository.dart' as _i10;
-import 'package:picbook/infrastructure/rakuten_book_repository.dart' as _i11;
-import 'package:picbook/infrastructure/user_repository.dart' as _i7;
+import 'package:picbook/infrastructure/analytics_service.dart' as _i7;
+import 'package:picbook/infrastructure/auth_repository.dart' as _i10;
+import 'package:picbook/infrastructure/bookshelf_repository.dart' as _i11;
+import 'package:picbook/infrastructure/rakuten_book_repository.dart' as _i12;
+import 'package:picbook/infrastructure/user_repository.dart' as _i9;
 import 'package:picbook/state/search_book_state.dart' as _i5;
 
 // ignore_for_file: type=lint
@@ -91,10 +92,25 @@ class MockLogger extends _i1.Mock implements _i6.Logger {
       returnValueForMissingStub: null);
 }
 
+/// A class which mocks [AnalyticsService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAnalyticsService extends _i1.Mock implements _i7.AnalyticsService {
+  MockAnalyticsService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i8.Future<void> sendButtonEvent({String? buttonName}) => (super.noSuchMethod(
+      Invocation.method(#sendButtonEvent, [], {#buttonName: buttonName}),
+      returnValue: _i8.Future<void>.value(),
+      returnValueForMissingStub: _i8.Future<void>.value()) as _i8.Future<void>);
+}
+
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRepository extends _i1.Mock implements _i7.UserRepository {
+class MockUserRepository extends _i1.Mock implements _i9.UserRepository {
   MockUserRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -128,7 +144,7 @@ class MockUserRepository extends _i1.Mock implements _i7.UserRepository {
 /// A class which mocks [AuthRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthRepository extends _i1.Mock implements _i9.AuthRepository {
+class MockAuthRepository extends _i1.Mock implements _i10.AuthRepository {
   MockAuthRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -166,7 +182,7 @@ class MockAuthRepository extends _i1.Mock implements _i9.AuthRepository {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockBookshelfRepository extends _i1.Mock
-    implements _i10.BookshelfRepository {
+    implements _i11.BookshelfRepository {
   MockBookshelfRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -200,14 +216,14 @@ class MockBookshelfRepository extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRakutenBookRepository extends _i1.Mock
-    implements _i11.RakutenBookRepository {
+    implements _i12.RakutenBookRepository {
   MockRakutenBookRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
   _i8.Future<_i5.SearchBookState> search(
-          {_i11.SearchType? searchType, String? keyWord}) =>
+          {_i12.SearchType? searchType, String? keyWord}) =>
       (super.noSuchMethod(
               Invocation.method(
                   #search, [], {#searchType: searchType, #keyWord: keyWord}),
