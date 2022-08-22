@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:picbook/domain/entity/bookshelf.dart';
 import '../domain/entity/book.dart';
 
 final booksRepositoryProvider = Provider((ref) => BooksRepository()..init());
