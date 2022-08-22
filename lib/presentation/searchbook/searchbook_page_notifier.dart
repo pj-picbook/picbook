@@ -48,6 +48,7 @@ class SearchBookPageNotifier extends StateNotifier<SearchBookState> {
   Future<void> registerBook({
     required Book book,
   }) async {
+    if (_baseAuthRepository.getUid() == null) return;
     final bookshelfs =
         await _bookshelfRepository.fetchAll(uid: _baseAuthRepository.getUid()!);
     await _booksRepository.create(
