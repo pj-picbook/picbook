@@ -50,7 +50,7 @@ class SearchBookPageNotifier extends StateNotifier<SearchBookState> {
   }) async {
     final bookshelfs =
         await _bookshelfRepository.fetchAll(uid: _baseAuthRepository.getUid()!);
-    _booksRepository.create(
+    await _booksRepository.create(
       uid: _baseAuthRepository.getUid()!,
       bookshelfId: bookshelfs[0].id, // TODO:本来は複数予定
       book: book,
