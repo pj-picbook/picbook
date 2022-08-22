@@ -15,12 +15,12 @@ class BooksRepository {
 
   Future<List<Book>> fetchAll({
     required String uid,
-    required String bookshelfsId,
+    required String bookshelfId,
   }) async {
     final booksRef = _usersRef
         .doc(uid)
         .collection('bookshelfs')
-        .doc(bookshelfsId)
+        .doc(bookshelfId)
         .collection('books');
     final snapshot = await booksRef.get();
     return snapshot.docs
