@@ -5,6 +5,8 @@ import 'package:picbook/infrastructure/analytics_service.dart';
 import 'package:picbook/main.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:age_calculator/age_calculator.dart';
+import 'package:intl/intl.dart';
 
 class MyPage extends HookConsumerWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -123,8 +125,8 @@ class MyPage extends HookConsumerWidget {
             SizedBox(
               height: 75,
               child: Row(
-                children: const <Widget>[
-                  SizedBox(
+                children: <Widget>[
+                  const SizedBox(
                     width: 50,
                     child: Icon(
                       Icons.cake,
@@ -133,18 +135,20 @@ class MyPage extends HookConsumerWidget {
                       semanticLabel: 'Text to announce in accessibility modes',
                     ),
                   ),
-                  SizedBox(width: 110, child: Text('ねんれい')),
+                  const SizedBox(width: 110, child: Text('ねんれい')),
                   SizedBox(
                     width: 30,
                     child: Text(
-                      '5',
-                      style: TextStyle(
+                      AgeCalculator.age(state.currentBookshelf.ownerBirthday)
+                          .years
+                          .toString(),
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
                   ),
-                  Text('さい'),
+                  const Text('さい'),
                 ],
               ),
             ),
@@ -161,8 +165,8 @@ class MyPage extends HookConsumerWidget {
             SizedBox(
               height: 75,
               child: Row(
-                children: const <Widget>[
-                  SizedBox(
+                children: <Widget>[
+                  const SizedBox(
                     width: 50,
                     child: Icon(
                       Icons.calendar_month,
@@ -171,10 +175,11 @@ class MyPage extends HookConsumerWidget {
                       semanticLabel: 'Text to announce in accessibility modes',
                     ),
                   ),
-                  SizedBox(width: 110, child: Text('とうろくび')),
+                  const SizedBox(width: 110, child: Text('とうろくび')),
                   Text(
-                    '1000/00/00',
-                    style: TextStyle(
+                    DateFormat('yyyy-MM-dd')
+                        .format(state.currentBookshelf.created),
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),

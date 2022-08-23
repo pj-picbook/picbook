@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "43.0.0"
+  age_calculator:
+    dependency: "direct main"
+    description:
+      name: age_calculator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   analyzer:
     dependency: "direct main"
     description:
@@ -409,7 +416,7 @@ packages:
     source: hosted
     version: "2.5.1"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
