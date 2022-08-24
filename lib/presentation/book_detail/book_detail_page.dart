@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_network/image_network.dart';
 import 'package:picbook/state/book_notifier.dart';
 import 'package:skeleton_text/skeleton_text.dart';
+import '../widget/dialog.dart';
 
 class BookDetailPage extends HookConsumerWidget {
   const BookDetailPage({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class BookDetailPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bookState = ref.watch(bookNotifierProvider);
+    final bookNotifier = ref.watch(bookNotifierProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: Text("${bookState.title}")),
@@ -71,7 +73,8 @@ class BookDetailPage extends HookConsumerWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    // TODO:#58のタスク→firebaseに登録する
+                    bookNotifier.registerBook(book: bookState);
+                    showAlertDialog(ref, title: '本の追加', content: '本の追加が完了しました');
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15),
