@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:picbook/infrastructure/rakuten_book_repository.dart';
 import 'package:picbook/presentation/book_detail/book_detail_page.dart';
 import 'package:picbook/state/book_notifier.dart';
@@ -64,7 +63,7 @@ class SearchBookPage extends HookConsumerWidget {
                   return InkWell(
                       child: BookBox(
                         onPressed: () async {
-                          notifier.registerBook(book: item);
+                          bookNotifier.registerBook(book: item);
                           showAlertDialog(ref,
                               title: '本の追加', content: '本の追加が完了しました');
                         },
