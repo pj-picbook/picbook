@@ -36,11 +36,16 @@ class SearchBookPage extends HookConsumerWidget {
               child: TextField(
                 controller: textFieldController,
                 decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  hintText: '検索キーワード',
-                  prefixIcon: const Icon(Icons.search),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.brown,
+                    ),
+                  ),
+                  hintText: 'えほんのなまえをいれよう。',
+                  hintStyle: TextStyle(fontSize: 17.0, color: Colors.brown),
+                  prefixIcon: const Icon(Icons.search, color: Colors.brown),
                   suffixIcon: GestureDetector(
-                    child: const Icon(Icons.qr_code),
+                    child: const Icon(Icons.qr_code, color: Colors.brown),
                     onTap: () {
                       Navigator.push(
                         context,
