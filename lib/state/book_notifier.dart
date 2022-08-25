@@ -31,7 +31,6 @@ class BookNotifier extends StateNotifier<Book> {
     state = newBook;
   }
 
-  /// TODO:searchbook_page_notifier.dartと同じロジックのためこっちに統合でも良いかも　←３画面で共通のため
   Future<void> registerBook({
     required Book book,
   }) async {
