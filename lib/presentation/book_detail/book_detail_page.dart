@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_network/image_network.dart';
 import 'package:picbook/state/book_notifier.dart';
 import 'package:skeleton_text/skeleton_text.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class BookDetailPage extends HookConsumerWidget {
   const BookDetailPage({Key? key}) : super(key: key);
@@ -12,11 +13,15 @@ class BookDetailPage extends HookConsumerWidget {
     final bookState = ref.watch(bookNotifierProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text("${bookState.title}")),
+      appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.brown, //change your color here
+          ),
+          title: Text("${bookState.title}")),
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-            color: const Color.fromARGB(255, 252, 215, 227),
+            color: HexColor('ffefdb'), //書籍背景色
             padding: const EdgeInsets.only(top: 50, bottom: 50),
             child: Row(
               children: [

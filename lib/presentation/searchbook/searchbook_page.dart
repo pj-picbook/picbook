@@ -20,6 +20,9 @@ class SearchBookPage extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.brown, //change your color here
+        ),
         centerTitle: true,
         title: const Text(
           '検索画面',
