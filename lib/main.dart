@@ -31,7 +31,7 @@ class App extends ConsumerWidget {
     final logger = ref.read(loggerProvider);
     final authState = ref.watch(authStateProvider);
     return MaterialApp(
-      title: 'picbook',
+      title: 'memory',
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ], //[analytics]SnavigjatorObserversにFirebaseAnalyticsObserverをセット
