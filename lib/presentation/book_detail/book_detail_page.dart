@@ -14,14 +14,14 @@ class BookDetailPage extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.brown, //change your color here
           ),
           title: Text("${bookState.title}")),
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-            color: HexColor('ffefdb'), //書籍背景色
+            color: HexColor('ffefdb'), //書影背景色
             padding: const EdgeInsets.only(top: 50, bottom: 50),
             child: Row(
               children: [
