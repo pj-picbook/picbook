@@ -67,12 +67,12 @@ class BookshelfPage extends HookConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
         backgroundColor: HexColor('AB4934'),
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (_) => const SearchBookPage()));
         },
+        child: const Icon(Icons.add),
       ),
     );
   }

@@ -21,7 +21,7 @@ class SearchBookPage extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.brown, //change your color here
         ),
         centerTitle: true,
@@ -43,7 +43,8 @@ class SearchBookPage extends HookConsumerWidget {
                     ),
                   ),
                   hintText: 'えほんのなまえをいれよう。',
-                  hintStyle: TextStyle(fontSize: 17.0, color: Colors.brown),
+                  hintStyle:
+                      const TextStyle(fontSize: 17.0, color: Colors.brown),
                   prefixIcon: const Icon(Icons.search, color: Colors.brown),
                   suffixIcon: GestureDetector(
                     child: const Icon(Icons.qr_code, color: Colors.brown),
