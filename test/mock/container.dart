@@ -2,6 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:mockito/annotations.dart';
 import 'package:picbook/common/logger_provider.dart';
+import 'package:picbook/infrastructure/analytics_service.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
 import 'package:picbook/infrastructure/provider/firebase_provider.dart';
@@ -14,12 +15,14 @@ import 'container.mocks.dart';
   Logger,
   FirestoreProvider,
   FirebaseAuthProvider,
+  AnalyticsService,
   UserRepository,
   AuthRepository,
   BookshelfRepository,
   RakutenBookRepository
 ])
 final mockLogger = MockLogger();
+final mockAnalyticsService = MockAnalyticsService();
 final mockUserRepository = MockUserRepository();
 final mockAuthRepository = MockAuthRepository();
 final mockBookshelfRepository = MockBookshelfRepository();
@@ -30,6 +33,8 @@ ProviderContainer overrideContainer() {
     loggerProvider.overrideWithProvider(
       Provider(((ref) => mockLogger)),
     ),
+    analyticsServiceProvider
+        .overrideWithProvider(Provider((ref) => mockAnalyticsService)),
     userRepositoryProvider.overrideWithProvider(
       Provider((ref) => mockUserRepository),
     ),
