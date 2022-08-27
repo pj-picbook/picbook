@@ -11,8 +11,9 @@ final rakutenBookPageNotifierProvider =
 
 ///
 class SearchBookPageNotifier extends StateNotifier<SearchBookState> {
-  SearchBookPageNotifier({required RakutenBookRepository rakutenBookRepository})
-      : _rakutenBookRepository = rakutenBookRepository,
+  SearchBookPageNotifier({
+    required RakutenBookRepository rakutenBookRepository,
+  })  : _rakutenBookRepository = rakutenBookRepository,
         super(SearchBookState(books: []));
 
   final RakutenBookRepository _rakutenBookRepository;

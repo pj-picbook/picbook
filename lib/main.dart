@@ -1,9 +1,9 @@
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
+import 'package:picbook/infrastructure/provider/analytics_provider.dart';
 import 'package:picbook/presentation/bottom_navigation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/first_page/first_page.dart';
 
@@ -22,19 +22,15 @@ Future<void> main() async {
 
 class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
-  static final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  static final FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(
-      analytics: analytics); //[analytics]Screenviewトラッキングのための実装
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final logger = ref.read(loggerProvider);
+    final analytics = ref.watch(analyticsProvider);
     final authState = ref.watch(authStateProvider);
     return MaterialApp(
       title: 'memory',
-      navigatorObservers: [
-        FirebaseAnalyticsObserver(analytics: analytics),
-      ], //[analytics]SnavigjatorObserversにFirebaseAnalyticsObserverをセット
+      navigatorObservers: [analytics.observer],
       theme: ThemeData(
         primarySwatch: Colors.brown,
         scaffoldBackgroundColor: HexColor('F8F5EE'),

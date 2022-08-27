@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:picbook/common/dummy_data.dart';
 import 'package:picbook/common/logger_provider.dart';
+import 'package:picbook/infrastructure/analytics_service.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
@@ -15,6 +16,7 @@ import '../../mock/container.mocks.dart';
 
 void main() {
   late ProviderContainer container;
+  late MockAnalyticsService mockAnalyticsService;
   late MockLogger mockLogger;
   late MockUserRepository userRepository;
   late MockAuthRepository authRepository;
@@ -23,6 +25,8 @@ void main() {
   setUp(() {
     container = overrideUserRepository();
     mockLogger = container.read(loggerProvider) as MockLogger;
+    mockAnalyticsService =
+        container.read(analyticsServiceProvider) as MockAnalyticsService;
     userRepository =
         container.read(userRepositoryProvider) as MockUserRepository;
     authRepository =
@@ -33,6 +37,8 @@ void main() {
 
   group('mypage', () {
     testWidgets('初期描画時にdummyUserの情報が画面に描画されること', (tester) async {
+      when(mockAnalyticsService.sendButtonEvent(buttonName: 'ログアウト'))
+          .thenAnswer((_) => Future.value(null));
       // ユーザー情報をmockにセット
       when(authRepository.getUid()).thenAnswer((_) => 'test_uid');
       when(userRepository.findById(id: 'test_uid'))
@@ -48,6 +54,8 @@ void main() {
               // userRepositoryをmockでoverrideする
               overrides: [
                 loggerProvider.overrideWithValue(mockLogger),
+                analyticsServiceProvider
+                    .overrideWithValue(mockAnalyticsService),
                 userRepositoryProvider.overrideWithValue(userRepository),
                 authRepositoryProvider.overrideWithValue(authRepository),
                 bookshelfRepositoryProvider

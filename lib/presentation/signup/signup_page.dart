@@ -7,6 +7,7 @@ import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/presentation/widget/bottom_picker.dart';
 import '../../main.dart';
 import '../agreement_page/agreement_page.dart';
+import 'package:intl/intl.dart';
 
 import 'signup_notifier.dart';
 
@@ -18,6 +19,7 @@ class SignUpPage extends HookConsumerWidget {
     final notifier = ref.watch(signUpNotifierProvider.notifier);
     final emailController = useTextEditingController(text: "");
     final passwordController = useTextEditingController(text: "");
+    final birthdayController = useTextEditingController(text: "");
     final logger = ref.read(loggerProvider);
 
     return Scaffold(
@@ -32,7 +34,7 @@ class SignUpPage extends HookConsumerWidget {
         child: Container(
           color: Colors.grey[300],
           padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-          child: Column(
+          child: ListView(
             children: [
               const SizedBox(
                 height: 20.0,
@@ -79,6 +81,8 @@ class SignUpPage extends HookConsumerWidget {
                   border: Border.all(color: Colors.red, width: 0.5),
                 ),
                 child: TextFormField(
+                  readOnly: true,
+                  controller: birthdayController,
                   onTap: () {
                     showCupertinoModalPopup(
                         context: context,
@@ -132,7 +136,13 @@ class SignUpPage extends HookConsumerWidget {
                               bottomPicker(
                                 CupertinoDatePicker(
                                   mode: CupertinoDatePickerMode.date,
-                                  onDateTimeChanged: (DateTime newDateTime) {},
+                                  onDateTimeChanged: (DateTime newDateTime) {
+                                    notifier.setBirthday(newDateTime);
+                                    birthdayController.text =
+                                        DateFormat('yyyy-MM-dd')
+                                            .format(newDateTime)
+                                            .toString();
+                                  },
                                 ),
                               ),
                             ],
