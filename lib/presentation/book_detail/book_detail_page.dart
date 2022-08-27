@@ -6,7 +6,6 @@ import 'package:skeleton_text/skeleton_text.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../widget/dialog.dart';
 
-
 class BookDetailPage extends HookConsumerWidget {
   const BookDetailPage({Key? key}) : super(key: key);
 

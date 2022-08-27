@@ -126,11 +126,7 @@ class MyPage extends HookConsumerWidget {
               height: 75,
               child: Row(
                 children: <Widget>[
-<<<<<<< HEAD
                   SizedBox(
-=======
-                  const SizedBox(
->>>>>>> b7d35e7ea48c82dee96d0f0e6f0f6b5b5a8a382b
                     width: 50,
                     child: Icon(
                       Icons.cake,
@@ -140,11 +136,7 @@ class MyPage extends HookConsumerWidget {
                     ),
                   ),
                   const SizedBox(width: 110, child: Text('ねんれい')),
-<<<<<<< HEAD
-                  const SizedBox(
-=======
                   SizedBox(
->>>>>>> b7d35e7ea48c82dee96d0f0e6f0f6b5b5a8a382b
                     width: 30,
                     child: Text(
                       AgeCalculator.age(state.currentBookshelf.ownerBirthday)
@@ -174,11 +166,7 @@ class MyPage extends HookConsumerWidget {
               height: 75,
               child: Row(
                 children: <Widget>[
-<<<<<<< HEAD
                   SizedBox(
-=======
-                  const SizedBox(
->>>>>>> b7d35e7ea48c82dee96d0f0e6f0f6b5b5a8a382b
                     width: 50,
                     child: Icon(
                       Icons.calendar_month,
@@ -188,16 +176,10 @@ class MyPage extends HookConsumerWidget {
                     ),
                   ),
                   const SizedBox(width: 110, child: Text('とうろくび')),
-<<<<<<< HEAD
-                  const Text(
-                    '1000/00/00',
-                    style: TextStyle(
-=======
                   Text(
                     DateFormat('yyyy-MM-dd')
                         .format(state.currentBookshelf.created),
                     style: const TextStyle(
->>>>>>> b7d35e7ea48c82dee96d0f0e6f0f6b5b5a8a382b
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
