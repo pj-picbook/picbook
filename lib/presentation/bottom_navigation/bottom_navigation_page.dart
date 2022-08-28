@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
 import '../../common/global_keys.dart';
 import 'tab_item.dart';
 
@@ -50,6 +49,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           type: BottomNavigationBarType.fixed,
           currentIndex: _currentTab.index,
           backgroundColor: HexColor('DBCCC4'),
+          selectedItemColor: HexColor('AB4934'),
+          unselectedItemColor: HexColor('4C2C25'),
           items: TabItem.values
               .map(
                 (tabItem) => BottomNavigationBarItem(

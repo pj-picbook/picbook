@@ -43,16 +43,16 @@ class MyPage extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Flexible(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(150),
-                child: Image.network(
-                  'https://i.pinimg.com/236x/ef/78/70/ef7870383f8475f8ce487fc9d19bc6fb---orange-illustration.jpg',
-                  width: 150,
-                  height: 150,
-                ),
-              ),
-            ),
+            // Flexible(
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(150),
+            //     child: Image.network(
+            //       'https://i.pinimg.com/236x/ef/78/70/ef7870383f8475f8ce487fc9d19bc6fb---orange-illustration.jpg',
+            //       width: 150,
+            //       height: 150,
+            //     ),
+            //   ),
+            // ),
             const SizedBox(
               width: 48,
               height: 20,
@@ -88,11 +88,11 @@ class MyPage extends HookConsumerWidget {
               height: 75,
               child: Row(
                 children: <Widget>[
-                  const SizedBox(
+                  SizedBox(
                     width: 50,
                     child: Icon(
                       Icons.auto_stories,
-                      color: Colors.pink,
+                      color: Colors.deepOrange.shade700,
                       size: 24.0,
                       semanticLabel: 'Text to announce in accessibility modes',
                     ),
@@ -126,11 +126,11 @@ class MyPage extends HookConsumerWidget {
               height: 75,
               child: Row(
                 children: <Widget>[
-                  const SizedBox(
+                  SizedBox(
                     width: 50,
                     child: Icon(
                       Icons.cake,
-                      color: Colors.pink,
+                      color: Colors.deepOrange.shade700,
                       size: 24.0,
                       semanticLabel: 'Text to announce in accessibility modes',
                     ),
@@ -166,11 +166,11 @@ class MyPage extends HookConsumerWidget {
               height: 75,
               child: Row(
                 children: <Widget>[
-                  const SizedBox(
+                  SizedBox(
                     width: 50,
                     child: Icon(
                       Icons.calendar_month,
-                      color: Colors.pink,
+                      color: Colors.deepOrange.shade700,
                       size: 24.0,
                       semanticLabel: 'Text to announce in accessibility modes',
                     ),
@@ -215,14 +215,14 @@ class MyPage extends HookConsumerWidget {
                 height: 50,
                 width: 270,
                 decoration: BoxDecoration(
-                  color: Colors.white70,
-                  border: Border.all(color: Colors.red, width: 0.5),
+                  color: Colors.brown,
+                  border: Border.all(color: Colors.brown, width: 2),
                 ),
                 child: const Center(
                   child: Text(
                     "ログアウトする",
                     style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.w600),
+                        color: Colors.white, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
