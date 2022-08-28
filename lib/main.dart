@@ -29,7 +29,7 @@ class App extends ConsumerWidget {
     final analytics = ref.watch(analyticsProvider);
     final authState = ref.watch(authStateProvider);
     return MaterialApp(
-      title: 'picbook',
+      title: 'memory',
       navigatorObservers: [analytics.observer],
       theme: ThemeData(
         primarySwatch: Colors.brown,

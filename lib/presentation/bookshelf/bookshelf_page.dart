@@ -5,6 +5,7 @@ import 'package:picbook/presentation/book_detail/book_detail_page.dart';
 import 'package:picbook/presentation/bookshelf/bookshelf_notifier.dart';
 import 'package:picbook/state/book_notifier.dart';
 import 'package:picbook/presentation/searchbook/searchbook_page.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 /// 本棚画面クラス
 class BookshelfPage extends HookConsumerWidget {
@@ -49,11 +50,12 @@ class BookshelfPage extends HookConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        backgroundColor: HexColor('AB4934'),
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (_) => const SearchBookPage()));
         },
+        child: const Icon(Icons.add),
       ),
     );
   }
