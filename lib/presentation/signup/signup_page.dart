@@ -327,7 +327,7 @@ class SignUpPage extends HookConsumerWidget {
                         },
                       style: TextStyle(
                         color: Colors.deepOrange.shade700,
-                        fontWeight: FontWeight.w100,
+                        fontWeight: FontWeight.w600,
                         decoration: TextDecoration.underline,
                       ),
                     ),
