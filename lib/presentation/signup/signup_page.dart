@@ -21,7 +21,6 @@ class SignUpPage extends HookConsumerWidget {
     final passwordController = useTextEditingController(text: "");
     final birthdayController = useTextEditingController(text: "");
     final logger = ref.read(loggerProvider);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -237,6 +236,8 @@ class SignUpPage extends HookConsumerWidget {
                           (route) => false))();
                     } catch (e) {
                       logger.e(e);
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text(e.toString())));
                     }
                   },
                   child: const Text(
