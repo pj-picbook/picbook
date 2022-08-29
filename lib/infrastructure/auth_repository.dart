@@ -43,7 +43,6 @@ class AuthRepository implements BaseAuthRepository {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      //throw ("Authentication ${e.toString()}");
       throw convertAuthError(e.code);
     }
   }
