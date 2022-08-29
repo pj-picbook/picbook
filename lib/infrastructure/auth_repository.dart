@@ -56,7 +56,6 @@ class AuthRepository implements BaseAuthRepository {
         // return userCredential.user;
       }
     } on FirebaseAuthException catch (e) {
-      _logger.e("Authentication ${e.toString()}");
       throw convertAuthError(e.code);
     }
   }
