@@ -78,7 +78,7 @@ class SignUpNotifier extends StateNotifier<SignUpFormState> {
         ),
       );
     } catch (e) {
-      rethrow;
+      throw e.toString();
     }
   }
 }
