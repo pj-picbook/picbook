@@ -68,4 +68,25 @@ class AuthRepository implements BaseAuthRepository {
       _logger.e(e);
     }
   }
+
+  String convertAuthError(String errorCode) {
+    switch (errorCode) {
+      case "invalid-email":
+        return "メールアドレスを正しい形式で入力して下さい";
+      case "wrong-password":
+        return "パスワードが間違っています";
+      case "user-not-found":
+        return "ユーザーが見つかりません";
+      case "user-disabled":
+        return "ユーザーが無効です";
+      case "too-many-requests":
+        return "しばらく待ってからお試し下さい";
+      case "weak-password":
+        return "パスワードは6文字以上で入力して下さい";
+      case "email-already-in-use":
+        return "このメールアドレスは既に登録されています";
+      default:
+        return "不明なエラーです";
+    }
+  }
 }
