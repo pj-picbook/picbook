@@ -74,7 +74,7 @@ class SearchBookPage extends HookConsumerWidget {
                         onPressed: () async {
                           bookNotifier.registerBook(book: item);
                           showAlertDialog(ref,
-                              title: '本の追加', content: '本の追加が完了しました');
+                              title: '絵本の追加', content: '絵本を追加しました。');
                         },
                         book: item,
                       ),

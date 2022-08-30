@@ -37,6 +37,9 @@ class BookBox extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(
+              width: 10,
+            ),
             Expanded(
               flex: 9,
               child: Column(
@@ -57,7 +60,7 @@ class BookBox extends StatelessWidget {
                       book.author ?? '',
                       style: const TextStyle(
                         color: Color.fromARGB(255, 184, 180, 180),
-                        fontSize: 16,
+                        fontSize: 13,
                       ),
                     ),
                   ),
@@ -72,10 +75,13 @@ class BookBox extends StatelessWidget {
                 },
                 child: const Icon(
                   Icons.add_box,
-                  color: Colors.black38,
-                  size: 30,
+                  color: Colors.brown,
+                  size: 25,
                 ),
               ),
+            ),
+            const SizedBox(
+              width: 10,
             ),
           ],
         ),

@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:picbook/presentation/agreement_page/agreement_page.dart';
 import 'package:picbook/presentation/login/login_page.dart';
-
 import '../signup/signup_page.dart';
 
 class FirstPage extends StatelessWidget {
@@ -11,7 +10,6 @@ class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -19,79 +17,71 @@ class FirstPage extends StatelessWidget {
           Container(
             height: 200,
             width: 200,
-            decoration: const BoxDecoration(
-              color: Colors.black12,
-            ),
-            child: const Center(
-              child: Text(
-                "ロゴ",
-                style: TextStyle(fontWeight: FontWeight.w700),
-              ),
-            ),
+            decoration: const BoxDecoration(),
+            child: Image.asset('lib/assets/images/splash.png'),
           ),
-          const SizedBox(height: 10),
           const Text(
             "アカウントをお持ちの方",
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
-          TextButton(
-            onPressed: () {
-              Navigator.push(
+          ElevatedButton(
+              onPressed: () async {
+                await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const LogInPage(),
-                  ));
-            },
-            child: Container(
-              height: 50,
-              width: 270,
-              decoration: BoxDecoration(
-                color: Colors.white70,
-                border: Border.all(color: Colors.red, width: 0.5),
-              ),
-              child: const Center(
-                child: Text(
-                  "ログイン",
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.w900),
+                  ),
+                );
+              },
+              child: Container(
+                height: 50,
+                width: 270,
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text("ログイン",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w100,
+                          fontSize: 16,
+                        )),
+                  ],
                 ),
-              ),
-            ),
-          ),
+              )),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           const Text(
             "初めてご利用の方",
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
-          TextButton(
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SignUpPage(),
+          ElevatedButton(
+              onPressed: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignUpPage(),
+                  ),
+                );
+              },
+              child: Container(
+                height: 50,
+                width: 270,
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text("メールアドレスで登録",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w100,
+                          fontSize: 16,
+                        )),
+                  ],
                 ),
-              );
-            },
-            child: Container(
-              height: 50,
-              width: 270,
-              decoration: BoxDecoration(
-                color: Colors.white70,
-                border: Border.all(color: Colors.red, width: 0.5),
-              ),
-              child: const Center(
-                child: Text(
-                  "メールアドレスで登録",
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-          ),
+              )),
+          const SizedBox(height: 10),
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.only(left: 40.0, right: 40.0),
             child: RichText(
               text: TextSpan(
                 style: const TextStyle(
@@ -115,8 +105,8 @@ class FirstPage extends StatelessWidget {
                                           "https://pj-picbook.github.io/picdoc/docs/terms.html",
                                     )));
                       },
-                    style: const TextStyle(
-                      color: Colors.blue,
+                    style: TextStyle(
+                      color: Colors.deepOrange.shade700,
                       fontWeight: FontWeight.w600,
                       decoration: TextDecoration.underline,
                     ),
@@ -136,8 +126,8 @@ class FirstPage extends StatelessWidget {
                                     url:
                                         "https://pj-picbook.github.io/picdoc/docs/privacypolicy.html")));
                       },
-                    style: const TextStyle(
-                        color: Colors.blue,
+                    style: TextStyle(
+                        color: Colors.deepOrange.shade700,
                         fontWeight: FontWeight.w600,
                         decoration: TextDecoration.underline),
                   ),
@@ -147,6 +137,9 @@ class FirstPage extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          const SizedBox(
+            height: 70,
           ),
         ],
       ),

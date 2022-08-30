@@ -17,7 +17,7 @@ showAlertDialog(
           child: Container(
             width: 311.0,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blueAccent, width: 3),
+              border: Border.all(color: Colors.deepOrange.shade700, width: 3),
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Column(
@@ -48,7 +48,7 @@ showAlertDialog(
                       style: ElevatedButton.styleFrom(
                         shadowColor: Colors.grey,
                         elevation: 5,
-                        primary: Colors.blueAccent,
+                        primary: Colors.deepOrange.shade700,
                         onPrimary: Colors.white,
                         shape: const StadiumBorder(),
                       ),

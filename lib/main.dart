@@ -6,7 +6,6 @@ import 'package:picbook/infrastructure/auth_repository.dart';
 import 'package:picbook/infrastructure/provider/analytics_provider.dart';
 import 'package:picbook/presentation/bottom_navigation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/first_page/first_page.dart';
-
 import 'common/logger_provider.dart';
 
 Future<void> main() async {
@@ -38,7 +37,7 @@ class App extends ConsumerWidget {
           backgroundColor: HexColor('F8F5EE'),
           titleTextStyle: TextStyle(
               color: HexColor('410000'),
-              fontSize: 22,
+              fontSize: 17,
               fontWeight: FontWeight.bold),
           elevation: 0.0,
         ),

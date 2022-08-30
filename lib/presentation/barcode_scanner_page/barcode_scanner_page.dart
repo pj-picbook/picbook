@@ -51,7 +51,7 @@ class BarcodeScannerPage extends HookConsumerWidget {
               alignment: Alignment.center,
               color: Colors.white,
               child: const Text(
-                '絵本の裏側にあるバーコード\nをスキャンすると絵本を検索することが可能です。',
+                '絵本についてるバーコードを読み取って検索しよう',
                 style: TextStyle(
                   fontSize: 18,
                 ),

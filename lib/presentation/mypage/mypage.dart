@@ -200,33 +200,33 @@ class MyPage extends HookConsumerWidget {
             const SizedBox(
               height: 25,
             ),
-            TextButton(
-              onPressed: () async {
-                await notifier.logOut();
-                await analytics.sendButtonEvent(buttonName: 'ログアウト');
-                (() => Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute<App>(
-                      builder: (context) => const App(),
-                    ),
-                    (route) => false))();
-              },
-              child: Container(
-                height: 50,
-                width: 270,
-                decoration: BoxDecoration(
-                  color: Colors.brown,
-                  border: Border.all(color: Colors.brown, width: 2),
-                ),
-                child: const Center(
-                  child: Text(
-                    "ログアウトする",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w600),
+
+            ElevatedButton(
+                onPressed: () async {
+                  await notifier.logOut();
+                  await analytics.sendButtonEvent(buttonName: 'ログアウト');
+                  (() => Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute<App>(
+                        builder: (context) => const App(),
+                      ),
+                      (route) => false))();
+                },
+                child: Container(
+                  height: 50,
+                  width: 270,
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text('ログアウトする',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                            fontSize: 16,
+                          )),
+                    ],
                   ),
-                ),
-              ),
-            ),
+                )),
           ],
         ),
       ),

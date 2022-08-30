@@ -8,8 +8,8 @@ import 'package:picbook/presentation/widget/bottom_picker.dart';
 import '../../main.dart';
 import '../agreement_page/agreement_page.dart';
 import 'package:intl/intl.dart';
-
 import 'signup_notifier.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class SignUpPage extends HookConsumerWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -26,24 +26,53 @@ class SignUpPage extends HookConsumerWidget {
       appBar: AppBar(
         title: const Text(
           "会員登録",
-          style: TextStyle(fontSize: 17.0, color: Colors.white),
+          style: TextStyle(
+            fontSize: 17.0,
+          ),
         ),
-        backgroundColor: Colors.blue[900],
+        iconTheme: const IconThemeData(
+          color: Colors.brown, //change your color here
+        ),
       ),
       body: Form(
         child: Container(
-          color: Colors.grey[300],
           padding: const EdgeInsets.only(left: 40.0, right: 40.0),
           child: ListView(
             children: [
               const SizedBox(
-                height: 20.0,
+                height: 30.0,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                    child: Icon(
+                      Icons.key,
+                      color: HexColor('410000'),
+                      size: 24.0,
+                      semanticLabel: 'Text to announce in accessibility modes',
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      "ログイン情報",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: HexColor('410000'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10.0,
               ),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "なまえ",
-                  style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
+                  "メールアドレス",
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
@@ -51,26 +80,104 @@ class SignUpPage extends HookConsumerWidget {
                 width: 300,
                 decoration: BoxDecoration(
                   color: Colors.white70,
-                  border: Border.all(color: Colors.red, width: 0.5),
+                  border: Border.all(color: Colors.brown, width: 0.5),
+                ),
+                child: TextFormField(
+                  controller: emailController,
+                  onChanged: ((value) => {notifier.setEmail(value)}),
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "パスワード",
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                height: 50,
+                width: 300,
+                decoration: BoxDecoration(
+                  color: Colors.white70,
+                  border: Border.all(color: Colors.brown, width: 0.5),
+                ),
+                child: TextFormField(
+                  controller: passwordController,
+                  onChanged: ((value) => {notifier.setPassword(value)}),
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 40.0,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                    child: Icon(
+                      Icons.person_add,
+                      color: HexColor('410000'),
+                      size: 24.0,
+                      semanticLabel: 'Text to announce in accessibility modes',
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      "絵本を読む人の情報",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: HexColor('410000'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "なまえ",
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                height: 50,
+                width: 300,
+                decoration: BoxDecoration(
+                  color: Colors.white70,
+                  border: Border.all(color: Colors.brown, width: 0.5),
                 ),
                 child: TextFormField(
                   textAlign: TextAlign.center,
                   onChanged: (value) => notifier.setName(value),
                   decoration: const InputDecoration(
                     border: InputBorder.none,
-                    hintText: "ご自身もしくはお子様の名前をご入力ください",
-                    hintStyle: TextStyle(fontSize: 13.0),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "生年月日",
-                  style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
@@ -78,7 +185,7 @@ class SignUpPage extends HookConsumerWidget {
                 width: 300,
                 decoration: BoxDecoration(
                   color: Colors.white70,
-                  border: Border.all(color: Colors.red, width: 0.5),
+                  border: Border.all(color: Colors.brown, width: 0.5),
                 ),
                 child: TextFormField(
                   readOnly: true,
@@ -152,78 +259,19 @@ class SignUpPage extends HookConsumerWidget {
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
-                    hintText: "xxxx / xxx / xx",
                     hintStyle: TextStyle(fontSize: 13.0),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 20.0,
-              ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "メールアドレス",
-                  style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
-                ),
+                height: 30.0,
               ),
               Container(
                 height: 50,
                 width: 300,
                 decoration: BoxDecoration(
-                  color: Colors.white70,
-                  border: Border.all(color: Colors.red, width: 0.5),
-                ),
-                child: TextFormField(
-                  controller: emailController,
-                  onChanged: ((value) => {notifier.setEmail(value)}),
-                  keyboardType: TextInputType.emailAddress,
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "xxxxxx@xxxxxxxxxxx",
-                    hintStyle: TextStyle(fontSize: 13.0),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "パスワード",
-                  style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                height: 50,
-                width: 300,
-                decoration: BoxDecoration(
-                  color: Colors.white70,
-                  border: Border.all(color: Colors.red, width: 0.5),
-                ),
-                child: TextFormField(
-                  controller: passwordController,
-                  onChanged: ((value) => {notifier.setPassword(value)}),
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "………………………",
-                    hintStyle: TextStyle(fontSize: 13.0),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 40.0,
-              ),
-              Container(
-                height: 50,
-                width: 300,
-                decoration: BoxDecoration(
-                  color: Colors.white70,
-                  border: Border.all(color: Colors.red, width: 0.5),
+                  color: Colors.brown,
+                  border: Border.all(color: Colors.brown, width: 0.5),
                 ),
                 child: TextButton(
                   onPressed: () async {
@@ -242,7 +290,7 @@ class SignUpPage extends HookConsumerWidget {
                   child: const Text(
                     "登録する",
                     style: TextStyle(
-                      color: Colors.red,
+                      color: Colors.white,
                       fontSize: 16.0,
                       fontWeight: FontWeight.w900,
                     ),
@@ -277,8 +325,8 @@ class SignUpPage extends HookConsumerWidget {
                             ),
                           );
                         },
-                      style: const TextStyle(
-                        color: Colors.blue,
+                      style: TextStyle(
+                        color: Colors.deepOrange.shade700,
                         fontWeight: FontWeight.w600,
                         decoration: TextDecoration.underline,
                       ),
