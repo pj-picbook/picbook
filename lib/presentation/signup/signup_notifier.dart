@@ -53,32 +53,26 @@ class SignUpNotifier extends StateNotifier<SignUpFormState> {
   }
 
   Future<void> signUp() async {
-    try {
-      if (state.email.isEmpty) {
-        throw "メールアドレスを入力してください";
-      }
-      if (state.password.isEmpty) {
-        throw "パスワードを入力してください";
-      }
-      await _authRepository.signUp(
-          email: state.email, password: state.password);
-      final uid = _authRepository.getUid();
-
-      await _userRepository.create(
-        user:
-            User(id: uid!, email: state.email, linkedAccount: 'linkedAccount'),
-      );
-
-      await _bookshelfRepository.create(
-        uid: uid,
-        bookshelf: Bookshelf(
-          owner: state.name,
-          ownerBirthday: state.birthday,
-          created: DateTime.now(),
-        ),
-      );
-    } catch (e) {
-      throw e.toString();
+    if (state.email.isEmpty) {
+      throw "メールアドレスを入力してください";
     }
+    if (state.password.isEmpty) {
+      throw "パスワードを入力してください";
+    }
+    await _authRepository.signUp(email: state.email, password: state.password);
+    final uid = _authRepository.getUid();
+
+    await _userRepository.create(
+      user: User(id: uid!, email: state.email, linkedAccount: 'linkedAccount'),
+    );
+
+    await _bookshelfRepository.create(
+      uid: uid,
+      bookshelf: Bookshelf(
+        owner: state.name,
+        ownerBirthday: state.birthday,
+        created: DateTime.now(),
+      ),
+    );
   }
 }
