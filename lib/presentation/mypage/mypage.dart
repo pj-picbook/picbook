@@ -197,10 +197,43 @@ class MyPage extends HookConsumerWidget {
               indent: 0,
               endIndent: 0,
             ),
-            const SizedBox(
-              height: 25,
+            SizedBox(
+              height: 75,
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 50,
+                    child: Icon(
+                      Icons.auto_stories,
+                      color: Colors.deepOrange.shade700,
+                      size: 24.0,
+                      semanticLabel: 'Text to announce in accessibility modes',
+                    ),
+                  ),
+                  const SizedBox(
+                      width: 110,
+                      child: Text(
+                        'アカウント情報',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                  const SizedBox(
+                    width: 170,
+                  ),
+                  const Icon(Icons.keyboard_arrow_right),
+                ],
+              ),
             ),
-
+            Divider(
+              color: HexColor('DBCCC4'),
+              thickness: 1,
+              height: 0,
+              indent: 0,
+              endIndent: 0,
+            ),
+            const SizedBox(
+              width: 48,
+              height: 20,
+            ),
             ElevatedButton(
                 onPressed: () async {
                   await notifier.logOut();
