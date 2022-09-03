@@ -97,6 +97,8 @@ class LogInPage extends HookConsumerWidget {
                           (route) => false))();
                     } catch (e) {
                       logger.e(e);
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text(e.toString())));
                     }
                   },
                   child: Container(

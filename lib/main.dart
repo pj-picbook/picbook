@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,14 +12,22 @@ import 'package:picbook/presentation/first_page/first_page.dart';
 import 'common/logger_provider.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  //Flutterフレームワーク外の特定のゾーンでスローされたエラーをキャッチする、クラッシュハンドラ
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
 
-  runApp(
-    const ProviderScope(
-      child: App(),
-    ),
-  );
+    //Flutterフレームワーク内でスローされた全てのエラーを自動的にキャッチする、クラッシュハンドラ
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+    runApp(
+      const ProviderScope(
+        child: App(),
+      ),
+    );
+  },
+      (error, stack) =>
+          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
 }
 
 class App extends ConsumerWidget {
