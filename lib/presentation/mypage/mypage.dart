@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/infrastructure/analytics_service.dart';
 import 'package:picbook/main.dart';
+import 'package:picbook/presentation/account_page/account_page.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:age_calculator/age_calculator.dart';
@@ -198,7 +199,7 @@ class MyPage extends HookConsumerWidget {
               endIndent: 0,
             ),
             const SizedBox(
-              height: 5,
+              height: 10,
             ),
             ListTile(
               minLeadingWidth: 10,
@@ -218,10 +219,13 @@ class MyPage extends HookConsumerWidget {
                 Icons.keyboard_arrow_right,
                 color: Colors.black,
               ),
-              onTap: null,
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const AccountPage()));
+              },
             ),
             const SizedBox(
-              height: 5,
+              height: 10,
             ),
             Divider(
               color: HexColor('DBCCC4'),
