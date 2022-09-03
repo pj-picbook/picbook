@@ -204,7 +204,7 @@ class MyPage extends HookConsumerWidget {
                   SizedBox(
                     width: 50,
                     child: Icon(
-                      Icons.auto_stories,
+                      Icons.account_circle,
                       color: Colors.deepOrange.shade700,
                       size: 24.0,
                       semanticLabel: 'Text to announce in accessibility modes',
