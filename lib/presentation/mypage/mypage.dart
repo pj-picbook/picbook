@@ -35,6 +35,7 @@ class MyPage extends HookConsumerWidget {
       fetchUser();
       return null;
     }, []);
+    notifier.fetchBooks();
     return Scaffold(
       appBar: AppBar(
         title: const Text('MyPage'),
@@ -101,7 +102,7 @@ class MyPage extends HookConsumerWidget {
                   SizedBox(
                     width: 30,
                     child: Text(
-                      '${state.currentBookshelf.books.length}',
+                      '${state.books?.length ?? 0}',
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,

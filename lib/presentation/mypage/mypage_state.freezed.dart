@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MyPageState {
   User get user => throw _privateConstructorUsedError;
   Bookshelf get currentBookshelf => throw _privateConstructorUsedError;
+  List<Book>? get books => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MyPageStateCopyWith<MyPageState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $MyPageStateCopyWith<$Res> {
   factory $MyPageStateCopyWith(
           MyPageState value, $Res Function(MyPageState) then) =
       _$MyPageStateCopyWithImpl<$Res>;
-  $Res call({User user, Bookshelf currentBookshelf});
+  $Res call({User user, Bookshelf currentBookshelf, List<Book>? books});
 
   $UserCopyWith<$Res> get user;
   $BookshelfCopyWith<$Res> get currentBookshelf;
@@ -47,6 +48,7 @@ class _$MyPageStateCopyWithImpl<$Res> implements $MyPageStateCopyWith<$Res> {
   $Res call({
     Object? user = freezed,
     Object? currentBookshelf = freezed,
+    Object? books = freezed,
   }) {
     return _then(_value.copyWith(
       user: user == freezed
@@ -57,6 +59,10 @@ class _$MyPageStateCopyWithImpl<$Res> implements $MyPageStateCopyWith<$Res> {
           ? _value.currentBookshelf
           : currentBookshelf // ignore: cast_nullable_to_non_nullable
               as Bookshelf,
+      books: books == freezed
+          ? _value.books
+          : books // ignore: cast_nullable_to_non_nullable
+              as List<Book>?,
     ));
   }
 
@@ -82,7 +88,7 @@ abstract class _$$_MyPageStateCopyWith<$Res>
           _$_MyPageState value, $Res Function(_$_MyPageState) then) =
       __$$_MyPageStateCopyWithImpl<$Res>;
   @override
-  $Res call({User user, Bookshelf currentBookshelf});
+  $Res call({User user, Bookshelf currentBookshelf, List<Book>? books});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -104,6 +110,7 @@ class __$$_MyPageStateCopyWithImpl<$Res> extends _$MyPageStateCopyWithImpl<$Res>
   $Res call({
     Object? user = freezed,
     Object? currentBookshelf = freezed,
+    Object? books = freezed,
   }) {
     return _then(_$_MyPageState(
       user: user == freezed
@@ -114,33 +121,40 @@ class __$$_MyPageStateCopyWithImpl<$Res> extends _$MyPageStateCopyWithImpl<$Res>
           ? _value.currentBookshelf
           : currentBookshelf // ignore: cast_nullable_to_non_nullable
               as Bookshelf,
+      books: books == freezed
+          ? _value._books
+          : books // ignore: cast_nullable_to_non_nullable
+              as List<Book>?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_MyPageState extends _MyPageState with DiagnosticableTreeMixin {
-  _$_MyPageState({required this.user, required this.currentBookshelf})
-      : super._();
+class _$_MyPageState extends _MyPageState {
+  _$_MyPageState(
+      {required this.user,
+      required this.currentBookshelf,
+      required final List<Book>? books})
+      : _books = books,
+        super._();
 
   @override
   final User user;
   @override
   final Bookshelf currentBookshelf;
-
+  final List<Book>? _books;
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MyPageState(user: $user, currentBookshelf: $currentBookshelf)';
+  List<Book>? get books {
+    final value = _books;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'MyPageState'))
-      ..add(DiagnosticsProperty('user', user))
-      ..add(DiagnosticsProperty('currentBookshelf', currentBookshelf));
+  String toString() {
+    return 'MyPageState(user: $user, currentBookshelf: $currentBookshelf, books: $books)';
   }
 
   @override
@@ -150,14 +164,16 @@ class _$_MyPageState extends _MyPageState with DiagnosticableTreeMixin {
             other is _$_MyPageState &&
             const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality()
-                .equals(other.currentBookshelf, currentBookshelf));
+                .equals(other.currentBookshelf, currentBookshelf) &&
+            const DeepCollectionEquality().equals(other._books, _books));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(user),
-      const DeepCollectionEquality().hash(currentBookshelf));
+      const DeepCollectionEquality().hash(currentBookshelf),
+      const DeepCollectionEquality().hash(_books));
 
   @JsonKey(ignore: true)
   @override
@@ -168,13 +184,16 @@ class _$_MyPageState extends _MyPageState with DiagnosticableTreeMixin {
 abstract class _MyPageState extends MyPageState {
   factory _MyPageState(
       {required final User user,
-      required final Bookshelf currentBookshelf}) = _$_MyPageState;
+      required final Bookshelf currentBookshelf,
+      required final List<Book>? books}) = _$_MyPageState;
   _MyPageState._() : super._();
 
   @override
   User get user;
   @override
   Bookshelf get currentBookshelf;
+  @override
+  List<Book>? get books;
   @override
   @JsonKey(ignore: true)
   _$$_MyPageStateCopyWith<_$_MyPageState> get copyWith =>
