@@ -197,31 +197,31 @@ class MyPage extends HookConsumerWidget {
               indent: 0,
               endIndent: 0,
             ),
-            SizedBox(
-              height: 75,
-              child: Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: 50,
-                    child: Icon(
-                      Icons.account_circle,
-                      color: Colors.deepOrange.shade700,
-                      size: 24.0,
-                      semanticLabel: 'Text to announce in accessibility modes',
-                    ),
-                  ),
-                  const SizedBox(
-                      width: 110,
-                      child: Text(
-                        'アカウント情報',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      )),
-                  const SizedBox(
-                    width: 170,
-                  ),
-                  const Icon(Icons.keyboard_arrow_right),
-                ],
+            const SizedBox(
+              height: 5,
+            ),
+            ListTile(
+              minLeadingWidth: 10,
+              leading: Icon(
+                Icons.account_circle,
+                color: Colors.deepOrange.shade700,
+                size: 24.0,
               ),
+              title: const Text(
+                "アカウント情報",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+              trailing: const Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.black,
+              ),
+              onTap: null,
+            ),
+            const SizedBox(
+              height: 5,
             ),
             Divider(
               color: HexColor('DBCCC4'),
