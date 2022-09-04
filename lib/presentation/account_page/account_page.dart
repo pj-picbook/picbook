@@ -41,10 +41,6 @@ class AccountPage extends StatelessWidget {
                 "email",
                 style: TextStyle(fontWeight: FontWeight.w300),
               ),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const AccountPage()));
-              },
             ),
             const SizedBox(
               height: 10,
