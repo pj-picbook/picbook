@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class AccountPage extends StatelessWidget {
             ),
             ListTile(
               title: const Text(
-                "アカウント情報",
+                "メールアドレス",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
@@ -59,9 +59,48 @@ class AccountPage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const TextButton(
-              onPressed: null,
-              child: const Text("アカウントを削除する"),
+            TextButton(
+              onPressed: () {
+                showCupertinoDialog(
+                  context: (context),
+                  builder: (_) => CupertinoAlertDialog(
+                    title: const Text("アカウントを削除"),
+                    content:
+                        const Text("アカウントを削除するとログインできなくなります。アカウントを削除しますか？"),
+                    actions: [
+                      CupertinoDialogAction(
+                        child: TextButton(
+                          child: const Text(
+                            "キャンセル",
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context, rootNavigator: true).pop();
+                          },
+                        ),
+                      ),
+                      const CupertinoDialogAction(
+                        child: TextButton(
+                          onPressed: null,
+                          child: Text(
+                            "削除する",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: const Text(
+                "アカウントを削除する",
+                style:
+                    TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+              ),
             ),
             const SizedBox(
               height: 30,
