@@ -84,8 +84,8 @@ void main() {
 
       // 描画が終わるまで待機する
       // await tester.pumpAndSettle();
-      await tester
-          .pump(Duration(seconds: 3)); // TODO:暫定対応。tester.pumpAndSettle();が理想？
+      await tester.pump(
+          const Duration(seconds: 3)); // TODO:暫定対応。tester.pumpAndSettle();が理想？
 
       expect(find.text(dummyBookshelf.owner), findsOneWidget);
       expect(find.text(dummyUser.id), findsOneWidget);
