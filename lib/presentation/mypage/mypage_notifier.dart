@@ -45,19 +45,11 @@ class MyPageNotifier extends StateNotifier<MyPageState> {
     final user = await _userRepository.findById(id: uid!);
     final bookshelfs = await _bookshelfRepository.fetchAll(uid: uid);
     final bookshelf = bookshelfs.first;
-    state = state.copyWith(
-      user: user,
-      currentBookshelf: bookshelf,
-    );
-  }
-
-  Future<void> fetchBooks() async {
-    final uid = _authRepository.getUid();
-    final bookshelfs = await _bookshelfRepository.fetchAll(uid: uid!);
-    final bookshelf = bookshelfs.first;
     final books =
         await _booksRepository.fetchAll(uid: uid, bookshelfId: bookshelf.id);
     state = state.copyWith(
+      user: user,
+      currentBookshelf: bookshelf,
       books: books,
     );
   }
