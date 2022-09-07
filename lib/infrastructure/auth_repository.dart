@@ -18,6 +18,7 @@ abstract class BaseAuthRepository {
   String? getUid();
   Stream<User?> get authStateChange;
   Future<void> logOut();
+  Future<void> deleteUser();
 }
 
 class AuthRepository implements BaseAuthRepository {
@@ -64,6 +65,15 @@ class AuthRepository implements BaseAuthRepository {
   Future<void> logOut() async {
     try {
       await auth.signOut();
+    } catch (e) {
+      _logger.e(e);
+    }
+  }
+
+  @override
+  Future<void> deleteUser() async {
+    try {
+      await auth.currentUser?.delete();
     } catch (e) {
       _logger.e(e);
     }
