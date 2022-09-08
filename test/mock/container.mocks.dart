@@ -8,12 +8,14 @@ import 'dart:async' as _i8;
 import 'package:firebase_auth/firebase_auth.dart' as _i3;
 import 'package:logger/logger.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:picbook/domain/entity/book.dart' as _i13;
 import 'package:picbook/domain/entity/bookshelf.dart' as _i4;
 import 'package:picbook/domain/entity/user.dart' as _i2;
 import 'package:picbook/infrastructure/analytics_service.dart' as _i7;
 import 'package:picbook/infrastructure/auth_repository.dart' as _i10;
+import 'package:picbook/infrastructure/books_repository.dart' as _i12;
 import 'package:picbook/infrastructure/bookshelf_repository.dart' as _i11;
-import 'package:picbook/infrastructure/rakuten_book_repository.dart' as _i12;
+import 'package:picbook/infrastructure/rakuten_book_repository.dart' as _i14;
 import 'package:picbook/infrastructure/user_repository.dart' as _i9;
 import 'package:picbook/state/search_book_state.dart' as _i5;
 
@@ -176,6 +178,10 @@ class MockAuthRepository extends _i1.Mock implements _i10.AuthRepository {
       Invocation.method(#logOut, []),
       returnValue: _i8.Future<void>.value(),
       returnValueForMissingStub: _i8.Future<void>.value()) as _i8.Future<void>);
+  @override
+  String convertAuthError(String? errorCode) =>
+      (super.noSuchMethod(Invocation.method(#convertAuthError, [errorCode]),
+          returnValue: '') as String);
 }
 
 /// A class which mocks [BookshelfRepository].
@@ -212,18 +218,47 @@ class MockBookshelfRepository extends _i1.Mock
               _i8.Future<void>.value()) as _i8.Future<void>);
 }
 
+/// A class which mocks [BooksRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockBooksRepository extends _i1.Mock implements _i12.BooksRepository {
+  MockBooksRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void init() => super.noSuchMethod(Invocation.method(#init, []),
+      returnValueForMissingStub: null);
+  @override
+  _i8.Future<List<_i13.Book>> fetchAll({String? uid, String? bookshelfId}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #fetchAll, [], {#uid: uid, #bookshelfId: bookshelfId}),
+              returnValue: _i8.Future<List<_i13.Book>>.value(<_i13.Book>[]))
+          as _i8.Future<List<_i13.Book>>);
+  @override
+  _i8.Future<void> create(
+          {String? uid, String? bookshelfId, _i13.Book? book}) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #create, [], {#uid: uid, #bookshelfId: bookshelfId, #book: book}),
+          returnValue: _i8.Future<void>.value(),
+          returnValueForMissingStub:
+              _i8.Future<void>.value()) as _i8.Future<void>);
+}
+
 /// A class which mocks [RakutenBookRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRakutenBookRepository extends _i1.Mock
-    implements _i12.RakutenBookRepository {
+    implements _i14.RakutenBookRepository {
   MockRakutenBookRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
   _i8.Future<_i5.SearchBookState> search(
-          {_i12.SearchType? searchType, String? keyWord}) =>
+          {_i14.SearchType? searchType, String? keyWord}) =>
       (super.noSuchMethod(
               Invocation.method(
                   #search, [], {#searchType: searchType, #keyWord: keyWord}),

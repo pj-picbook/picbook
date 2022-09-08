@@ -40,194 +40,206 @@ class MyPage extends HookConsumerWidget {
         title: const Text('MyPage'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Flexible(
-            //   child: ClipRRect(
-            //     borderRadius: BorderRadius.circular(150),
-            //     child: Image.network(
-            //       'https://i.pinimg.com/236x/ef/78/70/ef7870383f8475f8ce487fc9d19bc6fb---orange-illustration.jpg',
-            //       width: 150,
-            //       height: 150,
-            //     ),
-            //   ),
-            // ),
-            const SizedBox(
-              width: 48,
-              height: 20,
-            ),
-            Column(
+        child: RefreshIndicator(
+          onRefresh: () async {
+            return await notifier.fetch();
+          },
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(state.currentBookshelf.owner,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                // Flexible(
+                //   child: ClipRRect(
+                //     borderRadius: BorderRadius.circular(150),
+                //     child: Image.network(
+                //       'https://i.pinimg.com/236x/ef/78/70/ef7870383f8475f8ce487fc9d19bc6fb---orange-illustration.jpg',
+                //       width: 150,
+                //       height: 150,
+                //     ),
+                //   ),
+                // ),
+                const SizedBox(
+                  width: 48,
+                  height: 20,
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(state.currentBookshelf.owner,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text('id:'),
+                    // 表示するものがないのでとりあえずidを表示しておく
+                    Text(state.user.id)
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Divider(
+                  color: HexColor('DBCCC4'),
+                  thickness: 1,
+                  height: 0,
+                  indent: 0,
+                  endIndent: 0,
+                ),
+                SizedBox(
+                  height: 75,
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 50,
+                        child: Icon(
+                          Icons.auto_stories,
+                          color: Colors.deepOrange.shade700,
+                          size: 24.0,
+                          semanticLabel:
+                              'Text to announce in accessibility modes',
+                        ),
+                      ),
+                      const SizedBox(width: 110, child: Text('よんだえほん')),
+                      SizedBox(
+                        width: 30,
+                        child: Text(
+                          '${state.books?.length ?? 0}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      const Text('さつ'),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Divider(
+                  color: HexColor('DBCCC4'),
+                  thickness: 1,
+                  height: 0,
+                  indent: 0,
+                  endIndent: 0,
+                ),
+                SizedBox(
+                  height: 75,
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 50,
+                        child: Icon(
+                          Icons.cake,
+                          color: Colors.deepOrange.shade700,
+                          size: 24.0,
+                          semanticLabel:
+                              'Text to announce in accessibility modes',
+                        ),
+                      ),
+                      const SizedBox(width: 110, child: Text('ねんれい')),
+                      SizedBox(
+                        width: 30,
+                        child: Text(
+                          AgeCalculator.age(
+                                  state.currentBookshelf.ownerBirthday)
+                              .years
+                              .toString(),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      const Text('さい'),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Divider(
+                  color: HexColor('DBCCC4'),
+                  thickness: 1,
+                  height: 0,
+                  indent: 0,
+                  endIndent: 0,
+                ),
+                SizedBox(
+                  height: 75,
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 50,
+                        child: Icon(
+                          Icons.calendar_month,
+                          color: Colors.deepOrange.shade700,
+                          size: 24.0,
+                          semanticLabel:
+                              'Text to announce in accessibility modes',
+                        ),
+                      ),
+                      const SizedBox(width: 110, child: Text('とうろくび')),
+                      Text(
+                        DateFormat('yyyy-MM-dd')
+                            .format(state.currentBookshelf.created),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Divider(
+                  color: HexColor('DBCCC4'),
+                  thickness: 1,
+                  height: 0,
+                  indent: 0,
+                  endIndent: 0,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+
+                ElevatedButton(
+                    onPressed: () async {
+                      await notifier.logOut();
+                      await analytics.sendButtonEvent(buttonName: 'ログアウト');
+                      (() => Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute<App>(
+                            builder: (context) => const App(),
+                          ),
+                          (route) => false))();
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 270,
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text('ログアウトする',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w100,
+                                fontSize: 16,
+                              )),
+                        ],
+                      ),
                     )),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text('id:'),
-                // 表示するものがないのでとりあえずidを表示しておく
-                Text(state.user.id)
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Divider(
-              color: HexColor('DBCCC4'),
-              thickness: 1,
-              height: 0,
-              indent: 0,
-              endIndent: 0,
-            ),
-            SizedBox(
-              height: 75,
-              child: Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: 50,
-                    child: Icon(
-                      Icons.auto_stories,
-                      color: Colors.deepOrange.shade700,
-                      size: 24.0,
-                      semanticLabel: 'Text to announce in accessibility modes',
-                    ),
-                  ),
-                  const SizedBox(width: 110, child: Text('よんだえほん')),
-                  SizedBox(
-                    width: 30,
-                    child: Text(
-                      '${state.currentBookshelf.books.length}',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  const Text('さつ'),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Divider(
-              color: HexColor('DBCCC4'),
-              thickness: 1,
-              height: 0,
-              indent: 0,
-              endIndent: 0,
-            ),
-            SizedBox(
-              height: 75,
-              child: Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: 50,
-                    child: Icon(
-                      Icons.cake,
-                      color: Colors.deepOrange.shade700,
-                      size: 24.0,
-                      semanticLabel: 'Text to announce in accessibility modes',
-                    ),
-                  ),
-                  const SizedBox(width: 110, child: Text('ねんれい')),
-                  SizedBox(
-                    width: 30,
-                    child: Text(
-                      AgeCalculator.age(state.currentBookshelf.ownerBirthday)
-                          .years
-                          .toString(),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  const Text('さい'),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Divider(
-              color: HexColor('DBCCC4'),
-              thickness: 1,
-              height: 0,
-              indent: 0,
-              endIndent: 0,
-            ),
-            SizedBox(
-              height: 75,
-              child: Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: 50,
-                    child: Icon(
-                      Icons.calendar_month,
-                      color: Colors.deepOrange.shade700,
-                      size: 24.0,
-                      semanticLabel: 'Text to announce in accessibility modes',
-                    ),
-                  ),
-                  const SizedBox(width: 110, child: Text('とうろくび')),
-                  Text(
-                    DateFormat('yyyy-MM-dd')
-                        .format(state.currentBookshelf.created),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Divider(
-              color: HexColor('DBCCC4'),
-              thickness: 1,
-              height: 0,
-              indent: 0,
-              endIndent: 0,
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-
-            ElevatedButton(
-                onPressed: () async {
-                  await notifier.logOut();
-                  await analytics.sendButtonEvent(buttonName: 'ログアウト');
-                  (() => Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute<App>(
-                        builder: (context) => const App(),
-                      ),
-                      (route) => false))();
-                },
-                child: Container(
-                  height: 50,
-                  width: 270,
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text('ログアウトする',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w100,
-                            fontSize: 16,
-                          )),
-                    ],
-                  ),
-                )),
-          ],
+          ),
         ),
       ),
     );
