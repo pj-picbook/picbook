@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/presentation/account_page/account_page_notifier.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/presentation/reauth_page/reauth_page.dart';
 
 class AccountPage extends HookConsumerWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -64,42 +63,8 @@ class AccountPage extends HookConsumerWidget {
             ),
             TextButton(
               onPressed: () {
-                showCupertinoDialog(
-                  context: (context),
-                  builder: (_) => CupertinoAlertDialog(
-                    title: const Text("アカウントを削除"),
-                    content:
-                        const Text("アカウントを削除するとログインできなくなります。アカウントを削除しますか？"),
-                    actions: [
-                      CupertinoDialogAction(
-                        child: TextButton(
-                          child: const Text(
-                            "キャンセル",
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context, rootNavigator: true).pop();
-                          },
-                        ),
-                      ),
-                      CupertinoDialogAction(
-                        child: TextButton(
-                          onPressed: () async {
-                            notifier.deleteUser();
-                          },
-                          child: const Text(
-                            "削除する",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const ReAuthPage()));
               },
               child: const Text(
                 "アカウントを削除する",
