@@ -186,3 +186,14 @@ open coverage/html/index.html
 ```
 
 ### Firebase関連
+
+
+## ビルド関連
+### Android
+```
+development
+flutter build apk --debug --flavor development
+
+production
+flutter build apk --release --flavor production
+```

@@ -5,21 +5,48 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "picbook",
+            "name": "picbook Development",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--debug",
+                "--flavor",
+                "development",
+            ]
+        },
+        {
+            "name": "picbook Production",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--release",
+                "--flavor",
+                "production",
+            ]
         },
         {
             "name": "picbook (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "args": [
+                "development",
+                "--flavor",
+                "development",
+            ]
         },
         {
             "name": "picbook (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "args": [
+                "development",
+                "--flavor",
+                "development",
+            ]
         }
     ]
 }
