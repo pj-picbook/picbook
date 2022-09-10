@@ -6,9 +6,13 @@ part 'account_page_state.freezed.dart';
 
 @freezed
 class AccountPageState with _$AccountPageState {
+  const AccountPageState._();
+
   factory AccountPageState({
     required User user,
   }) = _AccountPageState;
 
-  factory AccountPageState.initial() => AccountPageState(user: User.initial());
+  factory AccountPageState.initial() => AccountPageState(
+        user: User.initial(),
+      );
 }

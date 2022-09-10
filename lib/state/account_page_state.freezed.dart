@@ -101,10 +101,9 @@ class __$$_AccountPageStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AccountPageState
-    with DiagnosticableTreeMixin
-    implements _AccountPageState {
-  _$_AccountPageState({required this.user});
+class _$_AccountPageState extends _AccountPageState
+    with DiagnosticableTreeMixin {
+  _$_AccountPageState({required this.user}) : super._();
 
   @override
   final User user;
@@ -140,8 +139,9 @@ class _$_AccountPageState
       __$$_AccountPageStateCopyWithImpl<_$_AccountPageState>(this, _$identity);
 }
 
-abstract class _AccountPageState implements AccountPageState {
+abstract class _AccountPageState extends AccountPageState {
   factory _AccountPageState({required final User user}) = _$_AccountPageState;
+  _AccountPageState._() : super._();
 
   @override
   User get user;
