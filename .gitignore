@@ -45,3 +45,18 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# firebase sdk keys
+android/app/google-services.json
+android/app/**/google-services.json
+ios/Runner/GoogleService-Info.plist
+ios/Runner/**/GoogleService-Info.plist
+ios/firebase_app_id_file.json
+macos/Runner/GoogleService-Info.plist
+macos/firebase_app_id_file.json
+
+#fvm related
+.fvm/flutter_sdk
+
+# test related
+coverage/

@@ -1,0 +1,44 @@
+name: on pull request workflow
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+jobs:
+  flutter_test:
+    name: flutter analyze & test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2.3.0
+        with:
+          flutter-version: '3.0.5'
+      - name: Install packages
+        run: flutter pub get
+      - name: Linter
+        run: flutter analyze
+      - name: Test
+        run: flutter test
+      # - name: Test & Coverage
+      #   run: flutter test --no-test-assets --coverage --coverage-path=~/coverage/lcov.info
+      # - uses: codecov/codecov-action@v1
+      #   with:
+      #     token: ${{secrets.CODECOV_TOKEN}}
+      #     file: ~/coverage/lcov.info
+  firebase_test:
+    name: firebase unit test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '15.0.2'
+          java-package: jdk
+          architecture: x64
+      - name: Install Dependencies
+        working-directory: ./firebase
+        run: yarn
+      - name: Run Jest
+        working-directory: ./firebase
+        run: yarn test

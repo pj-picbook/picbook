@@ -1,0 +1,13 @@
+version: "3"
+services:
+  firebase-cli-container:
+    build: ./firebase-cli
+    container_name: firecli-container
+    volumes:
+      - ../firebase:/workdir
+    tty: true
+    ports:
+      - 4000:4000
+      - 5001:5001
+      - 8080:8080
+      - 9005:9005

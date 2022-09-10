@@ -1,0 +1,39 @@
+name: on push workflow
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  firebase_test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '15.0.2'
+          java-package: jdk
+          architecture: x64
+      - name: Install Dependencies
+        working-directory: ./firebase
+        run: yarn
+      - name: Run Jest
+        working-directory: ./firebase
+        run: yarn test
+  firebase_deploy:
+    name: Deploy only firestore:rules
+    needs: firebase_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@v2.2.2
+        with:
+          args: deploy --only firestore:rules
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_PATH: ./firebase
