@@ -22,7 +22,7 @@ class ReAuthPage extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'ログイン情報を入力してください。',
+              'パスワードを入力してください。',
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 14,
