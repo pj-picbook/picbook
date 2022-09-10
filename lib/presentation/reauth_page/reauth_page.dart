@@ -29,7 +29,7 @@ class ReAuthPage extends HookConsumerWidget {
                   fontWeight: FontWeight.bold),
             ),
             const SizedBox(
-              height: 30,
+              height: 100,
             ),
             const Align(
               alignment: Alignment.centerLeft,
@@ -56,7 +56,7 @@ class ReAuthPage extends HookConsumerWidget {
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 100,
             ),
             ElevatedButton(
                 onPressed: () {},
