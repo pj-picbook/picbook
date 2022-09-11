@@ -3,8 +3,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/presentation/book_detail/book_detail_page.dart';
 import 'package:picbook/presentation/bookshelf/bookshelf_notifier.dart';
-import 'package:picbook/presentation/searchbook/category.dart';
-import 'package:picbook/presentation/searchbook/category_result.dart';
 import 'package:picbook/state/book_notifier.dart';
 import 'package:picbook/presentation/searchbook/searchbook_page.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -54,8 +52,8 @@ class BookshelfPage extends HookConsumerWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: HexColor('AB4934'),
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => const CategoryPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const SearchBookPage()));
         },
         child: const Icon(Icons.add),
       ),

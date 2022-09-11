@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:picbook/infrastructure/rakuten_book_repository.dart';
 import 'package:picbook/presentation/book_detail/book_detail_page.dart';
 import 'package:picbook/state/book_notifier.dart';
 import '../../presentation/searchbook/searchbook_page_notifier.dart';
 import '../widget/book_box.dart';
 import '../widget/dialog.dart';
-import '../barcode_scanner_page/barcode_scanner_page.dart';
 
-class CategoryResultPage extends HookConsumerWidget {
-  const CategoryResultPage({Key? key}) : super(key: key);
+class SearchBookResultPage extends HookConsumerWidget {
+  const SearchBookResultPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(rakutenBookPageNotifierProvider);
-    final notifier = ref.watch(rakutenBookPageNotifierProvider.notifier);
-    final textFieldController = useTextEditingController();
     final bookNotifier = ref.watch(bookNotifierProvider.notifier);
 
     return Scaffold(
@@ -32,7 +27,7 @@ class CategoryResultPage extends HookConsumerWidget {
       body: Center(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Flexible(
