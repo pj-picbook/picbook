@@ -26,42 +26,14 @@ class CategoryResultPage extends HookConsumerWidget {
         ),
         centerTitle: true,
         title: const Text(
-          '検索画面',
+          '検索結果',
         ),
       ),
       body: Center(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              child: TextField(
-                decoration: InputDecoration(
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.brown,
-                    ),
-                  ),
-                  hintText: 'えほんのなまえをいれよう。',
-                  hintStyle:
-                      const TextStyle(fontSize: 17.0, color: Colors.brown),
-                  prefixIcon: const Icon(Icons.search, color: Colors.brown),
-                  suffixIcon: GestureDetector(
-                    child: const Icon(Icons.qr_code, color: Colors.brown),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BarcodeScannerPage()),
-                      );
-                    },
-                  ),
-                ),
-                onEditingComplete: () async {
-                  await notifier.fetch(
-                      searchType: SearchType.keyword,
-                      keyWord: 'textFieldController.text');
-                },
-              ),
+            SizedBox(
+              height: 20,
             ),
             Flexible(
               child: ListView.builder(

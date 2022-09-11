@@ -65,8 +65,7 @@ class CategoryPage extends HookConsumerWidget {
                     onEditingComplete: () async {
                       await notifier.fetch(
                           searchType: SearchType.keyword,
-                          keyWord: textFieldController
-                              .text); //TODO:orでクエリ絞り込みできる方法を調べる
+                          keyWord: textFieldController.text);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -74,11 +73,37 @@ class CategoryPage extends HookConsumerWidget {
                     },
                   ),
                 ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                          width: 300,
+                          height: 40,
+                          child: Text(
+                            'カテゴリからさがす',
+                            style: TextStyle(
+                                color: Colors.brown,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
                 GestureDetector(
                   onTap: () {
                     notifier.fetch(
                         searchType: SearchType.keyword,
-                        keyWord: '電車'); //TODO:orでクエリ絞り込みできる方法を調べる
+                        keyWord:
+                            'しょうぼうじどうしゃじぷた　 モノレールのたび バスがきました そらののりものえほん でんしゃはうたう いたずらきかんしゃちゅうちゅう うみののりものえほん ');
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -136,7 +161,8 @@ class CategoryPage extends HookConsumerWidget {
                   onTap: () {
                     notifier.fetch(
                         searchType: SearchType.keyword,
-                        keyWord: '動物'); //TODO:orでクエリ絞り込みできる方法を調べる
+                        keyWord:
+                            '100万回生きたねこ まりーちゃんとひつじ ねずみくんとかくれんぼ ぐるんぱのようちえん あかちゃんぐまはなにみたの？ サーカスくまさん かあさんふくろう スーホの白い馬 ');
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -167,7 +193,7 @@ class CategoryPage extends HookConsumerWidget {
                           const SizedBox(
                               width: 250,
                               child: Text(
-                                '動物',
+                                'どうぶつ',
                                 style: TextStyle(
                                     color: Colors.brown,
                                     fontWeight: FontWeight.bold,
@@ -195,7 +221,8 @@ class CategoryPage extends HookConsumerWidget {
                   onTap: () {
                     notifier.fetch(
                         searchType: SearchType.keyword,
-                        keyWord: 'ごはん'); //TODO:orでクエリ絞り込みできる方法を調べる
+                        keyWord:
+                            'あいうえおにぎり　おとうふやさん だめだめすいか 魚市場 30000このすいか なにをたべたかわかる？ ');
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -226,7 +253,7 @@ class CategoryPage extends HookConsumerWidget {
                           const SizedBox(
                               width: 250,
                               child: Text(
-                                'たべる',
+                                'たべる・たべもの',
                                 style: TextStyle(
                                     color: Colors.brown,
                                     fontWeight: FontWeight.bold,
@@ -254,7 +281,8 @@ class CategoryPage extends HookConsumerWidget {
                   onTap: () {
                     notifier.fetch(
                         searchType: SearchType.keyword,
-                        keyWord: 'からだ'); //TODO:orでクエリ絞り込みできる方法を調べる
+                        keyWord:
+                            'かさぶたくん おへそのひみつ あしにょきにょきにょき さっちゃんのまほうのて わたしのすてきなたびする目 歯がぬけた ミカちゃんのひだりて'); //TODO:orでクエリ絞り込みできる方法を調べる
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -313,7 +341,8 @@ class CategoryPage extends HookConsumerWidget {
                   onTap: () {
                     notifier.fetch(
                         searchType: SearchType.keyword,
-                        keyWord: 'むし'); //TODO:orでクエリ絞り込みできる方法を調べる
+                        keyWord:
+                            'なく虫ずかん せみとりめいじん イカタコつるつる ちいさいタネ さかなのなみだ だんまりこおろぎ むしのおんがくがっこう');
                     Navigator.push(
                         context,
                         MaterialPageRoute(
