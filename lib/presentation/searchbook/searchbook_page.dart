@@ -277,7 +277,7 @@ class SearchBookPage extends HookConsumerWidget {
                     notifier.fetch(
                         searchType: SearchType.keyword,
                         keyWord:
-                            'かさぶたくん おへそのひみつ あしにょきにょきにょき さっちゃんのまほうのて わたしのすてきなたびする目 歯がぬけた ミカちゃんのひだりて'); //TODO:orでクエリ絞り込みできる方法を調べる
+                            'かさぶたくん おへそのひみつ あしにょきにょきにょき さっちゃんのまほうのて わたしのすてきなたびする目 歯がぬけた ミカちゃんのひだりて');
                     Navigator.push(
                         context,
                         MaterialPageRoute(
