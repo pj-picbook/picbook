@@ -189,11 +189,27 @@ open coverage/html/index.html
 
 
 ## ビルド関連
-### Android
+### ビルドコマンド
 ```
 development
 flutter build apk --debug --flavor development
 
 production
 flutter build apk --release --flavor production
+```
+
+### iOS　
+
+### コマンド叩く前に
+「Runner > Runner > Firebase 」に「GoogleService-Info-Development.plist」と「GoogleService-Info-Production.plist」を配置してください。
+Firebaseのコンソールの各画面から「GoogleService-Info.plist」としてDLできるのでリネームをしてください。
+
+
+### ビルドコマンド
+```
+development
+flutter build ios --debug --flavor development
+
+production
+flutter build ios --release --flavor production
 ```
