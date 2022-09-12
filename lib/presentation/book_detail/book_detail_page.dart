@@ -95,6 +95,28 @@ class BookDetailPage extends HookConsumerWidget {
                       ],
                     ),
                   )),
+              const SizedBox(
+                height: 5,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    bookNotifier.registerBook(book: bookState);
+                    showAlertDialog(ref, title: '絵本の追加', content: '絵本を追加しました。');
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.delete),
+                        Text('削除する',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w100,
+                              fontSize: 16,
+                            )),
+                      ],
+                    ),
+                  )),
             ]),
           )
         ]),
