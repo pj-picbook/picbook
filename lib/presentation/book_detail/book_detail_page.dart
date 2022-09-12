@@ -100,8 +100,8 @@ class BookDetailPage extends HookConsumerWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    bookNotifier.registerBook(book: bookState);
-                    showAlertDialog(ref, title: '絵本の追加', content: '絵本を追加しました。');
+                    bookNotifier.deleteBook(book: bookState);
+                    showAlertDialog(ref, title: '絵本の削除', content: '絵本を削除しました。');
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15),
