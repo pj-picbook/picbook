@@ -68,6 +68,8 @@ class BooksRepository {
       'smallImageUrl': json['smallImageUrl'],
       'mediumImageUrl': json['mediumImageUrl'],
       'largeImageUrl': json['largeImageUrl'],
+      'registeredDateTime': json['registeredDateTime'],
+      // TODO:'history': json['history'],
     };
   }
 }
