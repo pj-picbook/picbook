@@ -73,9 +73,6 @@ class ReAuthPage extends HookConsumerWidget {
                     ScaffoldMessenger.of(context)
                         .showSnackBar(SnackBar(content: Text(e.toString())));
                   }
-
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("アカウントを削除しました")));
                 },
                 child: Container(
                   height: 50,
