@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/common/logger_provider.dart';
+import 'package:picbook/presentation/reauth_page/reauth_page_notifier.dart';
 
 class ReAuthPage extends HookConsumerWidget {
   const ReAuthPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(reAuthNotifierProvider.notifier);
+    final passwordController = useTextEditingController(text: "");
+    final logger = ref.read(loggerProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -46,8 +52,8 @@ class ReAuthPage extends HookConsumerWidget {
                 border: Border.all(color: Colors.brown, width: 0.5),
               ),
               child: TextFormField(
-                // controller: passwordController,
-                //onChanged: ((value) => {notifier.setPassword(value)}),
+                controller: passwordController,
+                onChanged: ((value) => {notifier.setPassword(value)}),
                 obscureText: true,
                 textAlign: TextAlign.center,
                 decoration: const InputDecoration(
@@ -59,7 +65,18 @@ class ReAuthPage extends HookConsumerWidget {
               height: 100,
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    await notifier.delete();
+                  } catch (e) {
+                    logger.e(e);
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(e.toString())));
+                  }
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("アカウントを削除しました")));
+                },
                 child: Container(
                   height: 50,
                   width: 270,
