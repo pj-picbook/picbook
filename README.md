@@ -191,6 +191,8 @@ open coverage/html/index.html
 ## ビルド関連
 
 ### Android ビルドコマンド
+
+コマンド叩く前に 「\android\app\src\development 」と「\android\app\src\production」に各環境の「google-services.json」を配置してください。
 ```
 development
 flutter build apk --debug --flavor development
