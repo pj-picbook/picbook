@@ -75,12 +75,12 @@ android {
     productFlavors {
         development {
             dimension "app"
-            resValue "string", "app_name", "com.example.picbook"
+            resValue "string", "app_name", "memory_debug"
             applicationId "com.example.picbook"
         }
         production {
             dimension "app"
-            resValue "string", "app_name", "com.picbook.prod"
+            resValue "string", "app_name", "memory"
             applicationId "com.picbook.prod"
         }
     }
