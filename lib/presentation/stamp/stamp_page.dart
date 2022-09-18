@@ -1,32 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
+import 'package:picbook/presentation/stamp/stamp_notifier.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class StampPage extends StatefulWidget {
+class StampPage extends HookConsumerWidget {
   const StampPage({Key? key}) : super(key: key);
 
   @override
-  State<StampPage> createState() => _StampPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(stampNotifierProvider);
+    final notifier = ref.watch(stampNotifierProvider.notifier);
 
-class _StampPageState extends State<StampPage> {
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
-  final sampleEvents = {
-    DateTime.utc(2022, 9, 16): [
-      'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/6638/9784909566638.jpg?_ex=120x120',
-      'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3217/9784267023217_1_4.jpg?_ex=120x120'
-    ],
-    DateTime.utc(2022, 9, 1): [
-      'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/6638/9784909566638.jpg?_ex=120x120',
-      'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3217/9784267023217_1_4.jpg?_ex=120x120'
-    ],
-  };
-  List<String> _selectedEvents = [];
+    useEffect(() {
+      Future<void> init() async {
+        await notifier.fetchAll();
+      }
 
-  @override
-  Widget build(BuildContext context) {
+      init();
+      return null;
+    }, []);
     return Scaffold(
       appBar: AppBar(title: const Text('読んだスタンプ')),
       body: Column(
@@ -115,31 +108,30 @@ class _StampPageState extends State<StampPage> {
               ),
               firstDay: DateTime.utc(2020, 1, 1),
               lastDay: DateTime.utc(2040, 1, 1),
-              focusedDay: _focusedDay,
+              focusedDay: state.focusedDay!,
               onDaySelected: (selectedDay, focusedDay) {
-                setState(() {
-                  _selectedDay = selectedDay;
-                  _focusedDay = focusedDay;
-                  _selectedEvents = sampleEvents[selectedDay] ?? [];
-                });
+                notifier.onDaySelected(
+                  selectedDay: selectedDay,
+                  focusedDay: focusedDay,
+                  books: state.events?[selectedDay] ?? [],
+                );
               },
               selectedDayPredicate: (day) {
-                return isSameDay(_selectedDay, day);
+                return isSameDay(state.selectedDay, day);
               },
               eventLoader: (date) {
-                return sampleEvents[date] ?? [];
+                return state.events?[date] ?? [];
               },
             ),
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: _selectedEvents.length,
+              itemCount: state.books?.length ?? 0,
               itemBuilder: (context, index) {
-                final event = _selectedEvents[index];
                 return Container(
                     padding: const EdgeInsets.all(60),
                     child: Image.network(
-                      event,
+                      state.books![index].largeImageUrl!,
                       fit: BoxFit.fill,
                     ));
               },

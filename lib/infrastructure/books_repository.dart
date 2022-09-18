@@ -31,6 +31,26 @@ class BooksRepository {
         .toList();
   }
 
+  Future<List<Book>> fetchAllOrderByRegisteredDateTime({
+    required String uid,
+    required String bookshelfId,
+  }) async {
+    final booksRef = _usersRef
+        .doc(uid)
+        .collection('bookshelfs')
+        .doc(bookshelfId)
+        .collection('books')
+        .orderBy('registeredDateTime');
+    final snapshot = await booksRef.get();
+    return snapshot.docs
+        .map(
+          (item) => Book.fromJson(
+            _jsonFromSnapshot(item),
+          ),
+        )
+        .toList();
+  }
+
   Future<void> create({
     required String uid,
     required String bookshelfId,
