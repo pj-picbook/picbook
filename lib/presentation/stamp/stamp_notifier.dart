@@ -42,7 +42,7 @@ class StampNotifier extends StateNotifier<StampState> {
       bookshelfId: bookshelfs[0].id, // TODO:本来は複数予定
     );
     Map<DateTime, List<Book>>? events = {};
-    books.forEach((book) {
+    for (Book book in books) {
       final registeredDateTime = DateTime.utc(
         book.registeredDateTime!.year,
         book.registeredDateTime!.month,
@@ -53,7 +53,7 @@ class StampNotifier extends StateNotifier<StampState> {
       } else {
         events[registeredDateTime]!.add(book);
       }
-    });
+    }
     state = state.copyWith(events: events);
   }
 
