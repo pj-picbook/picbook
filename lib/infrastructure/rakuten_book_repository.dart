@@ -75,6 +75,7 @@ class RakutenBookRepository {
         'keyword': searchText,
         'booksGenreId': '001003',
         'genrePath': '0',
+        'orFlag': '1',
       },
     );
   }
