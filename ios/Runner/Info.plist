@@ -47,5 +47,7 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<true/>
+		<key>NSCameraUsageDescription</key>
+		<string>絵本のISBNバーコードを読み取るため許可が必要です。</string>
 	</dict>
 </plist>
