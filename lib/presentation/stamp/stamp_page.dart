@@ -67,13 +67,11 @@ class StampPage extends HookConsumerWidget {
                 },
                 selectedBuilder: (context, day, focusedDay) {
                   return Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        boxShadow: const [
-                          BoxShadow(color: Colors.lime, blurRadius: 40)
-                        ]),
                     alignment: Alignment.topCenter,
-                    child: Text(day.day.toString()),
+                    child: Text(
+                      day.day.toString(),
+                      style: const TextStyle(color: Colors.brown),
+                    ),
                   );
                 },
                 todayBuilder: (context, day, focusedDay) {
