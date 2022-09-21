@@ -176,10 +176,6 @@ class MockAuthRepository extends _i1.Mock implements _i10.AuthRepository {
       Invocation.method(#logOut, []),
       returnValue: _i8.Future<void>.value(),
       returnValueForMissingStub: _i8.Future<void>.value()) as _i8.Future<void>);
-  @override
-  String convertAuthError(String? errorCode) =>
-      (super.noSuchMethod(Invocation.method(#convertAuthError, [errorCode]),
-          returnValue: '') as String);
 }
 
 /// A class which mocks [BookshelfRepository].
