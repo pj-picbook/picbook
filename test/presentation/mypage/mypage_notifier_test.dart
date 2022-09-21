@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/common/dummy_data.dart';
 import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
+import 'package:picbook/infrastructure/books_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
@@ -17,6 +18,7 @@ void main() {
   late MockUserRepository userRepository;
   late MockAuthRepository authRepository;
   late MockBookshelfRepository bookshelfRepository;
+  late MockBooksRepository booksRepository;
 
   setUp(() {
     container = overrideUserRepository();
@@ -27,6 +29,8 @@ void main() {
         container.read(authRepositoryProvider) as MockAuthRepository;
     bookshelfRepository =
         container.read(bookshelfRepositoryProvider) as MockBookshelfRepository;
+    booksRepository =
+        container.read(booksRepositoryProvider) as MockBooksRepository;
   });
 
   group('fetch', () {
@@ -38,6 +42,9 @@ void main() {
           .thenAnswer((_) => Future.value(dummyUser));
       when(bookshelfRepository.fetchAll(uid: 'test_uid'))
           .thenAnswer((_) => Future.value([dummyBookshelf]));
+      when(booksRepository.fetchAll(
+              uid: 'test_uid', bookshelfId: 'bookshelf_id'))
+          .thenAnswer((_) => Future.value(dummyBooks));
 
       // containerからnotifierを呼び出し
       final notifier = container.read(myPageNotifierProvider.notifier);
@@ -49,11 +56,15 @@ void main() {
       // stateに想定の情報が入っていることを検査
       expect(state.user, dummyUser);
       expect(state.currentBookshelf, dummyBookshelf);
+      expect(state.books, dummyBooks);
 
       // 各メソッドの呼ばれた回数を検査
       verify(authRepository.getUid()).called(1);
       verify(userRepository.findById(id: 'test_uid')).called(1);
       verify(bookshelfRepository.fetchAll(uid: 'test_uid')).called(1);
+      verify(booksRepository.fetchAll(
+              uid: 'test_uid', bookshelfId: 'bookshelf_id'))
+          .called(1);
     });
   });
 
