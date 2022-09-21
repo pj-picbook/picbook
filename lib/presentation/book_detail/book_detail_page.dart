@@ -95,6 +95,25 @@ class BookDetailPage extends HookConsumerWidget {
                       ],
                     ),
                   )),
+              const SizedBox(
+                height: 5,
+              ),
+              ElevatedButton(
+                  onPressed: () {},
+                  child: Container(
+                    padding: const EdgeInsets.all(15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.delete),
+                        Text('削除する',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w100,
+                              fontSize: 16,
+                            )),
+                      ],
+                    ),
+                  )),
             ]),
           )
         ]),
