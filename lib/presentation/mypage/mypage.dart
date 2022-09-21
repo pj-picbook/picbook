@@ -8,6 +8,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:age_calculator/age_calculator.dart';
 import 'package:intl/intl.dart';
 
+import '../account_page/account_page.dart';
+
 class MyPage extends HookConsumerWidget {
   const MyPage({Key? key}) : super(key: key);
 
@@ -208,9 +210,43 @@ class MyPage extends HookConsumerWidget {
                   endIndent: 0,
                 ),
                 const SizedBox(
+                  height: 10,
+                ),
+                ListTile(
+                  minLeadingWidth: 10,
+                  leading: Icon(
+                    Icons.account_circle,
+                    color: Colors.deepOrange.shade700,
+                    size: 24.0,
+                  ),
+                  title: const Text(
+                    "アカウント情報",
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  trailing: const Icon(
+                    Icons.keyboard_arrow_right,
+                    color: Colors.black,
+                  ),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => const AccountPage()));
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Divider(
+                  color: HexColor('DBCCC4'),
+                  thickness: 1,
+                  height: 0,
+                  indent: 0,
+                  endIndent: 0,
+                ),
+                const SizedBox(
                   height: 25,
                 ),
-
                 ElevatedButton(
                     onPressed: () async {
                       await notifier.logOut();
