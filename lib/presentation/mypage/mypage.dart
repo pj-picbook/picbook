@@ -222,7 +222,6 @@ class MyPage extends HookConsumerWidget {
                   title: const Text(
                     "アカウント情報",
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
                   ),
@@ -244,6 +243,9 @@ class MyPage extends HookConsumerWidget {
                   height: 0,
                   indent: 0,
                   endIndent: 0,
+                ),
+                const SizedBox(
+                  height: 25,
                 ),
                 ElevatedButton(
                     onPressed: () async {
