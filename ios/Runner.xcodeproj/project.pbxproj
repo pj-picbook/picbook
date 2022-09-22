@@ -15,6 +15,7 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		D91AEC4D28DCA54D0029ED2F /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D91AEC4C28DCA54D0029ED2F /* Production.xcconfig */; };
 		D94D890628CE3D24006AF27C /* Firebase in Resources */ = {isa = PBXBuildFile; fileRef = D94D890528CE3D24006AF27C /* Firebase */; };
 		D94D890B28CE3FAC006AF27C /* Release-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D94D890828CE3FAC006AF27C /* Release-Production.xcconfig */; };
 		D94D890C28CE3FAC006AF27C /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D94D890928CE3FAC006AF27C /* Development.xcconfig */; };
@@ -58,6 +59,7 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF156B00467992F8B02A32EB /* Pods-Runner.release-production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-production.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-production.xcconfig"; sourceTree = "<group>"; };
+		D91AEC4C28DCA54D0029ED2F /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		D94D890528CE3D24006AF27C /* Firebase */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Firebase; sourceTree = "<group>"; };
 		D94D890828CE3FAC006AF27C /* Release-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Release-Production.xcconfig"; path = "Flutter/Release-Production.xcconfig"; sourceTree = "<group>"; };
 		D94D890928CE3FAC006AF27C /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Development.xcconfig; path = Flutter/Development.xcconfig; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				9740EEB21CF90195004384FC /* Debug.xcconfig */,
 				7AFA3C8E1D35360C0083082E /* Release.xcconfig */,
 				9740EEB31CF90195004384FC /* Generated.xcconfig */,
+				D91AEC4C28DCA54D0029ED2F /* Production.xcconfig */,
 			);
 			name = Flutter;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				752F2DCD2887716600725944 /* GoogleService-Info.plist in Resources */,
 				D94D890E28CE412B006AF27C /* Release.xcconfig in Resources */,
+				D91AEC4D28DCA54D0029ED2F /* Production.xcconfig in Resources */,
 				D94D890D28CE3FAC006AF27C /* Debug-Development.xcconfig in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				D94D890F28CE412F006AF27C /* Debug.xcconfig in Resources */,
@@ -439,7 +443,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.picbook;
+				PRODUCT_BUNDLE_IDENTIFIER = tokyo.picbook.picbook.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "memory-dev-";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -575,7 +579,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.picbook;
+				PRODUCT_BUNDLE_IDENTIFIER = tokyo.picbook.picbook.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "memory-dev-";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -601,7 +605,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.picbook;
+				PRODUCT_BUNDLE_IDENTIFIER = tokyo.picbook.picbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "memory-dev-";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -683,7 +687,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.picbook;
+				PRODUCT_BUNDLE_IDENTIFIER = tokyo.picbook.picbook.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "memory-dev-";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -763,7 +767,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.picbook;
+				PRODUCT_BUNDLE_IDENTIFIER = tokyo.picbook.picbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "memory-dev-";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
