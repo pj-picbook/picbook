@@ -51,18 +51,16 @@ class MyPage extends HookConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // Flexible(
-                //   child: ClipRRect(
-                //     borderRadius: BorderRadius.circular(150),
-                //     child: Image.network(
-                //       'https://i.pinimg.com/236x/ef/78/70/ef7870383f8475f8ce487fc9d19bc6fb---orange-illustration.jpg',
-                //       width: 150,
-                //       height: 150,
-                //     ),
-                //   ),
-                // ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(150),
+                  child: Image.network(
+                    'https://i.pinimg.com/236x/ef/78/70/ef7870383f8475f8ce487fc9d19bc6fb---orange-illustration.jpg',
+                    width: 100,
+                    height: 100,
+                  ),
+                ),
                 const SizedBox(
-                  width: 48,
+                  width: 50,
                   height: 20,
                 ),
                 Column(
