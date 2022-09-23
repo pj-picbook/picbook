@@ -79,12 +79,13 @@ fvm flutter pub run build_runner build --delete-conflicting-outputs
 
 - android
   - ファイル名：google-services.json
-  - 配置場所：android/app
+  - 配置場所：android/app、/android/app/src/development、/android/app/src/production
+  - 説明： devとprodからそれぞれfirebaseからDLする。prodは「/android/app/src/production」の方に置く。「android/app」に置くのはどちらでもよい。
 
 - iOS
   - ファイル名：GoogleService-Info.plist
   - 配置場所：ios/Runner
-
+  - 説明：「Runner > Runner > Firebase 」にそれぞれ環境に合う様に「GoogleService-Info-Development.plist」と「GoogleService-Info-Production.plist」を配置する。Runner > Runner配下にも「GoogleService-Info.plist」は置く必要がある。Xcodeがちゃんと認識する様にインポートしないとダメです(ただ、フォルダに配置じゃ認識されません）
 
 ### FVM（Flutter Version Management）のインストール方法
 - Mac https://zenn.dev/riscait/articles/flutter-version-management
