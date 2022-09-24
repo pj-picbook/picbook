@@ -36,7 +36,6 @@ class Book with _$Book {
     @TimestampConverter()
     @JsonKey(name: 'registeredDateTime')
         DateTime? registeredDateTime,
-    // TODO:@TimestampConverter() @JsonKey(name: 'history') List<DateTime>? history,
   }) = _Book;
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);

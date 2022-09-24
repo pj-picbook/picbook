@@ -33,7 +33,7 @@ class StampNotifier extends StateNotifier<StampState> {
           books: null,
         ));
 
-  Future<void> fetchAll() async {
+  Future<void> init() async {
     if (_baseAuthRepository.getUid() == null) return;
     final bookshelfs =
         await _bookshelfRepository.fetchAll(uid: _baseAuthRepository.getUid()!);

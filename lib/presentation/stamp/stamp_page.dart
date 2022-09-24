@@ -11,7 +11,7 @@ class StampPage extends HookConsumerWidget {
     final state = ref.watch(stampNotifierProvider);
     final notifier = ref.watch(stampNotifierProvider.notifier);
 
-    notifier.fetchAll();
+    notifier.init();
     return Scaffold(
       appBar: AppBar(title: const Text('読んだスタンプ')),
       body: SingleChildScrollView(
