@@ -62,8 +62,9 @@ mixin _$Book {
   String? get mediumImageUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'largeImageUrl')
   String? get largeImageUrl => throw _privateConstructorUsedError;
+  @TimestampConverter()
+  @JsonKey(name: 'registeredDateTime')
   DateTime? get registeredDateTime => throw _privateConstructorUsedError;
-  List<DateTime>? get history => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,29 +76,51 @@ abstract class $BookCopyWith<$Res> {
   factory $BookCopyWith(Book value, $Res Function(Book) then) =
       _$BookCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'isbn') String? isbn,
-      @JsonKey(name: 'titleKana') String? titleKana,
-      @JsonKey(name: 'subTitle') String? subTitle,
-      @JsonKey(name: 'subTitleKana') String? subTitleKana,
-      @JsonKey(name: 'seriesName') String? seriesName,
-      @JsonKey(name: 'seriesNameKana') String? seriesNameKana,
-      @JsonKey(name: 'contents') String? contents,
-      @JsonKey(name: 'contentsKana') String? contentsKana,
-      @JsonKey(name: 'author') String? author,
-      @JsonKey(name: 'authorKana') String? authorKana,
-      @JsonKey(name: 'publisherName') String? publisherName,
-      @JsonKey(name: 'size') String? size,
-      @JsonKey(name: 'itemCaption') String? itemCaption,
-      @JsonKey(name: 'salesDate') String? salesDate,
-      @JsonKey(name: 'itemPrice') int? itemPrice,
-      @JsonKey(name: 'itemUrl') String? itemUrl,
-      @JsonKey(name: 'affiliateUrl') String? affiliateUrl,
-      @JsonKey(name: 'smallImageUrl') String? smallImageUrl,
-      @JsonKey(name: 'mediumImageUrl') String? mediumImageUrl,
-      @JsonKey(name: 'largeImageUrl') String? largeImageUrl,
-      DateTime? registeredDateTime,
-      List<DateTime>? history});
+      {@JsonKey(name: 'title')
+          String? title,
+      @JsonKey(name: 'isbn')
+          String? isbn,
+      @JsonKey(name: 'titleKana')
+          String? titleKana,
+      @JsonKey(name: 'subTitle')
+          String? subTitle,
+      @JsonKey(name: 'subTitleKana')
+          String? subTitleKana,
+      @JsonKey(name: 'seriesName')
+          String? seriesName,
+      @JsonKey(name: 'seriesNameKana')
+          String? seriesNameKana,
+      @JsonKey(name: 'contents')
+          String? contents,
+      @JsonKey(name: 'contentsKana')
+          String? contentsKana,
+      @JsonKey(name: 'author')
+          String? author,
+      @JsonKey(name: 'authorKana')
+          String? authorKana,
+      @JsonKey(name: 'publisherName')
+          String? publisherName,
+      @JsonKey(name: 'size')
+          String? size,
+      @JsonKey(name: 'itemCaption')
+          String? itemCaption,
+      @JsonKey(name: 'salesDate')
+          String? salesDate,
+      @JsonKey(name: 'itemPrice')
+          int? itemPrice,
+      @JsonKey(name: 'itemUrl')
+          String? itemUrl,
+      @JsonKey(name: 'affiliateUrl')
+          String? affiliateUrl,
+      @JsonKey(name: 'smallImageUrl')
+          String? smallImageUrl,
+      @JsonKey(name: 'mediumImageUrl')
+          String? mediumImageUrl,
+      @JsonKey(name: 'largeImageUrl')
+          String? largeImageUrl,
+      @TimestampConverter()
+      @JsonKey(name: 'registeredDateTime')
+          DateTime? registeredDateTime});
 }
 
 /// @nodoc
@@ -132,7 +155,6 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
     Object? mediumImageUrl = freezed,
     Object? largeImageUrl = freezed,
     Object? registeredDateTime = freezed,
-    Object? history = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
@@ -223,10 +245,6 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
           ? _value.registeredDateTime
           : registeredDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      history: history == freezed
-          ? _value.history
-          : history // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>?,
     ));
   }
 }
@@ -237,29 +255,51 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       __$$_BookCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'isbn') String? isbn,
-      @JsonKey(name: 'titleKana') String? titleKana,
-      @JsonKey(name: 'subTitle') String? subTitle,
-      @JsonKey(name: 'subTitleKana') String? subTitleKana,
-      @JsonKey(name: 'seriesName') String? seriesName,
-      @JsonKey(name: 'seriesNameKana') String? seriesNameKana,
-      @JsonKey(name: 'contents') String? contents,
-      @JsonKey(name: 'contentsKana') String? contentsKana,
-      @JsonKey(name: 'author') String? author,
-      @JsonKey(name: 'authorKana') String? authorKana,
-      @JsonKey(name: 'publisherName') String? publisherName,
-      @JsonKey(name: 'size') String? size,
-      @JsonKey(name: 'itemCaption') String? itemCaption,
-      @JsonKey(name: 'salesDate') String? salesDate,
-      @JsonKey(name: 'itemPrice') int? itemPrice,
-      @JsonKey(name: 'itemUrl') String? itemUrl,
-      @JsonKey(name: 'affiliateUrl') String? affiliateUrl,
-      @JsonKey(name: 'smallImageUrl') String? smallImageUrl,
-      @JsonKey(name: 'mediumImageUrl') String? mediumImageUrl,
-      @JsonKey(name: 'largeImageUrl') String? largeImageUrl,
-      DateTime? registeredDateTime,
-      List<DateTime>? history});
+      {@JsonKey(name: 'title')
+          String? title,
+      @JsonKey(name: 'isbn')
+          String? isbn,
+      @JsonKey(name: 'titleKana')
+          String? titleKana,
+      @JsonKey(name: 'subTitle')
+          String? subTitle,
+      @JsonKey(name: 'subTitleKana')
+          String? subTitleKana,
+      @JsonKey(name: 'seriesName')
+          String? seriesName,
+      @JsonKey(name: 'seriesNameKana')
+          String? seriesNameKana,
+      @JsonKey(name: 'contents')
+          String? contents,
+      @JsonKey(name: 'contentsKana')
+          String? contentsKana,
+      @JsonKey(name: 'author')
+          String? author,
+      @JsonKey(name: 'authorKana')
+          String? authorKana,
+      @JsonKey(name: 'publisherName')
+          String? publisherName,
+      @JsonKey(name: 'size')
+          String? size,
+      @JsonKey(name: 'itemCaption')
+          String? itemCaption,
+      @JsonKey(name: 'salesDate')
+          String? salesDate,
+      @JsonKey(name: 'itemPrice')
+          int? itemPrice,
+      @JsonKey(name: 'itemUrl')
+          String? itemUrl,
+      @JsonKey(name: 'affiliateUrl')
+          String? affiliateUrl,
+      @JsonKey(name: 'smallImageUrl')
+          String? smallImageUrl,
+      @JsonKey(name: 'mediumImageUrl')
+          String? mediumImageUrl,
+      @JsonKey(name: 'largeImageUrl')
+          String? largeImageUrl,
+      @TimestampConverter()
+      @JsonKey(name: 'registeredDateTime')
+          DateTime? registeredDateTime});
 }
 
 /// @nodoc
@@ -295,7 +335,6 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
     Object? mediumImageUrl = freezed,
     Object? largeImageUrl = freezed,
     Object? registeredDateTime = freezed,
-    Object? history = freezed,
   }) {
     return _then(_$_Book(
       title: title == freezed
@@ -386,10 +425,6 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
           ? _value.registeredDateTime
           : registeredDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      history: history == freezed
-          ? _value._history
-          : history // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>?,
     ));
   }
 }
@@ -398,31 +433,52 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Book extends _Book with DiagnosticableTreeMixin {
   _$_Book(
-      {@JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'isbn') this.isbn,
-      @JsonKey(name: 'titleKana') this.titleKana,
-      @JsonKey(name: 'subTitle') this.subTitle,
-      @JsonKey(name: 'subTitleKana') this.subTitleKana,
-      @JsonKey(name: 'seriesName') this.seriesName,
-      @JsonKey(name: 'seriesNameKana') this.seriesNameKana,
-      @JsonKey(name: 'contents') this.contents,
-      @JsonKey(name: 'contentsKana') this.contentsKana,
-      @JsonKey(name: 'author') this.author,
-      @JsonKey(name: 'authorKana') this.authorKana,
-      @JsonKey(name: 'publisherName') this.publisherName,
-      @JsonKey(name: 'size') this.size,
-      @JsonKey(name: 'itemCaption') this.itemCaption,
-      @JsonKey(name: 'salesDate') this.salesDate,
-      @JsonKey(name: 'itemPrice') this.itemPrice,
-      @JsonKey(name: 'itemUrl') this.itemUrl,
-      @JsonKey(name: 'affiliateUrl') this.affiliateUrl,
-      @JsonKey(name: 'smallImageUrl') this.smallImageUrl,
-      @JsonKey(name: 'mediumImageUrl') this.mediumImageUrl,
-      @JsonKey(name: 'largeImageUrl') this.largeImageUrl,
-      this.registeredDateTime,
-      final List<DateTime>? history})
-      : _history = history,
-        super._();
+      {@JsonKey(name: 'title')
+          this.title,
+      @JsonKey(name: 'isbn')
+          this.isbn,
+      @JsonKey(name: 'titleKana')
+          this.titleKana,
+      @JsonKey(name: 'subTitle')
+          this.subTitle,
+      @JsonKey(name: 'subTitleKana')
+          this.subTitleKana,
+      @JsonKey(name: 'seriesName')
+          this.seriesName,
+      @JsonKey(name: 'seriesNameKana')
+          this.seriesNameKana,
+      @JsonKey(name: 'contents')
+          this.contents,
+      @JsonKey(name: 'contentsKana')
+          this.contentsKana,
+      @JsonKey(name: 'author')
+          this.author,
+      @JsonKey(name: 'authorKana')
+          this.authorKana,
+      @JsonKey(name: 'publisherName')
+          this.publisherName,
+      @JsonKey(name: 'size')
+          this.size,
+      @JsonKey(name: 'itemCaption')
+          this.itemCaption,
+      @JsonKey(name: 'salesDate')
+          this.salesDate,
+      @JsonKey(name: 'itemPrice')
+          this.itemPrice,
+      @JsonKey(name: 'itemUrl')
+          this.itemUrl,
+      @JsonKey(name: 'affiliateUrl')
+          this.affiliateUrl,
+      @JsonKey(name: 'smallImageUrl')
+          this.smallImageUrl,
+      @JsonKey(name: 'mediumImageUrl')
+          this.mediumImageUrl,
+      @JsonKey(name: 'largeImageUrl')
+          this.largeImageUrl,
+      @TimestampConverter()
+      @JsonKey(name: 'registeredDateTime')
+          this.registeredDateTime})
+      : super._();
 
   factory _$_Book.fromJson(Map<String, dynamic> json) => _$$_BookFromJson(json);
 
@@ -490,19 +546,13 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
   @JsonKey(name: 'largeImageUrl')
   final String? largeImageUrl;
   @override
+  @TimestampConverter()
+  @JsonKey(name: 'registeredDateTime')
   final DateTime? registeredDateTime;
-  final List<DateTime>? _history;
-  @override
-  List<DateTime>? get history {
-    final value = _history;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Book(title: $title, isbn: $isbn, titleKana: $titleKana, subTitle: $subTitle, subTitleKana: $subTitleKana, seriesName: $seriesName, seriesNameKana: $seriesNameKana, contents: $contents, contentsKana: $contentsKana, author: $author, authorKana: $authorKana, publisherName: $publisherName, size: $size, itemCaption: $itemCaption, salesDate: $salesDate, itemPrice: $itemPrice, itemUrl: $itemUrl, affiliateUrl: $affiliateUrl, smallImageUrl: $smallImageUrl, mediumImageUrl: $mediumImageUrl, largeImageUrl: $largeImageUrl, registeredDateTime: $registeredDateTime, history: $history)';
+    return 'Book(title: $title, isbn: $isbn, titleKana: $titleKana, subTitle: $subTitle, subTitleKana: $subTitleKana, seriesName: $seriesName, seriesNameKana: $seriesNameKana, contents: $contents, contentsKana: $contentsKana, author: $author, authorKana: $authorKana, publisherName: $publisherName, size: $size, itemCaption: $itemCaption, salesDate: $salesDate, itemPrice: $itemPrice, itemUrl: $itemUrl, affiliateUrl: $affiliateUrl, smallImageUrl: $smallImageUrl, mediumImageUrl: $mediumImageUrl, largeImageUrl: $largeImageUrl, registeredDateTime: $registeredDateTime)';
   }
 
   @override
@@ -531,8 +581,7 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('smallImageUrl', smallImageUrl))
       ..add(DiagnosticsProperty('mediumImageUrl', mediumImageUrl))
       ..add(DiagnosticsProperty('largeImageUrl', largeImageUrl))
-      ..add(DiagnosticsProperty('registeredDateTime', registeredDateTime))
-      ..add(DiagnosticsProperty('history', history));
+      ..add(DiagnosticsProperty('registeredDateTime', registeredDateTime));
   }
 
   @override
@@ -573,8 +622,7 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
             const DeepCollectionEquality()
                 .equals(other.largeImageUrl, largeImageUrl) &&
             const DeepCollectionEquality()
-                .equals(other.registeredDateTime, registeredDateTime) &&
-            const DeepCollectionEquality().equals(other._history, _history));
+                .equals(other.registeredDateTime, registeredDateTime));
   }
 
   @JsonKey(ignore: true)
@@ -602,8 +650,7 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
         const DeepCollectionEquality().hash(smallImageUrl),
         const DeepCollectionEquality().hash(mediumImageUrl),
         const DeepCollectionEquality().hash(largeImageUrl),
-        const DeepCollectionEquality().hash(registeredDateTime),
-        const DeepCollectionEquality().hash(_history)
+        const DeepCollectionEquality().hash(registeredDateTime)
       ]);
 
   @JsonKey(ignore: true)
@@ -621,29 +668,51 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
 
 abstract class _Book extends Book {
   factory _Book(
-      {@JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'isbn') final String? isbn,
-      @JsonKey(name: 'titleKana') final String? titleKana,
-      @JsonKey(name: 'subTitle') final String? subTitle,
-      @JsonKey(name: 'subTitleKana') final String? subTitleKana,
-      @JsonKey(name: 'seriesName') final String? seriesName,
-      @JsonKey(name: 'seriesNameKana') final String? seriesNameKana,
-      @JsonKey(name: 'contents') final String? contents,
-      @JsonKey(name: 'contentsKana') final String? contentsKana,
-      @JsonKey(name: 'author') final String? author,
-      @JsonKey(name: 'authorKana') final String? authorKana,
-      @JsonKey(name: 'publisherName') final String? publisherName,
-      @JsonKey(name: 'size') final String? size,
-      @JsonKey(name: 'itemCaption') final String? itemCaption,
-      @JsonKey(name: 'salesDate') final String? salesDate,
-      @JsonKey(name: 'itemPrice') final int? itemPrice,
-      @JsonKey(name: 'itemUrl') final String? itemUrl,
-      @JsonKey(name: 'affiliateUrl') final String? affiliateUrl,
-      @JsonKey(name: 'smallImageUrl') final String? smallImageUrl,
-      @JsonKey(name: 'mediumImageUrl') final String? mediumImageUrl,
-      @JsonKey(name: 'largeImageUrl') final String? largeImageUrl,
-      final DateTime? registeredDateTime,
-      final List<DateTime>? history}) = _$_Book;
+      {@JsonKey(name: 'title')
+          final String? title,
+      @JsonKey(name: 'isbn')
+          final String? isbn,
+      @JsonKey(name: 'titleKana')
+          final String? titleKana,
+      @JsonKey(name: 'subTitle')
+          final String? subTitle,
+      @JsonKey(name: 'subTitleKana')
+          final String? subTitleKana,
+      @JsonKey(name: 'seriesName')
+          final String? seriesName,
+      @JsonKey(name: 'seriesNameKana')
+          final String? seriesNameKana,
+      @JsonKey(name: 'contents')
+          final String? contents,
+      @JsonKey(name: 'contentsKana')
+          final String? contentsKana,
+      @JsonKey(name: 'author')
+          final String? author,
+      @JsonKey(name: 'authorKana')
+          final String? authorKana,
+      @JsonKey(name: 'publisherName')
+          final String? publisherName,
+      @JsonKey(name: 'size')
+          final String? size,
+      @JsonKey(name: 'itemCaption')
+          final String? itemCaption,
+      @JsonKey(name: 'salesDate')
+          final String? salesDate,
+      @JsonKey(name: 'itemPrice')
+          final int? itemPrice,
+      @JsonKey(name: 'itemUrl')
+          final String? itemUrl,
+      @JsonKey(name: 'affiliateUrl')
+          final String? affiliateUrl,
+      @JsonKey(name: 'smallImageUrl')
+          final String? smallImageUrl,
+      @JsonKey(name: 'mediumImageUrl')
+          final String? mediumImageUrl,
+      @JsonKey(name: 'largeImageUrl')
+          final String? largeImageUrl,
+      @TimestampConverter()
+      @JsonKey(name: 'registeredDateTime')
+          final DateTime? registeredDateTime}) = _$_Book;
   _Book._() : super._();
 
   factory _Book.fromJson(Map<String, dynamic> json) = _$_Book.fromJson;
@@ -712,9 +781,9 @@ abstract class _Book extends Book {
   @JsonKey(name: 'largeImageUrl')
   String? get largeImageUrl;
   @override
+  @TimestampConverter()
+  @JsonKey(name: 'registeredDateTime')
   DateTime? get registeredDateTime;
-  @override
-  List<DateTime>? get history;
   @override
   @JsonKey(ignore: true)
   _$$_BookCopyWith<_$_Book> get copyWith => throw _privateConstructorUsedError;
