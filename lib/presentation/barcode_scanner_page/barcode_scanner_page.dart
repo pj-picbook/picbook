@@ -4,6 +4,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import '../../presentation/searchbook/searchbook_page_notifier.dart';
 import '../searchbook/searchbook_page.dart';
 import '../../infrastructure/rakuten_book_repository.dart';
+import '../../presentation/searchbook/searchbook_page_result.dart';
 
 class BarcodeScannerPage extends HookConsumerWidget {
   const BarcodeScannerPage({Key? key}) : super(key: key);
@@ -37,11 +38,15 @@ class BarcodeScannerPage extends HookConsumerWidget {
               // memo:何度も呼ばれるのでリターン
               isLoading = true;
               final String code = barcode.rawValue ?? '';
-              Navigator.push(
+              await notifier.fetch(
+                  searchType: SearchType.isbnjan, keyWord: code);
+              if (!notifier.mounted) return;
+              await Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SearchBookPage()),
+                MaterialPageRoute(
+                    builder: (context) => const SearchBookResultPage()),
               );
-              await notifier.fetch(searchType: SearchType.isbn, keyWord: code);
+              isLoading = false;
             }),
           ),
           Expanded(
