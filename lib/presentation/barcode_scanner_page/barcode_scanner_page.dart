@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import '../../presentation/searchbook/searchbook_page_notifier.dart';
-import '../searchbook/searchbook_page.dart';
 import '../../infrastructure/rakuten_book_repository.dart';
 import '../../presentation/searchbook/searchbook_page_result.dart';
 
