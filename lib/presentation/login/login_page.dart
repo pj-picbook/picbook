@@ -1,11 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/main.dart';
 import 'package:picbook/presentation/login/login_notifier.dart';
-import '../agreement_page/agreement_page.dart';
 
 class LogInPage extends HookConsumerWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -118,40 +116,6 @@ class LogInPage extends HookConsumerWidget {
                   )),
               const SizedBox(
                 height: 20.0,
-              ),
-              RichText(
-                text: TextSpan(
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  children: [
-                    const TextSpan(
-                      text: "パスワードを忘れた方は",
-                    ),
-                    TextSpan(
-                      text: "こちら",
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const AgreementPage(
-                                title: "お問い合わせフォーム",
-                                url:
-                                    "https://docs.google.com/forms/d/e/1FAIpQLSc1mHvSYh_bMLD6j5lZsBAdbP-jdViXPrJWbX_CSBMPZNbD0A/viewform",
-                              ),
-                            ),
-                          );
-                        },
-                      style: TextStyle(
-                        color: Colors.deepOrange.shade700,
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ],
-                ),
               ),
               const SizedBox(
                 height: 50.0,

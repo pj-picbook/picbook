@@ -59,7 +59,16 @@ class SignUpNotifier extends StateNotifier<SignUpFormState> {
     if (state.password.isEmpty) {
       throw "パスワードを入力してください";
     }
-    await _authRepository.signUp(email: state.email, password: state.password);
+    if (state.name.isEmpty) {
+      throw "なまえを入力してください";
+    }
+
+    await _authRepository.signUp(
+      email: state.email,
+      password: state.password,
+      name: state.name,
+      birthday: state.birthday,
+    );
     final uid = _authRepository.getUid();
 
     await _userRepository.create(
