@@ -259,6 +259,7 @@ class SignUpPage extends HookConsumerWidget {
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintStyle: TextStyle(fontSize: 13.0),
+                    hintText: '未入力の場合は、登録した日に設定されます',
                   ),
                 ),
               ),
