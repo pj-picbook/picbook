@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/common/logger_provider.dart';
-import 'package:picbook/presentation/widget/bottom_picker.dart';
+// import 'package:picbook/presentation/widget/bottom_picker.dart';
 import '../../main.dart';
 import '../agreement_page/agreement_page.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 import 'signup_notifier.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -19,7 +19,7 @@ class SignUpPage extends HookConsumerWidget {
     final notifier = ref.watch(signUpNotifierProvider.notifier);
     final emailController = useTextEditingController(text: "");
     final passwordController = useTextEditingController(text: "");
-    final birthdayController = useTextEditingController(text: "");
+    // final birthdayController = useTextEditingController(text: "");
     final logger = ref.read(loggerProvider);
     return Scaffold(
       appBar: AppBar(
