@@ -100,6 +100,29 @@ class BookDetailPage extends HookConsumerWidget {
               ),
               ElevatedButton(
                   onPressed: () async {
+                    await bookNotifier.readBook(book: bookState);
+                    showAlertDialog(ref,
+                        title: '読んだ絵本の追加', content: '読んだ絵本を追加しました。');
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.menu_book),
+                        Text('読んだ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w100,
+                              fontSize: 16,
+                            )),
+                      ],
+                    ),
+                  )),
+              const SizedBox(
+                height: 5,
+              ),
+              ElevatedButton(
+                  onPressed: () async {
                     //TODO:失敗した処理は別で考える
                     await bookNotifier.deleteBook(
                         book: bookState,
