@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
 import 'package:picbook/infrastructure/provider/analytics_provider.dart';
 import 'package:picbook/presentation/bottom_navigation/bottom_navigation_page.dart';
@@ -20,11 +21,11 @@ Future<void> main() async {
     //Flutterフレームワーク内でスローされた全てのエラーを自動的にキャッチする、クラッシュハンドラ
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
-    runApp(
-      const ProviderScope(
-        child: App(),
-      ),
-    );
+    initializeDateFormatting().then((_) => runApp(
+          const ProviderScope(
+            child: App(),
+          ),
+        ));
   },
       (error, stack) =>
           FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
