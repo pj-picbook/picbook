@@ -29,7 +29,7 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 32
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -47,7 +47,6 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.picbook"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         //minSdkVersion flutter.minSdkVersion
@@ -58,12 +57,35 @@ android {
     }
 
     buildTypes {
+
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+
+
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "app"
+
+    productFlavors {
+        development {
+            dimension "app"
+            resValue "string", "app_name", "memory_debug"
+            applicationId "tokyo.picbook.picbook.dev"
+        }
+        production {
+            dimension "app"
+            resValue "string", "app_name", "memory"
+            applicationId "tokyo.picbook.picbook"
+        }
+    }
+
 }
 
 flutter {
