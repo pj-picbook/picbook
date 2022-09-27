@@ -172,97 +172,97 @@ class SignUpPage extends HookConsumerWidget {
               const SizedBox(
                 height: 10.0,
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "生年月日",
-                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                height: 50,
-                width: 300,
-                decoration: BoxDecoration(
-                  color: Colors.white70,
-                  border: Border.all(color: Colors.brown, width: 0.5),
-                ),
-                child: TextFormField(
-                  readOnly: true,
-                  controller: birthdayController,
-                  onTap: () {
-                    showCupertinoModalPopup(
-                        context: context,
-                        builder: (context) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                decoration: const BoxDecoration(
-                                  color: Color(0xffffffff),
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: Color(0xff999999),
-                                      width: 0.0,
-                                    ),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    CupertinoButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0,
-                                        vertical: 5.0,
-                                      ),
-                                      child: const Text(
-                                        'キャンセル',
-                                        style: TextStyle(color: Colors.blue),
-                                      ),
-                                    ),
-                                    CupertinoButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0,
-                                        vertical: 5.0,
-                                      ),
-                                      child: const Text(
-                                        '追加',
-                                        style: TextStyle(color: Colors.blue),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              bottomPicker(
-                                CupertinoDatePicker(
-                                  mode: CupertinoDatePickerMode.date,
-                                  onDateTimeChanged: (DateTime newDateTime) {
-                                    notifier.setBirthday(newDateTime);
-                                    birthdayController.text =
-                                        DateFormat('yyyy-MM-dd')
-                                            .format(newDateTime)
-                                            .toString();
-                                  },
-                                ),
-                              ),
-                            ],
-                          );
-                        });
-                  },
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    hintStyle: TextStyle(fontSize: 13.0),
-                    hintText: '未入力の場合は、登録した日に設定されます',
-                  ),
-                ),
-              ),
+              // const Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: Text(
+              //     "生年月日",
+              //     style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+              //   ),
+              // ),
+              // Container(
+              //   height: 50,
+              //   width: 300,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white70,
+              //     border: Border.all(color: Colors.brown, width: 0.5),
+              //   ),
+              //   child: TextFormField(
+              //     readOnly: true,
+              //     controller: birthdayController,
+              //     onTap: () {
+              //       showCupertinoModalPopup(
+              //           context: context,
+              //           builder: (context) {
+              //             return Column(
+              //               mainAxisAlignment: MainAxisAlignment.end,
+              //               children: [
+              //                 Container(
+              //                   decoration: const BoxDecoration(
+              //                     color: Color(0xffffffff),
+              //                     border: Border(
+              //                       bottom: BorderSide(
+              //                         color: Color(0xff999999),
+              //                         width: 0.0,
+              //                       ),
+              //                     ),
+              //                   ),
+              //                   child: Row(
+              //                     mainAxisAlignment:
+              //                         MainAxisAlignment.spaceBetween,
+              //                     children: <Widget>[
+              //                       CupertinoButton(
+              //                         onPressed: () {
+              //                           Navigator.pop(context);
+              //                         },
+              //                         padding: const EdgeInsets.symmetric(
+              //                           horizontal: 16.0,
+              //                           vertical: 5.0,
+              //                         ),
+              //                         child: const Text(
+              //                           'キャンセル',
+              //                           style: TextStyle(color: Colors.blue),
+              //                         ),
+              //                       ),
+              //                       CupertinoButton(
+              //                         onPressed: () {
+              //                           Navigator.pop(context);
+              //                         },
+              //                         padding: const EdgeInsets.symmetric(
+              //                           horizontal: 16.0,
+              //                           vertical: 5.0,
+              //                         ),
+              //                         child: const Text(
+              //                           '追加',
+              //                           style: TextStyle(color: Colors.blue),
+              //                         ),
+              //                       )
+              //                     ],
+              //                   ),
+              //                 ),
+              //                 bottomPicker(
+              //                   CupertinoDatePicker(
+              //                     mode: CupertinoDatePickerMode.date,
+              //                     onDateTimeChanged: (DateTime newDateTime) {
+              //                       notifier.setBirthday(newDateTime);
+              //                       birthdayController.text =
+              //                           DateFormat('yyyy-MM-dd')
+              //                               .format(newDateTime)
+              //                               .toString();
+              //                     },
+              //                   ),
+              //                 ),
+              //               ],
+              //             );
+              //           });
+              //     },
+              //     textAlign: TextAlign.center,
+              //     decoration: const InputDecoration(
+              //       border: InputBorder.none,
+              //       hintStyle: TextStyle(fontSize: 13.0),
+              //       hintText: '未入力の場合は、登録した日に設定されます',
+              //     ),
+              //   ),
+              // ),
               const SizedBox(
                 height: 30.0,
               ),
