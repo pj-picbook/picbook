@@ -59,14 +59,9 @@ android {
         multiDexEnabled true
     }
 
-    buildTypes {
 
-        debug {
-            debuggable true
-            signingConfig signingConfigs.debug
-        }
-
-         release {
+    signingConfigs{
+        release {
             if (releaseKeystorePropertiesFile.exists()) {
                 def releaseKeystoreProperties = new Properties()
                 releaseKeystoreProperties.load(new FileInputStream(releaseKeystorePropertiesFile))
@@ -75,8 +70,18 @@ android {
                 storeFile file(releaseKeystoreProperties['storeFile'])
                 storePassword releaseKeystoreProperties['storePassword']
             }
-        }
+            }
+            }
 
+    buildTypes {
+
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+         release {
+            signingConfig signingConfigs.release
+        }
     }
 
     flavorDimensions "app"

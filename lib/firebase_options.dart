@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBz0udbUmMWFA1SGKrPgduAvYfDBwRqU5s',
-    appId: '1:485375588972:android:d954da5cc6d59a96d47649',
+    appId: '1:485375588972:android:44c95f5c71f3bfdcd47649',
     messagingSenderId: '485375588972',
     projectId: 'pj-picbook-pro',
     storageBucket: 'pj-picbook-pro.appspot.com',
@@ -63,12 +63,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBRCp82rVJmoiDsj0Rvp6cZ5bF6aXRA6nY',
-    appId: '1:485375588972:ios:fd2f17975baa0ea4d47649',
+    appId: '1:485375588972:ios:a3c6b37974825266d47649',
     messagingSenderId: '485375588972',
     projectId: 'pj-picbook-pro',
     storageBucket: 'pj-picbook-pro.appspot.com',
-    iosClientId: '485375588972-bl9lumbgc9ddesh59itdpd9oqggj2ulp.apps.googleusercontent.com',
-    iosBundleId: 'com.example.picbook',
+    iosClientId: '485375588972-mp0ustvht0pi59ri5fhvua0rhrmpl51j.apps.googleusercontent.com',
+    iosBundleId: 'tokyo.picbook.picbook.dev',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
