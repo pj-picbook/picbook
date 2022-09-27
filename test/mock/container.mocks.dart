@@ -179,6 +179,16 @@ class MockAuthRepository extends _i1.Mock implements _i10.AuthRepository {
       returnValue: _i8.Future<void>.value(),
       returnValueForMissingStub: _i8.Future<void>.value()) as _i8.Future<void>);
   @override
+  _i8.Future<void> deleteUser({String? password}) => (super.noSuchMethod(
+      Invocation.method(#deleteUser, [], {#password: password}),
+      returnValue: _i8.Future<void>.value(),
+      returnValueForMissingStub: _i8.Future<void>.value()) as _i8.Future<void>);
+  @override
+  _i8.Future<void> reAuth({String? password}) => (super.noSuchMethod(
+      Invocation.method(#reAuth, [], {#password: password}),
+      returnValue: _i8.Future<void>.value(),
+      returnValueForMissingStub: _i8.Future<void>.value()) as _i8.Future<void>);
+  @override
   String convertAuthError(String? errorCode) =>
       (super.noSuchMethod(Invocation.method(#convertAuthError, [errorCode]),
           returnValue: '') as String);
@@ -237,11 +247,28 @@ class MockBooksRepository extends _i1.Mock implements _i12.BooksRepository {
               returnValue: _i8.Future<List<_i13.Book>>.value(<_i13.Book>[]))
           as _i8.Future<List<_i13.Book>>);
   @override
+  _i8.Future<List<_i13.Book>> fetchAllOrderByRegisteredDateTime(
+          {String? uid, String? bookshelfId}) =>
+      (super.noSuchMethod(
+              Invocation.method(#fetchAllOrderByRegisteredDateTime, [],
+                  {#uid: uid, #bookshelfId: bookshelfId}),
+              returnValue: _i8.Future<List<_i13.Book>>.value(<_i13.Book>[]))
+          as _i8.Future<List<_i13.Book>>);
+  @override
   _i8.Future<void> create(
           {String? uid, String? bookshelfId, _i13.Book? book}) =>
       (super.noSuchMethod(
           Invocation.method(
               #create, [], {#uid: uid, #bookshelfId: bookshelfId, #book: book}),
+          returnValue: _i8.Future<void>.value(),
+          returnValueForMissingStub:
+              _i8.Future<void>.value()) as _i8.Future<void>);
+  @override
+  _i8.Future<void> delete(
+          {String? uid, String? bookshelfId, _i13.Book? book}) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #delete, [], {#uid: uid, #bookshelfId: bookshelfId, #book: book}),
           returnValue: _i8.Future<void>.value(),
           returnValueForMissingStub:
               _i8.Future<void>.value()) as _i8.Future<void>);
