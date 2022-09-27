@@ -167,12 +167,16 @@ class MockAuthRepository extends _i1.Mock implements _i10.AuthRepository {
           returnValueForMissingStub:
               _i8.Future<void>.value()) as _i8.Future<void>);
   @override
-  _i8.Future<void> signUp({String? email, String? password}) => (super
-      .noSuchMethod(
+  _i8.Future<void> signUp(
+          {String? email,
+          String? password,
+          String? name,
+          DateTime? birthday}) =>
+      (super.noSuchMethod(
           Invocation.method(#signUp, [], {#email: email, #password: password}),
           returnValue: _i8.Future<void>.value(),
-          returnValueForMissingStub: _i8.Future<void>.value()) as _i8
-      .Future<void>);
+          returnValueForMissingStub:
+              _i8.Future<void>.value()) as _i8.Future<void>);
   @override
   _i8.Future<void> logOut() => (super.noSuchMethod(
       Invocation.method(#logOut, []),
