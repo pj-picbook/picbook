@@ -121,48 +121,48 @@ class MyPage extends HookConsumerWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Divider(
-                  color: HexColor('DBCCC4'),
-                  thickness: 1,
-                  height: 0,
-                  indent: 0,
-                  endIndent: 0,
-                ),
-                SizedBox(
-                  height: 75,
-                  child: Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 50,
-                        child: Icon(
-                          Icons.cake,
-                          color: Colors.deepOrange.shade700,
-                          size: 24.0,
-                          semanticLabel:
-                              'Text to announce in accessibility modes',
-                        ),
-                      ),
-                      const SizedBox(width: 110, child: Text('ねんれい')),
-                      SizedBox(
-                        width: 30,
-                        child: Text(
-                          AgeCalculator.age(
-                                  state.currentBookshelf.ownerBirthday)
-                              .years
-                              .toString(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                      const Text('さい'),
-                    ],
-                  ),
-                ),
+                // const SizedBox(
+                //   height: 5,
+                // ),
+                // Divider(
+                //   color: HexColor('DBCCC4'),
+                //   thickness: 1,
+                //   height: 0,
+                //   indent: 0,
+                //   endIndent: 0,
+                // ),
+                // SizedBox(
+                //   height: 75,
+                //   child: Row(
+                //     children: <Widget>[
+                //       SizedBox(
+                //         width: 50,
+                //         child: Icon(
+                //           Icons.cake,
+                //           color: Colors.deepOrange.shade700,
+                //           size: 24.0,
+                //           semanticLabel:
+                //               'Text to announce in accessibility modes',
+                //         ),
+                //       ),
+                //       const SizedBox(width: 110, child: Text('ねんれい')),
+                //       SizedBox(
+                //         width: 30,
+                //         child: Text(
+                //           AgeCalculator.age(
+                //                   state.currentBookshelf.ownerBirthday)
+                //               .years
+                //               .toString(),
+                //           style: const TextStyle(
+                //             fontWeight: FontWeight.bold,
+                //             fontSize: 20,
+                //           ),
+                //         ),
+                //       ),
+                //       const Text('さい'),
+                //     ],
+                //   ),
+                // ),
                 const SizedBox(
                   height: 5,
                 ),
