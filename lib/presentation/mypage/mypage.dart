@@ -5,7 +5,7 @@ import 'package:picbook/infrastructure/analytics_service.dart';
 import 'package:picbook/main.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:age_calculator/age_calculator.dart';
+// import 'package:age_calculator/age_calculator.dart';
 import 'package:intl/intl.dart';
 
 import '../account_page/account_page.dart';
