@@ -70,8 +70,8 @@ android {
                 storeFile file(releaseKeystoreProperties['storeFile'])
                 storePassword releaseKeystoreProperties['storePassword']
             }
-            }
-            }
+        }
+    }
 
     buildTypes {
 
