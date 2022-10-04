@@ -7,7 +7,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
-import 'package:picbook/infrastructure/provider/analytics_provider.dart';
+// import 'package:picbook/infrastructure/provider/analytics_provider.dart';
 import 'package:picbook/presentation/bottom_navigation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/first_page/first_page.dart';
 import 'common/logger_provider.dart';
@@ -37,11 +37,11 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final logger = ref.read(loggerProvider);
-    final analytics = ref.watch(analyticsProvider);
+    // final analytics = ref.watch(analyticsProvider);
     final authState = ref.watch(authStateProvider);
     return MaterialApp(
       title: 'memory',
-      navigatorObservers: [analytics.observer],
+      // navigatorObservers: [analytics.observer],
       theme: ThemeData(
         primarySwatch: Colors.brown,
         scaffoldBackgroundColor: HexColor('F8F5EE'),
