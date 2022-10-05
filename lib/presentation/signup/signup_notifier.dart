@@ -66,7 +66,6 @@ class SignUpNotifier extends StateNotifier<SignUpFormState> {
     await _authRepository.signUp(
       email: state.email,
       password: state.password,
-      name: state.name,
     );
     final uid = _authRepository.getUid();
 

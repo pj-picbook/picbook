@@ -17,7 +17,6 @@ abstract class BaseAuthRepository {
   Future<void> signUp({
     required String email,
     required String password,
-    required String name,
   });
   String? getUid();
   Stream<User?> get authStateChange;
@@ -57,7 +56,6 @@ class AuthRepository implements BaseAuthRepository {
   Future<void> signUp({
     required String email,
     required String password,
-    required String name,
   }) async {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
