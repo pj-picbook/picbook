@@ -215,3 +215,7 @@ flutter build ios --debug --flavor development
 production
 flutter build ios --release --flavor production
 ```
+
+### リリース時のナンバリング
+
+- リースブランチでリジェクトによりビルド番号挙げないといけない場合は、パッチバージョン(x.x.xの3つめ)ではなく、ビルド番号(x.x.x+xの+xの部分)をインクリメントしていく
