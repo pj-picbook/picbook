@@ -46,6 +46,10 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Android key store
+android/app/bundlekey
+android/release_key.properties
+
 # firebase sdk keys
 android/app/google-services.json
 android/app/**/google-services.json
@@ -57,8 +61,17 @@ macos/firebase_app_id_file.json
 ios/Runner/Firebase/GoogleService-Info-Development.plist
 ios/Runner/Firebase/GoogleService-Info-Production.plist
 
+
+
+
+# appId
+lib/firebase_options.dart
+
+
 #fvm related
 .fvm/flutter_sdk
 
 # test related
 coverage/
+
+

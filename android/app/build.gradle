@@ -28,6 +28,8 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
+def releaseKeystorePropertiesFile = rootProject.file("release_key.properties")
+
 android {
     compileSdkVersion 32
     ndkVersion flutter.ndkVersion
@@ -54,6 +56,21 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
+    }
+
+
+    signingConfigs{
+        release {
+            if (releaseKeystorePropertiesFile.exists()) {
+                def releaseKeystoreProperties = new Properties()
+                releaseKeystoreProperties.load(new FileInputStream(releaseKeystorePropertiesFile))
+                keyAlias releaseKeystoreProperties['keyAlias']
+                keyPassword releaseKeystoreProperties['keyPassword']
+                storeFile file(releaseKeystoreProperties['storeFile'])
+                storePassword releaseKeystoreProperties['storePassword']
+            }
+        }
     }
 
     buildTypes {
@@ -62,12 +79,8 @@ android {
             debuggable true
             signingConfig signingConfigs.debug
         }
-
-
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+         release {
+            signingConfig signingConfigs.release
         }
     }
 

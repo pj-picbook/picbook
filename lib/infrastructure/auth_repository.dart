@@ -14,11 +14,10 @@ final authStateProvider =
 
 abstract class BaseAuthRepository {
   Future<void> logIn({required String email, required String password});
-  Future<void> signUp(
-      {required String email,
-      required String password,
-      required String name,
-      required DateTime birthday});
+  Future<void> signUp({
+    required String email,
+    required String password,
+  });
   String? getUid();
   Stream<User?> get authStateChange;
   Future<void> logOut();
@@ -57,8 +56,6 @@ class AuthRepository implements BaseAuthRepository {
   Future<void> signUp({
     required String email,
     required String password,
-    required String name,
-    required DateTime birthday,
   }) async {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
