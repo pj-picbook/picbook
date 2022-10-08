@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+// ignore: unused_import
 import 'package:flutter/foundation.dart';
 import 'package:picbook/domain/entity/book.dart';
 

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import '../../domain/entity/book.dart';
