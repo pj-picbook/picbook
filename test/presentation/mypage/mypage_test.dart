@@ -7,6 +7,7 @@ import 'package:picbook/common/dummy_data.dart';
 import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/infrastructure/analytics_service.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
+import 'package:picbook/infrastructure/books_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
 import 'package:picbook/presentation/mypage/mypage.dart';
@@ -21,6 +22,7 @@ void main() {
   late MockUserRepository userRepository;
   late MockAuthRepository authRepository;
   late MockBookshelfRepository bookshelfRepository;
+  late MockBooksRepository booksRepository;
 
   setUp(() {
     container = overrideContainer();
@@ -33,6 +35,8 @@ void main() {
         container.read(authRepositoryProvider) as MockAuthRepository;
     bookshelfRepository =
         container.read(bookshelfRepositoryProvider) as MockBookshelfRepository;
+    booksRepository =
+        container.read(booksRepositoryProvider) as MockBooksRepository;
   });
 
   group('mypage', () {
@@ -45,6 +49,9 @@ void main() {
           .thenAnswer((_) => Future.value(dummyUser));
       when(bookshelfRepository.fetchAll(uid: 'test_uid'))
           .thenAnswer((_) => Future.value([dummyBookshelf]));
+      when(booksRepository.fetchAll(
+              uid: 'test_uid', bookshelfId: 'bookshelf_id'))
+          .thenAnswer((_) => Future.value(dummyBooks));
 
       // Image.networkがUIにある場合はこれで包む
       await mockNetworkImagesFor(
@@ -59,7 +66,8 @@ void main() {
                 userRepositoryProvider.overrideWithValue(userRepository),
                 authRepositoryProvider.overrideWithValue(authRepository),
                 bookshelfRepositoryProvider
-                    .overrideWithValue(bookshelfRepository)
+                    .overrideWithValue(bookshelfRepository),
+                booksRepositoryProvider.overrideWithValue(booksRepository)
               ],
               // この辺は描画に必要なものを適当に作成
               child: MaterialApp(
@@ -79,6 +87,7 @@ void main() {
 
       expect(find.text(dummyBookshelf.owner), findsOneWidget);
       expect(find.text(dummyUser.id), findsOneWidget);
+      expect(find.text(dummyBooks.length.toString()), findsOneWidget);
     });
   });
 }

@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:picbook/common/logger_provider.dart';
 import 'package:picbook/infrastructure/analytics_service.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
+import 'package:picbook/infrastructure/books_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
 import 'package:picbook/infrastructure/provider/firebase_provider.dart';
 import 'package:picbook/infrastructure/rakuten_book_repository.dart';
@@ -19,13 +20,15 @@ import 'container.mocks.dart';
   UserRepository,
   AuthRepository,
   BookshelfRepository,
-  RakutenBookRepository
+  BooksRepository,
+  RakutenBookRepository,
 ])
 final mockLogger = MockLogger();
 final mockAnalyticsService = MockAnalyticsService();
 final mockUserRepository = MockUserRepository();
 final mockAuthRepository = MockAuthRepository();
 final mockBookshelfRepository = MockBookshelfRepository();
+final mockBooksRepository = MockBooksRepository();
 final mockRakutenBookRepository = MockRakutenBookRepository();
 
 ProviderContainer overrideContainer() {
@@ -43,6 +46,9 @@ ProviderContainer overrideContainer() {
     ),
     bookshelfRepositoryProvider.overrideWithProvider(
       Provider((ref) => mockBookshelfRepository),
+    ),
+    booksRepositoryProvider.overrideWithProvider(
+      Provider((ref) => mockBooksRepository),
     ),
     rakutenBookRepositoryProvider.overrideWithProvider(
       Provider((ref) => mockRakutenBookRepository),

@@ -1,23 +1,34 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:picbook/infrastructure/auth_repository.dart';
-import 'package:picbook/infrastructure/provider/analytics_provider.dart';
+// import 'package:picbook/infrastructure/provider/analytics_provider.dart';
 import 'package:picbook/presentation/bottom_navigation/bottom_navigation_page.dart';
 import 'package:picbook/presentation/first_page/first_page.dart';
-
 import 'common/logger_provider.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  //Flutterフレームワーク外の特定のゾーンでスローされたエラーをキャッチする、クラッシュハンドラ
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
 
-  runApp(
-    const ProviderScope(
-      child: App(),
-    ),
-  );
+    //Flutterフレームワーク内でスローされた全てのエラーを自動的にキャッチする、クラッシュハンドラ
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+    initializeDateFormatting().then((_) => runApp(
+          const ProviderScope(
+            child: App(),
+          ),
+        ));
+  },
+      (error, stack) =>
+          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
 }
 
 class App extends ConsumerWidget {
@@ -26,11 +37,11 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final logger = ref.read(loggerProvider);
-    final analytics = ref.watch(analyticsProvider);
+    // final analytics = ref.watch(analyticsProvider);
     final authState = ref.watch(authStateProvider);
     return MaterialApp(
       title: 'memory',
-      navigatorObservers: [analytics.observer],
+      // navigatorObservers: [analytics.observer],
       theme: ThemeData(
         primarySwatch: Colors.brown,
         scaffoldBackgroundColor: HexColor('F8F5EE'),
@@ -38,7 +49,7 @@ class App extends ConsumerWidget {
           backgroundColor: HexColor('F8F5EE'),
           titleTextStyle: TextStyle(
               color: HexColor('410000'),
-              fontSize: 22,
+              fontSize: 17,
               fontWeight: FontWeight.bold),
           elevation: 0.0,
         ),

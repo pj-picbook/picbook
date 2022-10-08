@@ -20,11 +20,11 @@ BookshelfHistory _$BookshelfHistoryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookshelfHistory {
-  @DateTimeConverter()
+  @TimestampConverter()
   @JsonKey(name: 'date')
-  DateTime get date => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'book')
-  Book get book => throw _privateConstructorUsedError;
+  Book? get book => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,10 +38,10 @@ abstract class $BookshelfHistoryCopyWith<$Res> {
           BookshelfHistory value, $Res Function(BookshelfHistory) then) =
       _$BookshelfHistoryCopyWithImpl<$Res>;
   $Res call(
-      {@DateTimeConverter() @JsonKey(name: 'date') DateTime date,
-      @JsonKey(name: 'book') Book book});
+      {@TimestampConverter() @JsonKey(name: 'date') DateTime? date,
+      @JsonKey(name: 'book') Book? book});
 
-  $BookCopyWith<$Res> get book;
+  $BookCopyWith<$Res>? get book;
 }
 
 /// @nodoc
@@ -62,17 +62,21 @@ class _$BookshelfHistoryCopyWithImpl<$Res>
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       book: book == freezed
           ? _value.book
           : book // ignore: cast_nullable_to_non_nullable
-              as Book,
+              as Book?,
     ));
   }
 
   @override
-  $BookCopyWith<$Res> get book {
-    return $BookCopyWith<$Res>(_value.book, (value) {
+  $BookCopyWith<$Res>? get book {
+    if (_value.book == null) {
+      return null;
+    }
+
+    return $BookCopyWith<$Res>(_value.book!, (value) {
       return _then(_value.copyWith(book: value));
     });
   }
@@ -86,11 +90,11 @@ abstract class _$$_BookshelfHistoryCopyWith<$Res>
       __$$_BookshelfHistoryCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@DateTimeConverter() @JsonKey(name: 'date') DateTime date,
-      @JsonKey(name: 'book') Book book});
+      {@TimestampConverter() @JsonKey(name: 'date') DateTime? date,
+      @JsonKey(name: 'book') Book? book});
 
   @override
-  $BookCopyWith<$Res> get book;
+  $BookCopyWith<$Res>? get book;
 }
 
 /// @nodoc
@@ -113,47 +117,38 @@ class __$$_BookshelfHistoryCopyWithImpl<$Res>
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       book: book == freezed
           ? _value.book
           : book // ignore: cast_nullable_to_non_nullable
-              as Book,
+              as Book?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_BookshelfHistory extends _BookshelfHistory
-    with DiagnosticableTreeMixin {
+
+@JsonSerializable(explicitToJson: true)
+class _$_BookshelfHistory extends _BookshelfHistory {
   _$_BookshelfHistory(
-      {@DateTimeConverter() @JsonKey(name: 'date') required this.date,
-      @JsonKey(name: 'book') required this.book})
+      {@TimestampConverter() @JsonKey(name: 'date') this.date,
+      @JsonKey(name: 'book') this.book})
       : super._();
 
   factory _$_BookshelfHistory.fromJson(Map<String, dynamic> json) =>
       _$$_BookshelfHistoryFromJson(json);
 
   @override
-  @DateTimeConverter()
+  @TimestampConverter()
   @JsonKey(name: 'date')
-  final DateTime date;
+  final DateTime? date;
   @override
   @JsonKey(name: 'book')
-  final Book book;
+  final Book? book;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'BookshelfHistory(date: $date, book: $book)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'BookshelfHistory'))
-      ..add(DiagnosticsProperty('date', date))
-      ..add(DiagnosticsProperty('book', book));
   }
 
   @override
@@ -187,20 +182,20 @@ class _$_BookshelfHistory extends _BookshelfHistory
 
 abstract class _BookshelfHistory extends BookshelfHistory {
   factory _BookshelfHistory(
-      {@DateTimeConverter() @JsonKey(name: 'date') required final DateTime date,
-      @JsonKey(name: 'book') required final Book book}) = _$_BookshelfHistory;
+      {@TimestampConverter() @JsonKey(name: 'date') final DateTime? date,
+      @JsonKey(name: 'book') final Book? book}) = _$_BookshelfHistory;
   _BookshelfHistory._() : super._();
 
   factory _BookshelfHistory.fromJson(Map<String, dynamic> json) =
       _$_BookshelfHistory.fromJson;
 
   @override
-  @DateTimeConverter()
+  @TimestampConverter()
   @JsonKey(name: 'date')
-  DateTime get date;
+  DateTime? get date;
   @override
   @JsonKey(name: 'book')
-  Book get book;
+  Book? get book;
   @override
   @JsonKey(ignore: true)
   _$$_BookshelfHistoryCopyWith<_$_BookshelfHistory> get copyWith =>

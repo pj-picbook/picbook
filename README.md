@@ -79,12 +79,13 @@ fvm flutter pub run build_runner build --delete-conflicting-outputs
 
 - android
   - ファイル名：google-services.json
-  - 配置場所：android/app
+  - 配置場所：android/app、/android/app/src/development、/android/app/src/production
+  - 説明： devとprodからそれぞれfirebaseからDLする。prodは「/android/app/src/production」の方に置く。「android/app」に置くのはどちらでもよい。
 
 - iOS
   - ファイル名：GoogleService-Info.plist
   - 配置場所：ios/Runner
-
+  - 説明：「Runner > Runner > Firebase 」にそれぞれ環境に合う様に「GoogleService-Info-Development.plist」と「GoogleService-Info-Production.plist」を配置する。Runner > Runner配下にも「GoogleService-Info.plist」は置く必要がある。Xcodeがちゃんと認識する様にインポートしないとダメです(ただ、フォルダに配置じゃ認識されません）
 
 ### FVM（Flutter Version Management）のインストール方法
 - Mac https://zenn.dev/riscait/articles/flutter-version-management
@@ -186,3 +187,35 @@ open coverage/html/index.html
 ```
 
 ### Firebase関連
+
+
+## ビルド関連
+
+### Android ビルドコマンド
+
+コマンド叩く前に 「\android\app\src\development 」と「\android\app\src\production」に各環境の「google-services.json」を配置してください。
+```
+development
+flutter build apk --debug --flavor development
+
+production
+flutter build apk --release --flavor production
+```
+
+### iOSビルドコマンド
+
+ コマンド叩く前に
+「Runner > Runner > Firebase 」に「GoogleService-Info-Development.plist」と「GoogleService-Info-Production.plist」を配置してください。
+Firebaseのコンソールの各画面から「GoogleService-Info.plist」としてDLできるのでリネームをしてください。
+
+```
+development
+flutter build ios --debug --flavor development
+
+production
+flutter build ios --release --flavor production
+```
+
+### リリース時のナンバリング
+
+- リースブランチでリジェクトによりビルド番号挙げないといけない場合は、パッチバージョン(x.x.xの3つめ)ではなく、ビルド番号(x.x.x+xの+xの部分)をインクリメントしていく

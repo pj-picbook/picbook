@@ -8,12 +8,14 @@ part of 'bookshelf_history.dart';
 
 _$_BookshelfHistory _$$_BookshelfHistoryFromJson(Map<String, dynamic> json) =>
     _$_BookshelfHistory(
-      date: const DateTimeConverter().fromJson(json['date'] as String),
-      book: Book.fromJson(json['book'] as Map<String, dynamic>),
+      date: const TimestampConverter().fromJson(json['date'] as Timestamp?),
+      book: json['book'] == null
+          ? null
+          : Book.fromJson(json['book'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_BookshelfHistoryToJson(_$_BookshelfHistory instance) =>
     <String, dynamic>{
-      'date': const DateTimeConverter().toJson(instance.date),
-      'book': instance.book,
+      'date': const TimestampConverter().toJson(instance.date),
+      'book': instance.book?.toJson(),
     };

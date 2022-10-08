@@ -12,6 +12,9 @@ class AgreementPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(title),
+          iconTheme: const IconThemeData(
+            color: Colors.brown, //change your color here
+          ),
         ),
         body: WebView(
           initialUrl: url,

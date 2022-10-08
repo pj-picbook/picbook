@@ -118,7 +118,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_User extends _User with DiagnosticableTreeMixin {
+class _$_User extends _User {
   _$_User(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'email') required this.email,
@@ -138,18 +138,8 @@ class _$_User extends _User with DiagnosticableTreeMixin {
   final String linkedAccount;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'User(id: $id, email: $email, linkedAccount: $linkedAccount)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'User'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('linkedAccount', linkedAccount));
   }
 
   @override

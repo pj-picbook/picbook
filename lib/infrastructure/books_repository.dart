@@ -31,6 +31,26 @@ class BooksRepository {
         .toList();
   }
 
+  Future<List<Book>> fetchAllOrderByRegisteredDateTime({
+    required String uid,
+    required String bookshelfId,
+  }) async {
+    final booksRef = _usersRef
+        .doc(uid)
+        .collection('bookshelfs')
+        .doc(bookshelfId)
+        .collection('books')
+        .orderBy('registeredDateTime');
+    final snapshot = await booksRef.get();
+    return snapshot.docs
+        .map(
+          (item) => Book.fromJson(
+            _jsonFromSnapshot(item),
+          ),
+        )
+        .toList();
+  }
+
   Future<void> create({
     required String uid,
     required String bookshelfId,
@@ -41,8 +61,22 @@ class BooksRepository {
         .collection('bookshelfs')
         .doc(bookshelfId)
         .collection('books')
-        .doc()
+        .doc(book.isbn)
         .set(book.toJson());
+  }
+
+  Future<void> delete({
+    required String uid,
+    required String bookshelfId,
+    required Book book,
+  }) async {
+    await _usersRef
+        .doc(uid)
+        .collection('bookshelfs')
+        .doc(bookshelfId)
+        .collection('books')
+        .doc(book.isbn)
+        .delete();
   }
 
   Map<String, dynamic> _jsonFromSnapshot<T extends DocumentSnapshot>(T json) {
@@ -68,6 +102,7 @@ class BooksRepository {
       'smallImageUrl': json['smallImageUrl'],
       'mediumImageUrl': json['mediumImageUrl'],
       'largeImageUrl': json['largeImageUrl'],
+      'registeredDateTime': json['registeredDateTime'],
     };
   }
 }

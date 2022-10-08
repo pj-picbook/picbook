@@ -122,7 +122,7 @@ class __$$_SignUpFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SignUpFormState extends _SignUpFormState with DiagnosticableTreeMixin {
+class _$_SignUpFormState extends _SignUpFormState {
   _$_SignUpFormState(
       {required this.name,
       required this.birthday,
@@ -140,19 +140,8 @@ class _$_SignUpFormState extends _SignUpFormState with DiagnosticableTreeMixin {
   final String password;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'SignUpFormState(name: $name, birthday: $birthday, email: $email, password: $password)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SignUpFormState'))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('birthday', birthday))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('password', password));
   }
 
   @override
