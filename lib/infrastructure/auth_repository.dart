@@ -14,10 +14,15 @@ final authStateProvider =
 
 abstract class BaseAuthRepository {
   Future<void> logIn({required String email, required String password});
-  Future<void> signUp({required String email, required String password});
+  Future<void> signUp({
+    required String email,
+    required String password,
+  });
   String? getUid();
   Stream<User?> get authStateChange;
   Future<void> logOut();
+  Future<void> deleteUser({required String password});
+  Future<void> reAuth({required String password});
 }
 
 class AuthRepository implements BaseAuthRepository {
@@ -48,7 +53,10 @@ class AuthRepository implements BaseAuthRepository {
   }
 
   @override
-  Future<void> signUp({required String email, required String password}) async {
+  Future<void> signUp({
+    required String email,
+    required String password,
+  }) async {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -66,6 +74,27 @@ class AuthRepository implements BaseAuthRepository {
       await auth.signOut();
     } catch (e) {
       _logger.e(e);
+    }
+  }
+
+  @override
+  Future<void> deleteUser({required String password}) async {
+    try {
+      await reAuth(password: password);
+      await auth.currentUser!.delete();
+    } on FirebaseAuthException catch (e) {
+      throw convertAuthError(e.code);
+    }
+  }
+
+  @override
+  Future<void> reAuth({required String password}) async {
+    try {
+      final AuthCredential authCredential = EmailAuthProvider.credential(
+          email: auth.currentUser!.email!, password: password);
+      auth.currentUser!.reauthenticateWithCredential(authCredential);
+    } on FirebaseAuthException catch (e) {
+      throw convertAuthError(e.code);
     }
   }
 

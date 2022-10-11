@@ -1,0 +1,4 @@
+FLUTTER_FLAVOR=Production
+PRODUCT_BUNDLE_IDENTIFIER=com.picbook.prod
+DISPLAY_NAME=memory
+FLUTTER_TARGET=lib/main.dart

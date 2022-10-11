@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:picbook/common/timstamp_converter.dart';
 
 part 'book.freezed.dart';
 part 'book.g.dart';
@@ -31,8 +33,9 @@ class Book with _$Book {
     @JsonKey(name: 'smallImageUrl') String? smallImageUrl,
     @JsonKey(name: 'mediumImageUrl') String? mediumImageUrl,
     @JsonKey(name: 'largeImageUrl') String? largeImageUrl,
-    DateTime? registeredDateTime,
-    List<DateTime>? history,
+    @TimestampConverter()
+    @JsonKey(name: 'registeredDateTime')
+        DateTime? registeredDateTime,
   }) = _Book;
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);

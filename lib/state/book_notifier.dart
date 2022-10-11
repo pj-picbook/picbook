@@ -37,10 +37,29 @@ class BookNotifier extends StateNotifier<Book> {
     if (_baseAuthRepository.getUid() == null) return;
     final bookshelfs =
         await _bookshelfRepository.fetchAll(uid: _baseAuthRepository.getUid()!);
+    book = book.copyWith(
+      registeredDateTime: DateTime.now(),
+      // TODO:history: [DateTime.now()],
+    );
     await _booksRepository.create(
       uid: _baseAuthRepository.getUid()!,
       bookshelfId: bookshelfs[0].id, // TODO:本来は複数予定
       book: book,
     );
+  }
+
+  Future<void> deleteBook({
+    required Book book,
+    required void Function() finishCallback,
+  }) async {
+    if (_baseAuthRepository.getUid() == null) return;
+    final bookshelfs =
+        await _bookshelfRepository.fetchAll(uid: _baseAuthRepository.getUid()!);
+    await _booksRepository.delete(
+      uid: _baseAuthRepository.getUid()!,
+      bookshelfId: bookshelfs[0].id, // TODO:本来は複数予定
+      book: book,
+    );
+    finishCallback();
   }
 }
