@@ -6,6 +6,7 @@ import 'package:picbook/presentation/bookshelf/bookshelf_notifier.dart';
 import 'package:picbook/state/book_notifier.dart';
 import 'package:picbook/presentation/searchbook/searchbook_page.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 /// 本棚画面クラス
 class BookshelfPage extends HookConsumerWidget {
@@ -28,11 +29,11 @@ class BookshelfPage extends HookConsumerWidget {
         child: StaggeredGrid.count(
           crossAxisCount: 2,
           children: List.generate(
-            state?.length ?? 0,
+            state.books.length,
             (index) => InkWell(
               onTap: () {
                 // 作品詳細画面に表示するデータをセットする
-                bookNotifier.set(state![index]);
+                bookNotifier.set(state.books[index]!);
                 Navigator.of(context).push(
                   MaterialPageRoute(
                       builder: (context) => const BookDetailPage()),
@@ -41,7 +42,7 @@ class BookshelfPage extends HookConsumerWidget {
               child: Container(
                 padding: const EdgeInsets.all(8),
                 child: Image.network(
-                  state![index].largeImageUrl!,
+                  state.books[index]!.largeImageUrl!,
                   fit: BoxFit.fill,
                 ),
               ),
