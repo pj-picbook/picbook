@@ -12,19 +12,20 @@ final accountPageNotifierProvider =
   );
 });
 
-///
 class AccountPageNotifier extends StateNotifier<AccountState> {
   final BaseAuthRepository _authRepository;
+  final Logger _logger;
 
-  final logger = Logger();
   AccountPageNotifier({
     required Logger logger,
     required BaseAuthRepository authRepository,
   })  : _authRepository = authRepository,
+        _logger = logger,
         super(AccountState());
 
-  void fetch() async {
+  void fetch() {
     final email = _authRepository.getEmail();
+    _logger.i('user email=$email');
     state = state.copyWith(email: email!);
   }
 }

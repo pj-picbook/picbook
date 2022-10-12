@@ -10,7 +10,7 @@ class AccountPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(accountPageNotifierProvider.notifier);
-    final state = ref.read(accountPageNotifierProvider);
+    final state = ref.watch(accountPageNotifierProvider);
 
     useEffect(() {
       notifier.fetch();
