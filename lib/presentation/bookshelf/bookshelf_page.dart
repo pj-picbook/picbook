@@ -18,7 +18,11 @@ class BookshelfPage extends HookConsumerWidget {
     final notifier = ref.watch(bookshelfNotifierProvider.notifier);
     final bookNotifier = ref.watch(bookNotifierProvider.notifier);
 
-    notifier.fetchAll();
+    useEffect(() {
+      notifier.fetchAll();
+
+      return null;
+    }, []);
 
     return Scaffold(
       appBar: AppBar(
