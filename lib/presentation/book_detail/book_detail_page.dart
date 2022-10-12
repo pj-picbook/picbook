@@ -77,8 +77,8 @@ class BookDetailPage extends HookConsumerWidget {
                 height: 15,
               ),
               ElevatedButton(
-                  onPressed: () async {
-                    await bookNotifier.registerBook(book: bookState);
+                  onPressed: () {
+                    bookNotifier.registerBook(book: bookState);
                     showAlertDialog(ref, title: '絵本の追加', content: '絵本を追加しました。');
                   },
                   child: Container(
@@ -88,29 +88,6 @@ class BookDetailPage extends HookConsumerWidget {
                       children: const [
                         Icon(Icons.add),
                         Text('登録する',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 16,
-                            )),
-                      ],
-                    ),
-                  )),
-              const SizedBox(
-                height: 5,
-              ),
-              ElevatedButton(
-                  onPressed: () async {
-                    await bookNotifier.readBook(book: bookState);
-                    showAlertDialog(ref,
-                        title: '読んだ絵本の追加', content: '読んだ絵本を追加しました。');
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.menu_book),
-                        Text('読んだ',
                             style: TextStyle(
                               fontWeight: FontWeight.w100,
                               fontSize: 16,
