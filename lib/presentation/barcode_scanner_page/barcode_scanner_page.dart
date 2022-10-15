@@ -56,7 +56,7 @@ class BarcodeScannerPage extends HookConsumerWidget {
               child: const Text(
                 '絵本についてるバーコードを読み取って検索しよう',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                 ),
                 textAlign: TextAlign.center,
               ),

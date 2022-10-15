@@ -105,8 +105,7 @@ class SearchBookPage extends HookConsumerWidget {
                             builder: (_) => const SearchBookResultPage()));
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(5.0),
-                    width: 380,
+                    margin: const EdgeInsets.all(5.0),
                     height: 60,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.brown),
@@ -147,10 +146,6 @@ class SearchBookPage extends HookConsumerWidget {
                   ),
                 ),
                 //カテゴリ「動物」はじまり
-                const SizedBox(
-                  width: 30,
-                  height: 10,
-                ),
 
                 GestureDetector(
                   onTap: () {
@@ -164,8 +159,7 @@ class SearchBookPage extends HookConsumerWidget {
                             builder: (_) => const SearchBookResultPage()));
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(5.0),
-                    width: 380,
+                    margin: const EdgeInsets.all(5.0),
                     height: 60,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.brown),
@@ -207,10 +201,6 @@ class SearchBookPage extends HookConsumerWidget {
                 ),
                 //カテゴリ「動物」終わり
                 //カテゴリ「たべもの」はじまり
-                const SizedBox(
-                  width: 30,
-                  height: 10,
-                ),
 
                 GestureDetector(
                   onTap: () {
@@ -224,8 +214,7 @@ class SearchBookPage extends HookConsumerWidget {
                             builder: (_) => const SearchBookResultPage()));
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(5.0),
-                    width: 380,
+                    margin: const EdgeInsets.all(5.0),
                     height: 60,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.brown),
@@ -267,10 +256,6 @@ class SearchBookPage extends HookConsumerWidget {
                 ),
                 //カテゴリ「食べ物」終わり
                 //カテゴリ「からだ」はじまり
-                const SizedBox(
-                  width: 30,
-                  height: 10,
-                ),
 
                 GestureDetector(
                   onTap: () {
@@ -284,8 +269,7 @@ class SearchBookPage extends HookConsumerWidget {
                             builder: (_) => const SearchBookResultPage()));
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(5.0),
-                    width: 380,
+                    margin: const EdgeInsets.all(5.0),
                     height: 60,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.brown),
@@ -327,10 +311,6 @@ class SearchBookPage extends HookConsumerWidget {
                 ),
                 //カテゴリ「からだ」終わり
                 //カテゴリ「いきもの・しょくぶつ」はじまり
-                const SizedBox(
-                  width: 30,
-                  height: 10,
-                ),
 
                 GestureDetector(
                   onTap: () {
@@ -344,8 +324,7 @@ class SearchBookPage extends HookConsumerWidget {
                             builder: (_) => const SearchBookResultPage()));
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(5.0),
-                    width: 380,
+                    margin: const EdgeInsets.all(5.0),
                     height: 60,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.brown),

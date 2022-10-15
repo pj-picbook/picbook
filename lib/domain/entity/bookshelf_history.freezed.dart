@@ -123,6 +123,7 @@ class __$$_BookshelfHistoryCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 @JsonSerializable()
 class _$_BookshelfHistory extends _BookshelfHistory
     with DiagnosticableTreeMixin {
