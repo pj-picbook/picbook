@@ -5,6 +5,7 @@ import 'package:picbook/state/book_notifier.dart';
 import '../../presentation/searchbook/searchbook_page_notifier.dart';
 import '../widget/book_box.dart';
 import '../widget/dialog.dart';
+import 'package:picbook/presentation/bookshelf/bookshelf_notifier.dart';
 
 class SearchBookResultPage extends HookConsumerWidget {
   const SearchBookResultPage({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class SearchBookResultPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(rakutenBookPageNotifierProvider);
     final bookNotifier = ref.watch(bookNotifierProvider.notifier);
+    final bookshelfNotifier = ref.read(bookshelfNotifierProvider.notifier);
+    final bookshelfState = ref.watch(bookshelfNotifierProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -38,11 +41,21 @@ class SearchBookResultPage extends HookConsumerWidget {
                   return InkWell(
                       child: BookBox(
                         onPressed: () async {
-                          bookNotifier.registerBook(book: item);
+                          if (bookshelfState.registered.contains(item.isbn)) {
+                            return;
+                          }
+
+                          await bookNotifier.registerBook(book: item);
+
+                          //TODO:登録できなかった場合どうするか
                           showAlertDialog(ref,
                               title: '絵本の追加', content: '絵本を追加しました。');
+
+                          await bookshelfNotifier.fetchAll();
                         },
                         book: item,
+                        isRegistered:
+                            bookshelfState.registered.contains(item.isbn),
                       ),
                       onTap: () {
                         bookNotifier.set(item);
@@ -53,7 +66,7 @@ class SearchBookResultPage extends HookConsumerWidget {
                       });
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
