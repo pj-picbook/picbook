@@ -13,9 +13,12 @@ class AccountPage extends HookConsumerWidget {
     final state = ref.watch(accountPageNotifierProvider);
 
     useEffect(() {
-      notifier.fetch();
-      return null;
-    });
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        notifier.fetch();
+      });
+
+      return;
+    }, const []);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

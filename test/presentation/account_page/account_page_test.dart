@@ -25,11 +25,9 @@ void main() {
   group('account_page', () {
     testWidgets('初期描画時にemailが表示されること', (tester) async {
       // ユーザー情報をmockにセット
-      when(authRepository.getEmail())
-          .thenAnswer((_) => 'test_email@example.com');
+      when(authRepository.getEmail()).thenReturn('test_email@example.com');
 
-      // Image.networkがUIにある場合はこれで包む
-      await mockNetworkImagesFor(
+      await tester.runAsync(
         () async {
           await tester.pumpWidget(
             ProviderScope(
