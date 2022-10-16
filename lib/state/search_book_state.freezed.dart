@@ -89,7 +89,7 @@ class __$$_SearchBookStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SearchBookState extends _SearchBookState with DiagnosticableTreeMixin {
+class _$_SearchBookState extends _SearchBookState {
   _$_SearchBookState({required final List<Book> books})
       : _books = books,
         super._();
@@ -102,16 +102,8 @@ class _$_SearchBookState extends _SearchBookState with DiagnosticableTreeMixin {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'SearchBookState(books: $books)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SearchBookState'))
-      ..add(DiagnosticsProperty('books', books));
   }
 
   @override

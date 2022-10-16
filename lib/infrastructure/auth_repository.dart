@@ -19,6 +19,7 @@ abstract class BaseAuthRepository {
     required String password,
   });
   String? getUid();
+  String? getEmail();
   Stream<User?> get authStateChange;
   Future<void> logOut();
   Future<void> deleteUser({required String password});
@@ -41,6 +42,11 @@ class AuthRepository implements BaseAuthRepository {
     } else {
       return auth.currentUser!.uid;
     }
+  }
+
+  @override
+  String? getEmail() {
+    return auth.currentUser!.email;
   }
 
   @override

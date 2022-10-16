@@ -128,7 +128,7 @@ class __$$_StampStateCopyWithImpl<$Res> extends _$StampStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StampState extends _StampState with DiagnosticableTreeMixin {
+class _$_StampState extends _StampState {
   _$_StampState(
       {required this.focusedDay,
       required this.selectedDay,
@@ -161,19 +161,8 @@ class _$_StampState extends _StampState with DiagnosticableTreeMixin {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'StampState(focusedDay: $focusedDay, selectedDay: $selectedDay, events: $events, books: $books)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'StampState'))
-      ..add(DiagnosticsProperty('focusedDay', focusedDay))
-      ..add(DiagnosticsProperty('selectedDay', selectedDay))
-      ..add(DiagnosticsProperty('events', events))
-      ..add(DiagnosticsProperty('books', books));
   }
 
   @override

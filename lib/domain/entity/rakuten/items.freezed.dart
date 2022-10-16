@@ -188,7 +188,7 @@ class __$$_ItemsCopyWithImpl<$Res> extends _$ItemsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Items extends _Items with DiagnosticableTreeMixin {
+class _$_Items extends _Items {
   _$_Items(
       {@JsonKey(name: 'Items') required final List<Item> items,
       @JsonKey(name: 'count') required this.count,
@@ -235,23 +235,8 @@ class _$_Items extends _Items with DiagnosticableTreeMixin {
   final int pageCount;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Items(items: $items, count: $count, page: $page, first: $first, last: $last, hits: $hits, carrier: $carrier, pageCount: $pageCount)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Items'))
-      ..add(DiagnosticsProperty('items', items))
-      ..add(DiagnosticsProperty('count', count))
-      ..add(DiagnosticsProperty('page', page))
-      ..add(DiagnosticsProperty('first', first))
-      ..add(DiagnosticsProperty('last', last))
-      ..add(DiagnosticsProperty('hits', hits))
-      ..add(DiagnosticsProperty('carrier', carrier))
-      ..add(DiagnosticsProperty('pageCount', pageCount));
   }
 
   @override

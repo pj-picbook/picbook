@@ -100,7 +100,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Item extends _Item with DiagnosticableTreeMixin {
+class _$_Item extends _Item {
   _$_Item({@JsonKey(name: 'Item') required this.book}) : super._();
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
@@ -110,16 +110,8 @@ class _$_Item extends _Item with DiagnosticableTreeMixin {
   final Book book;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Item(book: $book)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Item'))
-      ..add(DiagnosticsProperty('book', book));
   }
 
   @override

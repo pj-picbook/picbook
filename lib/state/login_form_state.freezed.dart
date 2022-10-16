@@ -100,7 +100,7 @@ class __$$_LoginFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoginFormState extends _LoginFormState with DiagnosticableTreeMixin {
+class _$_LoginFormState extends _LoginFormState {
   _$_LoginFormState({required this.email, required this.password}) : super._();
 
   @override
@@ -109,17 +109,8 @@ class _$_LoginFormState extends _LoginFormState with DiagnosticableTreeMixin {
   final String password;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginFormState(email: $email, password: $password)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginFormState'))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('password', password));
   }
 
   @override

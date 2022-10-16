@@ -431,7 +431,7 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Book extends _Book with DiagnosticableTreeMixin {
+class _$_Book extends _Book {
   _$_Book(
       {@JsonKey(name: 'title')
           this.title,
@@ -551,37 +551,8 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
   final DateTime? registeredDateTime;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Book(title: $title, isbn: $isbn, titleKana: $titleKana, subTitle: $subTitle, subTitleKana: $subTitleKana, seriesName: $seriesName, seriesNameKana: $seriesNameKana, contents: $contents, contentsKana: $contentsKana, author: $author, authorKana: $authorKana, publisherName: $publisherName, size: $size, itemCaption: $itemCaption, salesDate: $salesDate, itemPrice: $itemPrice, itemUrl: $itemUrl, affiliateUrl: $affiliateUrl, smallImageUrl: $smallImageUrl, mediumImageUrl: $mediumImageUrl, largeImageUrl: $largeImageUrl, registeredDateTime: $registeredDateTime)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Book'))
-      ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('isbn', isbn))
-      ..add(DiagnosticsProperty('titleKana', titleKana))
-      ..add(DiagnosticsProperty('subTitle', subTitle))
-      ..add(DiagnosticsProperty('subTitleKana', subTitleKana))
-      ..add(DiagnosticsProperty('seriesName', seriesName))
-      ..add(DiagnosticsProperty('seriesNameKana', seriesNameKana))
-      ..add(DiagnosticsProperty('contents', contents))
-      ..add(DiagnosticsProperty('contentsKana', contentsKana))
-      ..add(DiagnosticsProperty('author', author))
-      ..add(DiagnosticsProperty('authorKana', authorKana))
-      ..add(DiagnosticsProperty('publisherName', publisherName))
-      ..add(DiagnosticsProperty('size', size))
-      ..add(DiagnosticsProperty('itemCaption', itemCaption))
-      ..add(DiagnosticsProperty('salesDate', salesDate))
-      ..add(DiagnosticsProperty('itemPrice', itemPrice))
-      ..add(DiagnosticsProperty('itemUrl', itemUrl))
-      ..add(DiagnosticsProperty('affiliateUrl', affiliateUrl))
-      ..add(DiagnosticsProperty('smallImageUrl', smallImageUrl))
-      ..add(DiagnosticsProperty('mediumImageUrl', mediumImageUrl))
-      ..add(DiagnosticsProperty('largeImageUrl', largeImageUrl))
-      ..add(DiagnosticsProperty('registeredDateTime', registeredDateTime));
   }
 
   @override

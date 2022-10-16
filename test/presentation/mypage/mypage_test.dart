@@ -25,7 +25,7 @@ void main() {
   late MockBooksRepository booksRepository;
 
   setUp(() {
-    container = overrideUserRepository();
+    container = overrideContainer();
     mockLogger = container.read(loggerProvider) as MockLogger;
     mockAnalyticsService =
         container.read(analyticsServiceProvider) as MockAnalyticsService;

@@ -182,7 +182,7 @@ class __$$_BookshelfCopyWithImpl<$Res> extends _$BookshelfCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Bookshelf extends _Bookshelf with DiagnosticableTreeMixin {
+class _$_Bookshelf extends _Bookshelf {
   _$_Bookshelf(
       {@JsonKey(name: 'id')
           this.id = "",
@@ -237,21 +237,8 @@ class _$_Bookshelf extends _Bookshelf with DiagnosticableTreeMixin {
   final DateTime created;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Bookshelf(id: $id, owner: $owner, ownerBirthday: $ownerBirthday, books: $books, readHistories: $readHistories, created: $created)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Bookshelf'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('owner', owner))
-      ..add(DiagnosticsProperty('ownerBirthday', ownerBirthday))
-      ..add(DiagnosticsProperty('books', books))
-      ..add(DiagnosticsProperty('readHistories', readHistories))
-      ..add(DiagnosticsProperty('created', created));
   }
 
   @override

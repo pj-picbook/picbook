@@ -89,23 +89,15 @@ class __$$_ReAuthFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ReAuthFormState extends _ReAuthFormState with DiagnosticableTreeMixin {
+class _$_ReAuthFormState extends _ReAuthFormState {
   _$_ReAuthFormState({required this.password}) : super._();
 
   @override
   final String password;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'ReAuthFormState(password: $password)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ReAuthFormState'))
-      ..add(DiagnosticsProperty('password', password));
   }
 
   @override
