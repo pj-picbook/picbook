@@ -134,6 +134,13 @@ class BookDetailPage extends HookConsumerWidget {
               ),
               ElevatedButton(
                   onPressed: () async {
+                    if (bookshelfState.registered.contains(bookState.isbn) ==
+                        false) {
+                      showAlertDialog(ref,
+                          title: '読んだ絵本の追加に失敗', content: '本棚に登録してください。');
+                      return;
+                    }
+
                     await bookNotifier.readBook(book: bookState);
                     showAlertDialog(ref,
                         title: '読んだ絵本の追加', content: '読んだ絵本を追加しました。');
