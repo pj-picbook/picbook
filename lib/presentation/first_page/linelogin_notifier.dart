@@ -7,8 +7,9 @@ import '../../common/logger_provider.dart';
 final lineLoginNotifierProvider = StateNotifierProvider(
   (ref) {
     return LineLoginNotifier(
-        logger: ref.read(loggerProvider),
-        authRepository: ref.read(authRepositoryProvider));
+      logger: ref.read(loggerProvider),
+      authRepository: ref.read(authRepositoryProvider),
+    );
   },
 );
 
