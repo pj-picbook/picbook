@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_line_sdk/flutter_line_sdk.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -21,7 +22,12 @@ Future<void> main() async {
 
     //Flutterフレームワーク内でスローされた全てのエラーを自動的にキャッチする、クラッシュハンドラ
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-    LineSDK.instance.setup("channel_id").then((_) {});
+
+    // LINE CHANNELとの接続
+    await dotenv.load(fileName: ".env");
+    final channelId = dotenv.get('LINE_CHANNEL_ID');
+    LineSDK.instance.setup(channelId).then((_) {});
+
     initializeDateFormatting().then((_) => runApp(
           const ProviderScope(
             child: App(),

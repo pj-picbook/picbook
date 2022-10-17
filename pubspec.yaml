@@ -33,6 +33,7 @@ dependencies:
   firebase_crashlytics: ^2.8.8
   table_calendar: ^3.0.7
   flutter_line_sdk: ^2.3.0
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -53,3 +54,4 @@ flutter:
 
   assets:
     - lib/assets/images/splash.png
+    - .env

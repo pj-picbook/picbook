@@ -61,12 +61,8 @@ macos/firebase_app_id_file.json
 ios/Runner/Firebase/GoogleService-Info-Development.plist
 ios/Runner/Firebase/GoogleService-Info-Production.plist
 
-
-
-
 # appId
 lib/firebase_options.dart
-
 
 #fvm related
 .fvm/flutter_sdk
@@ -74,4 +70,5 @@ lib/firebase_options.dart
 # test related
 coverage/
 
+.env
 

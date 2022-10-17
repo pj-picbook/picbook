@@ -1,14 +1,17 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:picbook/presentation/agreement_page/agreement_page.dart';
+import 'package:picbook/presentation/first_page/linelogin_notifier.dart';
 import 'package:picbook/presentation/login/login_page.dart';
 import '../signup/signup_page.dart';
 
-class FirstPage extends StatelessWidget {
+class FirstPage extends HookConsumerWidget {
   const FirstPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.read(lineLoginNotifierProvider.notifier);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -72,6 +75,32 @@ class FirstPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Text("メールアドレスで登録",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w100,
+                          fontSize: 16,
+                        )),
+                  ],
+                ),
+              )),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            "LINEアカウントをお持ちの方",
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
+          ElevatedButton(
+              onPressed: () async {
+                await notifier.logIn();
+              },
+              child: Container(
+                height: 50,
+                width: 270,
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text("LINEアカウントでログイン",
                         style: TextStyle(
                           fontWeight: FontWeight.w100,
                           fontSize: 16,
