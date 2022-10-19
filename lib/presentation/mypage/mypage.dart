@@ -41,6 +41,7 @@ class MyPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('MyPage'),
+        centerTitle: true,
       ),
       body: Center(
         child: RefreshIndicator(
