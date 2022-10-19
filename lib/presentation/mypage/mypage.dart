@@ -9,6 +9,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 
 import '../account_page/account_page.dart';
+import '../widget/bookshelf_histry_bar_graph.dart';
 
 class MyPage extends HookConsumerWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -65,6 +66,12 @@ class MyPage extends HookConsumerWidget {
                   width: 48,
                   height: 20,
                 ),
+                if (state.bookshelfHistory.isNotEmpty)
+                  BookshelfHistoryBarChart(
+                    width: 380,
+                    height: 250,
+                    bookshelfHistory: state.bookshelfHistory,
+                  ),
                 Column(
                   children: <Widget>[
                     Text(state.currentBookshelf.owner,
