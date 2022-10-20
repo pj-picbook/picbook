@@ -7,10 +7,12 @@ class BookBox extends StatelessWidget {
   const BookBox({
     required this.book,
     required this.onPressed,
+    this.isRegistered = false,
     Key? key,
   }) : super(key: key);
   final Book book;
   final Future<void> Function() onPressed;
+  final bool isRegistered;
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +75,9 @@ class BookBox extends StatelessWidget {
                 onTap: () async {
                   await onPressed();
                 },
-                child: const Icon(
-                  Icons.add_box,
-                  color: Colors.brown,
+                child: Icon(
+                  isRegistered ? Icons.check_box : Icons.add_box,
+                  color: isRegistered ? Colors.brown[200] : Colors.brown,
                   size: 25,
                 ),
               ),
