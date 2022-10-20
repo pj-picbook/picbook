@@ -4,6 +4,7 @@ import 'package:flutter_line_sdk/flutter_line_sdk.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:picbook/common/logger_provider.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 final authRepositoryProvider = Provider<BaseAuthRepository>(
   (ref) => AuthRepository(
@@ -59,8 +60,15 @@ class AuthRepository implements BaseAuthRepository {
   @override
   Future<String?> logInWithLine() async {
     try {
-      final result = await _lineSdk.login();
-      return result.accessToken.idTokenRaw;
+      final result = await _lineSdk.login(scopes: ['profile', 'openid']);
+      _logger.i(result.accessToken.idTokenRaw);
+      final idToken = result.accessToken.idTokenRaw;
+      final callable = FirebaseFunctions.instanceFor(region: 'asia-northeast1')
+          .httpsCallable(
+        'pushMessage',
+      );
+      await callable.call({'id_token': idToken});
+      return idToken;
     } on PlatformException catch (e) {
       _logger.e(e);
       return null;
