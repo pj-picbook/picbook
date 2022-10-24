@@ -5,14 +5,10 @@ import '../../domain/entity/bookshelf_history.dart';
 
 class BookshelfHistoryBarChart extends StatelessWidget {
   const BookshelfHistoryBarChart({
-    this.width = 0,
-    this.height = 0,
     required this.bookshelfHistory,
     Key? key,
   }) : super(key: key);
 
-  final double width;
-  final double height;
   final List<BookshelfHistory> bookshelfHistory;
 
   @override
@@ -31,74 +27,82 @@ class BookshelfHistoryBarChart extends StatelessWidget {
               1; // MEMO:インクリ演算子使うとlintにひっかかる
     }
 
-    return SizedBox(
-      width: width,
-      height: height,
-      child: BarChart(
-        BarChartData(
-          maxY: 20,
-          minY: 0,
-          alignment: BarChartAlignment.spaceBetween,
-          barTouchData: BarTouchData(
-            enabled: false,
-          ),
-          titlesData: FlTitlesData(
-            show: true,
-            bottomTitles: AxisTitles(
-              sideTitles: SideTitles(
-                showTitles: true,
-                reservedSize: 40,
-                getTitlesWidget: (x, y) {
-                  return SideTitleWidget(
-                    axisSide: y.axisSide,
-                    space: 10.0,
-                    child: Text(
-                      '${x.toInt().toString()}月',
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
+    return AspectRatio(
+      aspectRatio: 1.8,
+      child: Container(
+        margin: const EdgeInsets.only(
+          top: 5,
+          bottom: 10,
+          left: 2.5,
+          right: 20,
+        ),
+        child: BarChart(
+          BarChartData(
+            maxY: 20,
+            minY: 0,
+            alignment: BarChartAlignment.spaceBetween,
+            barTouchData: BarTouchData(
+              enabled: false,
+            ),
+            titlesData: FlTitlesData(
+              show: true,
+              bottomTitles: AxisTitles(
+                sideTitles: SideTitles(
+                  showTitles: true,
+                  reservedSize: 35,
+                  getTitlesWidget: (x, y) {
+                    return SideTitleWidget(
+                      axisSide: y.axisSide,
+                      space: 10.0,
+                      child: Text(
+                        '${x.toInt().toString()}月',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
+              ),
+              leftTitles: AxisTitles(
+                sideTitles: SideTitles(
+                  showTitles: true,
+                  reservedSize: 30,
+                  getTitlesWidget: (x, y) {
+                    return SideTitleWidget(
+                      axisSide: y.axisSide,
+                      child: Text(
+                        x == 0 ? '' : x.toInt().toString(),
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              topTitles: AxisTitles(
+                sideTitles: SideTitles(showTitles: false),
+              ),
+              rightTitles: AxisTitles(
+                sideTitles: SideTitles(showTitles: false),
               ),
             ),
-            leftTitles: AxisTitles(
-              sideTitles: SideTitles(
-                showTitles: true,
-                reservedSize: 22,
-                getTitlesWidget: (x, y) {
-                  return SideTitleWidget(
-                    axisSide: y.axisSide,
-                    child: Text(
-                      x == 0 ? '' : x.toInt().toString(),
-                      style: const TextStyle(color: Colors.black, fontSize: 14),
-                    ),
-                  );
-                },
+            gridData: FlGridData(
+              show: false,
+              checkToShowHorizontalLine: (value) => value % 10 == 0,
+              getDrawingHorizontalLine: (value) => FlLine(
+                color: const Color.fromARGB(255, 214, 81, 9),
+                strokeWidth: 1,
               ),
+              drawVerticalLine: false,
             ),
-            topTitles: AxisTitles(
-              sideTitles: SideTitles(showTitles: false),
+            borderData: FlBorderData(
+              show: false,
             ),
-            rightTitles: AxisTitles(
-              sideTitles: SideTitles(showTitles: false),
-            ),
+            groupsSpace: 4,
+            barGroups: _getData(totalReadBook: totalReadBook),
           ),
-          gridData: FlGridData(
-            show: false,
-            checkToShowHorizontalLine: (value) => value % 10 == 0,
-            getDrawingHorizontalLine: (value) => FlLine(
-              color: const Color.fromARGB(255, 214, 81, 9),
-              strokeWidth: 1,
-            ),
-            drawVerticalLine: false,
-          ),
-          borderData: FlBorderData(
-            show: false,
-          ),
-          groupsSpace: 4,
-          barGroups: _getData(totalReadBook: totalReadBook),
         ),
       ),
     );
