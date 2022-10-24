@@ -6,6 +6,7 @@ import 'package:picbook/infrastructure/auth_repository.dart';
 import 'package:picbook/infrastructure/books_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
+import 'package:picbook/infrastructure/bookshelf_history_repository.dart';
 import 'package:picbook/presentation/mypage/mypage_notifier.dart';
 import 'package:mockito/mockito.dart';
 
@@ -19,6 +20,7 @@ void main() {
   late MockAuthRepository authRepository;
   late MockBookshelfRepository bookshelfRepository;
   late MockBooksRepository booksRepository;
+  late MockBookshelfHistoryRepository bookshelfHistoryRepository;
 
   setUp(() {
     container = overrideUserRepository();
@@ -31,6 +33,9 @@ void main() {
         container.read(bookshelfRepositoryProvider) as MockBookshelfRepository;
     booksRepository =
         container.read(booksRepositoryProvider) as MockBooksRepository;
+    bookshelfHistoryRepository =
+        container.read(bookshelfHistoryRepositoryProvider)
+            as MockBookshelfHistoryRepository;
   });
 
   group('fetch', () {
@@ -46,6 +51,10 @@ void main() {
               uid: 'test_uid', bookshelfId: 'bookshelf_id'))
           .thenAnswer((_) => Future.value(dummyBooks));
 
+      when(bookshelfHistoryRepository.fetchAllOrderByDate(
+              uid: 'test_uid', bookshelfId: 'bookshelf_id'))
+          .thenAnswer((_) => Future.value(dummyBookshelfHistories));
+
       // containerからnotifierを呼び出し
       final notifier = container.read(myPageNotifierProvider.notifier);
 
@@ -57,12 +66,16 @@ void main() {
       expect(state.user, dummyUser);
       expect(state.currentBookshelf, dummyBookshelf);
       expect(state.books, dummyBooks);
+      expect(state.bookshelfHistory, dummyBookshelfHistories);
 
       // 各メソッドの呼ばれた回数を検査
       verify(authRepository.getUid()).called(1);
       verify(userRepository.findById(id: 'test_uid')).called(1);
       verify(bookshelfRepository.fetchAll(uid: 'test_uid')).called(1);
       verify(booksRepository.fetchAll(
+              uid: 'test_uid', bookshelfId: 'bookshelf_id'))
+          .called(1);
+      verify(bookshelfHistoryRepository.fetchAllOrderByDate(
               uid: 'test_uid', bookshelfId: 'bookshelf_id'))
           .called(1);
     });

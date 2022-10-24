@@ -19,6 +19,8 @@ mixin _$MyPageState {
   User get user => throw _privateConstructorUsedError;
   Bookshelf get currentBookshelf => throw _privateConstructorUsedError;
   List<Book>? get books => throw _privateConstructorUsedError;
+  List<BookshelfHistory> get bookshelfHistory =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MyPageStateCopyWith<MyPageState> get copyWith =>
@@ -30,7 +32,11 @@ abstract class $MyPageStateCopyWith<$Res> {
   factory $MyPageStateCopyWith(
           MyPageState value, $Res Function(MyPageState) then) =
       _$MyPageStateCopyWithImpl<$Res>;
-  $Res call({User user, Bookshelf currentBookshelf, List<Book>? books});
+  $Res call(
+      {User user,
+      Bookshelf currentBookshelf,
+      List<Book>? books,
+      List<BookshelfHistory> bookshelfHistory});
 
   $UserCopyWith<$Res> get user;
   $BookshelfCopyWith<$Res> get currentBookshelf;
@@ -49,6 +55,7 @@ class _$MyPageStateCopyWithImpl<$Res> implements $MyPageStateCopyWith<$Res> {
     Object? user = freezed,
     Object? currentBookshelf = freezed,
     Object? books = freezed,
+    Object? bookshelfHistory = freezed,
   }) {
     return _then(_value.copyWith(
       user: user == freezed
@@ -63,6 +70,10 @@ class _$MyPageStateCopyWithImpl<$Res> implements $MyPageStateCopyWith<$Res> {
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
               as List<Book>?,
+      bookshelfHistory: bookshelfHistory == freezed
+          ? _value.bookshelfHistory
+          : bookshelfHistory // ignore: cast_nullable_to_non_nullable
+              as List<BookshelfHistory>,
     ));
   }
 
@@ -88,7 +99,11 @@ abstract class _$$_MyPageStateCopyWith<$Res>
           _$_MyPageState value, $Res Function(_$_MyPageState) then) =
       __$$_MyPageStateCopyWithImpl<$Res>;
   @override
-  $Res call({User user, Bookshelf currentBookshelf, List<Book>? books});
+  $Res call(
+      {User user,
+      Bookshelf currentBookshelf,
+      List<Book>? books,
+      List<BookshelfHistory> bookshelfHistory});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -111,6 +126,7 @@ class __$$_MyPageStateCopyWithImpl<$Res> extends _$MyPageStateCopyWithImpl<$Res>
     Object? user = freezed,
     Object? currentBookshelf = freezed,
     Object? books = freezed,
+    Object? bookshelfHistory = freezed,
   }) {
     return _then(_$_MyPageState(
       user: user == freezed
@@ -125,6 +141,10 @@ class __$$_MyPageStateCopyWithImpl<$Res> extends _$MyPageStateCopyWithImpl<$Res>
           ? _value._books
           : books // ignore: cast_nullable_to_non_nullable
               as List<Book>?,
+      bookshelfHistory: bookshelfHistory == freezed
+          ? _value._bookshelfHistory
+          : bookshelfHistory // ignore: cast_nullable_to_non_nullable
+              as List<BookshelfHistory>,
     ));
   }
 }
@@ -135,8 +155,10 @@ class _$_MyPageState extends _MyPageState {
   _$_MyPageState(
       {required this.user,
       required this.currentBookshelf,
-      required final List<Book>? books})
+      required final List<Book>? books,
+      required final List<BookshelfHistory> bookshelfHistory})
       : _books = books,
+        _bookshelfHistory = bookshelfHistory,
         super._();
 
   @override
@@ -152,9 +174,16 @@ class _$_MyPageState extends _MyPageState {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<BookshelfHistory> _bookshelfHistory;
+  @override
+  List<BookshelfHistory> get bookshelfHistory {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bookshelfHistory);
+  }
+
   @override
   String toString() {
-    return 'MyPageState(user: $user, currentBookshelf: $currentBookshelf, books: $books)';
+    return 'MyPageState(user: $user, currentBookshelf: $currentBookshelf, books: $books, bookshelfHistory: $bookshelfHistory)';
   }
 
   @override
@@ -165,7 +194,9 @@ class _$_MyPageState extends _MyPageState {
             const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality()
                 .equals(other.currentBookshelf, currentBookshelf) &&
-            const DeepCollectionEquality().equals(other._books, _books));
+            const DeepCollectionEquality().equals(other._books, _books) &&
+            const DeepCollectionEquality()
+                .equals(other._bookshelfHistory, _bookshelfHistory));
   }
 
   @override
@@ -173,7 +204,8 @@ class _$_MyPageState extends _MyPageState {
       runtimeType,
       const DeepCollectionEquality().hash(user),
       const DeepCollectionEquality().hash(currentBookshelf),
-      const DeepCollectionEquality().hash(_books));
+      const DeepCollectionEquality().hash(_books),
+      const DeepCollectionEquality().hash(_bookshelfHistory));
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +217,8 @@ abstract class _MyPageState extends MyPageState {
   factory _MyPageState(
       {required final User user,
       required final Bookshelf currentBookshelf,
-      required final List<Book>? books}) = _$_MyPageState;
+      required final List<Book>? books,
+      required final List<BookshelfHistory> bookshelfHistory}) = _$_MyPageState;
   _MyPageState._() : super._();
 
   @override
@@ -194,6 +227,8 @@ abstract class _MyPageState extends MyPageState {
   Bookshelf get currentBookshelf;
   @override
   List<Book>? get books;
+  @override
+  List<BookshelfHistory> get bookshelfHistory;
   @override
   @JsonKey(ignore: true)
   _$$_MyPageStateCopyWith<_$_MyPageState> get copyWith =>

@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:picbook/domain/entity/book.dart';
 import 'package:picbook/domain/entity/bookshelf.dart';
+import 'package:picbook/domain/entity/bookshelf_history.dart';
 import 'package:picbook/domain/entity/user.dart';
 
 part 'mypage_state.freezed.dart';
@@ -13,6 +14,7 @@ class MyPageState with _$MyPageState {
     required User user,
     required Bookshelf currentBookshelf,
     required List<Book>? books,
+    required List<BookshelfHistory> bookshelfHistory,
   }) = _MyPageState;
 
   factory MyPageState.initial() => MyPageState(
@@ -23,5 +25,6 @@ class MyPageState with _$MyPageState {
           created: DateTime.now(),
         ),
         books: [],
+        bookshelfHistory: [],
       );
 }

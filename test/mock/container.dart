@@ -8,6 +8,7 @@ import 'package:picbook/infrastructure/books_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
 import 'package:picbook/infrastructure/rakuten_book_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
+import 'package:picbook/infrastructure/bookshelf_history_repository.dart';
 
 import 'container.mocks.dart';
 
@@ -19,6 +20,7 @@ import 'container.mocks.dart';
   BookshelfRepository,
   BooksRepository,
   RakutenBookRepository,
+  BookshelfHistoryRepository
 ])
 final mockLogger = MockLogger();
 final mockAnalyticsService = MockAnalyticsService();
@@ -27,6 +29,7 @@ final mockAuthRepository = MockAuthRepository();
 final mockBookshelfRepository = MockBookshelfRepository();
 final mockBooksRepository = MockBooksRepository();
 final mockRakutenBookRepository = MockRakutenBookRepository();
+final mockBookshelfHistoryRepository = MockBookshelfHistoryRepository();
 
 ProviderContainer overrideUserRepository() {
   return ProviderContainer(overrides: [
@@ -49,6 +52,9 @@ ProviderContainer overrideUserRepository() {
     ),
     rakutenBookRepositoryProvider.overrideWithProvider(
       Provider((ref) => mockRakutenBookRepository),
+    ),
+    bookshelfHistoryRepositoryProvider.overrideWithProvider(
+      Provider((ref) => mockBookshelfHistoryRepository),
     ),
   ]);
 }
