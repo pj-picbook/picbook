@@ -84,7 +84,16 @@ class MyPage extends HookConsumerWidget {
                   ],
                 ),
               ),
-
+              Divider(
+                color: HexColor('DBCCC4'),
+                thickness: 1,
+                height: 0,
+                indent: 0,
+                endIndent: 0,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
               if (state.bookshelfHistory.isNotEmpty)
                 BookshelfHistoryBarChart(
                   bookshelfHistory: state.bookshelfHistory,
