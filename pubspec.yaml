@@ -48,7 +48,7 @@ dev_dependencies:
 flutter_icons:
   android: true 
   ios: false
-  image_path: "lib/assets/icon.png"
+  image_path: "lib/assets/images/icon.png"
 
 dependency_overrides:
   code_builder: ^4.2.0
