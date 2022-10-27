@@ -35,6 +35,8 @@ dependencies:
   flutter_line_sdk: ^2.3.0
   flutter_dotenv: ^5.0.2
   cloud_functions: ^3.3.3
+  fl_chart: ^0.55.2
+
 
 dev_dependencies:
   flutter_test:

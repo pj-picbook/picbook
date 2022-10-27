@@ -11,6 +11,7 @@ import 'package:picbook/infrastructure/books_repository.dart';
 import 'package:picbook/infrastructure/bookshelf_repository.dart';
 import 'package:picbook/infrastructure/user_repository.dart';
 import 'package:picbook/presentation/mypage/mypage.dart';
+import 'package:picbook/infrastructure/bookshelf_history_repository.dart';
 
 import '../../mock/container.dart';
 import '../../mock/container.mocks.dart';
@@ -23,6 +24,7 @@ void main() {
   late MockAuthRepository authRepository;
   late MockBookshelfRepository bookshelfRepository;
   late MockBooksRepository booksRepository;
+  late MockBookshelfHistoryRepository bookshelfHistoryRepository;
 
   setUp(() {
     container = overrideUserRepository();
@@ -37,6 +39,9 @@ void main() {
         container.read(bookshelfRepositoryProvider) as MockBookshelfRepository;
     booksRepository =
         container.read(booksRepositoryProvider) as MockBooksRepository;
+    bookshelfHistoryRepository =
+        container.read(bookshelfHistoryRepositoryProvider)
+            as MockBookshelfHistoryRepository;
   });
 
   group('mypage', () {
@@ -52,6 +57,9 @@ void main() {
       when(booksRepository.fetchAll(
               uid: 'test_uid', bookshelfId: 'bookshelf_id'))
           .thenAnswer((_) => Future.value(dummyBooks));
+      when(bookshelfHistoryRepository.fetchAllOrderByDate(
+              uid: 'test_uid', bookshelfId: 'bookshelf_id'))
+          .thenAnswer((_) => Future.value(dummyBookshelfHistories));
 
       // Image.networkがUIにある場合はこれで包む
       await mockNetworkImagesFor(
@@ -67,7 +75,9 @@ void main() {
                 authRepositoryProvider.overrideWithValue(authRepository),
                 bookshelfRepositoryProvider
                     .overrideWithValue(bookshelfRepository),
-                booksRepositoryProvider.overrideWithValue(booksRepository)
+                booksRepositoryProvider.overrideWithValue(booksRepository),
+                bookshelfHistoryRepositoryProvider
+                    .overrideWithValue(bookshelfHistoryRepository),
               ],
               // この辺は描画に必要なものを適当に作成
               child: MaterialApp(

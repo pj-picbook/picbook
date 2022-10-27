@@ -5,6 +5,7 @@ import 'package:picbook/state/book_notifier.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../widget/dialog.dart';
+import '../../presentation/bookshelf/bookshelf_notifier.dart';
 
 class BookDetailPage extends HookConsumerWidget {
   const BookDetailPage({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class BookDetailPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bookState = ref.watch(bookNotifierProvider);
     final bookNotifier = ref.watch(bookNotifierProvider.notifier);
+    final bookshelfNotifier = ref.read(bookshelfNotifierProvider.notifier);
+    final bookshelfState = ref.watch(bookshelfNotifierProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -77,20 +80,51 @@ class BookDetailPage extends HookConsumerWidget {
                 height: 15,
               ),
               ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary:
+                          bookshelfState.registered.contains(bookState.isbn)
+                              ? Colors.brown[200]
+                              : Colors.brown),
                   onPressed: () async {
+                    if (bookshelfState.registered.contains(bookState.isbn)) {
+                      return;
+                    }
+
                     await bookNotifier.registerBook(book: bookState);
                     showAlertDialog(ref, title: '絵本の追加', content: '絵本を追加しました。');
+                    await bookshelfNotifier.fetchAll();
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.add),
-                        Text('登録する',
+                      children: [
+                        bookshelfState.registered.contains(bookState.isbn)
+                            ? Icon(
+                                Icons.check,
+                                color: bookshelfState.registered
+                                        .contains(bookState.isbn)
+                                    ? Colors.brown[100]
+                                    : Colors.white,
+                              )
+                            : Icon(
+                                Icons.add,
+                                color: bookshelfState.registered
+                                        .contains(bookState.isbn)
+                                    ? Colors.brown[100]
+                                    : Colors.white,
+                              ),
+                        Text(
+                            bookshelfState.registered.contains(bookState.isbn)
+                                ? ' 登録済み'
+                                : '登録する',
                             style: TextStyle(
                               fontWeight: FontWeight.w100,
                               fontSize: 16,
+                              color: bookshelfState.registered
+                                      .contains(bookState.isbn)
+                                  ? Colors.brown[100]
+                                  : Colors.white,
                             )),
                       ],
                     ),
@@ -100,9 +134,17 @@ class BookDetailPage extends HookConsumerWidget {
               ),
               ElevatedButton(
                   onPressed: () async {
+                    if (bookshelfState.registered.contains(bookState.isbn) ==
+                        false) {
+                      showAlertDialog(ref,
+                          title: '読んだ絵本の追加に失敗', content: '本棚に登録してください。');
+                      return;
+                    }
+
                     await bookNotifier.readBook(book: bookState);
                     showAlertDialog(ref,
                         title: '読んだ絵本の追加', content: '読んだ絵本を追加しました。');
+                    await bookshelfNotifier.fetchAll();
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15),
@@ -126,10 +168,11 @@ class BookDetailPage extends HookConsumerWidget {
                     //TODO:失敗した処理は別で考える
                     await bookNotifier.deleteBook(
                         book: bookState,
-                        finishCallback: () {
+                        finishCallback: () async {
                           Navigator.pop(context);
                           showAlertDialog(ref,
                               title: '絵本の削除', content: '絵本を削除しました。');
+                          await bookshelfNotifier.fetchAll();
                         });
                   },
                   child: Container(

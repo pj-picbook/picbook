@@ -34,7 +34,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                 (tabItem) => Offstage(
                   offstage: _currentTab != tabItem,
                   child: Navigator(
-                    // key: navigatorKeys[tabItem],
+                    key: navigatorKeys[tabItem],
                     onGenerateRoute: (settings) {
                       return MaterialPageRoute<Widget>(
                         builder: (context) => tabItem.page,
