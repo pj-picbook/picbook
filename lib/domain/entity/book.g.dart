@@ -30,6 +30,8 @@ _$_Book _$$_BookFromJson(Map<String, dynamic> json) => _$_Book(
       largeImageUrl: json['largeImageUrl'] as String?,
       registeredDateTime: const TimestampConverter()
           .fromJson(json['registeredDateTime'] as Timestamp?),
+      history: const TimestampListConverter()
+          .fromJson(json['history'] as List<Timestamp>?),
     );
 
 Map<String, dynamic> _$$_BookToJson(_$_Book instance) => <String, dynamic>{
@@ -56,4 +58,5 @@ Map<String, dynamic> _$$_BookToJson(_$_Book instance) => <String, dynamic>{
       'largeImageUrl': instance.largeImageUrl,
       'registeredDateTime':
           const TimestampConverter().toJson(instance.registeredDateTime),
+      'history': const TimestampListConverter().toJson(instance.history),
     };

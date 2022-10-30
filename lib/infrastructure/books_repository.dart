@@ -103,6 +103,7 @@ class BooksRepository {
       'mediumImageUrl': json['mediumImageUrl'],
       'largeImageUrl': json['largeImageUrl'],
       'registeredDateTime': json['registeredDateTime'],
+      'history': json['history'],
     };
   }
 }

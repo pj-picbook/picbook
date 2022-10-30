@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:picbook/common/timstamp_converter.dart';
+import 'package:picbook/common/timstamp_list_converter.dart';
 
 part 'book.freezed.dart';
 part 'book.g.dart';
@@ -36,6 +37,7 @@ class Book with _$Book {
     @TimestampConverter()
     @JsonKey(name: 'registeredDateTime')
         DateTime? registeredDateTime,
+    @TimestampListConverter() @JsonKey(name: 'history') List<DateTime>? history,
   }) = _Book;
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);

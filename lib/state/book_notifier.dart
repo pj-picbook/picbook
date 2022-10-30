@@ -45,6 +45,7 @@ class BookNotifier extends StateNotifier<Book> {
         await _bookshelfRepository.fetchAll(uid: _baseAuthRepository.getUid()!);
     book = book.copyWith(
       registeredDateTime: DateTime.now(),
+      history: [DateTime.now()],
     );
     await _booksRepository.create(
       uid: _baseAuthRepository.getUid()!,
@@ -82,6 +83,23 @@ class BookNotifier extends StateNotifier<Book> {
     if (_baseAuthRepository.getUid() == null) return;
     final bookshelfs =
         await _bookshelfRepository.fetchAll(uid: _baseAuthRepository.getUid()!);
+
+    List<DateTime>? history = book.history!;
+    if (history.isEmpty) {
+      history = [DateTime.now()];
+    } else {
+      history.add(DateTime.now());
+    }
+    book = book.copyWith(
+      registeredDateTime: DateTime.now(),
+      history: history,
+    );
+    await _booksRepository.create(
+      uid: _baseAuthRepository.getUid()!,
+      bookshelfId: bookshelfs[0].id, // TODO:本来は複数予定
+      book: book,
+    );
+
     final bookshelfHistory = BookshelfHistory(date: DateTime.now(), book: book);
     await _bookshelfHistoryRepository.create(
       uid: _baseAuthRepository.getUid()!,

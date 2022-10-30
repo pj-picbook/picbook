@@ -65,6 +65,9 @@ mixin _$Book {
   @TimestampConverter()
   @JsonKey(name: 'registeredDateTime')
   DateTime? get registeredDateTime => throw _privateConstructorUsedError;
+  @TimestampListConverter()
+  @JsonKey(name: 'history')
+  List<DateTime>? get history => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -120,7 +123,10 @@ abstract class $BookCopyWith<$Res> {
           String? largeImageUrl,
       @TimestampConverter()
       @JsonKey(name: 'registeredDateTime')
-          DateTime? registeredDateTime});
+          DateTime? registeredDateTime,
+      @TimestampListConverter()
+      @JsonKey(name: 'history')
+          List<DateTime>? history});
 }
 
 /// @nodoc
@@ -155,6 +161,7 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
     Object? mediumImageUrl = freezed,
     Object? largeImageUrl = freezed,
     Object? registeredDateTime = freezed,
+    Object? history = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
@@ -245,6 +252,10 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
           ? _value.registeredDateTime
           : registeredDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      history: history == freezed
+          ? _value.history
+          : history // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>?,
     ));
   }
 }
@@ -299,7 +310,10 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
           String? largeImageUrl,
       @TimestampConverter()
       @JsonKey(name: 'registeredDateTime')
-          DateTime? registeredDateTime});
+          DateTime? registeredDateTime,
+      @TimestampListConverter()
+      @JsonKey(name: 'history')
+          List<DateTime>? history});
 }
 
 /// @nodoc
@@ -335,6 +349,7 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
     Object? mediumImageUrl = freezed,
     Object? largeImageUrl = freezed,
     Object? registeredDateTime = freezed,
+    Object? history = freezed,
   }) {
     return _then(_$_Book(
       title: title == freezed
@@ -425,6 +440,10 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
           ? _value.registeredDateTime
           : registeredDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      history: history == freezed
+          ? _value._history
+          : history // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>?,
     ));
   }
 }
@@ -477,8 +496,12 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
           this.largeImageUrl,
       @TimestampConverter()
       @JsonKey(name: 'registeredDateTime')
-          this.registeredDateTime})
-      : super._();
+          this.registeredDateTime,
+      @TimestampListConverter()
+      @JsonKey(name: 'history')
+          final List<DateTime>? history})
+      : _history = history,
+        super._();
 
   factory _$_Book.fromJson(Map<String, dynamic> json) => _$$_BookFromJson(json);
 
@@ -549,10 +572,20 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
   @TimestampConverter()
   @JsonKey(name: 'registeredDateTime')
   final DateTime? registeredDateTime;
+  final List<DateTime>? _history;
+  @override
+  @TimestampListConverter()
+  @JsonKey(name: 'history')
+  List<DateTime>? get history {
+    final value = _history;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Book(title: $title, isbn: $isbn, titleKana: $titleKana, subTitle: $subTitle, subTitleKana: $subTitleKana, seriesName: $seriesName, seriesNameKana: $seriesNameKana, contents: $contents, contentsKana: $contentsKana, author: $author, authorKana: $authorKana, publisherName: $publisherName, size: $size, itemCaption: $itemCaption, salesDate: $salesDate, itemPrice: $itemPrice, itemUrl: $itemUrl, affiliateUrl: $affiliateUrl, smallImageUrl: $smallImageUrl, mediumImageUrl: $mediumImageUrl, largeImageUrl: $largeImageUrl, registeredDateTime: $registeredDateTime)';
+    return 'Book(title: $title, isbn: $isbn, titleKana: $titleKana, subTitle: $subTitle, subTitleKana: $subTitleKana, seriesName: $seriesName, seriesNameKana: $seriesNameKana, contents: $contents, contentsKana: $contentsKana, author: $author, authorKana: $authorKana, publisherName: $publisherName, size: $size, itemCaption: $itemCaption, salesDate: $salesDate, itemPrice: $itemPrice, itemUrl: $itemUrl, affiliateUrl: $affiliateUrl, smallImageUrl: $smallImageUrl, mediumImageUrl: $mediumImageUrl, largeImageUrl: $largeImageUrl, registeredDateTime: $registeredDateTime, history: $history)';
   }
 
   @override
@@ -581,7 +614,8 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('smallImageUrl', smallImageUrl))
       ..add(DiagnosticsProperty('mediumImageUrl', mediumImageUrl))
       ..add(DiagnosticsProperty('largeImageUrl', largeImageUrl))
-      ..add(DiagnosticsProperty('registeredDateTime', registeredDateTime));
+      ..add(DiagnosticsProperty('registeredDateTime', registeredDateTime))
+      ..add(DiagnosticsProperty('history', history));
   }
 
   @override
@@ -622,7 +656,8 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
             const DeepCollectionEquality()
                 .equals(other.largeImageUrl, largeImageUrl) &&
             const DeepCollectionEquality()
-                .equals(other.registeredDateTime, registeredDateTime));
+                .equals(other.registeredDateTime, registeredDateTime) &&
+            const DeepCollectionEquality().equals(other._history, _history));
   }
 
   @JsonKey(ignore: true)
@@ -650,7 +685,8 @@ class _$_Book extends _Book with DiagnosticableTreeMixin {
         const DeepCollectionEquality().hash(smallImageUrl),
         const DeepCollectionEquality().hash(mediumImageUrl),
         const DeepCollectionEquality().hash(largeImageUrl),
-        const DeepCollectionEquality().hash(registeredDateTime)
+        const DeepCollectionEquality().hash(registeredDateTime),
+        const DeepCollectionEquality().hash(_history)
       ]);
 
   @JsonKey(ignore: true)
@@ -712,7 +748,10 @@ abstract class _Book extends Book {
           final String? largeImageUrl,
       @TimestampConverter()
       @JsonKey(name: 'registeredDateTime')
-          final DateTime? registeredDateTime}) = _$_Book;
+          final DateTime? registeredDateTime,
+      @TimestampListConverter()
+      @JsonKey(name: 'history')
+          final List<DateTime>? history}) = _$_Book;
   _Book._() : super._();
 
   factory _Book.fromJson(Map<String, dynamic> json) = _$_Book.fromJson;
@@ -784,6 +823,10 @@ abstract class _Book extends Book {
   @TimestampConverter()
   @JsonKey(name: 'registeredDateTime')
   DateTime? get registeredDateTime;
+  @override
+  @TimestampListConverter()
+  @JsonKey(name: 'history')
+  List<DateTime>? get history;
   @override
   @JsonKey(ignore: true)
   _$$_BookCopyWith<_$_Book> get copyWith => throw _privateConstructorUsedError;
