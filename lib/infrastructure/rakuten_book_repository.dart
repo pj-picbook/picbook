@@ -1,5 +1,6 @@
 import 'dart:convert' as convert;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:picbook/domain/entity/rakuten/item.dart';
 
 import '../../state/search_book_state.dart';
 import '../domain/entity/book.dart';
@@ -20,20 +21,23 @@ class RakutenBookRepository {
   Future<SearchBookState> search({
     required SearchType searchType,
     required String keyWord,
+    List<Book>? addBooks,
+    int getPage = 1,
   }) async {
     final httpClient = HttpClient(
         uri: _createUri(
       searchText: keyWord,
       type: searchType,
+      getPage: getPage,
     ));
     final client = await httpClient.connect(type: RequestType.get);
 
     if (client.isParameterError || client.response == null) {
-      return SearchBookState(books: []);
+      return SearchBookState(items: Items.dummy(), books: []);
     }
 
     if (client.response!.statusCode != 200) {
-      return SearchBookState(books: []);
+      return SearchBookState(items: Items.dummy(), books: []);
     }
 
     final bookItems = Items.fromJson(convert.jsonDecode(client.response!.body));
@@ -67,12 +71,18 @@ class RakutenBookRepository {
         ),
       );
     }
-    return SearchBookState(books: books);
+
+    if (addBooks != null) {
+      books.addAll(addBooks);
+    }
+
+    return SearchBookState(items: bookItems, books: books);
   }
 
   Uri _createUri({
     required String searchText,
     required SearchType type,
+    required int getPage,
   }) {
     return Uri.https(
       'app.rakuten.co.jp',
@@ -83,6 +93,7 @@ class RakutenBookRepository {
         'booksGenreId': '001003',
         'genrePath': '0',
         'orFlag': '1',
+        'page': getPage.toString(),
       },
     );
   }
