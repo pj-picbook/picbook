@@ -51,14 +51,6 @@ class BookNotifier extends StateNotifier<Book> {
       bookshelfId: bookshelfs[0].id, // TODO:本来は複数予定
       book: book,
     );
-
-    // 登録時に読んだ履歴を追加
-    final bookshelfHistory = BookshelfHistory(date: DateTime.now(), book: book);
-    await _bookshelfHistoryRepository.create(
-      uid: _baseAuthRepository.getUid()!,
-      bookshelfId: bookshelfs[0].id, // TODO:本来は複数予定
-      bookshelfHistory: bookshelfHistory,
-    );
   }
 
   Future<void> deleteBook({
