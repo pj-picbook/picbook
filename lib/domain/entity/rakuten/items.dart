@@ -21,4 +21,15 @@ class Items with _$Items {
   }) = _Items;
 
   factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
+
+  factory Items.dummy() => Items(
+        items: [],
+        count: 0,
+        page: 0,
+        first: 0,
+        last: 0,
+        hits: 0,
+        carrier: 0,
+        pageCount: 0,
+      );
 }
