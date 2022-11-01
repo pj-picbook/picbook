@@ -1,6 +1,5 @@
 import 'dart:convert' as convert;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:picbook/domain/entity/rakuten/item.dart';
 
 import '../../state/search_book_state.dart';
 import '../domain/entity/book.dart';
