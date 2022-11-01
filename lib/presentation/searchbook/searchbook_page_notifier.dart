@@ -34,6 +34,8 @@ class SearchBookPageNotifier extends StateNotifier<SearchBookState> {
     );
     _nowSearchType = searchType;
     _nowSearchKeyWord = keyWord;
+    _nowGetPage = 1;
+    _isLoading = false;
   }
 
   Future<void> loadIfNeeded(int readIndex) async {
