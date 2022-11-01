@@ -21,7 +21,7 @@ class RakutenBookRepository {
   Future<SearchBookState> search({
     required SearchType searchType,
     required String keyWord,
-    List<Book>? addBooks,
+    List<Book> addBooks = const [],
     int getPage = 1,
   }) async {
     final httpClient = HttpClient(
@@ -42,7 +42,7 @@ class RakutenBookRepository {
 
     final bookItems = Items.fromJson(convert.jsonDecode(client.response!.body));
     // TODO:バリデーション
-    final List<Book> books = [];
+    List<Book> books = [];
 
     for (final item in bookItems.items) {
       books.add(
@@ -72,11 +72,9 @@ class RakutenBookRepository {
       );
     }
 
-    if (addBooks != null) {
-      books.addAll(addBooks);
-    }
-
-    return SearchBookState(items: bookItems, books: books);
+    return SearchBookState(
+        items: bookItems,
+        books: addBooks.isNotEmpty ? addBooks + books : books);
   }
 
   Uri _createUri({
