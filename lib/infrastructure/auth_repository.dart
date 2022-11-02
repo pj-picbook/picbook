@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_line_sdk/flutter_line_sdk.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:picbook/common/logger_provider.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 final authRepositoryProvider = Provider<BaseAuthRepository>(
   (ref) => AuthRepository(
@@ -18,6 +21,7 @@ abstract class BaseAuthRepository {
     required String email,
     required String password,
   });
+  Future<String?> logInWithLine();
   String? getUid();
   Stream<User?> get authStateChange;
   Future<void> logOut();
@@ -28,6 +32,7 @@ abstract class BaseAuthRepository {
 class AuthRepository implements BaseAuthRepository {
   final Logger _logger;
   final auth = FirebaseAuth.instance;
+  final _lineSdk = LineSDK.instance;
 
   AuthRepository({required Logger logger}) : _logger = logger;
 
@@ -49,6 +54,24 @@ class AuthRepository implements BaseAuthRepository {
       await auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw convertAuthError(e.code);
+    }
+  }
+
+  @override
+  Future<String?> logInWithLine() async {
+    try {
+      final result = await _lineSdk.login(scopes: ['profile', 'openid']);
+      _logger.i(result.accessToken.idTokenRaw);
+      final idToken = result.accessToken.idTokenRaw;
+      final callable = FirebaseFunctions.instanceFor(region: 'asia-northeast1')
+          .httpsCallable(
+        'pushMessage',
+      );
+      await callable.call({'id_token': idToken});
+      return idToken;
+    } on PlatformException catch (e) {
+      _logger.e(e);
+      return null;
     }
   }
 

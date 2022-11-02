@@ -13,6 +13,10 @@ jobs:
       - uses: subosito/flutter-action@v2.3.0
         with:
           flutter-version: '3.0.5'
+      - name: set env
+        run: |
+          touch .env
+          echo "LINE_CHANNEL_ID={{ secrets.LINE_CHANNEL_ID }}" >> .env
       - name: Install packages
         run: flutter pub get
       - name: Linter
