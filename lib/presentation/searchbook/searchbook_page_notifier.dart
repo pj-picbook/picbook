@@ -15,7 +15,7 @@ class SearchBookPageNotifier extends StateNotifier<SearchBookState> {
   SearchBookPageNotifier({
     required RakutenBookRepository rakutenBookRepository,
   })  : _rakutenBookRepository = rakutenBookRepository,
-        super(SearchBookState(items: Items.dummy(), books: []));
+        super(SearchBookState(items: Items.initial(), books: []));
 
   final RakutenBookRepository _rakutenBookRepository;
 

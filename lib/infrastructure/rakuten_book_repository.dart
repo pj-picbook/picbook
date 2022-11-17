@@ -32,11 +32,11 @@ class RakutenBookRepository {
     final client = await httpClient.connect(type: RequestType.get);
 
     if (client.isParameterError || client.response == null) {
-      return SearchBookState(items: Items.dummy(), books: []);
+      return SearchBookState(items: Items.initial(), books: []);
     }
 
     if (client.response!.statusCode != 200) {
-      return SearchBookState(items: Items.dummy(), books: []);
+      return SearchBookState(items: Items.initial(), books: []);
     }
 
     final bookItems = Items.fromJson(convert.jsonDecode(client.response!.body));

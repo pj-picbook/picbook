@@ -22,7 +22,7 @@ class Items with _$Items {
 
   factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
 
-  factory Items.dummy() => Items(
+  factory Items.initial() => Items(
         items: [],
         count: 0,
         page: 0,
