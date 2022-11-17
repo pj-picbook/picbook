@@ -20,25 +20,28 @@ class RakutenBookRepository {
   Future<SearchBookState> search({
     required SearchType searchType,
     required String keyWord,
+    List<Book> addBooks = const [],
+    int getPage = 1,
   }) async {
     final httpClient = HttpClient(
         uri: _createUri(
       searchText: keyWord,
       type: searchType,
+      getPage: getPage,
     ));
     final client = await httpClient.connect(type: RequestType.get);
 
     if (client.isParameterError || client.response == null) {
-      return SearchBookState(books: []);
+      return SearchBookState(items: Items.initial(), books: []);
     }
 
     if (client.response!.statusCode != 200) {
-      return SearchBookState(books: []);
+      return SearchBookState(items: Items.initial(), books: []);
     }
 
     final bookItems = Items.fromJson(convert.jsonDecode(client.response!.body));
     // TODO:バリデーション
-    final List<Book> books = [];
+    List<Book> books = [];
 
     for (final item in bookItems.items) {
       books.add(
@@ -67,12 +70,16 @@ class RakutenBookRepository {
         ),
       );
     }
-    return SearchBookState(books: books);
+
+    return SearchBookState(
+        items: bookItems,
+        books: addBooks.isNotEmpty ? addBooks + books : books);
   }
 
   Uri _createUri({
     required String searchText,
     required SearchType type,
+    required int getPage,
   }) {
     return Uri.https(
       'app.rakuten.co.jp',
@@ -83,6 +90,7 @@ class RakutenBookRepository {
         'booksGenreId': '001003',
         'genrePath': '0',
         'orFlag': '1',
+        'page': getPage.toString(),
       },
     );
   }

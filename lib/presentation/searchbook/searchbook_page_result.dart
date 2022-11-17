@@ -12,7 +12,9 @@ class SearchBookResultPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(rakutenBookPageNotifierProvider);
+    final rakutenBookstate = ref.watch(rakutenBookPageNotifierProvider);
+    final rakutenBookNotifier =
+        ref.watch(rakutenBookPageNotifierProvider.notifier);
     final bookNotifier = ref.watch(bookNotifierProvider.notifier);
     final bookshelfNotifier = ref.read(bookshelfNotifierProvider.notifier);
     final bookshelfState = ref.watch(bookshelfNotifierProvider);
@@ -35,9 +37,11 @@ class SearchBookResultPage extends HookConsumerWidget {
             ),
             Flexible(
               child: ListView.builder(
-                itemCount: state.books.length,
+                itemCount: rakutenBookstate.books.length,
                 itemBuilder: (context, index) {
-                  final item = state.books[index];
+                  final item = rakutenBookstate.books[index];
+                  rakutenBookNotifier.loadIfNeeded(index + 1);
+
                   return InkWell(
                       child: BookBox(
                         onPressed: () async {

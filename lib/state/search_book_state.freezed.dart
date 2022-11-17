@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchBookState {
+  Items get items => throw _privateConstructorUsedError;
   List<Book> get books => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -28,7 +29,9 @@ abstract class $SearchBookStateCopyWith<$Res> {
   factory $SearchBookStateCopyWith(
           SearchBookState value, $Res Function(SearchBookState) then) =
       _$SearchBookStateCopyWithImpl<$Res>;
-  $Res call({List<Book> books});
+  $Res call({Items items, List<Book> books});
+
+  $ItemsCopyWith<$Res> get items;
 }
 
 /// @nodoc
@@ -42,14 +45,26 @@ class _$SearchBookStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? items = freezed,
     Object? books = freezed,
   }) {
     return _then(_value.copyWith(
+      items: items == freezed
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as Items,
       books: books == freezed
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
               as List<Book>,
     ));
+  }
+
+  @override
+  $ItemsCopyWith<$Res> get items {
+    return $ItemsCopyWith<$Res>(_value.items, (value) {
+      return _then(_value.copyWith(items: value));
+    });
   }
 }
 
@@ -60,7 +75,10 @@ abstract class _$$_SearchBookStateCopyWith<$Res>
           _$_SearchBookState value, $Res Function(_$_SearchBookState) then) =
       __$$_SearchBookStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Book> books});
+  $Res call({Items items, List<Book> books});
+
+  @override
+  $ItemsCopyWith<$Res> get items;
 }
 
 /// @nodoc
@@ -76,9 +94,14 @@ class __$$_SearchBookStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? items = freezed,
     Object? books = freezed,
   }) {
     return _then(_$_SearchBookState(
+      items: items == freezed
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as Items,
       books: books == freezed
           ? _value._books
           : books // ignore: cast_nullable_to_non_nullable
@@ -90,10 +113,12 @@ class __$$_SearchBookStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SearchBookState extends _SearchBookState with DiagnosticableTreeMixin {
-  _$_SearchBookState({required final List<Book> books})
+  _$_SearchBookState({required this.items, required final List<Book> books})
       : _books = books,
         super._();
 
+  @override
+  final Items items;
   final List<Book> _books;
   @override
   List<Book> get books {
@@ -103,7 +128,7 @@ class _$_SearchBookState extends _SearchBookState with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SearchBookState(books: $books)';
+    return 'SearchBookState(items: $items, books: $books)';
   }
 
   @override
@@ -111,6 +136,7 @@ class _$_SearchBookState extends _SearchBookState with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'SearchBookState'))
+      ..add(DiagnosticsProperty('items', items))
       ..add(DiagnosticsProperty('books', books));
   }
 
@@ -119,12 +145,15 @@ class _$_SearchBookState extends _SearchBookState with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SearchBookState &&
+            const DeepCollectionEquality().equals(other.items, items) &&
             const DeepCollectionEquality().equals(other._books, _books));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_books));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(items),
+      const DeepCollectionEquality().hash(_books));
 
   @JsonKey(ignore: true)
   @override
@@ -133,10 +162,13 @@ class _$_SearchBookState extends _SearchBookState with DiagnosticableTreeMixin {
 }
 
 abstract class _SearchBookState extends SearchBookState {
-  factory _SearchBookState({required final List<Book> books}) =
-      _$_SearchBookState;
+  factory _SearchBookState(
+      {required final Items items,
+      required final List<Book> books}) = _$_SearchBookState;
   _SearchBookState._() : super._();
 
+  @override
+  Items get items;
   @override
   List<Book> get books;
   @override

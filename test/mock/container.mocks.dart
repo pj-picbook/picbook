@@ -566,6 +566,8 @@ class MockRakutenBookRepository extends _i1.Mock
   _i8.Future<_i5.SearchBookState> search({
     required _i14.SearchType? searchType,
     required String? keyWord,
+    List<_i13.Book>? addBooks = const [],
+    int? getPage = 1,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -574,6 +576,8 @@ class MockRakutenBookRepository extends _i1.Mock
           {
             #searchType: searchType,
             #keyWord: keyWord,
+            #addBooks: addBooks,
+            #getPage: getPage,
           },
         ),
         returnValue:
@@ -585,6 +589,8 @@ class MockRakutenBookRepository extends _i1.Mock
             {
               #searchType: searchType,
               #keyWord: keyWord,
+              #addBooks: addBooks,
+              #getPage: getPage,
             },
           ),
         )),
